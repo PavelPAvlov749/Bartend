@@ -1,0 +1,27 @@
+.priductListPAge{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.search{
+    height: 30px;
+    background-color: rgb(44, 44, 44);
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+}
+.nothing_found{
+    height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: orangered;
+    font-size: larger;
+}
+.emtyIcon{
+
+    width: 100%;
+    height: 100%;
+}

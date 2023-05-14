@@ -1,0 +1,74 @@
+.login_page_container{
+    padding: 50px 10px 0px 10px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.LoginByEmailAndPassword{
+    /* border: 1px solid orangered; */
+    padding: 0px 0px;
+    border-radius: 5px;
+    line-height: 2;
+}
+.input_container {
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: flex-start;
+}
+.login_page_container .logo {
+    padding: 0%;
+    margin: 0%;
+    display: inline;
+    width: 200px;
+    height: 50px;
+    object-fit:cover;
+}
+#loginButton{
+    width: 100px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    height: 35px;
+    font-size: 15px;
+}
+#loginButton:hover{
+    background-color: white;
+    color: black;
+}
+.login_page_container input {
+    
+    background-color: rgb(48, 48, 48);
+    border: 1px solid white;
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
+    /* margin-left: ; */
+    height: 30px;
+    width: calc(70% - 3rem);
+}
+.show{
+    background-color: orange;
+    display: inline;
+    vertical-align: top;
+    /* background-color: orange; */
+    height: 34px;
+    width: 3rem;
+    border-radius: 3px;
+
+}
+#email {
+    width: 70%;
+}
+.login_page_container h1 {
+    font-size: 25px;
+}
+
+.login_page_container a {
+    color: yellow;
+}
+.spanError{
+    color: rgb(215, 78, 28);
+}
