@@ -9,6 +9,8 @@ import checkListsIcon from "../Assets/icons8-document-90.png"
 import premixesIcon from "../Assets/icons8-wine-100.png" 
 import shelduleIcon from "../Assets/icons8-list-96.png"
 import teamIcon from "../Assets/icons8-team-96.png"
+import blankIcon from "../Assets/icons8-chemistry-100.png";
+
 
 export const HomePage = () => {
     const dispatch : any = useDispatch()
@@ -18,7 +20,7 @@ export const HomePage = () => {
     const profile = useSelector((state : Global_state_type) => {
         return state.profile
     })
-    console.log(profile)
+
     return (
         <section className="home_page_container">
             <div className="home_page_info">
@@ -37,6 +39,12 @@ export const HomePage = () => {
                     <NavLink to="/premixes">
                     <img src={premixesIcon} alt="" />
                         <span>Premixes</span>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to={"/blank-shift"}>
+                        <img src={blankIcon} alt="" />
+                        <span>Blank shift</span>
                     </NavLink>
                 </li>
                 <li>

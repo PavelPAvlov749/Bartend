@@ -12,5 +12,6 @@ export type productType = {
     description: string,
     composition: {},
     id: string,
-    calculate: (val: number) => {}
+    calculate?: (val: number) => {},
+    companyID? : string
 }

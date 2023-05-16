@@ -1,0 +1,21 @@
+.blank_shift_container{
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+    font-size: 20px;
+    padding: 5px;
+}
+.controls{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0px;
+}
+.blank_shift_container img {
+    padding: 0px 10px;
+}
+.checked_element{
+    background-color: orange;
+}
+.unchecked_element {
+    background-color : black
+}

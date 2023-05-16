@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { productType } from "../Redux/Types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
-import { NavLink } from "react-router-dom";
-import empty from "../Assets/icons8-empty-90.png"
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import "../Styles/Premixes.css"
+import { Firestore_instance } from "../Firebase/PremixesAPI";
+import searchIcon from "../Assets/icons8-search-100.png";
+import backIcom from "../Assets/icons8-back-90.png";
+import addIcon from "../Assets/icons8-add-100.png";
+
+import { BlankList } from "./BlankList";
+
 
 export const Premixes = () => {
+    const dispatch = useDispatch()
+
+    const companyID = useSelector((state : Global_state_type) => {return state.App.userID})
+    useEffect(() => {
+       
+        Firestore_instance.getPostsByUserID(companyID as string)
+    })
     let products = useSelector((state : Global_state_type) => {
         return state.premixes.premixes
     })
-
+    let [isSearch,setIsSearch] = useState(false)
+    const goBack = () => {
+        Navigate(-1)
+    }
+    const Navigate = useNavigate()
     const onChange = (el: productType) => {
   
         // dispatch(product_actions.addToSelected(el))
@@ -25,26 +42,24 @@ export const Premixes = () => {
     }
     return (
         <section className="priductListPAge">
-        <input className="search" placeholder="Search items" ></input>
-        <section className="productListContainer">
-
-            {  products.length > 0 ? products.map((el: productType) => {
-                return (
-                    <div className="element">
-                    
-                          <NavLink to={"/product/id=" + el.id}>
-                        <span>{el.name.includes("_") ? el.name.split("_")[0] + " " + el.name.split("_")[1] : el.name  }</span>
-                        </NavLink>
-                        <input className="checkBox" type="checkbox" onChange={() => {
-                            onChange(el)
-                        }}></input>
-                        <br />
-                      
-                    </div>
-                )}) : <div className="nothing_found">
-                        <img src={empty} className="emtyIcon" alt="" />
-                        <h1>Nothing Found</h1>
-                    </div>}
+            {isSearch ? <input className="search"></input> : 
+                   <div className="product_list_navigation">
+                   <img src={backIcom} id="back" onClick={goBack} alt="" />
+                   <img src={addIcon} onClick={() => {
+                       Navigate("/add")
+                   }} alt="" />
+                   <img src={searchIcon} onClick={() => {setIsSearch(!isSearch)}} alt="" />
+       
+               </div>
+            }
+     
+        <section className="productListContainer" onClick={() => {
+          if(isSearch){
+            setIsSearch(false)
+          }  
+        }}>
+            <BlankList dispatch={dispatch} Navigate={Navigate} blanks={products}/>
+           
         </section>
         </section>
     )

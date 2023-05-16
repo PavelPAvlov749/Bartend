@@ -20,7 +20,7 @@ type Action_Type = InferActionType<typeof profileActions>;
 export const profileReducer = (state = initial_state, action: Action_Type) => {
     switch (action.type) {
       case SET_PROFILE : {
-        console.log(action.payload)
+
         return {
             ...state,...action.payload
         }

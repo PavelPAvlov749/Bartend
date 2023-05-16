@@ -1,5 +1,9 @@
 .App{
   margin: 0%;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  top: 0%;
   padding: 0%;
   color: white;
   background-color: black;

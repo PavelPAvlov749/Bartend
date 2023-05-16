@@ -1,6 +1,8 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { authAPI } from "../Firebase/AuthAPI";
 import { InferActionType } from "./Store";
+import { productActions } from "./ProductReduxer";
+import { Products } from "../Model/productsModel";
 
 
 const SET_INIT = "barApp/appReducer/setInit"
@@ -69,7 +71,7 @@ export const initializeThunk = () => {
     await onAuthStateChanged(auth,(user) => {
       dispatch(app_actions.setInit(false))
       dispatch(app_actions.setAuth(false))
-      console.log(user)
+      
       setTimeout(() => {
         
       },3000)
@@ -77,6 +79,7 @@ export const initializeThunk = () => {
         dispatch(app_actions.setUserID(user.uid))
         dispatch(app_actions.setInit(true))
         dispatch(app_actions.setAuth(true))
+        dispatch(productActions.setPremixes(Products))
       }else{
         dispatch(app_actions.setAuth(false))
         dispatch(app_actions.setInit(true))
