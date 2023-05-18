@@ -8,7 +8,7 @@ const SET_PROFILE = "barApp/profileReducer/setProfile"
 
 let initial_state : ProfileType = {
     avatar : null,
-    companyName : null,
+    companyName : "GrandRoyal",
     premixes : null,
     coctails : null
 
@@ -42,7 +42,7 @@ export const getProfileThunk = () => {
     return function (dispatch : any) {
         let profile = {
             avatar : avatar,
-            companyName : "DrinkHouse",
+            companyName : "GrandRoyal",
             premixes :  [{}],
             coctails : [{}]
         }

@@ -79,7 +79,7 @@ export const initializeThunk = () => {
         dispatch(app_actions.setUserID(user.uid))
         dispatch(app_actions.setInit(true))
         dispatch(app_actions.setAuth(true))
-        dispatch(productActions.setPremixes(Products))
+        // dispatch(productActions.setPremixes(Products))
       }else{
         dispatch(app_actions.setAuth(false))
         dispatch(app_actions.setInit(true))

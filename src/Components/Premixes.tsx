@@ -10,16 +10,16 @@ import backIcom from "../Assets/icons8-back-90.png";
 import addIcon from "../Assets/icons8-add-100.png";
 
 import { BlankList } from "./BlankList";
+import { getProductsByCompanyID } from "../Redux/ProductReduxer";
 
 
 export const Premixes = () => {
-    const dispatch = useDispatch()
+    const dispatch : any = useDispatch()
 
-    const companyID = useSelector((state : Global_state_type) => {return state.App.userID})
+    const companyID = useSelector((state : Global_state_type) => {return state.profile.companyName})
     useEffect(() => {
-       
-        Firestore_instance.getPostsByUserID(companyID as string)
-    })
+        dispatch(getProductsByCompanyID(companyID as string))
+    },[])
     let products = useSelector((state : Global_state_type) => {
         return state.premixes.premixes
     })

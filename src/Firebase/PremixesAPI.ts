@@ -25,11 +25,7 @@ const reference = ref(dataBase)
 
 export const Firestore_instance = {
 
-
-
-
-
-    getPostsByUserID: async (companyID: string) => {
+    getProductsByCompanyID: async (companyID: string) => {
         try {
             const q = await query(collection(Firestore, "Premixes"),where("companyID","==",companyID));
 
@@ -41,25 +37,31 @@ export const Firestore_instance = {
                 products.push(doc.data())
 
             })
-            
+            console.log(products)
             return products
         } catch (ex) {
             console.log(ex)
         }
 
     },
-    addProduct: async (composition : string,description : string,userID: string, name: string) => {
+
+    deleteProduct : async (productID : string) => {
+        await deleteDoc(doc(Firestore, "Premixes/", productID));
+        
+    },
+    addProduct: async (card : productType) => {
         try {
             
             const docRef = await collection(Firestore, "Premixes")
             const docID = await doc(docRef)
 
-            const newProduct: productType = {
-                name : name,
-                companyID: userID,
-                composition : composition,
-                description : description,
-                id : docID.id
+            const newProduct = {
+                name : card.name,
+                companyID: card.companyID,
+                composition : card.composition,
+                description : card.description,
+                timeStamp : JSON.stringify(new Date()),
+                id : docID.id,
 
             }
             await setDoc(docID, newProduct)

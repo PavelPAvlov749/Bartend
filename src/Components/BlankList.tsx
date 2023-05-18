@@ -16,7 +16,7 @@ export const BlankList = (props: { blanks: productType[] ,dispatch : any,Navigat
                         <div className="element" onClick={() => {
                         
                             props.dispatch(productActions.setAcualProductCard(el))
-                            props.Navigate("/card/id=" + el.name)
+                            props.Navigate("/card/id=" + el.id)
                             
                             }}>
                         

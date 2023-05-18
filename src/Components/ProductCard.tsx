@@ -7,6 +7,7 @@ import deleteIcon from "../Assets/icons8-delete-96.png";
 import editIcon from "../Assets/icons8-edit-96.png";
 import backArrow from "../Assets/icons8-back-90.png";
 import "../Styles/PeoduxtCard.css"
+import { Firestore_instance } from "../Firebase/PremixesAPI";
 
 
 
@@ -16,18 +17,21 @@ export const ProductCard = () => {
     const card: productType | null = useSelector((state: Global_state_type) => {
         return state.premixes.actualProductCard
     })
+    const productID = useLocation().pathname.split("=")[1]
 
     const [showDescription, setShowDescription] = useState(false)
     const [showCompositon, setShowComposition] = useState(false)
     let [value, setValue] = useState(1)
 
-
+    const deleteProduct = () => {
+        Firestore_instance.deleteProduct(productID)
+    }
     return (
         <section className="card_container">
             <div className="controls">
-                <img src={backArrow} id="back" onClick={() => {navigate(-1)}} alt="" />
-                <img src={editIcon} alt="" />
-                <img src={deleteIcon} alt="" />
+                <img src={backArrow}  onClick={() => {navigate(-1)}} alt="" />
+                <img src={editIcon} alt="" onClick={deleteProduct}/>
+                <img src={deleteIcon} id="delete" alt="" />
 
             </div>
             <h1>{card?.name}</h1>
@@ -46,7 +50,7 @@ export const ProductCard = () => {
                 })
             }</p> : null}
             <br />
-            <input type="text" placeholder="How much do we need" onChange={(e: React.FormEvent<HTMLInputElement>) => {
+            <input type="number" placeholder="How much do we need" onChange={(e: React.FormEvent<HTMLInputElement>) => {
 
                 if (e.currentTarget.value.length < 1) {
                     setValue(1)
@@ -56,12 +60,16 @@ export const ProductCard = () => {
 
             }} />
             <br />
+            <div className="calculated_result">
             {card ? Object.keys(card?.composition as {}).map((el: string, index: number) => {
-                return (
+                return (<>
                     <span>{el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] + " : " + Number(Object.values(card?.composition as {})[index]) * value :
-                        el + " : " + Number(Object.values(card?.composition as {})[index]) * value}</span>
+                        el + " : " + Number(Object.values(card?.composition as {})[index]) * value}</span><br />
+                        </>
                 )
             }) : <Navigate to={"/premixes"} />}
+            </div>
+        
 
 
         </section>

@@ -5,13 +5,15 @@ import { compose } from "redux";
 import { appReducer } from "./AppReducer";
 import { profileReducer } from "./ProfileReducer";
 import { productReducer } from "./ProductReduxer";
+import { newCardReducer } from "./NewCardReducer";
 
 
 
 let reducers = combineReducers({
     App : appReducer,
     profile : profileReducer,
-    premixes : productReducer
+    premixes : productReducer,
+    newCard : newCardReducer
 })
 
 type PropertieTypes<T> = T extends {[key:string]:infer U} ? U : never;
@@ -28,3 +30,5 @@ export const store = createStore(reducers,applyMiddleware(thunk));
 
 //@ts-ignore
 window.store = store;
+//@ts-ignore
+window.newCard = store.getState().premixes.newCard
