@@ -6,6 +6,7 @@ import { appReducer } from "./AppReducer";
 import { profileReducer } from "./ProfileReducer";
 import { productReducer } from "./ProductReduxer";
 import { newCardReducer } from "./NewCardReducer";
+import { blankShiftReducer } from "./BlankShiftReducer";
 
 
 
@@ -13,7 +14,8 @@ let reducers = combineReducers({
     App : appReducer,
     profile : profileReducer,
     premixes : productReducer,
-    newCard : newCardReducer
+    newCard : newCardReducer,
+    blankShift : blankShiftReducer
 })
 
 type PropertieTypes<T> = T extends {[key:string]:infer U} ? U : never;
