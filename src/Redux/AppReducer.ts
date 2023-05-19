@@ -8,17 +8,20 @@ import { Products } from "../Model/productsModel";
 const SET_INIT = "barApp/appReducer/setInit"
 const SET_USER_ID = "barApp/appReducer/setUserID"
 const SET_AUTH = "barApp/appReducer/setAuth"
+const SET_FETCH = "barApp/appReducer/setFetch"
 
 type initial_state_type = {
   userID: string | null,
   isAuth: boolean,
-  isInit: boolean
+  isInit: boolean,
+  isFetch : boolean
 }
 
 let initial_state: initial_state_type = {
   userID: null,
   isInit: false,
-  isAuth: true
+  isAuth: true,
+  isFetch : false
 
 }
 
@@ -61,6 +64,10 @@ export const app_actions = {
   setAuth : (isAuth : boolean) => ({
     type : "barApp/appReducer/setAuth",
     payload : isAuth
+  } as const),
+  setFetch : (isFetch : boolean) => ({
+    type : 'barApp/appReducer/setFetch',
+    payload : isFetch
   } as const)
 
 }
@@ -73,17 +80,17 @@ export const initializeThunk = () => {
       dispatch(app_actions.setAuth(false))
       
       setTimeout(() => {
-        
-      },3000)
-      if(user !== null) {
-        dispatch(app_actions.setUserID(user.uid))
-        dispatch(app_actions.setInit(true))
-        dispatch(app_actions.setAuth(true))
-        // dispatch(productActions.setPremixes(Products))
-      }else{
-        dispatch(app_actions.setAuth(false))
-        dispatch(app_actions.setInit(true))
-      }
+        if(user !== null) {
+          dispatch(app_actions.setUserID(user.uid))
+          dispatch(app_actions.setInit(true))
+          dispatch(app_actions.setAuth(true))
+          // dispatch(productActions.setPremixes(Products))
+        }else{
+          dispatch(app_actions.setAuth(false))
+          dispatch(app_actions.setInit(true))
+        }
+      },2000)
+    
     })
   }
 }

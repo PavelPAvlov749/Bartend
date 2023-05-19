@@ -17,8 +17,35 @@
   align-items: center;
   text-align: center;
 }
-.init_screen_container img {
+/* .init_screen_container img {
   object-fit: contain;
   width: 200px;
   height: 100px;
+} */
+#loader {
+  width: 60px;
+  height: 6
+  0px;
+  transform: rotate(0deg);
+  /* animation: rotateLoader infinite  ease-in; */
+  animation-name: spin;
+  animation-duration: 800ms;
+  
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(360deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  } 
+  100% {
+    transform: rotate(360deg);
+  }
 }

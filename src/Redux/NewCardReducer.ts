@@ -1,3 +1,4 @@
+import { Firestore_instance } from "../Firebase/PremixesAPI"
 import { InferActionType } from "./Store"
 import { productType } from "./Types"
 
@@ -95,6 +96,7 @@ export const createNewIngridientCard = (card : productType) => {
             companyID : card.companyID,
             id : "weewf"
         }
+        await Firestore_instance.addProduct(newCard)
         console.log(newCard)
     }
 }

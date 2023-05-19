@@ -13,7 +13,7 @@ const ADD_BLANK_TO_THE_SHIFT = "barApp/productReducer/addBlank"
 const REMOVE_BLANK_FROM_SHIFT_KIST = "barApp/productReducer/removeBlank"
 const SELECT_ALL_BLANKS = "barApp/productReducer/addALLBlank"
 const REMKVE_ALL_BLANKS = "barApp/productReducer/removeALLBlank"
-
+const REMOVE_PRODUCT = "barApp/ProductReducer/RemoveProduct"
 
 const blanks = Products.map((el : productType) => {
     return {...el,checked : false}
@@ -105,6 +105,12 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 })
             }
         }
+        case REMOVE_PRODUCT : {
+            return {
+                ...state,
+                premixes :  [...state.premixes.filter((el : productType) => el.id !== action.payload)]
+            }
+        }
 
         default:
             return state
@@ -139,6 +145,10 @@ export const productActions = {
     type : "barApp/productReducer/setNewID",
     payload : ID
   } as const),
+  removeProduct : (productID : string) => ({
+    type : "barApp/ProductReducer/RemoveProduct",
+    payload : productID
+  } as const)
 
 
 }
@@ -154,9 +164,24 @@ export const getProfileThunk = () => {
 export const getProductsByCompanyID = (companyID : string) => {
     return async function (dispatch : any) {
         // dispatch(app_actions.setInit(false))
+        dispatch(app_actions.setFetch(true))
         const products = await Firestore_instance.getProductsByCompanyID(companyID)
         console.log(products)
         dispatch(productActions.setPremixes(products))
+        setTimeout(() => {
+            dispatch(app_actions.setFetch(false))
+        },0)
+        dispatch(app_actions.setFetch(false))
         // dispatch(app_actions.setInit(true))
+    }
+}
+
+export const deleteProductCrad = (productID : string) => {
+    return async function (dispatch : any) {
+      
+        await Firestore_instance.deleteProduct(productID)
+        dispatch(productActions.removeProduct(productID))
+    
+       
     }
 }

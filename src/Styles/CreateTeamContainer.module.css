@@ -1,0 +1,48 @@
+.create_the_team_container{
+
+    height: 100vh;
+    width: 100%;
+    background-image: url("../Assets/oldFashion.webp");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.create_the_team_container h1 {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    align-self: flex-start;
+    justify-self: flex-start;
+    vertical-align: bottom;
+    line-height: 40px;
+}
+.create_the_team_container h1 span {
+    font-size: 40px;
+    color: rgb(239, 93, 40);
+    
+}
+.create_team_inputs{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.create_team_inputs input {
+    height: 35px;
+    background-color: black;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.create_team_inputs button {
+    background-color: orangered;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 20px;
+    color: white;
+}

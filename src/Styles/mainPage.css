@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     
-    background-color: black;
+    
+    padding: 5px;
 }
 .home_page_info{
     padding: 10px 5px;
@@ -21,36 +22,61 @@
     height: 100px;
 }
 .main_page_navigation{
-
+    height: calc(70vh);
+    margin: 0;
+    overflow-y: scroll;
+    padding: 0%;
 }
 .home_page_container ul{
-    display: flex;
-    flex-direction: column;
-    line-height: 3;
-    font-size: larger;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    padding: 10px 10px;
-    margin: 0%;
-}
-.home_page_container ul li {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    line-height: 3;
-}
-span{
-    display: inline;
-    align-self: center;
-    vertical-align: top;
-    justify-self: center;
+    padding: 5px 0px;
+    overflow-y: scroll;
+    display: grid;
+    grid-gap: 2px;
+    grid-template-columns: repeat(2,1fr);
+    grid-auto-rows: 1fr;
+    margin:0;
 
 }
+.home_page_container ul li {
+    border-radius: 5px;
+    opacity: 0.9;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+ 
+}
+
 .home_page_container ul img {
     width: 30px;
     height: 30px;
-    padding-right: 10px;
+    /* padding-right: 10px; */
     display: inline-block;
     align-self: center;
     justify-self:flex-end;
     vertical-align:text-bottom;
 }
+
+.blue{
+    background-color: rgb(94, 189, 189);
+}
+.orangered{
+    background-color: rgba(250, 121, 75, 0.924);
+}
+
+.green{
+    background-color: rgb(73, 194, 105);
+}
+
+.violet{
+    background-color: rgb(111, 76, 111);
+}
+
+.darkBlue{
+    background-color: rgb(88, 88, 201);
+}
+
+.orange{
+    background-color: rgb(246, 181, 60);
+}
+

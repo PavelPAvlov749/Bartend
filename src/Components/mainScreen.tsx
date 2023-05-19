@@ -29,37 +29,37 @@ export const HomePage = () => {
             </div>
          
             <ul className="main_page_navigation">
-                <li>
+                <li className="blue">
                     <NavLink to="/check_lists">
                         <img src={checkListsIcon} alt="" />
                         <span>Check-lists</span>
                     </NavLink>
                 </li>
-                <li>
+                <li className="orangered">
                     <NavLink to="/premixes">
                     <img src={premixesIcon} alt="" />
                         <span>Premixes</span>
                     </NavLink>
                 </li>
-                <li>
+                <li className="green">
                     <NavLink to={"/blank-shift"}>
                         <img src={blankIcon} alt="" />
                         <span>Blank shift</span>
                     </NavLink>
                 </li>
-                <li>
+                <li className="violet">
                     <NavLink to="/Knowledge">
                     <img src={knowledgeIcon} alt="" />
                         <span>Knowledge Base</span>
                     </NavLink>
                 </li>
-                <li>
+                <li className="darkBlue">
                     <NavLink to="/check_lists">
                     <img src={shelduleIcon} alt="" />
                         <span>Sheldule</span>
                     </NavLink>
                 </li>
-                <li>
+                <li className="orange">
                     <NavLink to="/team">
                     <img src={teamIcon} alt="" />
                         <span>Team</span>

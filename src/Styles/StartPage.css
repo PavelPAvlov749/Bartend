@@ -1,0 +1,125 @@
+.start_page_container{
+    width: 100%;
+    height: 100vh;
+    background-image: url("../Assets/mixingCocktai.jpg");
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+    align-items:center;
+    justify-content: center;
+}
+.join-the-tem-container{
+    background-image: url("../Assets/coctail1.jpg");
+    background-size: cover;
+    background-position-x: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    line-height: 2;
+    align-items:center;
+    justify-content: center;
+}
+.join_the_team_input_container{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+}
+.join_the_team_input_container input {
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-size: 20px;
+}
+.join-the-tem-container button {
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    background-color: rgb(252, 73, 60);
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.start_page_container button {
+    margin-top: 10px;
+    height: 40px;
+    width: 60%;
+    background-color: rgb(252, 73, 60);
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+/* FINISH JOIN THE TEAM PAGE */
+.fibnish_join{
+    background-image: url("../Assets/dryMArtini.avif");
+    background-position-x: +300px;
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#email {
+    width: 100%;
+}
+.fibnish_join input {
+
+    width: 100%;
+}
+.fibnish_join button {
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    background-color: rgb(252, 73, 60);
+    border: none;
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.showContainer{
+    height: 30px;
+    width: 100%;
+    background-color: orangered;
+    border-radius: 5px;
+    display: flex;
+    align-items:flex-end;
+    justify-content: center;
+}
+.showContainer input {
+    width: 90%;
+}
+.showContainer span{
+    margin-top: 4px;
+    vertical-align: middle;
+}
+.finish_input_container{
+  
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+.finish_input_container input {
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    font-size: 20px;
+}
+.finish_input_container span {
+    display: inline-block;
+    height: 25px;
+}

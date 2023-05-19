@@ -16,18 +16,19 @@ export const SecondStep = () => {
         dispatch(newCardActions.setNewDescription(e.currentTarget.value))
     }
     const newProduct = useSelector((state : Global_state_type) => state.newCard)
+    const companyID = useSelector((state : Global_state_type) => state.profile.companyName)
     const navigate = useNavigate()
     const createnewProduct = () => {
         let card : productType = {
             name : newProduct.name,
             description : newProduct.description,
             composition : newProduct.composition as {},
-            companyID : newProduct.companyID as string,
+            companyID : companyID as string,
             id : "wefew"
-
         }
         dispatch(createNewIngridientCard(card))
-        Firestore_instance.addProduct(card)
+        navigate("/premixes")
+      
     }
     return (
         <div className="second_step_container">

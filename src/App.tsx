@@ -8,31 +8,36 @@ import { Navbar } from './Components/Navbar';
 import { HashRouter } from 'react-router-dom';
 import { Router } from './Router/Router';
 
+import loader from "./Assets/icons8-jigger-64.png";
 
 function App() {
-  const dispatch : any = useDispatch()
+  const dispatch: any = useDispatch()
   useEffect(() => {
     dispatch(initializeThunk())
-  },[])
-  const isInit = useSelector((state : Global_state_type) => {
+  }, [])
+
+  const appState = useSelector((state: Global_state_type) => {
     return state.App
   })
 
-  if(isInit.isInit){
+  if (appState.isInit) {
+
     return (
       <div className="App">
         <HashRouter>
-        <Navbar/>
-      <Router props={{isAuth : isInit.isAuth}}></Router>
+          <Navbar />
+          <Router props={{ isAuth: appState.isAuth, isFetch: appState.isFetch }}></Router>
         </HashRouter>
-     
+
       </div>
-    );
-  }else{
+    )
+
+
+  } else {
     return (
       <div className='App init_screen_container'>
-        <img src={logo} alt="" />
-      <span>INITIALIZE APP</span>
+        <img src={loader} id='loader' alt="" />
+        <span>INITIALIZE APP</span>
       </div>
     )
   }
