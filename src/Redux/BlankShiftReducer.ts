@@ -1,6 +1,7 @@
 import { Firestore_instance } from "../Firebase/PremixesAPI"
+import { app_actions } from "./AppReducer"
 import { InferActionType } from "./Store"
-import { productType } from "./Types"
+import { blankShiftType, productType } from "./Types"
 
 
 const SELECT_ITEM = "barApp/blankShiftReducer/add-item"
@@ -12,24 +13,32 @@ const END_BLANK_SHIFT = "barApp/blankShiftReducer/endShift"
 const SET_ITEM_DONE = "barApp/blankShiftReducer/set_item_done"
 const SET_ITEM_UNDONE = "barApp/blankShiftReducer/set_item_undeone"
 const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list"
+const SET_CURENT_SHIFT = "barApp/blanhShiftReducer/set_current_shift"
+const CLOSE_CURRENT_SHIFT = "barApp/blanhShiftReducer/close_current_shift"
+const SET_SHIFTS_HISTORY = "barApp/blanhShiftReducer/set_shifts_history"
 
 
 
 type initialStateType = {
     productList: productType[],
     selectedProducts: productType[],
+    closedShifts: blankShiftType[],
+    currentShift: blankShiftType | null
 
 }
 
 const initialState: initialStateType = {
     productList: [],
     selectedProducts: [],
+    closedShifts: [],
+    currentShift: null
 
 }
 type Action_Type = InferActionType<typeof blanksActions>;
 export const blankShiftReducer = (state = initialState, action: Action_Type) => {
     switch (action.type) {
         case SET_PRODUCT_LIST: {
+            
             return {
                 ...state,
                 productList: action.payload
@@ -40,7 +49,7 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 ...state,
                 productList: [...state.productList.map((el: productType) => {
                     if (el.id === action.payload) {
-                        return { ...el, cheecked: true }
+                        return { ...el, checked: true }
                     } else {
                         return el
                     }
@@ -113,6 +122,24 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 selectedProducts: []
             }
         }
+        case SET_CURENT_SHIFT: {
+            return {
+                ...state,
+                currentShift: action.payload
+            }
+        }
+        case CLOSE_CURRENT_SHIFT: {
+            return {
+                ...state,
+                currentShift: null
+            }
+        }
+        case SET_SHIFTS_HISTORY: {
+            return {
+                ...state,
+                closedShifts: action.payload
+            }
+        }
         default:
             return state
     }
@@ -134,29 +161,92 @@ export const blanksActions = {
     deselectAll: () => ({
         type: "barApp/blankShiftReducer/deselectAllItems"
     } as const),
-    startShift : () => ({
-        type :  "barApp/blankShiftReducer/start",
+    startShift: () => ({
+        type: "barApp/blankShiftReducer/start",
 
     } as const),
-    endShift : () => ({
-        type : "barApp/blankShiftReducer/endShift",
+    endShift: () => ({
+        type: "barApp/blankShiftReducer/endShift",
 
     } as const),
-    setItemDone : (itemID : string) => ({
-        type : "barApp/blankShiftReducer/set_item_done",
-        payload : itemID
+    setItemDone: (itemID: string) => ({
+        type: "barApp/blankShiftReducer/set_item_done",
+        payload: itemID
     } as const),
-    setItemUndone : (itemID : string) => ({
-        type : "barApp/blankShiftReducer/set_item_undeone",
-        payload : itemID
-    } as const ),
-    setProductList : (products : productType[]) => ({
-        type : "barApp/blankShiftReducer/set_product_list",
-        payload : products
+    setItemUndone: (itemID: string) => ({
+        type: "barApp/blankShiftReducer/set_item_undeone",
+        payload: itemID
     } as const),
+    setProductList: (products: productType[]) => ({
+        type: "barApp/blankShiftReducer/set_product_list",
+        payload: products
+    } as const),
+    setCurrentShift: (shift: blankShiftType) => ({
+        type: "barApp/blanhShiftReducer/set_current_shift",
+        payload: shift
+    } as const),
+    closeCurentShift: (shiftID: string) => ({
+        type: "barApp/blanhShiftReducer/close_current_shift",
+        payload: shiftID,
+    } as const),
+    setShiftHistory: (shifts: blankShiftType[]) => ({
+        type: "barApp/blanhShiftReducer/set_shifts_history",
+        payload: shifts
+    } as const)
 
 }
 
 
+export const getPremixes = (companyID : string) => {
+    return async function (dispatch : any) {
+      
+        dispatch(app_actions.setFetch(true))
+        const products = await Firestore_instance.getProductsByCompanyID(companyID)
+        console.log(products)
+        dispatch(blanksActions.setProductList(products))
+        console.log(products)
+        dispatch(app_actions.setFetch(false))
+     
+    }
+}
 
 
+export const getCurrentShiftByCompanyID = (companyID: string) => {
+    return async function (dispatch: any) {
+        dispatch(app_actions.setFetch(true))
+        let shift = await Firestore_instance.getCurrentShift(companyID)
+        dispatch(blanksActions.setCurrentShift(shift as unknown as blankShiftType))
+        dispatch(app_actions.setFetch(false))
+    }
+}
+
+
+export const closeCurrentShiftByCompanyID = (companyID: string) => {
+    return async function (dispatch: any) {
+
+    }
+}
+
+export const getShiftsHistoryByCompanyID = (companyID : string) => {
+    return async function (dispatch : any) {
+        dispatch(app_actions.setFetch(true))
+        let shifts = await Firestore_instance.getBlankShifts(companyID)
+        dispatch(blanksActions.setShiftHistory(shifts as blankShiftType[]))
+        dispatch(app_actions.setFetch(false))
+    }
+}
+
+export const removeShiftToHoistiry = (shiftID : string) => {
+    return async function (dispatch : any) {
+
+    }
+}
+
+export const setCurrentShiftByCompanyID = (currentShift : blankShiftType) => {
+    return async function (dispatch : any) {
+        dispatch(app_actions.setFetch(true))
+        await Firestore_instance.setCurrentShift(currentShift)
+        dispatch(blanksActions.setCurrentShift(currentShift))
+        dispatch(app_actions.setFetch(false))
+    }
+}

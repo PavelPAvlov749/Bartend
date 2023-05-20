@@ -9,16 +9,19 @@ const SET_INIT = "barApp/appReducer/setInit"
 const SET_USER_ID = "barApp/appReducer/setUserID"
 const SET_AUTH = "barApp/appReducer/setAuth"
 const SET_FETCH = "barApp/appReducer/setFetch"
+const SET_USER_NAME = ""
 
 type initial_state_type = {
   userID: string | null,
   isAuth: boolean,
   isInit: boolean,
-  isFetch : boolean
+  isFetch : boolean,
+  userName : string | null
 }
 
 let initial_state: initial_state_type = {
   userID: null,
+  userName : null,
   isInit: false,
   isAuth: true,
   isFetch : false

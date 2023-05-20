@@ -1,10 +1,10 @@
 import { InferActionType } from "./Store";
 import { ProfileType, productType } from "./Types";
 import avatar from "../Assets/1000.jpg"
-import { blankType } from "../Components/BlankShift";
 import { Products } from "../Model/productsModel";
 import { app_actions } from "./AppReducer";
 import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { blanksActions } from "./BlankShiftReducer";
 
 
 const SET_PREMIXES = "barApp/productReducer/setProducts"
@@ -23,7 +23,7 @@ type initial_state_type = {
     premixes : productType[] | [],
     newPremix : productType | null,
     actualProductCard : productType | null,
-    blankShiftList : blankType[],
+    blankShiftList : productType[],
     newCard : {
         name : string | null,
         composition : any [],
@@ -68,7 +68,7 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
         case ADD_BLANK_TO_THE_SHIFT : {
             return {
                 ...state,
-                blankShiftList : state.blankShiftList.map((el : blankType) => {
+                blankShiftList : state.blankShiftList.map((el : productType) => {
                     if(el.id === action.payload.id) {
                         return {...el,checked : true}
                     }else {
@@ -80,7 +80,7 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
         case REMOVE_BLANK_FROM_SHIFT_KIST : {
             return {
                 ...state,
-                blankShiftList : state.blankShiftList.map((el : blankType) => {
+                blankShiftList : state.blankShiftList.map((el : productType) => {
                     if(el.id === action.payload){
                         return {...el,checked : false}
                     }else {
@@ -92,7 +92,7 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
         case REMKVE_ALL_BLANKS : {
             return {
                 ...state,
-                blankShiftList : state.blankShiftList.map((el : blankType) => {
+                blankShiftList : state.blankShiftList.map((el : productType) => {
                     return {...el,checked : false}
                 })
             }
@@ -100,7 +100,7 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
         case SELECT_ALL_BLANKS : {
             return {
                 ...state,
-                blankShiftList : state.blankShiftList.map((el : blankType) => {
+                blankShiftList : state.blankShiftList.map((el : productType) => {
                     return {...el,checked : true}
                 })
             }
@@ -126,7 +126,7 @@ export const productActions = {
     type : "barApp/productReducer/setActualProductCard",
     payload : productCard
   } as const),
-  addBlank : (blank : blankType) => ({
+  addBlank : (blank : productType) => ({
     type : "barApp/productReducer/addBlank",
     payload : blank
   } as const),
@@ -168,6 +168,7 @@ export const getProductsByCompanyID = (companyID : string) => {
         const products = await Firestore_instance.getProductsByCompanyID(companyID)
         console.log(products)
         dispatch(productActions.setPremixes(products))
+        dispatch(blanksActions.setProductList(products))
         setTimeout(() => {
             dispatch(app_actions.setFetch(false))
         },0)

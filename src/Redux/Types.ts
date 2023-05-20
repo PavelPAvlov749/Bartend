@@ -17,3 +17,14 @@ export type productType = {
     checked? : boolean,
     done? : boolean
 }
+
+
+export type blankShiftType = {
+    date : string,
+    products : productType[],
+    companyID : string,
+    employe : string,
+    done : boolean,
+    count : number,
+    shiftID? : string
+}

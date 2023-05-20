@@ -9,7 +9,7 @@ import { getDatabase, ref, onValue, set, get, child, serverTimestamp, update } f
 import { getDownloadURL, getStorage, ref as storegeRef, StorageReference } from "firebase/storage";
 import { firebase, Firestore } from "./FirebaseConfig";
 import { uploadBytes } from "firebase/storage";
-import { productType } from "../Redux/Types";
+import { blankShiftType, productType } from "../Redux/Types";
 
 
 
@@ -72,5 +72,44 @@ export const Firestore_instance = {
         }
 
     },
+    getBlankShifts : async (companyID : string) => {
+        try{
+            const q = query(collection(Firestore,"blankShifts"),where("companyID","==",companyID))
+            let shifts : blankShiftType[] = []
+            const querySnap = await getDocs(q)
+            querySnap.forEach((doc) => {
+                shifts.push(doc.data() as blankShiftType)
+            })
+            console.log(shifts)
+            return shifts
+        }catch(ex){
+
+        }
+    },
+    setCurrentShift  :async (shift : blankShiftType) => {
+        try{
+            const docRef = collection(Firestore,"currentShift")
+            const docID = await doc(docRef)
+            const newShift = {...shift,shiftID : docID.id}
+            await setDoc(docID,newShift)
+
+        }catch(ex){
+
+        }
+    },
+    getCurrentShift : async (companyID : string) => {
+        try{
+            const q = query(collection(Firestore,"currentShift"),where("companyID","==",companyID))
+            const querySnap = await getDocs(q)
+            let shift  :any = []
+            querySnap.forEach((doc) => {
+                shift.push(doc.data())
+            })
+            console.log(querySnap.docs)
+            return shift[0]
+        }catch(ex){
+
+        }
+    }
   
 }
