@@ -28,23 +28,35 @@
     padding: 0%;
 }
 .home_page_container ul{
-    padding: 5px 0px;
+    padding: 10px 0px;
     overflow-y: scroll;
     display: grid;
     grid-gap: 2px;
     grid-template-columns: repeat(2,1fr);
+    grid-gap: 10px;
     grid-auto-rows: 1fr;
     margin:0;
 
 }
 .home_page_container ul li {
+    align-items: flex-end;
+    justify-content: flex-end;
     border-radius: 5px;
+    color: black;
     opacity: 0.9;
     transition: all 0.3s ease-in-out;
     &:hover {
       opacity: 1;
     }
  
+}
+
+.home_page_container ul li span{
+    font-size:larger;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    align-items: center;
+    justify-self: flex-end;
 }
 
 .home_page_container ul img {
@@ -58,25 +70,32 @@
 }
 
 .blue{
-    background-color: rgb(94, 189, 189);
+    /* background-color: rgb(94, 189, 189); */
+    background-image: url("../Assets/checklist.jpeg");
 }
 .orangered{
-    background-color: rgba(250, 121, 75, 0.924);
+    /* background-color: rgba(250, 121, 75, 0.924); */
+    background-image: url("../Assets/recepts.jpeg");
 }
 
 .green{
-    background-color: rgb(73, 194, 105);
+    /* background-color: rgb(73, 194, 105); */
+    background-image: url("../Assets/rotowap.webp");
+    background-size: contain;
 }
 
 .violet{
-    background-color: rgb(111, 76, 111);
+    /* background-color: rgb(111, 76, 111); */
+    background-image: url("../Assets/books.jpeg");
 }
 
 .darkBlue{
-    background-color: rgb(88, 88, 201);
+    /* background-color: rgb(88, 88, 201); */
+    background-image: url("../Assets/sheldue.jpeg");
 }
 
 .orange{
-    background-color: rgb(246, 181, 60);
+    /* background-color: rgb(246, 181, 60); */
+    background-image: url("../Assets/team.jpeg");
 }
 

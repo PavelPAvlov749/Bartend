@@ -97,6 +97,13 @@ export const Firestore_instance = {
 
         }
     },
+    clearCurrentShift : async (shiftID : string) => {
+        try{
+            await deleteDoc(doc(Firestore, "currentShift/", shiftID));
+        }catch(ex) {
+
+        }
+    } ,
     getCurrentShift : async (companyID : string) => {
         try{
             const q = query(collection(Firestore,"currentShift"),where("companyID","==",companyID))
@@ -110,6 +117,14 @@ export const Firestore_instance = {
         }catch(ex){
 
         }
+    },
+    addShiftInHistory : async (shift : blankShiftType) => {
+        try{
+            const docRef = collection(Firestore,"blankShifts")
+            await setDoc(doc(docRef),shift)
+        }catch(ex){
+
+        }
     }
-  
+    
 }

@@ -91,15 +91,16 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
             }
         }
         case SET_ITEM_DONE: {
+            console.log(action.payload)
             return {
-                ...state,
-                selectedProducts: [...state.selectedProducts.map((el: productType) => {
+                ...state,...state.currentShift,
+                products: state.currentShift?.products.map((el: productType) => {
                     if (el.id === action.payload) {
                         return { ...el, done: true }
                     } else {
                         return el
                     }
-                })]
+                })
             }
         }
         case SET_ITEM_UNDONE: {
@@ -181,7 +182,7 @@ export const blanksActions = {
         type: "barApp/blankShiftReducer/set_product_list",
         payload: products
     } as const),
-    setCurrentShift: (shift: blankShiftType) => ({
+    setCurrentShift: (shift: blankShiftType | null) => ({
         type: "barApp/blanhShiftReducer/set_current_shift",
         payload: shift
     } as const),
@@ -215,15 +216,24 @@ export const getCurrentShiftByCompanyID = (companyID: string) => {
     return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
         let shift = await Firestore_instance.getCurrentShift(companyID)
-        dispatch(blanksActions.setCurrentShift(shift as unknown as blankShiftType))
+        if(shift) {
+            dispatch(blanksActions.setCurrentShift(shift as unknown as blankShiftType))
         dispatch(app_actions.setFetch(false))
+        }else{
+            dispatch(blanksActions.setCurrentShift(null))
+        }
+        
     }
 }
 
 
-export const closeCurrentShiftByCompanyID = (companyID: string) => {
+export const closeCurrentShiftByCompanyID = (shift : blankShiftType) => {
     return async function (dispatch: any) {
-
+        dispatch(app_actions.setFetch(true))
+        await Firestore_instance.addShiftInHistory(shift)
+        await Firestore_instance.clearCurrentShift(shift.shiftID as string)
+        dispatch(blanksActions.closeCurentShift(shift.shiftID as string))
+        dispatch(app_actions.setFetch(false))
     }
 }
 

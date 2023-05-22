@@ -26,5 +26,6 @@ export type blankShiftType = {
     employe : string,
     done : boolean,
     count : number,
-    shiftID? : string
+    shiftID? : string,
+    
 }

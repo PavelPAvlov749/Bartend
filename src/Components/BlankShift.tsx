@@ -8,82 +8,33 @@ import { blankShiftType, productType } from "../Redux/Types";
 import startIcon from "../Assets/icons8-start-64.png"
 import styles from "../Styles/BlamkShift.module.css"
 import { blanksActions, getCurrentShiftByCompanyID, getPremixes, getShiftsHistoryByCompanyID, setCurrentShiftByCompanyID } from "../Redux/BlankShiftReducer";
+import { CurrentShift } from "./ShiftsPage/CurrentShift";
+import { ShiftsHistory } from "./ShiftsPage/ShiftsHistory";
 
 
-export const ShiftsHistory = () => {
-    const dispatch: any = useDispatch()
-    const companyID = useSelector((state: Global_state_type) => state.App.userID)
-    const companyName = useSelector((state: Global_state_type) => state.profile.companyName)
-    useEffect(() => {
-        dispatch(getShiftsHistoryByCompanyID(companyID as string))
-        dispatch(getCurrentShiftByCompanyID(companyName as string))
-    }, [])
-    const blanks = useSelector((state: Global_state_type) => {
-        return state.blankShift.closedShifts
-    })
+
+
+export const ShiftPageContainer = () => {
+
     const [shiftType, setShiftType] = useState("current")
-    const currentShift = useSelector((state: Global_state_type) => state.blankShift.currentShift)
-    if (blanks !== null && blanks.length > 0) {
-        return (
-            <section className={styles.blank_shift_container}>
-                <div className={styles.shift_controls}>
+    return (
+        <section className={styles.blank_shift_container}>
+            <div className={styles.shift_controls}>
 
-                    <span onClick={() => { setShiftType("current") }} className={shiftType === "current" ? styles.active : styles.shiftBTN}>Current</span>
-                    <span onClick={() => { setShiftType("history") }} className={shiftType === "history" ? styles.active : styles.shiftBTN}>History</span>
+                <span onClick={() => { setShiftType("current") }} className={shiftType === "current" ? styles.active : styles.shiftBTN}>Current</span>
+                <span onClick={() => { setShiftType("history") }} className={shiftType === "history" ? styles.active : styles.shiftBTN}>History</span>
                 </div>
-                {shiftType === "history" ? blanks.map((el: blankShiftType) => {
-
-                    return (
-                        <div className={styles.single_blank_container}>
-                            <span>Date : {el.date}</span>
-                            <span>Employe : {el.employe}</span>
-                            <span>Done : {el.count}</span>
-                            <span>Was done : </span>
-                            <br />
-                            {el.products?.map((el: productType) => {
-                                return (
-                                    <div className={styles.single_product_from_done_shift}>
-                                        <span>{el.name}</span>
-                                    </div>
-                                )
-                            })}
-                            <NavLink className={styles.nav_link} to={"create-new"}>
-                                New
-                            </NavLink>
-                        </div>
-                    )
-                }) :
-                    <section className={styles.current_shift_container}>
-                        <div className={styles.progress_bar}>
-                            <span>{currentShift?.products.length}</span>
-                        </div>
-                        {currentShift?.products.map((el: productType) => {
-                            return (
-                                <div className={styles.single_product}>
-                                    <span>{el.name}</span>
-                                </div>
-
-                            )
-                        })}
-                    </section>}
-
-            </section>
-        )
-    } else {
-        return (
-            <section className={styles.empty_shift_container}>
-                <h1>No open shifts</h1>
-                <NavLink className={styles.nav_link} to={"create-new"}>
-                    New
-                </NavLink>
-            </section>
-        )
-    }
+                {shiftType === "current" ? <CurrentShift/> : <ShiftsHistory/>}
+        </section>
+    )
 
 }
 
-export const BlankShift = () => {
-    const companyID = useSelector((state: Global_state_type) => state.profile.companyName)
+
+
+export const CreateNewShift = () => {
+    const companyID = useSelector((state: Global_state_type) => state.App.userID)
+    
     const dispatch: any = useDispatch()
     useEffect(() => {
         dispatch(getPremixes(companyID as string))
@@ -118,7 +69,9 @@ export const BlankShift = () => {
                     let shift = {
                         date: mm + "/" + dd + "/" + yy,
                         employe: "Pavlov",
-                        products: blanks.filter((el: productType) => el.checked === true),
+                        products: blanks.filter((el: productType) => el.checked === true).map((el : productType) => {
+                            return {...el,done : false}
+                        }),
                         done: false,
                         count: blanks.filter((el: productType) => el.checked === true).length,
                         companyID: companyID as string
