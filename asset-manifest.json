@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Bartend/static/css/main.e0dd3735.css",
-    "main.js": "/Bartend/static/js/main.a0835a40.js",
+    "main.css": "/Bartend/static/css/main.e998fa16.css",
+    "main.js": "/Bartend/static/js/main.2910020f.js",
     "static/js/787.7a268765.chunk.js": "/Bartend/static/js/787.7a268765.chunk.js",
     "static/media/mixingCocktai.jpg": "/Bartend/static/media/mixingCocktai.d86c0ff73beed45909a7.jpg",
     "static/media/coctail1.jpg": "/Bartend/static/media/coctail1.4cd8b3b85d4d938efcef.jpg",
@@ -10,12 +10,12 @@
     "static/media/bartendLogo.png": "/Bartend/static/media/bartendLogo.9ecf7888bfe0c17ec157.png",
     "static/media/dryMArtini.avif": "/Bartend/static/media/dryMArtini.7835b5c7ae160b86ff28.avif",
     "index.html": "/Bartend/index.html",
-    "main.e0dd3735.css.map": "/Bartend/static/css/main.e0dd3735.css.map",
-    "main.a0835a40.js.map": "/Bartend/static/js/main.a0835a40.js.map",
+    "main.e998fa16.css.map": "/Bartend/static/css/main.e998fa16.css.map",
+    "main.2910020f.js.map": "/Bartend/static/js/main.2910020f.js.map",
     "787.7a268765.chunk.js.map": "/Bartend/static/js/787.7a268765.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0dd3735.css",
-    "static/js/main.a0835a40.js"
+    "static/css/main.e998fa16.css",
+    "static/js/main.2910020f.js"
   ]
 }
