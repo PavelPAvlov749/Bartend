@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
 import styles from "../../Styles/BlamkShift.module.css";
@@ -11,12 +11,13 @@ import { NavLink } from "react-router-dom";
 export const CurrentShift = () => {
     const dispatch: any = useDispatch()
     let products = useSelector((state: Global_state_type) => state.blankShift.currentShift?.products)
-    let curentShift = useSelector((state : Global_state_type) => state.blankShift.currentShift)
+    let curentShift = useSelector((state: Global_state_type) => state.blankShift.currentShift)
     const readyProducts = products?.filter((el: productType) => el.done === true)
     const companyName = useSelector((state: Global_state_type) => state.App.userID)
     useEffect(() => {
         dispatch(getCurrentShiftByCompanyID(companyName as string))
-    })
+    }, [])
+    console.log("remder")
     const toggleItem = (el: productType) => {
         products?.map((product: productType) => {
             if (product.done === true) {
@@ -32,45 +33,46 @@ export const CurrentShift = () => {
         }
     }
     let percent = products ? 100 / products.length * Number(products.filter((el: productType) => el.done === true).length.toFixed(2)) : 0
-
-        return (
-            <>
-            {curentShift ? 
-               <section className={styles.current_shift_container}>
-                {/* @ts-ignore */}
-                <div className={styles.progress_bar}>
-                    <span>{readyProducts?.length + "/" + products?.length}</span>
-                    <span>{percent + "%"}</span>
-                </div>
-
-
-                {products?.map((el: productType) => {
-                    return (
-                        <div className={el.done ? styles.single_product : styles.ready_product}>
-                            <span>{el.name}</span>
-                            <span id={styles.setDoneBtn} onClick={() => {
-                                toggleItem(el)
-                            }}>{el.done ? "Undone" : "Done"}</span>
-                        </div>
-
-                    )
-                })}
-                {percent == 100 ? null :
-                    <button id={styles.EndShift} onClick={() => {
-                        dispatch(closeCurrentShiftByCompanyID(curentShift as blankShiftType))
-                    }}>End Shift</button>}
-            </section> :
-                <section className={styles.empty_shift_container}>
-                <h1>No open shifts</h1>
-                <NavLink className={styles.nav_link} to={"create-new"}>
-                    New
-                </NavLink>
-            </section>
-        
-    
+    const closeShiftHandler = () => {
+     
+        dispatch(closeCurrentShiftByCompanyID(curentShift))
     }
-            </>
-         
-        )
-    
+    return (
+        <>
+            {curentShift.shiftID?.length as number > 1 ?
+                <section className={styles.current_shift_container}>
+                    {/* @ts-ignore */}
+                    <div className={styles.progress_bar}>
+                        <span>{readyProducts?.length + "/" + products?.length}</span>
+                        <span>{percent.toFixed(1) + "%"}</span>
+                    </div>
+
+
+                    {products?.map((el: productType) => {
+                        return (
+                            <div key={el.id} className={el.done ? styles.single_product : styles.ready_product}>
+                                <span>{el.name}</span>
+                                <span id={styles.setDoneBtn} onClick={() => {
+                                    toggleItem(el)
+                                }}>{el.done ? "Undone" : "Done"}</span>
+                            </div>
+
+                        )
+                    })}
+                    {percent !== 100 ? null :
+                        <button id={styles.EndShift} onClick={closeShiftHandler}>End Shift</button>}
+                </section> :
+                <section className={styles.empty_shift_container}>
+                    <h1>Нет открытых смен</h1>
+                    <NavLink className={styles.nav_link} to={"create-new"}>
+                        Начать
+                    </NavLink>
+                </section>
+
+
+            }
+        </>
+
+    )
+
 }

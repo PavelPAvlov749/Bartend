@@ -36,7 +36,7 @@ export const NewIngridientSingleForm = () => {
 
                             <button
                                 //@ts-ignore 
-                                onClick={handleSubmit} id="add_component" type="submit">Add</button>
+                                onClick={handleSubmit} id="add_component" type="submit">+</button>
 
                         </div>
                     )

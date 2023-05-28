@@ -25,10 +25,10 @@ export const FirstStep = () => {
     ])
     return (
         <section className="new_product_container">
-            <h2>Type Name : </h2>
-            <input type="text" placeholder="Name" id="name" onChange={(e) => { onNameChange(e) }} />
+            <h2>Введите наименование : </h2>
+            <input type="text" placeholder="Наименование" id="name" onChange={(e) => { onNameChange(e) }} />
             <section className="compound">
-                <h2>Compound : </h2>
+                <h2>Состав : </h2>
                 <div className="compound_inputs">
                     {forms}
 

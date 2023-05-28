@@ -18,6 +18,7 @@ export const Premixes = () => {
 
     const companyID = useSelector((state : Global_state_type) => {return state.profile.companyName})
     useEffect(() => {
+        
         dispatch(getProductsByCompanyID(companyID as string))
     },[])
     let products = useSelector((state : Global_state_type) => {

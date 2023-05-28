@@ -2,7 +2,7 @@
 import {
     collection, getDocs, getFirestore, query, addDoc, where,
     QuerySnapshot, Timestamp, doc, getDoc, setDoc, documentId,
-    updateDoc, arrayUnion, arrayRemove, deleteDoc
+    updateDoc, arrayUnion, arrayRemove, deleteDoc, DocumentData
 }
     from "firebase/firestore";
 import { getDatabase, ref, onValue, set, get, child, serverTimestamp, update } from "firebase/database";
@@ -122,6 +122,16 @@ export const Firestore_instance = {
         try{
             const docRef = collection(Firestore,"blankShifts")
             await setDoc(doc(docRef),shift)
+        }catch(ex){
+
+        }
+    },
+    markProductAsReady : async (shiftID : string,productID:string) => {
+        try{
+            const docRef = query(collection(Firestore,"currentShift"),where("shiftID","==",shiftID))
+            const querySnap = await getDocs(docRef)
+            let products : any[] = []
+            console.log(querySnap.docChanges())
         }catch(ex){
 
         }

@@ -4,12 +4,7 @@ import "../Styles/mainPage.css"
 import { useDispatch, useSelector } from "react-redux";
 import { getProfileThunk, profileActions } from "../Redux/ProfileReducer";
 import { Global_state_type } from "../Redux/Store";
-import knowledgeIcon from "../Assets/icons8-books-90.png"
-import checkListsIcon from "../Assets/icons8-document-90.png"
-import premixesIcon from "../Assets/icons8-wine-100.png" 
-import shelduleIcon from "../Assets/icons8-list-96.png"
-import teamIcon from "../Assets/icons8-team-96.png"
-import blankIcon from "../Assets/icons8-chemistry-100.png";
+
 
 
 export const HomePage = () => {
@@ -29,40 +24,40 @@ export const HomePage = () => {
             </div>
          
             <ul className="main_page_navigation">
-                <li className="blue">
-                    <NavLink to="/check_lists">
+                <li id="ckecklist" className="blue">
+                    <NavLink to="/check-lists">
                       
-                        <span>Check-lists</span>
+                        <span>Чек-листы</span>
                     </NavLink>
                 </li>
-                <li className="orangered">
+                <li id="premixes" className="orangered">
                     <NavLink to="/premixes">
                   
-                        <span>Premixes</span>
+                        <span>Тех.Карты</span>
                     </NavLink>
                 </li>
-                <li className="green">
+                <li id="blank-shift" className="green">
                     <NavLink to={"/blank-shift"}>
                      
-                        <span>Blank shift</span>
+                        <span>Заготовки</span>
                     </NavLink>
                 </li>
-                <li className="violet">
+                <li id="knowledge" className="violet">
                     <NavLink to="/Knowledge">
                   
-                        <span>Knowledge Base</span>
+                        <span>База знаний</span>
                     </NavLink>
                 </li>
-                <li className="darkBlue">
+                <li id="sheldue" className="darkBlue">
                     <NavLink to="/check_lists">
                    
-                        <span>Sheldule</span>
+                        <span>График</span>
                     </NavLink>
                 </li>
-                <li className="orange">
+                <li id="team" className="orange">
                     <NavLink to="/team">
                  
-                        <span>Team</span>
+                        <span>Команда</span>
                     </NavLink>
                 </li>
             </ul>

@@ -21,8 +21,8 @@ export const ShiftPageContainer = () => {
         <section className={styles.blank_shift_container}>
             <div className={styles.shift_controls}>
 
-                <span onClick={() => { setShiftType("current") }} className={shiftType === "current" ? styles.active : styles.shiftBTN}>Current</span>
-                <span onClick={() => { setShiftType("history") }} className={shiftType === "history" ? styles.active : styles.shiftBTN}>History</span>
+                <span onClick={() => { setShiftType("current") }} className={shiftType === "current" ? styles.active : styles.shiftBTN}>Текущая смена</span>
+                <span onClick={() => { setShiftType("history") }} className={shiftType === "history" ? styles.active : styles.shiftBTN}>История</span>
                 </div>
                 {shiftType === "current" ? <CurrentShift/> : <ShiftsHistory/>}
         </section>
@@ -62,9 +62,9 @@ export const CreateNewShift = () => {
                 }} />
                 <img src={startIcon} alt="" onClick={() => {
                     let date = new Date()
-                    let mm = date.getMonth()
+                    let mm = date.getMonth() + 1
                     let yy = date.getUTCFullYear()
-                    let dd = date.getDay()
+                    let dd = date.getDate()
 
                     let shift = {
                         date: mm + "/" + dd + "/" + yy,
@@ -83,7 +83,7 @@ export const CreateNewShift = () => {
             {blanks.map((el: productType) => {
                 return (
                     <div key={el.id} className={el.checked ? styles.checked_element : styles.unchecked_element} onClick={() => { toggleSelecrted(el) }}>
-                        <span>{el.name}</span>
+                        <span key={el.id}>{el.name}</span>
                     </div>
                 )
             })}

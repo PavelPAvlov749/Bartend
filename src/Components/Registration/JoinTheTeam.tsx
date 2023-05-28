@@ -4,6 +4,8 @@ import { string } from "yup";
 import * as yup from "yup"
 import "../../Styles/StartPage.css"
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { RegistrationActions } from "../../Redux/RegistrationReducer";
 
 
 export const JoinTheTeamFinish = () => {
@@ -57,10 +59,13 @@ export const JoinTheTeamFinish = () => {
 }
 
 export const JoinTheTeam = () => {
+    const dispatch : any = useDispatch()
     const navigate = useNavigate()
-    const Submit = () => {
-       
+    const Submit = (values : {nickName : string,TeamID : string}) => {
+        dispatch(RegistrationActions.setNickName(values.nickName))
+        dispatch(RegistrationActions.setCompanyName(values.TeamID))
         navigate("/registration/join-team/finish")
+        console.log("Submit")
     }
     const validationSchema = yup.object().shape({
         nickName: yup.string().typeError("Field must be string").min(6).max(20).required(),
@@ -71,7 +76,7 @@ export const JoinTheTeam = () => {
             <Formik enableReinitializet={true}
                 initialValues={{ nickName: "", TeamID: "" }}
                 onSubmit={Submit}
-                // validationSchema={validationSchema}
+                validationSchema={validationSchema}
             >
                 {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => {
                     return (

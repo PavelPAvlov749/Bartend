@@ -29,18 +29,10 @@ export const ShiftsHistory = () => {
 
                     return (
                         <div className={styles.single_blank_container}>
-                            <span>Date : {el.date}</span>
-                            <span>Employe : {el.employe}</span>
-                            <span>Done : {el.count}</span>
-                            <span>Was done : </span>
-                            <br />
-                            {el.products?.map((el: productType) => {
-                                return (
-                                    <div className={styles.single_product_from_done_shift}>
-                                        <span>{el.name}</span>
-                                    </div>
-                                )
-                            })}
+                            <span>Дата : {el.date}</span>
+                            <span>Сотрудник : {el.employe}</span>
+                            <span>Кол-во позиций : {el.count}</span>
+                            <a href={`/blank-shift/id=${el.shiftID}`}>Подробнее</a>
                             <NavLink className={styles.nav_link} to={"create-new"}>
                                 New
                             </NavLink>
@@ -52,9 +44,9 @@ export const ShiftsHistory = () => {
     } else {
         return (
             <section className={styles.empty_shift_container}>
-                <h1>No open shifts</h1>
+                <h1>Нет открытых смен</h1>
                 <NavLink className={styles.nav_link} to={"create-new"}>
-                    New
+                    Начать
                 </NavLink>
             </section>
         )

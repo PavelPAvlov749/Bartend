@@ -16,6 +16,7 @@ import loader from "../Assets/icons8-jigger-64.png";
 import { StartPage } from "../Components/Registration/StartPage";
 import { JoinTheTeam, JoinTheTeamFinish } from "../Components/Registration/JoinTheTeam";
 import { CreateTheTeam } from "../Components/Registration/CreateTheTeam";
+import { CheckLists } from "../Components/CheckLists";
 
 const HOME = "/home"
 
@@ -33,6 +34,7 @@ const JOIN_TEAM = "/registration/join-team"
 const CREATE_TEASM = "/create-team"
 const FINISH_TEAM_JOIN = "registration/join-team/finish"
 const NEW_BLANK_SHIFT = "/blank-shift/create-new"
+const CHECK_LISTS = "/check-lists"
 
 export const Router = React.memo((props : any) => {
     const isAuth = useSelector((state : Global_state_type) => {return state.App.isAuth})
@@ -50,7 +52,7 @@ export const Router = React.memo((props : any) => {
             return (
                 <>
                     <Routes>
-                       
+                        <Route path={CHECK_LISTS} element={<CheckLists/>}/>
                         <Route path={ADD_PRODUCT} element={<NewProduct/>}/>
                         <Route path={STEP_2} element={<SecondStep/>}/>
                         <Route path={PRODUCT_CARD} element={<ProductCard/>}></Route>

@@ -19,6 +19,9 @@
     justify-content: space-between;
 }
 #setDoneBtn{
+    width: 4rem;
+    color: rgb(227, 63, 52);
+    text-align: center;
     cursor: pointer;
     font-size: medium;
     padding: 2px;
@@ -73,7 +76,9 @@
     border-radius: 5px;
     border: 1px solid white;
 }
-
+.single_blank_container a {
+    color: rgb(253, 60, 60);
+}
 .nav_link{
     align-items: flex-end;
     justify-self: flex-end;

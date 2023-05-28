@@ -33,9 +33,9 @@ export const SecondStep = () => {
     return (
         <div className="second_step_container">
             <img src={backArrow} onClick={() => {navigate(-1)}} alt="" />
-            <h2>Description : </h2>
-            <textarea name="Description" id="description" placeholder="Description" onChange={setDescription}></textarea>
-            <button onClick={createnewProduct}>Create</button>
+            <h2>Технология приготовления : </h2>
+            <textarea name="Description" id="description" onChange={setDescription}></textarea>
+            <button onClick={createnewProduct}>Создать</button>
 
         </div>
     )

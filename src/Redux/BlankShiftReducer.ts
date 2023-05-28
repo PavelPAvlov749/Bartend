@@ -1,3 +1,4 @@
+import { debug } from "console"
 import { Firestore_instance } from "../Firebase/PremixesAPI"
 import { app_actions } from "./AppReducer"
 import { InferActionType } from "./Store"
@@ -16,14 +17,16 @@ const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list"
 const SET_CURENT_SHIFT = "barApp/blanhShiftReducer/set_current_shift"
 const CLOSE_CURRENT_SHIFT = "barApp/blanhShiftReducer/close_current_shift"
 const SET_SHIFTS_HISTORY = "barApp/blanhShiftReducer/set_shifts_history"
-
+const ADD_PRODUCT_TO_READY = "barApp/blankShiftReducer/add_product_to_Ready"
+const REMOVE_PRODUCT_TO_READY = "barApp/blankShiftReducer/addProductToReady"
 
 
 type initialStateType = {
     productList: productType[],
     selectedProducts: productType[],
     closedShifts: blankShiftType[],
-    currentShift: blankShiftType | null
+    currentShift: blankShiftType,
+  
 
 }
 
@@ -31,12 +34,23 @@ const initialState: initialStateType = {
     productList: [],
     selectedProducts: [],
     closedShifts: [],
-    currentShift: null
+    currentShift: {
+        products : [],
+        shiftID : "",
+        done : false,
+        companyID : "",
+        date : "",
+        employe : "",
+        count : 0
+
+    },
+
 
 }
 type Action_Type = InferActionType<typeof blanksActions>;
 export const blankShiftReducer = (state = initialState, action: Action_Type) => {
     switch (action.type) {
+
         case SET_PRODUCT_LIST: {
             
             return {
@@ -91,30 +105,32 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
             }
         }
         case SET_ITEM_DONE: {
-            console.log(action.payload)
+          
             return {
-                ...state,...state.currentShift,
-                products: state.currentShift?.products.map((el: productType) => {
-                    if (el.id === action.payload) {
-                        return { ...el, done: true }
-                    } else {
-                        return el
+                ...state,
+              currentShift : {
+                ...state.currentShift,
+                products : [...state.currentShift.products.map((el : productType) => {
+                if(el.id !== action.payload){
+                    return el
+                }else {
+                    return {
+                        ...el,done : true
                     }
-                })
-            }
-        }
+                }
+              }) as productType[]]}}}
         case SET_ITEM_UNDONE: {
             return {
                 ...state,
-                selectedProducts: [...state.selectedProducts.map((el: productType) => {
-                    if (el.id === action.payload) {
+                currentShift : {...state.currentShift,products : [...state.currentShift?.products.map((el:productType) => {
+                    if(el.id === action.payload) {
                         return {
-                            ...el, done: false
+                            ...el,done : false
                         }
-                    } else {
+                    }else {
                         return el
                     }
-                })]
+                }) as productType[]]}
             }
         }
         case END_BLANK_SHIFT: {
@@ -126,13 +142,21 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
         case SET_CURENT_SHIFT: {
             return {
                 ...state,
-                currentShift: action.payload
+                currentShift: {...action.payload}
             }
         }
         case CLOSE_CURRENT_SHIFT: {
             return {
                 ...state,
-                currentShift: null
+                currentShift: {
+                    products : [],
+                    shiftID : "",
+                    done : false,
+                    companyID : "",
+                    date : "",
+                    employe : "",
+                    count : 0
+                }
             }
         }
         case SET_SHIFTS_HISTORY: {
@@ -148,6 +172,7 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
 
 
 export const blanksActions = {
+
     selectItem: (itemID: string) => ({
         type: "barApp/blankShiftReducer/add-item",
         payload: itemID
@@ -182,7 +207,7 @@ export const blanksActions = {
         type: "barApp/blankShiftReducer/set_product_list",
         payload: products
     } as const),
-    setCurrentShift: (shift: blankShiftType | null) => ({
+    setCurrentShift: (shift: blankShiftType) => ({
         type: "barApp/blanhShiftReducer/set_current_shift",
         payload: shift
     } as const),
@@ -220,7 +245,15 @@ export const getCurrentShiftByCompanyID = (companyID: string) => {
             dispatch(blanksActions.setCurrentShift(shift as unknown as blankShiftType))
         dispatch(app_actions.setFetch(false))
         }else{
-            dispatch(blanksActions.setCurrentShift(null))
+            dispatch(blanksActions.setCurrentShift({
+                products : [],
+                shiftID : "",
+                done : false,
+                companyID : "",
+                date : "",
+                employe : "",
+                count : 0
+            }))
         }
         
     }
@@ -232,6 +265,7 @@ export const closeCurrentShiftByCompanyID = (shift : blankShiftType) => {
         dispatch(app_actions.setFetch(true))
         await Firestore_instance.addShiftInHistory(shift)
         await Firestore_instance.clearCurrentShift(shift.shiftID as string)
+        
         dispatch(blanksActions.closeCurentShift(shift.shiftID as string))
         dispatch(app_actions.setFetch(false))
     }

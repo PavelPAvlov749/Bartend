@@ -13,7 +13,7 @@ export const BlankList = (props: { blanks: productType[] ,dispatch : any,Navigat
             <>
                 {props.blanks.map((el : productType) => {
                     return (
-                        <div className="element" onClick={() => {
+                        <div id={el.id} className="element" onClick={() => {
                         
                             props.dispatch(productActions.setAcualProductCard(el))
                             props.Navigate("/card/id=" + el.id)
@@ -37,7 +37,7 @@ export const BlankList = (props: { blanks: productType[] ,dispatch : any,Navigat
         return (
             <div className="nothing_found">
             <img src={empty} className="emtyIcon" alt="" />
-            <h1>Nothing Found</h1>
+            <h1>Список пуст</h1>
         </div>
         )
     }

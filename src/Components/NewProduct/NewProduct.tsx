@@ -16,7 +16,7 @@ export const NewProduct = () => {
     return (
         <section>
             <FirstStep/>
-            <button onClick={() => {navigate("/add-step-two")}} id="next_button">Next</button>
+            <button onClick={() => {navigate("/add-step-two")}} id="next_button">Дальше</button>
         
         </section>
     )
