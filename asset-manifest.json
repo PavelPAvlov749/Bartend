@@ -1,24 +1,23 @@
 {
   "files": {
-    "main.css": "/Bartend/static/css/main.5b6be59c.css",
-    "main.js": "/Bartend/static/js/main.ac9e5284.js",
+    "main.css": "/Bartend/static/css/main.d9a13af0.css",
+    "main.js": "/Bartend/static/js/main.177affbd.js",
     "static/js/787.7a268765.chunk.js": "/Bartend/static/js/787.7a268765.chunk.js",
     "static/media/UbuntuCondensed-Regular.ttf": "/Bartend/static/media/UbuntuCondensed-Regular.3c68c6859c01c9c625b6.ttf",
     "static/media/mixingCocktai.jpg": "/Bartend/static/media/mixingCocktai.d86c0ff73beed45909a7.jpg",
     "static/media/coctail1.jpg": "/Bartend/static/media/coctail1.4cd8b3b85d4d938efcef.jpg",
     "static/media/1000.jpg": "/Bartend/static/media/1000.8f9373ae3940fb9bddaf.jpg",
-    "static/media/oldFashion.webp": "/Bartend/static/media/oldFashion.0a07bba9c3f871bbab4b.webp",
     "static/media/bartendLogo.png": "/Bartend/static/media/bartendLogo.9ecf7888bfe0c17ec157.png",
     "static/media/recepts.jpeg": "/Bartend/static/media/recepts.4f4115eaf9b4ea8ff706.jpeg",
     "static/media/dryMArtini.avif": "/Bartend/static/media/dryMArtini.7835b5c7ae160b86ff28.avif",
     "static/media/rotowap.webp": "/Bartend/static/media/rotowap.304f60876ce86ef46ce3.webp",
     "index.html": "/Bartend/index.html",
-    "main.5b6be59c.css.map": "/Bartend/static/css/main.5b6be59c.css.map",
-    "main.ac9e5284.js.map": "/Bartend/static/js/main.ac9e5284.js.map",
+    "main.d9a13af0.css.map": "/Bartend/static/css/main.d9a13af0.css.map",
+    "main.177affbd.js.map": "/Bartend/static/js/main.177affbd.js.map",
     "787.7a268765.chunk.js.map": "/Bartend/static/js/787.7a268765.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b6be59c.css",
-    "static/js/main.ac9e5284.js"
+    "static/css/main.d9a13af0.css",
+    "static/js/main.177affbd.js"
   ]
 }
