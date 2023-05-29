@@ -8,6 +8,7 @@ import { productReducer } from "./ProductReduxer";
 import { newCardReducer } from "./NewCardReducer";
 import { blankShiftReducer } from "./BlankShiftReducer";
 import { newUserReducer } from "./RegistrationReducer";
+import { clanReducer } from "./ClanReducer";
 
 
 
@@ -17,7 +18,8 @@ let reducers = combineReducers({
     premixes : productReducer,
     newCard : newCardReducer,
     blankShift : blankShiftReducer,
-    newUser : newUserReducer
+    newUser : newUserReducer,
+    clans : clanReducer
 })
 
 type PropertieTypes<T> = T extends {[key:string]:infer U} ? U : never;

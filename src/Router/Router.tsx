@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { HomePage } from "../Components/mainScreen";
 import { LoginPage } from "../Components/LoginPage";
-import { RegistrationPage } from "../Components/Registration/Registration";
 import { useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
 import { Premixes } from "../Components/Premixes";
@@ -13,10 +12,11 @@ import { ProductCard } from "../Components/ProductCard";
 import { CreateNewShift, ShiftPageContainer } from "../Components/BlankShift";
 import { SecondStep } from "../Components/NewProduct/SecondStep";
 import loader from "../Assets/icons8-jigger-64.png";
-import { StartPage } from "../Components/Registration/StartPage";
 import { JoinTheTeam, JoinTheTeamFinish } from "../Components/Registration/JoinTheTeam";
-import { CreateTheTeam } from "../Components/Registration/CreateTheTeam";
+import { CreateTheTeam } from "../Components/Registration/Registration";
 import { CheckLists } from "../Components/CheckLists";
+import { PassedShift } from "../Components/ShiftsPage/PassedShift";
+import { ClanList } from "../Components/Clans/ClanList";
 
 const HOME = "/home"
 
@@ -35,6 +35,9 @@ const CREATE_TEASM = "/create-team"
 const FINISH_TEAM_JOIN = "registration/join-team/finish"
 const NEW_BLANK_SHIFT = "/blank-shift/create-new"
 const CHECK_LISTS = "/check-lists"
+const PASSED_SHIFT = "blank-shift/:id"
+const CLAN_LIST = "/clan-list" 
+
 
 export const Router = React.memo((props : any) => {
     const isAuth = useSelector((state : Global_state_type) => {return state.App.isAuth})
@@ -52,6 +55,7 @@ export const Router = React.memo((props : any) => {
             return (
                 <>
                     <Routes>
+                        <Route path={PASSED_SHIFT} element={<PassedShift/>}/>
                         <Route path={CHECK_LISTS} element={<CheckLists/>}/>
                         <Route path={ADD_PRODUCT} element={<NewProduct/>}/>
                         <Route path={STEP_2} element={<SecondStep/>}/>
@@ -62,6 +66,7 @@ export const Router = React.memo((props : any) => {
                         <Route path={PREMIX_LIST} element={<Premixes/>}/>
                         <Route path={BLANK_SHIFT} element={<ShiftPageContainer/>}/>
                         <Route path={NEW_BLANK_SHIFT} element={<CreateNewShift/>}/>
+                        <Route path={CLAN_LIST} element={<ClanList/>}/>
                     </Routes>
                 </>
             )
@@ -73,7 +78,7 @@ export const Router = React.memo((props : any) => {
                 <Routes>
                 {/* <Route path={HOME} element={<HomePage/>}></Route> */}
                 <Route path={LOG_OUT} element={<LoginPage/>}></Route>
-                <Route path={REGISTRATION} element={<StartPage/>}/>
+                <Route path={REGISTRATION} element={<CreateTheTeam/>}/>
                 <Route path={JOIN_TEAM} element={<JoinTheTeam/>}/>
                 <Route path={FINISH_TEAM_JOIN} element={<JoinTheTeamFinish/>}/>
                 <Route path={CREATE_TEASM} element={<CreateTheTeam/>} />

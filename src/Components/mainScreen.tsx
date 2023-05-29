@@ -55,7 +55,7 @@ export const HomePage = () => {
                     </NavLink>
                 </li>
                 <li id="team" className="orange">
-                    <NavLink to="/team">
+                    <NavLink to="/clan-list">
                  
                         <span>Команда</span>
                     </NavLink>

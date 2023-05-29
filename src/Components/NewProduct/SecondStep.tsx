@@ -16,15 +16,15 @@ export const SecondStep = () => {
         dispatch(newCardActions.setNewDescription(e.currentTarget.value))
     }
     const newProduct = useSelector((state : Global_state_type) => state.newCard)
-    const companyID = useSelector((state : Global_state_type) => state.profile.companyName)
+    const teamID = useSelector((state : Global_state_type) => state.App.user.teamID)
     const navigate = useNavigate()
     const createnewProduct = () => {
         let card : productType = {
             name : newProduct.name,
             description : newProduct.description,
             composition : newProduct.composition as {},
-            companyID : companyID as string,
-            id : "wefew"
+            teamID : teamID,
+            
         }
         dispatch(createNewIngridientCard(card))
         navigate("/premixes")

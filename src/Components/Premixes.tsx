@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import "../Styles/Premixes.css"
-import { Firestore_instance } from "../Firebase/PremixesAPI";
 import searchIcon from "../Assets/icons8-search-100.png";
 import backIcom from "../Assets/icons8-back-90.png";
 import addIcon from "../Assets/icons8-add-100.png";
@@ -16,10 +15,10 @@ import { getProductsByCompanyID } from "../Redux/ProductReduxer";
 export const Premixes = () => {
     const dispatch : any = useDispatch()
 
-    const companyID = useSelector((state : Global_state_type) => {return state.profile.companyName})
+    const teamID = useSelector((state : Global_state_type) => {return state.App.user.teamID})
     useEffect(() => {
         
-        dispatch(getProductsByCompanyID(companyID as string))
+        dispatch(getProductsByCompanyID(teamID as string))
     },[])
     let products = useSelector((state : Global_state_type) => {
         return state.premixes.premixes

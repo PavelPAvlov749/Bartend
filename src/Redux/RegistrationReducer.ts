@@ -1,3 +1,4 @@
+import { Firestore_instance } from "../Firebase/PremixesAPI";
 import { InferActionType } from "./Store";
 
 
@@ -92,8 +93,10 @@ export const createNewAdminUser = (user : initial_state_type) => {
 
     }
 }
-export const createNewUser = (user : initial_state_type) => {
+export const createNewUserByEmailAndPassword = (nickName : string,email : string,password : string) => {
     return async function (dispatch : any) {
+        await Firestore_instance.createuserWithEmailAndPassword(nickName,email,password)
 
+        
     }
 }

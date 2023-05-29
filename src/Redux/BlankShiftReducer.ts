@@ -17,28 +17,28 @@ const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list"
 const SET_CURENT_SHIFT = "barApp/blanhShiftReducer/set_current_shift"
 const CLOSE_CURRENT_SHIFT = "barApp/blanhShiftReducer/close_current_shift"
 const SET_SHIFTS_HISTORY = "barApp/blanhShiftReducer/set_shifts_history"
-const ADD_PRODUCT_TO_READY = "barApp/blankShiftReducer/add_product_to_Ready"
-const REMOVE_PRODUCT_TO_READY = "barApp/blankShiftReducer/addProductToReady"
-
+const SET_PASSED_SHIFT = "barApp/blankShiftReducer/setPassedShift"
 
 type initialStateType = {
     productList: productType[],
     selectedProducts: productType[],
     closedShifts: blankShiftType[],
     currentShift: blankShiftType,
-  
+    passedShift : blankShiftType | null
 
 }
 
 const initialState: initialStateType = {
     productList: [],
     selectedProducts: [],
+    passedShift : null,
     closedShifts: [],
     currentShift: {
         products : [],
         shiftID : "",
         done : false,
-        companyID : "",
+        teamID : "",
+        teamName : "",
         date : "",
         employe : "",
         count : 0
@@ -152,7 +152,8 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                     products : [],
                     shiftID : "",
                     done : false,
-                    companyID : "",
+                    teamID : "",
+                    teamName : "",
                     date : "",
                     employe : "",
                     count : 0
@@ -165,6 +166,12 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 closedShifts: action.payload
             }
         }
+        case SET_PASSED_SHIFT : {
+            return {
+                ...state,
+                passedShift : action.payload
+            }
+        }
         default:
             return state
     }
@@ -172,7 +179,10 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
 
 
 export const blanksActions = {
-
+    setPassedShift : (shift : blankShiftType) => ({
+        type : "barApp/blankShiftReducer/setPassedShift",
+        payload : shift
+    } as const),
     selectItem: (itemID: string) => ({
         type: "barApp/blankShiftReducer/add-item",
         payload: itemID
@@ -249,7 +259,8 @@ export const getCurrentShiftByCompanyID = (companyID: string) => {
                 products : [],
                 shiftID : "",
                 done : false,
-                companyID : "",
+                teamID : "",
+                teamName : "",
                 date : "",
                 employe : "",
                 count : 0
@@ -291,6 +302,15 @@ export const setCurrentShiftByCompanyID = (currentShift : blankShiftType) => {
         dispatch(app_actions.setFetch(true))
         await Firestore_instance.setCurrentShift(currentShift)
         dispatch(blanksActions.setCurrentShift(currentShift))
+        dispatch(app_actions.setFetch(false))
+    }
+}
+
+export const getPassedShiftByID = (shiftID : string) => {
+    return async function (dispatch : any) {
+        dispatch(app_actions.setFetch(true))
+        const shift = await Firestore_instance.getPassedShiftById(shiftID)
+        dispatch(blanksActions.setPassedShift(shift))
         dispatch(app_actions.setFetch(false))
     }
 }

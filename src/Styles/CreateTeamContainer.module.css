@@ -2,13 +2,14 @@
 
     height: 100vh;
     width: 100%;
-    background-image: url("../Assets/oldFashion.webp");
+    /* background-image: url("../Assets/coctail1.jpg"); */
     background-size: cover;
     background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    line-height: 2;
 }
 .create_the_team_container h1 {
     position: fixed;
@@ -28,6 +29,7 @@
     display: flex;
     flex-direction: column;
     width: 80%;
+    
 }
 .create_team_inputs input {
     height: 35px;
@@ -36,13 +38,38 @@
     border: 1px solid white;
     color: white;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
+}
+.onInputError{
+    height: 2rem;
+    margin: 2px 0px;
+    display: inline-block;
+    color: rgb(255, 60, 60);
+
+}
+.password{
+    margin-right: 2px;
+    width: calc(85% - 2px);
 }
 .create_team_inputs button {
-    background-color: orangered;
+    background-color: rgb(237, 170, 54);
     border: none;
     border-radius: 5px;
     height: 40px;
     font-size: 20px;
     color: white;
+}
+.passwordFirstInput{
+    display: flex;
+    flex-direction: row;
+}
+#passwordToggle{
+    vertical-align: middle;
+    width: 40px;
+    object-fit: contain;
+    height: 35px;
+    display: inline-block;
+    background-color: black;
+    border-radius: 5px;
+    border: 1px solid white;
 }

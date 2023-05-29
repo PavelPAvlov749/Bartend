@@ -13,9 +13,9 @@ export const CurrentShift = () => {
     let products = useSelector((state: Global_state_type) => state.blankShift.currentShift?.products)
     let curentShift = useSelector((state: Global_state_type) => state.blankShift.currentShift)
     const readyProducts = products?.filter((el: productType) => el.done === true)
-    const companyName = useSelector((state: Global_state_type) => state.App.userID)
+    const teamID = useSelector((state: Global_state_type) => state.App.user.teamID)
     useEffect(() => {
-        dispatch(getCurrentShiftByCompanyID(companyName as string))
+        dispatch(getCurrentShiftByCompanyID(teamID as string))
     }, [])
     console.log("remder")
     const toggleItem = (el: productType) => {
@@ -27,9 +27,9 @@ export const CurrentShift = () => {
             }
         })
         if (el.done === true) {
-            dispatch(blanksActions.setItemUndone(el.id))
+            dispatch(blanksActions.setItemUndone(el.id as string))
         } else {
-            dispatch(blanksActions.setItemDone(el.id))
+            dispatch(blanksActions.setItemDone(el.id as string))
         }
     }
     let percent = products ? 100 / products.length * Number(products.filter((el: productType) => el.done === true).length.toFixed(2)) : 0
@@ -60,7 +60,7 @@ export const CurrentShift = () => {
                         )
                     })}
                     {percent !== 100 ? null :
-                        <button id={styles.EndShift} onClick={closeShiftHandler}>End Shift</button>}
+                        <button id={styles.EndShift} onClick={closeShiftHandler}>Закончить смену</button>}
                 </section> :
                 <section className={styles.empty_shift_container}>
                     <h1>Нет открытых смен</h1>

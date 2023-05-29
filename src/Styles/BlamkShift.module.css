@@ -72,7 +72,7 @@
     flex-direction: column;
     width: 100%;
     height: max-content;
-    background-color:rgb(9, 9, 9);
+    background-color:rgb(33, 33, 33);
     border-radius: 5px;
     border: 1px solid white;
 }
@@ -91,7 +91,7 @@
     width: 60px;
     height: 60px;
     border-radius: 180px;
-    background-color: black;
+    background-color: rgb(34, 34, 34);
     border: 1px solid white;
 }
 /* Current SHIFT */
@@ -121,7 +121,7 @@
     position: fixed;
     bottom: 4rem;
     right: 25%;
-    background-color: black;
+    background-color: rgb(41, 41, 41);
     height: 40px;
 }
 
@@ -129,4 +129,8 @@
     background-color: white;
     border: 1px solid orangered;
     color: black;
+}
+#showMore{
+    color: rgb(242, 59, 59);
+    cursor: pointer;
 }

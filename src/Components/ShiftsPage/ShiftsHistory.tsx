@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { blankShiftType, productType } from "../../Redux/Types";
 import styles from "../../Styles/BlamkShift.module.css";
 import { getCurrentShiftByCompanyID, getShiftsHistoryByCompanyID } from "../../Redux/BlankShiftReducer";
@@ -10,13 +10,16 @@ import { getCurrentShiftByCompanyID, getShiftsHistoryByCompanyID } from "../../R
 
 export const ShiftsHistory = () => {
     const dispatch: any = useDispatch()
-    const companyID = useSelector((state: Global_state_type) => state.App.userID)
-    const companyName = useSelector((state: Global_state_type) => state.App.userID)
+    const companyID = useSelector((state: Global_state_type) => state.App.user.teamID)
+    const companyName = useSelector((state: Global_state_type) => state.App.user.userID)
     useEffect(() => {
         dispatch(getShiftsHistoryByCompanyID(companyID as string))
-        dispatch(getCurrentShiftByCompanyID(companyName as string))
-    }, [])
-    
+        dispatch(getCurrentShiftByCompanyID(companyID as string))
+        }, [])
+    const navigate = useNavigate()
+    const onClickHandler = (id : string) => {
+        navigate(`id=${id}`)
+    }
     const blanks = useSelector((state: Global_state_type) => {
         return state.blankShift.closedShifts
     })
@@ -32,7 +35,9 @@ export const ShiftsHistory = () => {
                             <span>Дата : {el.date}</span>
                             <span>Сотрудник : {el.employe}</span>
                             <span>Кол-во позиций : {el.count}</span>
-                            <a href={`/blank-shift/id=${el.shiftID}`}>Подробнее</a>
+                            <span id={styles.showMore} onClick={() => {
+                                onClickHandler(el.shiftID as string)
+                            }}>Подробнее</span>
                             <NavLink className={styles.nav_link} to={"create-new"}>
                                 New
                             </NavLink>

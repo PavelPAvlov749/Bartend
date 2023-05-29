@@ -3,28 +3,36 @@ import { authAPI } from "../Firebase/AuthAPI";
 import { InferActionType } from "./Store";
 import { productActions } from "./ProductReduxer";
 import { Products } from "../Model/productsModel";
+import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { ClanType, clanActions } from "./ClanReducer";
+import { userPageType } from "./Types";
 
 
 const SET_INIT = "barApp/appReducer/setInit"
-const SET_USER_ID = "barApp/appReducer/setUserID"
 const SET_AUTH = "barApp/appReducer/setAuth"
-const SET_FETCH = "barApp/appReducer/setFetch"
-const SET_USER_NAME = ""
+const SET_USER_PAGE = "barApp/AppReducer/setUserPage"
+
+
 
 type initial_state_type = {
-  userID: string | null,
+  user:userPageType,
   isAuth: boolean,
   isInit: boolean,
-  isFetch : boolean,
-  userName : string | null
+  isFetch: boolean,
+
+
 }
 
 let initial_state: initial_state_type = {
-  userID: null,
-  userName : null,
+  user: {
+    userID: null,
+    userName: null,
+    team: "",
+    teamID: ""
+  },
   isInit: false,
   isAuth: true,
-  isFetch : false
+  isFetch: false,
 
 }
 
@@ -39,15 +47,17 @@ export const appReducer = (state = initial_state, action: Action_Type) => {
         isInit: action.payload
       }
     }
-    case SET_USER_ID: {
+
+    case SET_AUTH: {
       return {
-        ...state,
-        userID : action.payload
+        ...state, isAuth: action.payload
       }
     }
-    case SET_AUTH : {
+
+    case SET_USER_PAGE : {
       return {
-        ...state,isAuth : action.payload
+        ...state,
+        user : action.payload
       }
     }
     default:
@@ -60,17 +70,17 @@ export const app_actions = {
     type: "barApp/appReducer/setInit",
     payload: isInit
   } as const),
-  setUserID: (userID: string) => ({
-    type: "barApp/appReducer/setUserID",
-    payload: userID
+  setAuth: (isAuth: boolean) => ({
+    type: "barApp/appReducer/setAuth",
+    payload: isAuth
   } as const),
-  setAuth : (isAuth : boolean) => ({
-    type : "barApp/appReducer/setAuth",
-    payload : isAuth
+  setFetch: (isFetch: boolean) => ({
+    type: 'barApp/appReducer/setFetch',
+    payload: isFetch
   } as const),
-  setFetch : (isFetch : boolean) => ({
-    type : 'barApp/appReducer/setFetch',
-    payload : isFetch
+  setUserPage: (userPage: userPageType) => ({
+    type: "barApp/AppReducer/setUserPage",
+    payload: userPage
   } as const)
 
 }
@@ -78,22 +88,22 @@ export const app_actions = {
 export const initializeThunk = () => {
   return async function (dispatch: any) {
     const auth = getAuth()
-    await onAuthStateChanged(auth,(user) => {
+    await onAuthStateChanged(auth, async (user) => {
       dispatch(app_actions.setInit(false))
       dispatch(app_actions.setAuth(false))
+      let userPage = await Firestore_instance.getUserById(user?.uid as string)
+      if (userPage) {
+        dispatch(app_actions.setUserPage(userPage))
+        dispatch(app_actions.setInit(true))
+        dispatch(app_actions.setAuth(true))
+        // dispatch(productActions.setPremixes(Products))
       
-      setTimeout(() => {
-        if(user !== null) {
-          dispatch(app_actions.setUserID(user.uid))
-          dispatch(app_actions.setInit(true))
-          dispatch(app_actions.setAuth(true))
-          // dispatch(productActions.setPremixes(Products))
-        }else{
-          dispatch(app_actions.setAuth(false))
-          dispatch(app_actions.setInit(true))
-        }
-      },2000)
-    
+      } else {
+        dispatch(app_actions.setAuth(false))
+        dispatch(app_actions.setInit(true))
+      }
+
+
     })
   }
 }
@@ -101,14 +111,14 @@ export const initializeThunk = () => {
 export const loginByEmailAndPassword = (email: string, password: string) => {
   return async function (dispatch: any) {
     const userID = authAPI.signInByEmailAndPassword(email, password)
-    if(userID !== null) {
+    if (userID !== null) {
       dispatch(app_actions.setInit(true))
     }
   }
 }
 
 export const logOutThunk = () => {
-  return async function (dispatch : any){
+  return async function (dispatch: any) {
     const auth = getAuth()
     await signOut(auth)
     dispatch(app_actions.setAuth(false))

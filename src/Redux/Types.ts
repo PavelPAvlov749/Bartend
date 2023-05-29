@@ -1,5 +1,7 @@
 // import { type } from "os"
 
+import { type } from "os"
+
 export type ProfileType = {
     avatar : any,
     companyName : string | null,
@@ -11,9 +13,9 @@ export type productType = {
     name: string,
     description: string,
     composition: {},
-    id: string,
+    id?: string,
     calculate?: (val: number) => {},
-    companyID? : string,
+    teamID? : string,
     checked? : boolean,
     done? : boolean
 }
@@ -22,10 +24,26 @@ export type productType = {
 export type blankShiftType = {
     date : string,
     products : productType[],
-    companyID : string,
+    teamID : string,
+    teamName : string,
     employe : string,
     done : boolean,
     count : number,
     shiftID? : string,
     
 }
+
+export type userType = {
+    userName : string,
+    password : string,
+    companyName : string,
+    repeatPassword : string,
+    email : string
+}
+
+export type userPageType = {
+    userID: string | null,
+    userName: string | null,
+    team: string,
+    teamID: string
+  }

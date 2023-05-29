@@ -10,6 +10,7 @@ import styles from "../Styles/BlamkShift.module.css"
 import { blanksActions, getCurrentShiftByCompanyID, getPremixes, getShiftsHistoryByCompanyID, setCurrentShiftByCompanyID } from "../Redux/BlankShiftReducer";
 import { CurrentShift } from "./ShiftsPage/CurrentShift";
 import { ShiftsHistory } from "./ShiftsPage/ShiftsHistory";
+import { getFullDateString } from "../Helpers/Helpers";
 
 
 
@@ -33,23 +34,42 @@ export const ShiftPageContainer = () => {
 
 
 export const CreateNewShift = () => {
-    const companyID = useSelector((state: Global_state_type) => state.App.userID)
+    const user = useSelector((state: Global_state_type) => state.App.user)
     
     const dispatch: any = useDispatch()
     useEffect(() => {
-        dispatch(getPremixes(companyID as string))
+        dispatch(getPremixes(user.teamID as string))
     }, [])
+
     const navigate = useNavigate()
+    // @ts-ignore
     const blanks = useSelector((state: Global_state_type) => state.blankShift.productList)
+    let userName = useSelector((state : Global_state_type) => state.App.user.userName)
     const toggleSelecrted = (blank: productType) => {
-        console.log(blank)
         if (!blank.checked) {
-            dispatch(blanksActions.selectItem(blank.id))
+            dispatch(blanksActions.selectItem(blank.id as string))
         } else {
-            dispatch(blanksActions.selectItem(blank.id))
+            dispatch(blanksActions.selectItem(blank.id as string))
         }
     }
-    console.log(blanks)
+    const createShift = () =>{
+        console.log(userName)
+        let shift = {
+            date: getFullDateString(),
+            employe: userName as string,
+            products: blanks.filter((el: productType) => el.checked === true).map((el : productType) => {
+                return {...el,done : false}
+            }),
+            done: false,
+            count: blanks.filter((el: productType) => el.checked === true).length,
+            teamID: user.teamID as string,
+            teamName : user.team
+        }
+
+        dispatch(setCurrentShiftByCompanyID(shift))
+        navigate("/begin-blank-shift")
+    }
+
     return (
         <section className={styles.blank_shift_container}>
             <div className={styles.controls}>
@@ -60,25 +80,7 @@ export const CreateNewShift = () => {
                 <img id={styles.clear} src={clearAll} alt="" onClick={() => {
                     dispatch(blanksActions.deselectAll())
                 }} />
-                <img src={startIcon} alt="" onClick={() => {
-                    let date = new Date()
-                    let mm = date.getMonth() + 1
-                    let yy = date.getUTCFullYear()
-                    let dd = date.getDate()
-
-                    let shift = {
-                        date: mm + "/" + dd + "/" + yy,
-                        employe: "Pavlov",
-                        products: blanks.filter((el: productType) => el.checked === true).map((el : productType) => {
-                            return {...el,done : false}
-                        }),
-                        done: false,
-                        count: blanks.filter((el: productType) => el.checked === true).length,
-                        companyID: companyID as string
-                    }
-                    dispatch(setCurrentShiftByCompanyID(shift))
-                    navigate("/begin-blank-shift")
-                }} />
+                <img src={startIcon} alt="" onClick={createShift} />
             </div>
             {blanks.map((el: productType) => {
                 return (

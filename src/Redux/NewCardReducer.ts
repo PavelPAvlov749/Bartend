@@ -93,8 +93,7 @@ export const createNewIngridientCard = (card : productType) => {
             name : card.name,
             description : card.description,
             composition : card.composition,
-            companyID : card.companyID,
-            id : "weewf"
+            teamID : card.teamID,
         }
         await Firestore_instance.addProduct(newCard)
         console.log(newCard)
