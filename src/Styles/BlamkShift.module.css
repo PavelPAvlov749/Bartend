@@ -43,13 +43,13 @@
     margin-bottom: 5px;
 }
 .shift_controls span {
-    border-radius: 5px;
+    border-radius:10px;
     width: 50%;
     text-align: center;
     cursor: pointer;
 }
 .active{
-    background-color: rgb(234, 84, 76);
+    background-color: rgb(88, 51, 161);
 }
 
 .controls img {
@@ -67,12 +67,12 @@
 }
 
 .single_blank_container{
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: max-content;
-    background-color:rgb(33, 33, 33);
+    /* background-color:rgb(33, 33, 33); */
     border-radius: 5px;
     border: 1px solid white;
 }
@@ -133,4 +133,36 @@
 #showMore{
     color: rgb(242, 59, 59);
     cursor: pointer;
+}
+
+.history_container{
+
+    overflow-y: scroll;
+    
+}
+
+.blank_shift_container{
+    animation: trans 0.4s forwards;
+}
+
+@keyframes trans {
+    0%{
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+.blank_shift_blanks_container{
+    animation: trans 0.4s forwards;
+}
+
+
+@keyframes trans {
+    0%{
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
 }

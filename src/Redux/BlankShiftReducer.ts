@@ -9,8 +9,6 @@ const SELECT_ITEM = "barApp/blankShiftReducer/add-item"
 const DESELECT_ITEM = "barApp/blankShiftReducer/deselect-item"
 const SELECT_ALL_ITEMS = "barApp/blankShiftReducer/selectAll"
 const DESELECT_ALL_ITEMS = "barApp/blankShiftReducer/deselectAllItems"
-const START_BLANK_SHIFT = "barApp/blankShiftReducer/start"
-const END_BLANK_SHIFT = "barApp/blankShiftReducer/endShift"
 const SET_ITEM_DONE = "barApp/blankShiftReducer/set_item_done"
 const SET_ITEM_UNDONE = "barApp/blankShiftReducer/set_item_undeone"
 const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list"
@@ -98,12 +96,7 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 })]
             }
         }
-        case START_BLANK_SHIFT: {
-            return {
-                ...state,
-                selectedProducts: [...state.productList.filter((el: productType) => el.checked as boolean === true)]
-            }
-        }
+
         case SET_ITEM_DONE: {
           
             return {
@@ -133,12 +126,7 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 }) as productType[]]}
             }
         }
-        case END_BLANK_SHIFT: {
-            return {
-                ...state,
-                selectedProducts: []
-            }
-        }
+
         case SET_CURENT_SHIFT: {
             return {
                 ...state,
@@ -291,11 +279,7 @@ export const getShiftsHistoryByCompanyID = (companyID : string) => {
     }
 }
 
-export const removeShiftToHoistiry = (shiftID : string) => {
-    return async function (dispatch : any) {
 
-    }
-}
 
 export const setCurrentShiftByCompanyID = (currentShift : blankShiftType) => {
     return async function (dispatch : any) {

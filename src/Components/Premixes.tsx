@@ -8,7 +8,7 @@ import searchIcon from "../Assets/icons8-search-100.png";
 import backIcom from "../Assets/icons8-back-90.png";
 import addIcon from "../Assets/icons8-add-100.png";
 
-import { BlankList } from "./BlankList";
+import { BlankList } from "./ShiftsPage/BlankList";
 import { getProductsByCompanyID } from "../Redux/ProductReduxer";
 
 

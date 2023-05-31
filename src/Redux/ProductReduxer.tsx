@@ -1,7 +1,7 @@
 import { InferActionType } from "./Store";
 import { ProfileType, productType } from "./Types";
 import avatar from "../Assets/1000.jpg"
-import { Products } from "../Model/productsModel";
+
 import { app_actions } from "./AppReducer";
 import { Firestore_instance } from "../Firebase/PremixesAPI";
 import { blanksActions } from "./BlankShiftReducer";
@@ -15,9 +15,6 @@ const SELECT_ALL_BLANKS = "barApp/productReducer/addALLBlank"
 const REMKVE_ALL_BLANKS = "barApp/productReducer/removeALLBlank"
 const REMOVE_PRODUCT = "barApp/ProductReducer/RemoveProduct"
 
-const blanks = Products.map((el : productType) => {
-    return {...el,checked : false}
-})
 
 type initial_state_type = {
     premixes : productType[] | [],
@@ -37,7 +34,7 @@ let initial_state : initial_state_type = {
     premixes : [],
     newPremix : null,
     actualProductCard : null,
-    blankShiftList : blanks,
+    blankShiftList : null as unknown as productType[],
     newCard : {
         name : null,
         composition : [],

@@ -160,8 +160,8 @@ export const Firestore_instance = {
                 const docRef = collection(Firestore,"Users")
                 // const docID = await doc(docRef,"Users/",uid.user.uid)
                 let newUser = {
-                    nickName : nickName,
-                    clan : null,
+                    userName : nickName,
+                    team : null,
                     userID : uid.user.uid,
 
                 }
@@ -206,8 +206,8 @@ export const Firestore_instance = {
             querySnap.forEach((doc) => {
                 clans.push(doc.data())
             })
-            console.log(clans)
-            return clans
+           
+            return clans[0]
         }catch(ex){
             console.log(ex)
         }
@@ -234,14 +234,14 @@ export const Firestore_instance = {
             const docRef = collection(Firestore,"Clans")
             const userRef = doc(Firestore,"Users/",userID)
             await updateDoc(userRef,{
-                clans : clanName
+                team : clanName
             })
             const docID = await doc(docRef)
             let newClan = {
-                clanName : clanName,
+                teamName : clanName,
                 usersIDs : [userID],
                 users : [userName],
-                clanID : docID.id
+                teamID : docID.id
             }
             await setDoc(docID,newClan)
 

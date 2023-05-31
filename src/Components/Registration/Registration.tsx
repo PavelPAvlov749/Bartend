@@ -5,8 +5,6 @@ import { RegistrationActions, createNewUserByEmailAndPassword } from "../../Redu
 import { useState } from "react";
 import showPasswordIcon from "../../Assets/icons8-eye-96.png"
 import hidePasswordIcon from "../../Assets/icons8-hide-password-100.png"
-import { Global_state_type } from "../../Redux/Store";
-import { userType } from "../../Redux/Types";
 import { validationShema } from "../../Helpers/Helpers";
 
 

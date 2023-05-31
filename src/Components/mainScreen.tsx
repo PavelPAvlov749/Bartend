@@ -1,64 +1,56 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import "../Styles/mainPage.css"
+import { NavLink, useNavigate } from "react-router-dom";
+import styles from "../Styles/HomePage.module.css"
 import { useDispatch, useSelector } from "react-redux";
-import { getProfileThunk, profileActions } from "../Redux/ProfileReducer";
 import { Global_state_type } from "../Redux/Store";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 
 
 export const HomePage = () => {
-    const dispatch : any = useDispatch()
-    useEffect(() => {
-        dispatch(getProfileThunk())
-    },[])
-    const profile = useSelector((state : Global_state_type) => {
-        return state.profile
+    const profile = useSelector((state: Global_state_type) => {
+        return state.App.user
     })
-
+    const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
+    const navigate = useNavigate()
     return (
-        <section className="home_page_container">
-            <div className="home_page_info">
-            <img src={profile.avatar} className="company_logo" alt="" />
-            <h1>{profile.companyName}</h1>
+        <section className={styles.home_page_container}>
+            <div className={styles.home_page_info}>
+                <h1 id={styles.userName}>Hi,{profile.userName}!
+                    <br />
+                    <span>{profile.team ? profile.team : null}</span>
+                </h1>
+                <br />
+
+                <div className={styles.swithcer}>
+                    <ThemeSwitcher theme={theme} />
+                </div>
+
             </div>
-         
-            <ul className="main_page_navigation">
-                <li id="ckecklist" className="blue">
-                    <NavLink to="/check-lists">
-                      
-                        <span>Чек-листы</span>
-                    </NavLink>
+
+            <ul className={styles.main_page_navigation}>
+                <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
+
+                    <span>Чек-листы</span>
+
                 </li>
-                <li id="premixes" className="orangered">
-                    <NavLink to="/premixes">
-                  
-                        <span>Тех.Карты</span>
-                    </NavLink>
+                <li id="blank-shift" className={styles.green} onClick={() => { navigate("/blank-shift") }}>
+
+
+                    <span>Заготовки</span>
+
                 </li>
-                <li id="blank-shift" className="green">
-                    <NavLink to={"/blank-shift"}>
-                     
-                        <span>Заготовки</span>
-                    </NavLink>
+
+                <li id="sheldue" className={styles.darkBlue} onClick={() => { navigate("/check_lists") }}>
+
+
+                    <span>График</span>
+
                 </li>
-                <li id="knowledge" className="violet">
-                    <NavLink to="/Knowledge">
-                  
-                        <span>База знаний</span>
-                    </NavLink>
-                </li>
-                <li id="sheldue" className="darkBlue">
-                    <NavLink to="/check_lists">
-                   
-                        <span>График</span>
-                    </NavLink>
-                </li>
-                <li id="team" className="orange">
-                    <NavLink to="/clan-list">
-                 
-                        <span>Команда</span>
-                    </NavLink>
+                <li id="team" className={styles.orange} onClick={() => { navigate("/clan-list") }}>
+
+
+                    <span>Команда</span>
+
                 </li>
             </ul>
         </section>

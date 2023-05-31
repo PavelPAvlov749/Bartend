@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import styles from "./Styles/App.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { Global_state_type } from './Redux/Store';
 import logo from "./Assets/bartendLogo.png"
@@ -9,6 +9,7 @@ import { HashRouter } from 'react-router-dom';
 import { Router } from './Router/Router';
 
 import loader from "./Assets/icons8-jigger-64.png";
+import { HomePage } from './Components/mainScreen';
 
 function App() {
   const dispatch: any = useDispatch()
@@ -19,13 +20,13 @@ function App() {
   const appState = useSelector((state: Global_state_type) => {
     return state.App
   })
-
+  
   if (appState.isInit) {
 
     return (
-      <div className="App">
+      <div className={`${!appState.isDarktheme ? styles.LightTeheme : styles.DarkTheme} ${styles.App}`}>
         <HashRouter>
-          <Navbar />
+          <Navbar theme={appState.isDarktheme}/>
           <Router props={{ isAuth: appState.isAuth, isFetch: appState.isFetch }}></Router>
         </HashRouter>
 

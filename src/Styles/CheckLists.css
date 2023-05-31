@@ -1,0 +1,13 @@
+.check_lists_container{
+    padding: 5px;
+    animation: trans 0.4s forwards;
+}
+
+@keyframes trans {
+    0%{
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}

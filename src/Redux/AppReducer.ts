@@ -1,16 +1,14 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { authAPI } from "../Firebase/AuthAPI";
 import { InferActionType } from "./Store";
-import { productActions } from "./ProductReduxer";
-import { Products } from "../Model/productsModel";
 import { Firestore_instance } from "../Firebase/PremixesAPI";
-import { ClanType, clanActions } from "./ClanReducer";
 import { userPageType } from "./Types";
 
 
 const SET_INIT = "barApp/appReducer/setInit"
 const SET_AUTH = "barApp/appReducer/setAuth"
 const SET_USER_PAGE = "barApp/AppReducer/setUserPage"
+const TOGGLE_THEME = "barApp/AppReducer/toggleTheme"
 
 
 
@@ -19,6 +17,7 @@ type initial_state_type = {
   isAuth: boolean,
   isInit: boolean,
   isFetch: boolean,
+  isDarktheme : boolean
 
 
 }
@@ -32,7 +31,8 @@ let initial_state: initial_state_type = {
   },
   isInit: false,
   isAuth: true,
-  isFetch: false,
+  isFetch: false, 
+  isDarktheme : true
 
 }
 
@@ -41,6 +41,13 @@ type Action_Type = InferActionType<typeof app_actions>;
 
 export const appReducer = (state = initial_state, action: Action_Type) => {
   switch (action.type) {
+    case TOGGLE_THEME : {
+      console.log(!state.isDarktheme)
+      return {
+        ...state,
+        isDarktheme : !state.isDarktheme
+      }
+    }
     case SET_INIT: {
       return {
         ...state,
@@ -81,6 +88,9 @@ export const app_actions = {
   setUserPage: (userPage: userPageType) => ({
     type: "barApp/AppReducer/setUserPage",
     payload: userPage
+  } as const),
+  toggleTheme : () => ({
+    type : "barApp/AppReducer/toggleTheme"
   } as const)
 
 }

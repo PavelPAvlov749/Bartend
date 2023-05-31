@@ -3,18 +3,16 @@ import { legacy_createStore as createStore} from 'redux'
 import thunk from "redux-thunk";
 import { compose } from "redux";
 import { appReducer } from "./AppReducer";
-import { profileReducer } from "./ProfileReducer";
 import { productReducer } from "./ProductReduxer";
 import { newCardReducer } from "./NewCardReducer";
 import { blankShiftReducer } from "./BlankShiftReducer";
 import { newUserReducer } from "./RegistrationReducer";
-import { clanReducer } from "./ClanReducer";
+import { clanReducer } from "./TeamReducer";
 
 
 
 let reducers = combineReducers({
     App : appReducer,
-    profile : profileReducer,
     premixes : productReducer,
     newCard : newCardReducer,
     blankShift : blankShiftReducer,
