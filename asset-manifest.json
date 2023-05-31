@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Bartend/static/css/main.6e7d33f6.css",
-    "main.js": "/Bartend/static/js/main.cbdbcb8c.js",
+    "main.css": "/Bartend/static/css/main.7e4f101c.css",
+    "main.js": "/Bartend/static/js/main.41ff4e04.js",
     "static/js/787.7a268765.chunk.js": "/Bartend/static/js/787.7a268765.chunk.js",
     "static/media/UbuntuCondensed-Regular.ttf": "/Bartend/static/media/UbuntuCondensed-Regular.3c68c6859c01c9c625b6.ttf",
     "static/media/glasses.png": "/Bartend/static/media/glasses.0db8bf7ac2acd4bab00b.png",
     "index.html": "/Bartend/index.html",
-    "main.6e7d33f6.css.map": "/Bartend/static/css/main.6e7d33f6.css.map",
-    "main.cbdbcb8c.js.map": "/Bartend/static/js/main.cbdbcb8c.js.map",
+    "main.7e4f101c.css.map": "/Bartend/static/css/main.7e4f101c.css.map",
+    "main.41ff4e04.js.map": "/Bartend/static/js/main.41ff4e04.js.map",
     "787.7a268765.chunk.js.map": "/Bartend/static/js/787.7a268765.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e7d33f6.css",
-    "static/js/main.cbdbcb8c.js"
+    "static/css/main.7e4f101c.css",
+    "static/js/main.41ff4e04.js"
   ]
 }
