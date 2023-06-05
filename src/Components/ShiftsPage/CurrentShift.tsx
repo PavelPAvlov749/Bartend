@@ -34,7 +34,6 @@ export const CurrentShift = () => {
     }
     let percent = products ? 100 / products.length * Number(products.filter((el: productType) => el.done === true).length.toFixed(2)) : 0
     const closeShiftHandler = () => {
-     
         dispatch(closeCurrentShiftByCompanyID(curentShift))
     }
     return (
@@ -54,7 +53,7 @@ export const CurrentShift = () => {
                                 <span>{el.name}</span>
                                 <span id={styles.setDoneBtn} onClick={() => {
                                     toggleItem(el)
-                                }}>{el.done ? "Undone" : "Done"}</span>
+                                }}>{el.done ? "В процессе" : "Готово"}</span>
                             </div>
 
                         )
@@ -63,7 +62,7 @@ export const CurrentShift = () => {
                         <button id={styles.EndShift} onClick={closeShiftHandler}>Закончить смену</button>}
                 </section> :
                 <section className={styles.empty_shift_container}>
-                    <h1>Нет открытых смен</h1>
+                    <span>Нет открытых смен</span>
                     <NavLink className={styles.nav_link} to={"create-new"}>
                         Начать
                     </NavLink>

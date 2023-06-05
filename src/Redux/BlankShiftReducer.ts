@@ -53,31 +53,33 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
             
             return {
                 ...state,
-                productList: action.payload
+                productList: action.payload.map((el : productType) => {
+                    return {...el,checked : false}
+                })
             }
         }
         case SELECT_ITEM: {
             return {
                 ...state,
-                productList: [...state.productList.map((el: productType) => {
+                productList: state.productList.map((el: productType) => {
                     if (el.id === action.payload) {
                         return { ...el, checked: true }
                     } else {
                         return el
                     }
-                })]
+                })
             }
         }
         case DESELECT_ITEM: {
             return {
                 ...state,
-                productList: [...state.productList.map((el: productType) => {
+                productList: state.productList.map((el: productType) => {
                     if (el.id === action.payload) {
                         return { ...el, checked: false }
                     } else {
                         return el
                     }
-                })]
+                })
             }
         }
         case SELECT_ALL_ITEMS: {

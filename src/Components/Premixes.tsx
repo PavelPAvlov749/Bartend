@@ -7,14 +7,16 @@ import "../Styles/Premixes.css"
 import searchIcon from "../Assets/icons8-search-100.png";
 import backIcom from "../Assets/icons8-back-90.png";
 import addIcon from "../Assets/icons8-add-100.png";
-
+import backIconsLight from "../Assets/icons8-reply-arrow-100.png"
+import addIconLight from "../Assets/icons8-add-100 (1).png"
+import searchIconLight from "../Assets/icons8-search-100(1).png"
 import { BlankList } from "./ShiftsPage/BlankList";
 import { getProductsByCompanyID } from "../Redux/ProductReduxer";
 
 
 export const Premixes = () => {
     const dispatch : any = useDispatch()
-
+    const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
     const teamID = useSelector((state : Global_state_type) => {return state.App.user.teamID})
     useEffect(() => {
         
@@ -28,27 +30,16 @@ export const Premixes = () => {
         Navigate(-1)
     }
     const Navigate = useNavigate()
-    const onChange = (el: productType) => {
-  
-        // dispatch(product_actions.addToSelected(el))
-        let prevStorage = JSON.parse(localStorage.getItem("products") as string)
-      
-        if(prevStorage){
-            prevStorage.push(el)
-        localStorage.setItem("products",JSON.stringify(prevStorage))}
-        else{
-            localStorage.setItem("products",JSON.stringify([el]))
-        }
-    }
+
     return (
-        <section className="priductListPAge">
+        <section className={isDarkTheme ? "product_list_page_container translate_animation DarkTheme": "product_list_page_container translate_animation LightTheme"}>
             {isSearch ? <input className="search"></input> : 
                    <div className="product_list_navigation">
-                   <img src={backIcom} id="back" onClick={goBack} alt="" />
-                   <img src={addIcon} onClick={() => {
+                   <img src={isDarkTheme ? backIcom : backIconsLight} id="back" onClick={goBack} alt="" />
+                   <img src={isDarkTheme ? addIcon : addIconLight} onClick={() => {
                        Navigate("/add")
                    }} alt="" />
-                   <img src={searchIcon} onClick={() => {setIsSearch(!isSearch)}} alt="" />
+                   <img src={isDarkTheme ? searchIcon : searchIconLight} onClick={() => {setIsSearch(!isSearch)}} alt="" />
        
                </div>
             }

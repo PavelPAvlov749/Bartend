@@ -13,7 +13,7 @@ export const HomePage = () => {
     const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
     const navigate = useNavigate()
     return (
-        <section className={styles.home_page_container}>
+        <section className={`${styles.home_page_container} ${styles.translate_animation}`}>
             <div className={styles.home_page_info}>
                 <h1 id={styles.userName}>Hi,{profile.userName}!
                     <br />

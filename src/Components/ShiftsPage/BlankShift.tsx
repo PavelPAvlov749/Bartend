@@ -16,7 +16,7 @@ import { getFullDateString } from "../../Helpers/Helpers";
 
 
 export const ShiftPageContainer = () => {
-
+    const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
     const [shiftType, setShiftType] = useState("current")
     return (
         <section className={styles.blank_shift_container}>
@@ -46,28 +46,31 @@ export const CreateNewShift = () => {
     const blanks = useSelector((state: Global_state_type) => state.blankShift.productList)
     let userName = useSelector((state : Global_state_type) => state.App.user.userName)
     const toggleSelecrted = (blank: productType) => {
-        if (!blank.checked) {
-            dispatch(blanksActions.selectItem(blank.id as string))
+        if (blank.checked) {
+            dispatch(blanksActions.deselectItem(blank.id as string))
         } else {
             dispatch(blanksActions.selectItem(blank.id as string))
         }
     }
     const createShift = () =>{
-        console.log(userName)
-        let shift = {
-            date: getFullDateString(),
-            employe: userName as string,
-            products: blanks.filter((el: productType) => el.checked === true).map((el : productType) => {
-                return {...el,done : false}
-            }),
-            done: false,
-            count: blanks.filter((el: productType) => el.checked === true).length,
-            teamID: user.teamID as string,
-            teamName : user.team
+        if(user.team){
+            let shift = {
+                date: getFullDateString(),
+                employe: userName as string,
+                products: blanks.filter((el: productType) => el.checked === true).map((el : productType) => {
+                    return {...el,done : false}
+                }),
+                done: false,
+                count: blanks.filter((el: productType) => el.checked === true).length,
+                teamID: user.teamID as string,
+                teamName : user.team
+            }
+            dispatch(setCurrentShiftByCompanyID(shift))
+            navigate("/begin-blank-shift")
+        }else{
+            navigate("/clan-list")
         }
-
-        dispatch(setCurrentShiftByCompanyID(shift))
-        navigate("/begin-blank-shift")
+      
     }
 
     return (

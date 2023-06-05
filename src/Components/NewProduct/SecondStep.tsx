@@ -8,7 +8,7 @@ import { Global_state_type } from "../../Redux/Store";
 import { Firestore_instance } from "../../Firebase/PremixesAPI";
 import { productType } from "../../Redux/Types";
 
-export const SecondStep = () => {
+export const SecondStep = (props : {isDarkTheme : boolean}) => {
     const dispatch : any = useDispatch()
 
     // SET DESCRITION
@@ -19,19 +19,24 @@ export const SecondStep = () => {
     const teamID = useSelector((state : Global_state_type) => state.App.user.teamID)
     const navigate = useNavigate()
     const createnewProduct = () => {
-        let card : productType = {
-            name : newProduct.name,
-            description : newProduct.description,
-            composition : newProduct.composition as {},
-            teamID : teamID,
-            
+        if(teamID){
+            let card : productType = {
+                name : newProduct.name,
+                description : newProduct.description,
+                composition : newProduct.composition as {},
+                teamID : teamID,
+                
+            }
+            dispatch(createNewIngridientCard(card))
+            navigate("/premixes")
+        }else{
+            navigate("/clan-list")
         }
-        dispatch(createNewIngridientCard(card))
-        navigate("/premixes")
+     
       
     }
     return (
-        <div className="second_step_container">
+        <div className={props.isDarkTheme ? "second_step_container translate_animation DarkTheme" : "second_step_container translate_animation LightTeheme"}>
             <img src={backArrow} onClick={() => {navigate(-1)}} alt="" />
             <h2>Технология приготовления : </h2>
             <textarea name="Description" id="description" onChange={setDescription}></textarea>

@@ -19,12 +19,13 @@
     justify-content: space-between;
 }
 #setDoneBtn{
-    width: 4rem;
+    width: max-content;
+    padding: 1px 5px;
     color: rgb(227, 63, 52);
     text-align: center;
     cursor: pointer;
     font-size: medium;
-    padding: 2px;
+    /* padding: 2px; */
     border: 1px solid white;
     border-radius: 5px;
 
@@ -33,6 +34,9 @@
     display: flex;
     justify-content: space-between;
     padding: 7px 0px;
+}
+.blank_shift_blanks_container span {
+    font-size: x-large;
 }
 .shift_controls {
     
@@ -60,10 +64,10 @@
     padding: 0px 10px;
 }
 .checked_element{
-    background-color: orange;
+    background-color: rgb(102, 45, 137);
 }
 .unchecked_element {
-    background-color : black
+   background-color:rgba(0, 0, 0, 0);
 }
 
 .single_blank_container{
@@ -72,28 +76,13 @@
     flex-direction: column;
     width: 100%;
     height: max-content;
-    /* background-color:rgb(33, 33, 33); */
     border-radius: 5px;
     border: 1px solid white;
 }
 .single_blank_container a {
     color: rgb(253, 60, 60);
 }
-.nav_link{
-    align-items: flex-end;
-    justify-self: flex-end;
-    position: fixed;
-    bottom: 4rem;
-    right: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 180px;
-    background-color: rgb(34, 34, 34);
-    border: 1px solid white;
-}
+
 /* Current SHIFT */
 .progress_bar{
     display: flex;
@@ -106,6 +95,8 @@
     height: 80vh;
     text-align: center;
     display: flex;
+    flex-direction: column;
+    line-height: 3;
     justify-content: center;
     align-items: center;
 }
@@ -114,20 +105,24 @@
 }
 
 #EndShift{
+   
     color: white;
     border-radius: 5px;
     font-size: 20px;
-    width: 50%;
+    /* align-items: center; */
+    /* justify-self: center; */
+    width: max-content;
     position: fixed;
-    bottom: 4rem;
+    top: 80vh;
     right: 25%;
-    background-color: rgb(41, 41, 41);
+    background: linear-gradient(45deg, rgb(55, 125, 112), rgb(94, 7, 84));
+    transition: all 0.6s ease;
     height: 40px;
 }
 
 #EndShift:hover {
-    background-color: white;
-    border: 1px solid orangered;
+    background: linear-gradient(45deg, rgb(55, 120, 125), rgb(37, 130, 71));
+    transition: all 0.6s ease;
     color: black;
 }
 #showMore{

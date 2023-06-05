@@ -6,7 +6,7 @@ import add from "../../Assets/icons8-add-96.png"
 import { NewIngridientSingleForm } from "./NewIngridientSingleForm";
 
 
-export const FirstStep = () => {
+export const FirstStep = (props : {isDarkTheme : boolean}) => {
     const dispatch: any = useDispatch()
 
 
@@ -24,7 +24,7 @@ export const FirstStep = () => {
        <NewIngridientSingleForm/>
     ])
     return (
-        <section className="new_product_container">
+        <section className={props.isDarkTheme ? "new_product_container DarkTheme" : "new_product_container LightTheme"}>
             <h2>Введите наименование : </h2>
             <input type="text" placeholder="Наименование" id="name" onChange={(e) => { onNameChange(e) }} />
             <section className="compound">

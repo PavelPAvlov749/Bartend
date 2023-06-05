@@ -8,14 +8,14 @@ import { SecondStep } from "./SecondStep";
 import { createNewIngridientCard } from "../../Redux/NewCardReducer";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export const NewProduct = () => {
+export const NewProduct = (props : {isDarkTheme : boolean} ) => {
 
     const location = useLocation().pathname.split("/")[1]
     const navigate = useNavigate()
     console.log(location)
     return (
         <section>
-            <FirstStep/>
+            <FirstStep isDarkTheme={props.isDarkTheme}/>
             <button onClick={() => {navigate("/add-step-two")}} id="next_button">Дальше</button>
         
         </section>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from "./Styles/App.module.css";
+import "./App.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { Global_state_type } from './Redux/Store';
 import logo from "./Assets/bartendLogo.png"
@@ -24,10 +24,10 @@ function App() {
   if (appState.isInit) {
 
     return (
-      <div className={`${!appState.isDarktheme ? styles.LightTeheme : styles.DarkTheme} ${styles.App}`}>
+      <div className={appState.isDarktheme ? "App DarkTheme translate_animation" : "App LightTheme translate_animation"}>
         <HashRouter>
           <Navbar theme={appState.isDarktheme}/>
-          <Router props={{ isAuth: appState.isAuth, isFetch: appState.isFetch }}></Router>
+          <Router isAuth={appState.isAuth} isDarkTheme={appState.isDarktheme} isFetch={appState.isFetch}></Router>
         </HashRouter>
 
       </div>

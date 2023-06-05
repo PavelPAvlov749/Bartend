@@ -6,6 +6,9 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import deleteIcon from "../Assets/icons8-delete-96.png";
 import editIcon from "../Assets/icons8-edit-96.png";
 import backArrow from "../Assets/icons8-back-90.png";
+import backArrowLight from "../Assets/icons8-reply-arrow-100.png"
+import editIconLight from "../Assets/icons8-edit-96 (1).png"
+import deleteIconLight from "../Assets/icons8-delete-90.png"
 import "../Styles/PeoduxtCard.css"
 import { Firestore_instance } from "../Firebase/PremixesAPI";
 import { deleteProductCrad } from "../Redux/ProductReduxer";
@@ -18,6 +21,7 @@ export const ProductCard = () => {
     const card: productType | null = useSelector((state: Global_state_type) => {
         return state.premixes.actualProductCard
     })
+    const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
     const productID = useLocation().pathname.split("=")[1]
 
     const [showDescription, setShowDescription] = useState(false)
@@ -30,12 +34,11 @@ export const ProductCard = () => {
         navigate("/premixes")
     }
     return (
-        <section className="card_container">
+        <section className={isDarkTheme ? "card_container Dark" : "card_container Light"}>
             <div className="controls">
-                <img src={backArrow}  onClick={() => {navigate(-1)}} alt="" />
-                <img src={editIcon} alt=""/>
-                <img src={deleteIcon} id="delete"  onClick={deleteProduct} alt="" />
-
+                <img src={isDarkTheme ? backArrow : backArrowLight}  onClick={() => {navigate("/premixes")}} alt="" />
+                <img src={isDarkTheme ? editIcon : editIconLight} alt=""/>
+                <img src={isDarkTheme ? deleteIcon : deleteIconLight} id="delete"  onClick={deleteProduct} alt="" />
             </div>
             <h1>{card?.name}</h1>
             <button onClick={() => { setShowDescription(!showDescription) }}>Description</button>
@@ -44,14 +47,14 @@ export const ProductCard = () => {
             }
             <br />
             <button onClick={() => setShowComposition(!showCompositon)}>Composition</button>
-            {showCompositon ? <p>{
+            <p>{ showCompositon ?
                 Object.keys(card?.composition as {}).map((el: string, index: number) => {
                     return (
-                        <p >{el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] :
+                        <p>{el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] :
                             el + " : " + Object.values(card?.composition as {})[index]}</p>
                     )
                 })
-            }</p> : null}
+             : null}</p> 
             <br />
             <input type="number" placeholder="How much do we need" onChange={(e: React.FormEvent<HTMLInputElement>) => {
 

@@ -1,5 +1,5 @@
 import { Formik } from "formik"
-import styles from "../../Styles/CreateTeamContainer.module.css"
+import  "../../Styles/Registration.css"
 import { useDispatch, useSelector } from "react-redux"
 import { RegistrationActions, createNewUserByEmailAndPassword } from "../../Redux/RegistrationReducer";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import { validationShema } from "../../Helpers/Helpers";
 
 
 
-export const CreateTheTeam = () => {
+export const Registration = () => {
     const dispatch: any = useDispatch()
     
 
@@ -24,7 +24,7 @@ export const CreateTheTeam = () => {
     }
 
     return (
-        <section className={styles.create_the_team_container}>
+        <section className="create_the_team_container">
             <h1>Create teams and <span>Join</span> your coworkers</h1>
           
                 <Formik enableReinitialize={true}
@@ -36,26 +36,26 @@ export const CreateTheTeam = () => {
                 >
                     {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => {
                         return (
-                            <div className={styles.create_team_inputs}>
+                            <div className="create_team_inputs translate_animation">
 
                                 <input type="text" id="nickName" autoComplete="off" onChange={handleChange} placeholder="Имя" />
-                                <span className={styles.onInputError}>{touched.nickName  ? errors.nickName : null}</span>
+                                <span className="onInputError">{touched.nickName  ? errors.nickName : null}</span>
                                 <input type="text" id="email" autoComplete="off" onChange={handleChange} placeholder="Почта" />
-                                <span className={styles.onInputError}> {touched.email ? errors.email : null}</span>
+                                <span className="onInputError"> {touched.email ? errors.email : null}</span>
 
-                                <div className={styles.passwordFirstInput}>
-                                <input id="password" className={styles.password} name="password" type={isPasswordHided ? "password" : "text"}  autoComplete="off" onChange={handleChange} placeholder="Пароль " />
+                                <div className="passwordFirstInput">
+                                <input id="password" className="password" name="password" type={isPasswordHided ? "password" : "text"}  autoComplete="off" onChange={handleChange} placeholder="Пароль " />
                                
 
-                                <img id={styles.passwordToggle} src={isPasswordHided ? showPasswordIcon : hidePasswordIcon}
+                                <img id="passwordToggle" src={isPasswordHided ? showPasswordIcon : hidePasswordIcon}
                                  onClick={() => {
                                     setPasswordHided(!isPasswordHided)
                                  }}alt="" />
                                 </div>
-                                <span className={styles.onInputError}> {touched.password ? errors.password : null}</span>
+                                <span className="onInputError"> {touched.password ? errors.password : null}</span>
                               
                                 <input type={isPasswordHided ? "password" : "text"} id="repeatPassword"  autoComplete="off" onChange={handleChange} placeholder="Повторите пароль"/>
-                                <span className={styles.onInputError}> {touched.repeatPassword ? errors.repeatPassword : null}</span>
+                                <span className="onInputError"> {touched.repeatPassword ? errors.repeatPassword : null}</span>
 
                                 <button
                                     //@ts-ignore 

@@ -44,6 +44,6 @@ export type userType = {
 export type userPageType = {
     userID: string | null,
     userName: string | null,
-    team: string,
-    teamID: string
+    team: string | null,
+    teamID: string | null
   }

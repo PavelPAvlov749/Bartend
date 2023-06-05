@@ -33,7 +33,7 @@ export const LoginPage = () => {
     }
 
     return (
-        <section className="login_page_container">
+        <section className="login_page_container translate_animation">
 
             <div className="login_form">
             <img src={logo} alt="" className="logo"/>

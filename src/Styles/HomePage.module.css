@@ -5,6 +5,9 @@
     line-height: 2;
     padding: 5px;
 }
+#userName {
+    border: none;
+}
 .home_page_info{
     padding: 0px 10px 0px 50px;
     margin-bottom: 1rem;
@@ -23,6 +26,10 @@
     
 
     
+}
+.home_page_info h1 {
+    padding: 0%;
+    margin: 0%;
 }
 #userName {
     font-size: xx-large;
@@ -107,3 +114,17 @@
 
     /* background-image: url("../Assets/team.jpeg"); */
 }
+
+.translate_animation{
+    animation: transl 0.4s forwards;
+  }
+  @keyframes transl {
+    0%{
+      transform: translateX(100%);
+    }
+    100%{
+      transform: translateX(0%);
+    }
+  }
+  
+  

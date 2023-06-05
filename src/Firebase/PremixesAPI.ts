@@ -2,7 +2,7 @@
 import {
     collection, getDocs, getFirestore, query, addDoc, where,
     QuerySnapshot, Timestamp, doc, getDoc, setDoc, documentId,
-    updateDoc, arrayUnion, arrayRemove, deleteDoc, DocumentData
+    updateDoc, arrayUnion, arrayRemove, deleteDoc, DocumentData, onSnapshot
 }
     from "firebase/firestore";
 import { getDatabase, ref, onValue, set, get, child, serverTimestamp, update } from "firebase/database";
@@ -12,11 +12,22 @@ import { uploadBytes } from "firebase/storage";
 import { blankShiftType, productType, userType } from "../Redux/Types";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { CurrentShift } from "../Components/ShiftsPage/CurrentShift";
+import {ref as refStorage} from "firebase/storage"
+import { updateDo, updatePartiallyEmittedExpression } from "typescript";
 
 
 
 
-
+export const makeid = (length:number) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() *
+ charactersLength));
+   }
+   return result;
+}
 
 
 //Initialize Real-time data base instance 
@@ -198,15 +209,42 @@ export const Firestore_instance = {
 
         }
     },
+    leavetheTeam : async (teamID : string,userID : string,userName : string) => {
+        try{
+          
+            let docRef = doc(Firestore,"Clans/",teamID)
+            let userRef = doc(Firestore,"Users/",userID)
+            let team = await getDoc(docRef)
+         
+            if(team.data()?.users.length === 1) {
+                deleteDoc(docRef)
+               
+            }else {
+                updateDoc(docRef,{
+                    users : arrayRemove(userName),
+                    userIDs : arrayRemove(userID)
+                })
+            }
+        
+            await updateDoc(userRef,{
+                team : null,
+                teamID : null
+            })
+
+        }catch(ex){
+            console.log(ex)
+        }
+    },
     getClansByUserID : async ( userID : string) => {
         try{
-            const q = query(collection(Firestore,"Clans"),where("usersIDs","array-contains",userID))
+            const q = query(collection(Firestore,"Clans"),where("userIDs","array-contains",userID))
             const querySnap = await getDocs(q)
             let clans : any[] = []
             querySnap.forEach((doc) => {
                 clans.push(doc.data())
+                console.log(doc.data())
             })
-           
+            console.log(clans[0])
             return clans[0]
         }catch(ex){
             console.log(ex)
@@ -217,7 +255,7 @@ export const Firestore_instance = {
             const clansRef = doc(Firestore, "Clans/", clanID);
             await updateDoc(clansRef,{
                 users : arrayUnion(userName),
-                userIds : arrayUnion(userID) 
+                userIDs : arrayUnion(userID) 
             })
             const userRef = doc(Firestore,"Users/",userID)
             await updateDoc(userRef,{
@@ -229,25 +267,32 @@ export const Firestore_instance = {
             console.log(ex)
         }
     },
-    createTheClan : async (clanName : string,userID : string,userName : string) => {
+    createTheClan : async (team : {newTeamName : string,newTeamDescription : string,},userID : string,userName : string) => {
         try{
             const docRef = collection(Firestore,"Clans")
             const userRef = doc(Firestore,"Users/",userID)
-            await updateDoc(userRef,{
-                team : clanName
-            })
+            const imageID = makeid(15)
             const docID = await doc(docRef)
-            let newClan = {
-                teamName : clanName,
-                usersIDs : [userID],
-                users : [userName],
+            await updateDoc(userRef,{
+                team : team.newTeamName,
                 teamID : docID.id
+            })
+
+            let newTeam = {
+                teamName : team.newTeamName,
+                userIDs : [userID],
+                users : [userName],
+                teamID : docID.id,
+                description : team.newTeamDescription
             }
-            await setDoc(docID,newClan)
+            await setDoc(docID,newTeam)
 
         }catch(ex){
             console.log(ex)
         }
-    }
+    },
+   
     
 }
+
+

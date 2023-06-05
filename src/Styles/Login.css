@@ -1,0 +1,51 @@
+.login_page_container{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+.logo {
+    width: 180px;
+    object-fit: cover;
+    height: 80px;
+}
+.LoginByEmailAndPassword{
+    width: 100%;
+
+}
+.login_page_container a {
+    width: 5rem;
+    
+}
+#loginButton{
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+}
+.input_container{
+
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.LoginByEmailAndPassword input {
+    width: 80%;
+}
+#passwordInput{
+    width: 70%;
+}
+.show {
+    background-color: orangered;
+    height: 2.1rem;
+    line-height: 2.1rem;
+    padding: 0px 5px;
+    border-radius: 5px;
+    margin-left: 2px;
+    display: block;
+
+}
+.login_page_container input {
+    color: black;
+}
