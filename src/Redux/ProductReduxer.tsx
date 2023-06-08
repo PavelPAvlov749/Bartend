@@ -1,7 +1,5 @@
 import { InferActionType } from "./Store";
-import { ProfileType, productType } from "./Types";
-import avatar from "../Assets/1000.jpg"
-
+import {  productType } from "./Types";
 import { app_actions } from "./AppReducer";
 import { Firestore_instance } from "../Firebase/PremixesAPI";
 import { blanksActions } from "./BlankShiftReducer";
@@ -150,20 +148,12 @@ export const productActions = {
 
 }
 
-export const getProfileThunk = () => {
-    return function (dispatch : any) {
-    
-    
-    }
-
-}
 
 export const getProductsByCompanyID = (companyID : string) => {
     return async function (dispatch : any) {
         // dispatch(app_actions.setInit(false))
         dispatch(app_actions.setFetch(true))
         const products = await Firestore_instance.getProductsByCompanyID(companyID)
-        console.log(products)
         dispatch(productActions.setPremixes(products))
         dispatch(blanksActions.setProductList(products))
         setTimeout(() => {

@@ -9,6 +9,7 @@ import { blankShiftReducer } from "./BlankShiftReducer";
 import { newUserReducer } from "./RegistrationReducer";
 import { clanReducer } from "./TeamReducer";
 import { checkLisReducer } from "./CheckListReducer";
+import { KnowledgeBaseReducer } from "./KnowledgeBaseReducer";
 
 
 
@@ -20,7 +21,8 @@ let reducers = combineReducers({
     blankShift : blankShiftReducer,
     newUser : newUserReducer,
     clans : clanReducer,
-    chcekLists : checkLisReducer
+    chcekLists : checkLisReducer,
+    knowledgeBase : KnowledgeBaseReducer
 })
 
 type PropertieTypes<T> = T extends {[key:string]:infer U} ? U : never;

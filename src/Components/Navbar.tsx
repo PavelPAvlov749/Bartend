@@ -40,7 +40,7 @@ export const Navbar = (props : {theme : boolean}) => {
                 </NavLink>
             </li>
             <li>
-                <NavLink className="nav" to="/premixes">
+                <NavLink className="nav" to="/knowledge-base">
                     <img src={props.theme ? books : booksDark} className="icon" alt="" />
                     
                

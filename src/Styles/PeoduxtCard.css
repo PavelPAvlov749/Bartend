@@ -4,22 +4,12 @@
     padding: 5px;
     overflow : auto;
     height: calc(100vh - 4rem);
-    animation: transl 0.4s forwards;
 }
-.controls {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
-.card_container h1 {
-    color: rgb(62, 85, 154);
-}
-
 .calculated_result{
     padding: 10px 0px;
     line-height: 2;
     text-align: left;
+    font-size: larger;
 }
 .controls img {
     padding: 0px 10px;
@@ -29,7 +19,6 @@
 .card_container button {    
     margin: 10px 0px;
     background: linear-gradient(45deg, rgb(55, 55, 125), rgb(10, 214, 204));
-    /* border: 1px solid white; */
     border-radius: 5px;
     color: white;
     height: 40px;
@@ -44,23 +33,4 @@ input::-webkit-inner-spin-button {
   /* Firefox */
 input[type=number] {
     -moz-appearance: textfield;
-  }
-.card_container input {
-    -webkit-appearance: none;
-    background: linear-gradient(45deg, rgb(55, 55, 125), rgb(214, 10, 190));
-    border: 1px solid white;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    height: 35px;
-    font-size: 15px;
-}
-
-  @keyframes transl {
-    0%{
-      transform: translateX(100%);
-    }
-    100%{
-      transform: translateX(0%);
-    }
   }

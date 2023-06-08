@@ -12,21 +12,21 @@ import { uploadBytes } from "firebase/storage";
 import { blankShiftType, productType, userType } from "../Redux/Types";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { CurrentShift } from "../Components/ShiftsPage/CurrentShift";
-import {ref as refStorage} from "firebase/storage"
+import { ref as refStorage } from "firebase/storage"
 import { updateDo, updatePartiallyEmittedExpression } from "typescript";
 
 
 
 
-export const makeid = (length:number) => {
-    var result           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+export const makeid = (length: number) => {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() *
- charactersLength));
-   }
-   return result;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
 }
 
 
@@ -41,17 +41,17 @@ export const Firestore_instance = {
 
     getProductsByCompanyID: async (companyID: string) => {
         try {
-            const q = await query(collection(Firestore, "Premixes"),where("teamID","==",companyID));
+            const q = await query(collection(Firestore, "Premixes"), where("teamID", "==", companyID));
 
             let products: any = [];
             const querySnap = await getDocs(q)
 
             querySnap.forEach((doc) => {
-                
+
                 products.push(doc.data())
 
             })
-            console.log(products)
+         
             return products
         } catch (ex) {
             console.log(ex)
@@ -59,23 +59,23 @@ export const Firestore_instance = {
 
     },
 
-    deleteProduct : async (productID : string) => {
+    deleteProduct: async (productID: string) => {
         await deleteDoc(doc(Firestore, "Premixes/", productID));
-        
+
     },
-    addProduct: async (card : productType) => {
+    addProduct: async (card: productType) => {
         try {
-            
+
             const docRef = await collection(Firestore, "Premixes")
             const docID = await doc(docRef)
 
             const newProduct = {
-                name : card.name,
-                teamID : card.teamID,
-                composition : card.composition,
-                description : card.description,
-                timeStamp : JSON.stringify(new Date()),
-                id : docID.id,
+                name: card.name,
+                teamID: card.teamID,
+                composition: card.composition,
+                description: card.description,
+                timeStamp: JSON.stringify(new Date()),
+                id: docID.id,
 
             }
             await setDoc(docID, newProduct)
@@ -86,213 +86,239 @@ export const Firestore_instance = {
         }
 
     },
-    getBlankShifts : async (companyID : string) => {
-        try{
-            const q = query(collection(Firestore,"blankShifts"),where("teamID","==",companyID))
-            let shifts : blankShiftType[] = []
+    getBlankShifts: async (companyID: string) => {
+        try {
+            const q = query(collection(Firestore, "blankShifts"), where("teamID", "==", companyID))
+            let shifts: blankShiftType[] = []
             const querySnap = await getDocs(q)
             querySnap.forEach((doc) => {
                 shifts.push(doc.data() as blankShiftType)
             })
-            console.log(shifts)
+           
             return shifts
-        }catch(ex){
+        } catch (ex) {
 
         }
     },
-    setCurrentShift  :async (shift : blankShiftType) => {
-        try{
-            const docRef = collection(Firestore,"currentShift")
+    setCurrentShift: async (shift: blankShiftType) => {
+        try {
+            const docRef = collection(Firestore, "currentShift")
             const docID = await doc(docRef)
-            const newShift = {...shift,shiftID : docID.id}
-            console.log(shift)
-            await setDoc(docID,newShift)
+            const newShift = { ...shift, shiftID: docID.id }
+            
+            await setDoc(docID, newShift)
 
-        }catch(ex){
+        } catch (ex) {
             console.log(ex)
         }
     },
-    clearCurrentShift : async (shiftID : string) => {
-        try{
+    clearCurrentShift: async (shiftID: string) => {
+        try {
             await deleteDoc(doc(Firestore, "currentShift/", shiftID));
-        }catch(ex) {
+        } catch (ex) {
 
         }
-    } ,
-    getCurrentShift : async (companyID : string) => {
-        try{
-            const q = query(collection(Firestore,"currentShift"),where("teamID","==",companyID))
+    },
+    getCurrentShift: async (companyID: string) => {
+        try {
+            const q = query(collection(Firestore, "currentShift"), where("teamID", "==", companyID))
             const querySnap = await getDocs(q)
-            let shift  :any = []
+            let shift: any = []
             querySnap.forEach((doc) => {
                 shift.push(doc.data())
             })
-            console.log(querySnap.docs)
+           
             return shift[0]
-        }catch(ex){
+        } catch (ex) {
 
         }
     },
-    addShiftInHistory : async (shift : blankShiftType) => {
-        try{
-            const docRef = collection(Firestore,"blankShifts")
-            await setDoc(doc(docRef),shift)
-        }catch(ex){
+    addShiftInHistory: async (shift: blankShiftType) => {
+        try {
+            const docRef = collection(Firestore, "blankShifts")
+            await setDoc(doc(docRef), shift)
+        } catch (ex) {
 
         }
     },
-    markProductAsReady : async (shiftID : string,productID:string) => {
-        try{
-            const docRef = query(collection(Firestore,"currentShift"),where("shiftID","==",shiftID))
+    markProductAsReady: async (shiftID: string, productID: string) => {
+        try {
+            const docRef = query(collection(Firestore, "currentShift"), where("shiftID", "==", shiftID))
             const querySnap = await getDocs(docRef)
-            let products : any[] = []
-            console.log(querySnap.docChanges())
-        }catch(ex){
+            let products: any[] = []
+            
+        } catch (ex) {
 
         }
     },
-    getPassedShiftById : async (shiftId : string) => {
-        try{
-            const docRef = query(collection(Firestore,"blankShifts"),where("shiftID","==",shiftId))
+    getPassedShiftById: async (shiftId: string) => {
+        try {
+            const docRef = query(collection(Firestore, "blankShifts"), where("shiftID", "==", shiftId))
             const querySnap = await getDocs(docRef)
-            let shift : any[] = []
+            let shift: any[] = []
             querySnap.forEach((doc) => {
                 shift.push(doc.data())
             })
             return shift[0]
-        }catch(ex){
+        } catch (ex) {
 
         }
     },
-    createuserWithEmailAndPassword : async (nickName : string,email : string,password : string) => {
-        try{
-            let uid = await createUserWithEmailAndPassword(auth,email,password)
-            if(uid.user){
-                const docRef = collection(Firestore,"Users")
+    createuserWithEmailAndPassword: async (nickName: string, email: string, password: string) => {
+        try {
+            let uid = await createUserWithEmailAndPassword(auth, email, password)
+            if (uid.user) {
+                const docRef = collection(Firestore, "Users")
                 // const docID = await doc(docRef,"Users/",uid.user.uid)
                 let newUser = {
-                    userName : nickName,
-                    team : null,
-                    userID : uid.user.uid,
+                    userName: nickName,
+                    team: null,
+                    userID: uid.user.uid,
 
                 }
                 await await setDoc(doc(Firestore, "Users/" + uid.user.uid), newUser)
-                await signInWithEmailAndPassword(auth,email,password)
+                await signInWithEmailAndPassword(auth, email, password)
             }
-        }catch(ex){
+        } catch (ex) {
             console.log(ex)
         }
     },
-    getUserById : async (userID : string) => {
-        try{
-            const docRef = query(collection(Firestore,"Users"),where("userID","==",userID))
+    getUserById: async (userID: string) => {
+        try {
+            const docRef = query(collection(Firestore, "Users"), where("userID", "==", userID))
             const querySnap = await getDocs(docRef)
-            let user : any[] = []
+            let user: any[] = []
             querySnap.forEach((doc) => {
                 user.push(doc.data())
             })
             return user[0]
-        }catch(ex){
+        } catch (ex) {
 
         }
     },
-    getClanList : async () => {
-        try{
-            const q = query(collection(Firestore,"Clans"))
+    getClanList: async () => {
+        try {
+            const q = query(collection(Firestore, "Clans"))
             const querySnap = await getDocs(q)
-            let clans : any[] = []
+            let clans: any[] = []
             querySnap.forEach((doc) => {
                 clans.push(doc.data())
             })
+           
             return clans
-        }catch(ex){
+        } catch (ex) {
 
         }
     },
-    leavetheTeam : async (teamID : string,userID : string,userName : string) => {
-        try{
-          
-            let docRef = doc(Firestore,"Clans/",teamID)
-            let userRef = doc(Firestore,"Users/",userID)
+    leavetheTeam: async (teamID: string, userID: string, userName: string) => {
+        try {
+
+            let docRef = doc(Firestore, "Clans/", teamID)
+            let userRef = doc(Firestore, "Users/", userID)
             let team = await getDoc(docRef)
-         
-            if(team.data()?.users.length === 1) {
+
+            if (team.data()?.users.length === 1) {
                 deleteDoc(docRef)
-               
-            }else {
-                updateDoc(docRef,{
-                    users : arrayRemove(userName),
-                    userIDs : arrayRemove(userID)
+
+            } else {
+                updateDoc(docRef, {
+                    users: arrayRemove(userName),
+                    userIDs: arrayRemove(userID)
                 })
             }
-        
-            await updateDoc(userRef,{
-                team : null,
-                teamID : null
+
+            await updateDoc(userRef, {
+                team: null,
+                teamID: null
             })
 
-        }catch(ex){
+        } catch (ex) {
             console.log(ex)
         }
     },
-    getClansByUserID : async ( userID : string) => {
-        try{
-            const q = query(collection(Firestore,"Clans"),where("userIDs","array-contains",userID))
+    getClansByUserID: async (userID: string) => {
+        try {
+            const q = query(collection(Firestore, "Clans"), where("userIDs", "array-contains", userID))
             const querySnap = await getDocs(q)
-            let clans : any[] = []
+            let clans: any[] = []
             querySnap.forEach((doc) => {
                 clans.push(doc.data())
-                console.log(doc.data())
+             
             })
-            console.log(clans[0])
+        
             return clans[0]
-        }catch(ex){
+        } catch (ex) {
             console.log(ex)
         }
     },
-    joinTheClan : async (userID : string, userName : string,clanID : string,clanName : string) => {
-        try{
+    joinTheClan: async (userID: string, userName: string, clanID: string, clanName: string) => {
+        try {
             const clansRef = doc(Firestore, "Clans/", clanID);
-            await updateDoc(clansRef,{
-                users : arrayUnion(userName),
-                userIDs : arrayUnion(userID) 
+            await updateDoc(clansRef, {
+                users: arrayUnion(userName),
+                userIDs: arrayUnion(userID)
             })
-            const userRef = doc(Firestore,"Users/",userID)
-            await updateDoc(userRef,{
-                team : clanName,
-                teamID  : clanID
+            const userRef = doc(Firestore, "Users/", userID)
+            await updateDoc(userRef, {
+                team: clanName,
+                teamID: clanID
             })
 
-        }catch(ex){
+        } catch (ex) {
             console.log(ex)
         }
     },
-    createTheClan : async (team : {newTeamName : string,newTeamDescription : string,},userID : string,userName : string) => {
-        try{
-            const docRef = collection(Firestore,"Clans")
-            const userRef = doc(Firestore,"Users/",userID)
-            const imageID = makeid(15)
+    createTheClan: async (team: { newTeamName: string, newTeamDescription: string, }, userID: string, userName: string) => {
+        try {
+            const docRef = collection(Firestore, "Clans")
+            const userRef = doc(Firestore, "Users/", userID)
             const docID = await doc(docRef)
-            await updateDoc(userRef,{
-                team : team.newTeamName,
-                teamID : docID.id
+            await updateDoc(userRef, {
+                team: team.newTeamName,
+                teamID: docID.id
             })
 
             let newTeam = {
-                teamName : team.newTeamName,
-                userIDs : [userID],
-                users : [userName],
-                teamID : docID.id,
-                description : team.newTeamDescription
+                teamName: team.newTeamName,
+                userIDs: [userID],
+                users: [userName],
+                teamID: docID.id,
+                description: team.newTeamDescription
             }
-            await setDoc(docID,newTeam)
+            await setDoc(docID, newTeam)
 
-        }catch(ex){
+        } catch (ex) {
             console.log(ex)
         }
     },
-   
-    
+    getAllSpirits: async () => {
+        try {
+            let docRef = collection(Firestore,"Spirits")
+            let doc = await getDocs(docRef)
+            let spirits : any[] = []
+            doc.forEach((doc) => {
+                spirits.push(doc.data())
+            })
+            return spirits
+        } catch (ex) {
+
+        }
+    },
+    getIngridientByID : async (id : string) => {
+        try{
+            let q = query(collection(Firestore,"Spirits"),where("ID","==",id))
+            let querySnap = await getDocs(q)
+            let ingridient: any[] = []
+            querySnap.forEach((doc) => {
+                ingridient.push(doc.data())
+                console.log(doc.data())
+            })
+            return ingridient[0]
+        }catch(ex){
+
+        }
+    }
+
 }
 
 

@@ -16,7 +16,7 @@ export const JoinTeam = (props : {isDarkTheme : boolean}) => {
     }
     
     return (
-        <section className={props.isDarkTheme ? "join_team DarkTheme translate_animation" : "join_team LightTheme translate_animation"} >
+        <section className={props.isDarkTheme ? "join_team container     DarkTheme translate_animation" : "join_team LightTheme translate_animation"} >
             <input type="text" placeholder="Искать по имени"/>
             {teamList?.map((el : ClanType) => {
                 return (

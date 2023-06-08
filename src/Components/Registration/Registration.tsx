@@ -59,7 +59,7 @@ export const Registration = () => {
 
                                 <button
                                     //@ts-ignore 
-                                    onClick={handleSubmit} id="next_join_step" type="submit">Создать акаунт</button>
+                                    onClick={handleSubmit} id="submit_reg" type="submit">Создать акаунт</button>
                             
                             
                             </div>

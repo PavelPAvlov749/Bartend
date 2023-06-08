@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     dispatch(initializeThunk())
   }, [])
-
+  console.log("render")
   const appState = useSelector((state: Global_state_type) => {
     return state.App
   })

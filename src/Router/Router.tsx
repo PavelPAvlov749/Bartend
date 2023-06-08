@@ -1,13 +1,13 @@
 import React, { ReactElement, useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { HomePage } from "../Components/mainScreen";
-import { LoginPage } from "../Components/LoginPage";
+import { LoginPage } from "../Components/Registration/LoginPage";
 import { useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
-import { Premixes } from "../Components/Premixes";
+import { Premixes } from "../Components/Ingridients/Premixes";
 import { NewProduct } from "../Components/NewProduct/NewProduct";
-import { ProductCard } from "../Components/ProductCard";
-import { CreateNewShift, ShiftPageContainer } from "../Components/ShiftsPage/BlankShift";
+import { ProductCard } from "../Components/Ingridients/ProductCard";
+import { CreateNewShift } from "../Components/ShiftsPage/BlankShift";
 import { SecondStep } from "../Components/NewProduct/SecondStep";
 import loader from "../Assets/icons8-jigger-64.png";
 import { CheckLists } from "../Components/CheckLists/CheckLists";
@@ -18,9 +18,14 @@ import { JoinTeam } from "../Components/Teams/JoinTeam";
 import { Registration } from "../Components/Registration/Registration";
 import { NewCheckList } from "../Components/CheckLists/NewCheckList";
 import { CheckListPage } from "../Components/CheckLists/CheclListPage";
+import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
+import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
+import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
+import { ShiftPageContainer } from "../Components/ShiftsPage/ShiftsPageContainer";
+import { PassedShift } from "../Components/ShiftsPage/PassedShift";
 
 const HOME = "/home"
-
+const COCKTAIL_CARD = "/cocktail/:id"
 const PREMIX_LIST = "/premixes"
 const ADD_PRODUCT = "/add"
 const PRODUCT_CARD = "/card/:id"
@@ -38,6 +43,8 @@ const JOIN_TEAM = "/join-team"
 const TEAM_CHAT = "/chat/:id"
 const NEW_CHECK_LIST = "/new-check-list"
 const CHECK_LIST = "/check-lists/:id"
+const KNIWLEDGE_BASE = "knowledge-base"
+const INGRIDIENT = "ingridient/:id"
 
 export const Router  = React.memo((props : {isAuth : boolean,isFetch : boolean,isDarkTheme : boolean}) => {
     const isAuth = useSelector((state : Global_state_type) => {return state.App.isAuth})
@@ -55,6 +62,8 @@ export const Router  = React.memo((props : {isAuth : boolean,isFetch : boolean,i
             return (
                 <div className="content">
                     <Routes>
+                        <Route path={PASSED_SHIFT} element={<PassedShift/>}/>
+                        <Route path={COCKTAIL_CARD} element={<CocktailCard/>}/>
                         <Route path={JOIN_TEAM} element={<JoinTeam isDarkTheme/>}/>
                         <Route path={CREATE_TEAM} element={<CreateTeam/>}/>
                         <Route path={CHECK_LISTS} element={<CheckLists/>}/>
@@ -64,11 +73,13 @@ export const Router  = React.memo((props : {isAuth : boolean,isFetch : boolean,i
                         <Route path={PRODUCT_CARD} element={<ProductCard/>}></Route>
                         <Route path={NEW_BLANK_SHIFT} element={<CreateNewShift/>}/>
                         <Route path={CHECK_LIST} element={<CheckListPage/>}/>
-                        {/* <Route path={NO_MATCH_ROUTE} element={<Navigate to="/home"/>}/> */}
+                        <Route path={NO_MATCH_ROUTE} element={<Navigate to="/home"/>}/>
                         <Route path={ADD_PRODUCT} element={<NewProduct isDarkTheme={props.isDarkTheme}/>}/>
                         <Route path={STEP_2} element={<SecondStep isDarkTheme={props.isDarkTheme}/>}/>        
                         <Route path={CLAN_LISTS} element={<TeamPageContainer isDarkTheme={props.isDarkTheme}/>}/>
                         <Route path={NEW_CHECK_LIST} element={<NewCheckList/>}/>
+                        <Route path={KNIWLEDGE_BASE} element={<KnowledgeBase/>}/>
+                        <Route path={INGRIDIENT} element={<IngridientCard/>}/>
                     </Routes>
                 </div>
             )
@@ -78,7 +89,6 @@ export const Router  = React.memo((props : {isAuth : boolean,isFetch : boolean,i
         return (
             <>
                 <Routes>
-                {/* <Route path={HOME} element={<HomePage/>}></Route> */}
                 <Route path={LOG_OUT} element={<LoginPage/>}></Route>
                 <Route path={NO_MATCH_ROUTE} element={<Navigate to="/logOut"/>}/>
                 <Route path={REGISTRATION} element={<Registration/>}/>

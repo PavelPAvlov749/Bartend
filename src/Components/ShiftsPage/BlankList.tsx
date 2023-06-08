@@ -1,27 +1,24 @@
-import React from "react";
+
 import { productType } from "../../Redux/Types";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { productActions } from "../../Redux/ProductReduxer";
 import empty from "../../Assets/icons8-empty-90.png"
+import { parseElementNameToString } from "../../Helpers/Helpers";
 
 export const BlankList = (props: { blanks: productType[] ,dispatch : any,Navigate : (a : string) => any}) => {
-   
 
     if (props.blanks.length > 0) {
         return (
             <>
                 {props.blanks.map((el : productType) => {
                     return (
-                        <div id={el.id} className="element" onClick={() => {
-                        
+                        <div key={el.id} className="element" onClick={() => {
                             props.dispatch(productActions.setAcualProductCard(el))
                             props.Navigate("/card/id=" + el.id)
-                            
                             }}>
                         
-                              <NavLink to={"/product/id=" + el.id}>
-                            <span>{el.name.includes("_") ? el.name.split("_")[0] + " " + el.name.split("_")[1] : el.name  }</span>
+                            <NavLink to={"/product/id=" + el.id}>
+                            <span>{parseElementNameToString(el.name)}</span>
                             </NavLink>
                          
                             <br />

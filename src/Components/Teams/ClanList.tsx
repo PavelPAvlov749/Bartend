@@ -24,7 +24,7 @@ export const TeamPage = (props: { isDarkTheme: boolean }) => {
     }
 
     return (
-        <section className={`team_page translate_animation ${props.isDarkTheme ? `DarkTheme` : `LightTheme`}`}>
+        <section className={`team_page container translate_animation ${props.isDarkTheme ? `DarkTheme` : `LightTheme`}`}>
             <h2>Команда : </h2>
             <br />
             <span id="team_name">{team?.teamName}</span>
@@ -36,9 +36,9 @@ export const TeamPage = (props: { isDarkTheme: boolean }) => {
             <br />
         
             <h3>Участники : </h3>
-            {team?.users.map((el : string) => {
+            {team?.users.map((el : string,index) => {
                 return (
-                    <span>{el}</span>
+                    <span key={index} >{el}</span>
                 )
             })}
             <br />
@@ -53,12 +53,13 @@ export const TeamPageContainer = (props: { isDarkTheme: boolean }) => {
     const pic = useSelector((state : Global_state_type) => state.clans.team?.teamAvatar)
     useEffect(() => {
         dispatch(getClanListByUserID(user.userID as string))
+        
     }, [])
 
     return (
         <section className={props.isDarkTheme ? "team_page_container DarkTheme" : "team_page_container LightTheme"}>
             {user.teamID  ? <TeamPage isDarkTheme={props.isDarkTheme} /> :
-                <div className={props.isDarkTheme ? "empty_team DarkTheme" : "epmty_team LightTheme"}>
+                <div className={props.isDarkTheme ? "empty_team container DarkTheme" : "epmty_team LightTheme"}>
                     <span>Вы не состоите в команде</span>
                     <NavLink to={"/join-team"}>Присоединиться</NavLink>
                     <NavLink to={"/create-team"}>Создать команду</NavLink>

@@ -1,6 +1,5 @@
 
 .App{
-
   height: 100vh;
   width: 100%;
   position: fixed;
@@ -16,6 +15,7 @@
   color: black;
   background-color: white;
   transition: background-color 0.6s ease;
+  border-color: rgb(20, 20, 20);
 }
 .DarkTheme {
   color: white;
@@ -38,14 +38,15 @@
   border: 1px solid darkgray;
 
 }
-.DarkTheme a {
+.DarkTheme a  {
   text-decoration: none;
   color: white;
 }
 
-.LightTheme a{
+.LightTheme  a{
   text-decoration: none;
   color: rgb(0, 0, 0);
+  /* border-color: rgb(43, 43, 43); */
 }
 .DarkTheme {
   color: white;
@@ -57,10 +58,13 @@
 
 .init_screen_container{
   display: flex;
+  background-color: rgb(38, 38, 38);
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: white;
+  font-size: large;
 }
 
 #loader {
@@ -106,3 +110,8 @@
   }
 }
 
+.container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}

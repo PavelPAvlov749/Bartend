@@ -3,8 +3,7 @@ import { CheckListsAPI } from "../Firebase/CkeckListsAPI";
 import { InferActionType } from "./Store";
 
 const SET_CHEK_LISTS = "barApp/CheckListReducer/setCheckLists"
-
-
+const DELETE_CHECK_LIST = "barApp/checkListsReeucer/delete"
 export type checkListType = {
     name : string,
     tasks : string[],
@@ -34,6 +33,12 @@ export const checkLisReducer = (state = initial_state, action: Action_Type) => {
             checkLists : action.payload
         }
     }
+    case DELETE_CHECK_LIST : {
+        return {
+            ...state,
+            checkLists : state.checkLists.filter((el : checkListType) => el.id !== action.payload)
+        }
+    }
     default:
       return state
   }
@@ -43,7 +48,11 @@ export const checkListActions = {
     setCheckLists : (checkLists : checkListType[]) => ({
         type : "barApp/CheckListReducer/setCheckLists",
         payload : checkLists
-    } as const)
+    } as const),
+    delete : (checkListID : string) => ({
+        type : "barApp/checkListsReeucer/delete",
+        payload : checkListID
+    } as const )
 }
 
 export const getCheckListsthunk = (teamID : string) => {
@@ -57,6 +66,12 @@ export const getCheckListsthunk = (teamID : string) => {
     }
 }
 
-
+export const deleteChekListThunk = (checkLisId : string) => {
+    return async function (dispatch : any ){
+        await CheckListsAPI.deleteCheckList(checkLisId).then(() => {
+            dispatch(checkListActions.delete(checkLisId))
+        })
+    }
+}
 
 

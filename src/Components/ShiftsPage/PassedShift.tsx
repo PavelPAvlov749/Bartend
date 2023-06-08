@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import styles from "../../Styles/PassedShift.module.css"
-import { useLocation } from "react-router-dom";
+import  { useEffect } from "react";
+import "../../Styles/PassedShift.css"
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
 import { getPassedShiftByID } from "../../Redux/BlankShiftReducer";
@@ -13,10 +13,11 @@ export const PassedShift = () => {
         dispatch(getPassedShiftByID(shiftID))
     },[])
     const PassedShift = useSelector((state : Global_state_type) => state.blankShift.passedShift)
-
+    const navigate = useNavigate()
     return (
-        <section className={styles.passed_shift_container}>
-            <span>{"Смена от : " + PassedShift?.date}</span>
+        <section className={`container passed_shift_container translate_animation`}>
+            <h3 onClick={() => {navigate(-1)}}>Назад</h3>
+            <span id="shift_date" >{"Смена от : " + PassedShift?.date}</span>
             <span>{"Заготовщик : " + PassedShift?.employe}</span>
             <span>{"Сделано позиций : " + PassedShift?.count}</span>
             <span>Список позиций : </span>

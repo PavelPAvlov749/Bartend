@@ -1,0 +1,12 @@
+.cocktail_card_contaoner{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+
+}
+#cocktail_photo {
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+    /* max-width: 200px; */
+}

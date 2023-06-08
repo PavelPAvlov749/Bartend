@@ -4,12 +4,7 @@
     padding: 5px;
 }
 .search{
-    height: 30px;
-    background-color: rgb(44, 44, 44);
-    font-size: 15px;
-    border-radius: 5px;
-    border: 1px solid white;
-    color: white;
+   width: 99%;
 }
 .product_list_navigation{
     padding: 5px 0%;
@@ -38,46 +33,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #f06c07;
     font-size: larger;
 }
 .emtyIcon{
     width: 120px;
     height: 120px;
 }
-.productListContainer{
-
-    padding: 5px;
-    overflow-y: scroll;
-    height: calc(100vh - 6rem);
-}
-.element{
-    
+.element{   
     width: 100%;
     display: flex;
     font-size: 20px;
     flex-direction: row;
     line-height: 2;
-    
     justify-content:space;
 }
 
 .checkBox {
     display: flex;
-
     justify-self: flex-end;
-  
     
 }
 
-.translate_animation{
-    animation: transl 0.4s forwards;
-  }
-  @keyframes transl {
-    0%{
-      transform: translateX(100%);
-    }
-    100%{
-      transform: translateX(0%);
-    }
-  }
