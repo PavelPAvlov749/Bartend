@@ -1,4 +1,3 @@
-import { TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 import "../../Styles/CheckLists.css"
 import add from "../../Assets/icons8-done-150.png"
@@ -26,7 +25,12 @@ export const NewCheckList = () => {
         setName(e.currentTarget.value)
     }
     const Finish = () => {
-        CheckListsAPI.addCheckList(teamID as string,tasks,name)
+        if(name.length < 1){
+            CheckListsAPI.addCheckList(teamID as string,tasks,"Без названия")
+        }else {
+            CheckListsAPI.addCheckList(teamID as string,tasks,name)
+        }
+       
         navigate("/check-lists")
     }
     return (

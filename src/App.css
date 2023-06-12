@@ -5,7 +5,6 @@
   position: fixed;
   top: 0%;
   left: 0%;
-  /* overflow-y: scroll; */
 }
 .content {
   height: calc(100vh - 3rem);
@@ -46,7 +45,7 @@
 .LightTheme  a{
   text-decoration: none;
   color: rgb(0, 0, 0);
-  /* border-color: rgb(43, 43, 43); */
+ 
 }
 .DarkTheme {
   color: white;
@@ -72,7 +71,6 @@
   height: 6
   0px;
   transform: rotate(0deg);
-  /* animation: rotateLoader infinite  ease-in; */
   animation-name: spin;
   animation-duration: 800ms;
   animation-iteration-count: infinite;

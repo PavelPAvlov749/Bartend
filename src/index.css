@@ -19,10 +19,7 @@ ul{
   margin: 0%;
   padding: 0%;
 }
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+
 html {
   padding: 0%;
   margin: 0%;
@@ -51,7 +48,6 @@ button {
   width: calc(100% - 10px);
   margin: 0 5px;
   font-size: 15px;
-  /* background: linear-gradient(45deg, rgb(55, 55, 125), rgb(12, 119, 90)); */
   background-color: rgb(42, 37, 115);
   border: 1px solid rgb(15, 68, 141);
   border-radius: 4px;

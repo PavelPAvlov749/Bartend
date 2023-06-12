@@ -1,8 +1,6 @@
-import React from "react";
+
 import { NavLink } from "react-router-dom";
 import home from "../Assets/icons8-homepage-96.png";
-import list from "../Assets/icons8-list-96.png";
-import add from "../Assets/icons8-add-90.png";
 import logout from "../Assets/icons8-logout-64.png";
 import doc from "../Assets/icons8-document-90.png"
 import books from "../Assets/icons8-books-52(1).png"

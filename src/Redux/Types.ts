@@ -1,6 +1,4 @@
-// import { type } from "os"
 
-import { type } from "os"
 
 export type ProfileType = {
     avatar : any,

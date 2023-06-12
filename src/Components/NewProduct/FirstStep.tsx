@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "../../Styles/NewProduct.css"
 import {newCardActions } from "../..//Redux/NewCardReducer";
 import add from "../../Assets/icons8-add-96.png"

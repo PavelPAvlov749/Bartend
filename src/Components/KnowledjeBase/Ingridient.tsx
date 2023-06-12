@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { getCocktailByID, getCurrentIngridient } from "../../Redux/KnowledgeBaseReducer";
+import { getCurrentIngridient } from "../../Redux/KnowledgeBaseReducer";
 import { Global_state_type } from "../../Redux/Store";
 
 

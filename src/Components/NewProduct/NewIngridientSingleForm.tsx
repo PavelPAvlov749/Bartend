@@ -1,8 +1,8 @@
-import React from "react";
+
 import { Formik } from "formik";
 import * as yup from "yup"
 import { useDispatch } from "react-redux";
-import { createNewIngridientCard, newCardActions } from "../..//Redux/NewCardReducer";
+import {newCardActions } from "../..//Redux/NewCardReducer";
 import "../../Styles/NewProduct.css"
 
 

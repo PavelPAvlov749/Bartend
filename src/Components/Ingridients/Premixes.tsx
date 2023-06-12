@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { productType } from "../../Redux/Types";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../Styles/Premixes.css"
 import searchIcon from "../../Assets/icons8-search-100.png";
 import backIcom from "../../Assets/icons8-back-90.png";

@@ -24,11 +24,11 @@ export const CocktailCard = () => {
             <h3>Технология приготовления : </h3>
             <p>{currentCocktail?.strInstructions}</p>
             <h3>Состав : </h3>
-            {Object.keys(currentCocktail.composition).map((el : string,index : number) => {
+            {currentCocktail ? Object.keys(currentCocktail.composition).map((el : string,index : number) => {
                 return (
                     <span>{el + " : " + Object.values(currentCocktail.composition)[index]}</span>
                 )
-            })}
+            }) : null}
         </section>
     )
 }

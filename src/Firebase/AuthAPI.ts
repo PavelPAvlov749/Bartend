@@ -1,9 +1,9 @@
 import { ref, get, child, push, update, query } from "firebase/database";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, signInWithPopup, User, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { dataBase, Firebase_auth } from "./FirebaseConfig";
 import { firebase } from "./FirebaseConfig";
 import { GoogleAuthProvider } from "firebase/auth";
-import { getStorage, ref as storage_ref, uploadBytes, getDownloadURL, StorageReference } from "firebase/storage";
+import { getStorage, ref as storage_ref} from "firebase/storage";
 
 
 //Abstarct API class 
@@ -43,31 +43,6 @@ class AuthAPI extends abstractAPI {
     }
     checkAuthState = onAuthStateChanged
 
-    // async signInWithPopUp() {
-    //     const result = await signInWithPopup(this.firebaseAuth, this.googleAuthProvider).then((response) => {
-    //         const userRef = ref(this.RealtimeDataBase, "Users/" + this.firebaseAuth.currentUser?.uid);
-    //         const result = get(userRef,).then((response) => {
-    //             if (response.val() === null || response.val() === undefined) {
-    //                 console.log("ADDING NEW USER")
-    //                 const new_user = {
-    //                     fullName: this.firebaseAuth.currentUser?.displayName,
-    //                     posts: {},
-    //                     status: null,
-    //                     foloowers: {},
-    //                     subscribes: {},
-    //                     userID: this.firebaseAuth.currentUser?.uid,
-    //                     avatar: this.firebaseAuth.currentUser?.photoURL
-    //                 };
-    //                 const updates: any = {};
-    //                 updates["Users/" + this.firebaseAuth.currentUser?.uid] = new_user;
-    //                 update(ref(this.RealtimeDataBase), updates);
-    //                 return response
-    //             }
-    //         })
-    //         return response
-    //     })
-    //     return result
-    // }
     async signInByEmailAndPassword(email: string, password: string) {
         try {
             

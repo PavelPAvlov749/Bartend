@@ -1,4 +1,4 @@
-import { debug } from "console"
+
 import { Firestore_instance } from "../Firebase/PremixesAPI"
 import { app_actions } from "./AppReducer"
 import { InferActionType } from "./Store"

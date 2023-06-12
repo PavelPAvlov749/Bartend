@@ -5,7 +5,6 @@ import "../../Styles/SecondStep.css"
 import backArrow from "../../Assets/icons8-back-90.png";
 import { useNavigate } from "react-router-dom";
 import { Global_state_type } from "../../Redux/Store";
-import { Firestore_instance } from "../../Firebase/PremixesAPI";
 import { productType } from "../../Redux/Types";
 
 export const SecondStep = (props : {isDarkTheme : boolean}) => {

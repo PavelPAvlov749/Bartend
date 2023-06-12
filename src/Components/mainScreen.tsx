@@ -1,13 +1,13 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import styles from "../Styles/HomePage.module.css"
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import docIcon from "../Assets/icons8-document-64.png"
-import { doc } from "firebase/firestore";
 import teamicon from "../Assets/icons8-team-96.png"
 import chemistryIcon from "../Assets/icons8-chemistry-100(1).png"
 import sheldue from "../Assets/icons8-edit-96.png"
+
 export const HomePage = () => {
     const profile = useSelector((state: Global_state_type) => {
         return state.App.user

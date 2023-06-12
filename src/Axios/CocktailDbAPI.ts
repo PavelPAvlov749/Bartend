@@ -3,7 +3,6 @@ import { parseCocktailDbIngridients } from "../Helpers/Helpers";
 
 
 const axiosInstance = axios.create({
-    // baseURL : "https://www.thecocktaildb.com/api/json/v1/1/",
     timeout: 1000,
     responseType: "json",
     headers: { 'X-Requested-With': 'XMLHttpRequest' },

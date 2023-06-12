@@ -1,22 +1,14 @@
 
 import {
-    collection, getDocs, getFirestore, query, addDoc, where,
-    QuerySnapshot, Timestamp, doc, getDoc, setDoc, documentId,
-    updateDoc, arrayUnion, arrayRemove, deleteDoc, DocumentData, onSnapshot
+    collection, getDocs, query, where,
+    doc, getDoc, setDoc,
+    updateDoc, arrayUnion, arrayRemove, deleteDoc,
 }
     from "firebase/firestore";
-import { getDatabase, ref, onValue, set, get, child, serverTimestamp, update } from "firebase/database";
-import { getDownloadURL, getStorage, ref as storegeRef, StorageReference } from "firebase/storage";
+import { getDatabase, ref } from "firebase/database";
 import { firebase, Firestore } from "./FirebaseConfig";
-import { uploadBytes } from "firebase/storage";
 import { blankShiftType, productType, userType } from "../Redux/Types";
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { CurrentShift } from "../Components/ShiftsPage/CurrentShift";
-import { ref as refStorage } from "firebase/storage"
-import { updateDo, updatePartiallyEmittedExpression } from "typescript";
-
-
-
 
 export const makeid = (length: number) => {
     var result = '';
@@ -32,7 +24,6 @@ export const makeid = (length: number) => {
 
 //Initialize Real-time data base instance 
 const dataBase = getDatabase();
-
 //APPLICATION FIRESTORE INSTANSE
 const reference = ref(dataBase)
 const auth = getAuth(firebase)
@@ -51,7 +42,7 @@ export const Firestore_instance = {
                 products.push(doc.data())
 
             })
-         
+
             return products
         } catch (ex) {
             console.log(ex)
@@ -84,7 +75,6 @@ export const Firestore_instance = {
         } catch (ex) {
             console.log(ex)
         }
-
     },
     getBlankShifts: async (companyID: string) => {
         try {
@@ -94,7 +84,6 @@ export const Firestore_instance = {
             querySnap.forEach((doc) => {
                 shifts.push(doc.data() as blankShiftType)
             })
-           
             return shifts
         } catch (ex) {
 
@@ -105,9 +94,7 @@ export const Firestore_instance = {
             const docRef = collection(Firestore, "currentShift")
             const docID = await doc(docRef)
             const newShift = { ...shift, shiftID: docID.id }
-            
             await setDoc(docID, newShift)
-
         } catch (ex) {
             console.log(ex)
         }
@@ -127,7 +114,6 @@ export const Firestore_instance = {
             querySnap.forEach((doc) => {
                 shift.push(doc.data())
             })
-           
             return shift[0]
         } catch (ex) {
 
@@ -146,7 +132,7 @@ export const Firestore_instance = {
             const docRef = query(collection(Firestore, "currentShift"), where("shiftID", "==", shiftID))
             const querySnap = await getDocs(docRef)
             let products: any[] = []
-            
+
         } catch (ex) {
 
         }
@@ -169,7 +155,7 @@ export const Firestore_instance = {
             let uid = await createUserWithEmailAndPassword(auth, email, password)
             if (uid.user) {
                 const docRef = collection(Firestore, "Users")
-                // const docID = await doc(docRef,"Users/",uid.user.uid)
+                
                 let newUser = {
                     userName: nickName,
                     team: null,
@@ -204,7 +190,7 @@ export const Firestore_instance = {
             querySnap.forEach((doc) => {
                 clans.push(doc.data())
             })
-           
+
             return clans
         } catch (ex) {
 
@@ -243,9 +229,9 @@ export const Firestore_instance = {
             let clans: any[] = []
             querySnap.forEach((doc) => {
                 clans.push(doc.data())
-             
+
             })
-        
+
             return clans[0]
         } catch (ex) {
             console.log(ex)
@@ -293,9 +279,9 @@ export const Firestore_instance = {
     },
     getAllSpirits: async () => {
         try {
-            let docRef = collection(Firestore,"Spirits")
+            let docRef = collection(Firestore, "Spirits")
             let doc = await getDocs(docRef)
-            let spirits : any[] = []
+            let spirits: any[] = []
             doc.forEach((doc) => {
                 spirits.push(doc.data())
             })
@@ -304,9 +290,9 @@ export const Firestore_instance = {
 
         }
     },
-    getIngridientByID : async (id : string) => {
-        try{
-            let q = query(collection(Firestore,"Spirits"),where("ID","==",id))
+    getIngridientByID: async (id: string) => {
+        try {
+            let q = query(collection(Firestore, "Spirits"), where("ID", "==", id))
             let querySnap = await getDocs(q)
             let ingridient: any[] = []
             querySnap.forEach((doc) => {
@@ -314,7 +300,7 @@ export const Firestore_instance = {
                 console.log(doc.data())
             })
             return ingridient[0]
-        }catch(ex){
+        } catch (ex) {
 
         }
     }
