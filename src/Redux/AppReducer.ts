@@ -99,9 +99,11 @@ export const initializeThunk = () => {
   return async function (dispatch: any) {
     const auth = getAuth()
     await onAuthStateChanged(auth, async (user) => {
+   
       dispatch(app_actions.setInit(false))
       dispatch(app_actions.setAuth(false))
       let userPage = await Firestore_instance.getUserById(user?.uid as string)
+   
       if (userPage) {
         dispatch(app_actions.setUserPage(userPage))
         dispatch(app_actions.setInit(true))

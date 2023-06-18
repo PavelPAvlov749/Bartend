@@ -4,7 +4,8 @@ import { Global_state_type } from "../../Redux/Store";
 import { useNavigate } from "react-router-dom";
 import { blankShiftType } from "../../Redux/Types";
 import  "../../Styles/BlamkShift.css"
-import { getCurrentShiftByCompanyID, getShiftsHistoryByCompanyID } from "../../Redux/BlankShiftReducer";
+import { getCurrentShiftByCompanyID,
+         getShiftsHistoryByCompanyID } from "../../Redux/BlankShiftReducer";
 import { NoOpenShiff } from "./NoOpenedShifts";
 
 
@@ -26,7 +27,7 @@ export const ShiftsHistory = () => {
         return state.blankShift.closedShifts
     })
     const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
-    if (blanks !== null && blanks.length > 0) {
+    if (blanks  && blanks.length > 0) {
         return (
             <section className={`history_container translate_animation`}>
              
