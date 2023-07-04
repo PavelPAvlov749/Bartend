@@ -109,8 +109,10 @@ h1,h2{
 }
 @media(max-width:750px){
   .container {
+    font-size: 30px;
     padding: 5px;
   }
+  
   .controls {
     font-size: 0;
   }

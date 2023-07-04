@@ -43,4 +43,9 @@
         justify-content: space-around;
         
     }
+    .navbar_container li img:hover {
+        transform: scale(1);
+        transition: transform 0.0s ease;
+    }
+    
 }

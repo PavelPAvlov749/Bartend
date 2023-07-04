@@ -29,11 +29,12 @@
 
     
       .list{
+        padding: 5px;
           display: grid;
           text-align: center;
           justify-content: center;
           grid-template-columns: repeat(2,1fr);
-          grid-gap: 10px;
+          grid-gap: 5px;
           grid-auto-rows: 1fr;
       }
 }
