@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+// STYLES IPMOIRTS
 import "./App.css"
+import "./Styles/Global_styles.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { Global_state_type } from './Redux/Store';
 import { initializeThunk } from './Redux/AppReducer';
@@ -8,6 +10,7 @@ import { HashRouter } from 'react-router-dom';
 import { Router } from './Router/Router';
 
 import loader from "./Assets/icons8-jigger-64.png";
+import { Header } from './Components/mainScreen';
 
 
 function App() {
@@ -15,18 +18,21 @@ function App() {
   useEffect(() => {
     dispatch(initializeThunk())
   }, [])
-  
-  const appState = useSelector((state: Global_state_type) => {
-    return state.App
+  const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
+  const isInit = useSelector((state: Global_state_type) => {
+    return state.App.isInit
   })
-
-  if (appState.isInit) {
+  const isAuth = useSelector((state : Global_state_type) => state.App.isAuth)
+  console.log(isInit)
+  if (isInit) {
 
     return (
-      <div className={appState.isDarktheme ? "App DarkTheme translate_animation" : "App LightTheme translate_animation"}>
+      <div className={isDarkTheme ? "App DarkTheme translate_animation" : "App LightTheme translate_animation"}>
         <HashRouter>
-          <Navbar theme={appState.isDarktheme}/>
-          <Router isAuth={appState.isAuth} isDarkTheme={appState.isDarktheme} isFetch={appState.isFetch}></Router>
+        
+         
+          <Navbar theme={isDarkTheme}/>
+          <Router isDarkTheme={isDarkTheme} ></Router>
         </HashRouter>
 
       </div>

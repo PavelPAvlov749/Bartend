@@ -36,7 +36,7 @@ export const NewCheckList = () => {
     return (
         <section className="new_check_list_container container translate_animation">
             <h1>Чек-листы
-                <span onClick={Finish} id="add_ckeck_list">Готово</span>
+                <button onClick={Finish} id="add_ckeck_list">Готово</button>
             </h1>
             <input type="text" placeholder="Название" value={name} onChange={onNameChange}/>
             <ul className="task_list">
@@ -48,12 +48,10 @@ export const NewCheckList = () => {
             </ul>
             <div className="new_check_list_controls">
                 <input onChange={onChangeNadler} value={newTask}  type="text" className="task_input" placeholder="Задача"/>
-                <button id="add_task_button" onClick={onAddClickHandler}>
+                <button className="confirm_button" onClick={onAddClickHandler}>
                     <img src={add} alt="" />
                 </button>
             </div>
-
-
         </section>
     )
 }

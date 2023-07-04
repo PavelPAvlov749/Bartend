@@ -1,0 +1,71 @@
+.new_product_container {
+    flex-direction: column;
+    padding: 5px;
+    overflow: auto;
+    
+}
+
+.new_product_container input {
+    display: inline;
+    width: 40%;
+    border: none;
+    margin: 0px 2px;
+    color: white;
+    margin: 0px 2px;
+   
+    animation: appears 0.3s ease-in-out;
+}
+@keyframes appears {
+    0%{
+        transform: scale(0%);
+    }
+    80%{
+        transform: scale(120%);
+    }
+    100%{
+        transform: scale(100%);
+    }
+
+}
+.input_container {
+    margin-top: 5px;
+}
+.compound {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    overflow-y: scroll;
+    height: 60vh;
+}
+
+.compound_inputs {
+    padding: 5px 0px;
+    overflow-y: scroll; 
+    height: 80%;
+}
+
+#add_component {
+    width: 12%;
+    height: 40px;
+}
+
+#name {
+    margin-top: 5px;
+    width: calc(100% - 5px);
+}
+
+.new_product_container img {
+    position: relative;
+    display: inline-block;
+    align-self: center;
+    width: 50px;
+    height: 50px;
+}
+
+#next_button{
+    justify-self: center;
+    align-self: center;
+    height: 40px;
+
+
+}

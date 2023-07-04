@@ -1,0 +1,135 @@
+button {
+    border: none;
+    width: max-content;
+    height: 2.5rem;
+    font-size: 15px;
+    min-width: 150px;
+    background-color: rgb(42, 37, 115);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+button:hover {
+  background-color: rgb(222, 222, 222);
+  color: rgb(28, 28, 28);
+  transition: background-color 0.5s ease;
+}
+.confirm_button{
+  align-self: center;
+  justify-content: center;
+}
+.confirm_button img {
+  width: 30px;
+  height: 30px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+.controls li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.controls_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.controls_item img {
+  width: 40px;
+  height: 40px;
+}
+.menu-item span:hover{
+  color: rgb(59, 59, 197);
+  cursor:pointer
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-size: larger;
+  line-height: 1.5;
+}
+.icon {
+  width: 35px;
+  display: inline-block;
+  height: 35px;
+  margin-left: 10px;
+}
+input {
+  height: 2.4rem;
+  border: none;
+  border-radius: 5px;
+  font-size: large;
+  color:white;
+  font-weight: 500;
+  background: linear-gradient(45deg, rgb(55, 55, 125), rgb(12, 119, 90));
+}
+textarea {
+  margin: 10px 0px;
+}
+ul{
+  list-style-type: none;
+  margin: 0%;
+  padding: 0%;
+}
+.DarkTheme a  {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  font-size:medium;
+
+}
+
+.LightTheme  a{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  font-size: medium;
+
+ 
+}
+
+a:hover{
+ 
+  color: rgb(56, 56, 183);
+}
+
+h1,h2{
+  padding: 0;
+  margin: 10px;
+}
+@media(max-width:750px){
+  .container {
+    padding: 5px;
+  }
+  .controls {
+    font-size: 0;
+  }
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+  input {
+    width: 100%;
+  }
+  h1,h2 {
+    margin: 0%;
+    padding: 0%;
+    text-align: center;
+    font-size: larger;
+  }
+  h3 {
+    margin: 0%;
+    padding: 0%;
+    cursor: pointer;
+  }
+}

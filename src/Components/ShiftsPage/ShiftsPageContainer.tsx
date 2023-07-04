@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CurrentShift } from "./CurrentShift";
-import { ShiftsHistory } from "./ShiftsHistory";
+import { ShiftsHistory } from "../ShiftsHistory/ShiftsHistory";
 import { Box, Tab, Tabs } from "@mui/material";
 import "../../Styles/BlamkShift.css"
 import { Global_state_type } from "../../Redux/Store";
@@ -18,7 +18,7 @@ export const ShiftPageContainer = () => {
         <section className={`blank_shift_container translate_animation `}>
           
             <Box sx={{ width: '100%', marginBottom: "5px" }}>
-                <Tabs value={shiftType} onChange={handleChange} sx={{}} centered >
+                <Tabs value={shiftType} onChange={handleChange} sx={{}} >
                     <Tab sx={{ width: "50%", fontSize: "14px", color: isDarkTheme ? "white" : "black" }} label="Теккущая смена" />
                     <Tab sx={{ width: "50%", fontSize: "14px", color: isDarkTheme ? "white" : "black" }} label="История" />
                 </Tabs>

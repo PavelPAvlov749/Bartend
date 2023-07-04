@@ -1,71 +1,71 @@
-.new_product_container {
-    flex-direction: column;
-    padding: 5px;
-    overflow: auto;
-    
-}
 
-.new_product_container input {
-    display: inline;
-    width: 40%;
-    border: none;
-    margin: 0px 2px;
-    color: white;
-    margin: 0px 2px;
-   
-    animation: appears 0.3s ease-in-out;
+.new_premix_first_step #name {
+    width: 50%;
 }
-@keyframes appears {
-    0%{
-        transform: scale(0%);
-    }
-    80%{
-        transform: scale(120%);
-    }
-    100%{
-        transform: scale(100%);
-    }
-
-}
-.input_container {
-    margin-top: 5px;
-}
-.compound {
-    display: flex;
-    flex-direction: column;
+.compound_inputs {
     border-radius: 5px;
+    width: max-content;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 5px rgb(0, 22, 35);
+    position: relative;
+    height: 35vh;
     overflow-y: scroll;
-    height: 60vh;
+    margin-bottom: 1rem;
 }
 
 .compound_inputs {
-    padding: 5px 0px;
-    overflow-y: scroll; 
-    height: 80%;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
-#add_component {
-    width: 12%;
-    height: 40px;
+.compound_inputs::-webkit-scrollbar {
+    display: none;
 }
 
-#name {
-    margin-top: 5px;
-    width: calc(100% - 5px);
+.input_container button {
+    animation: scaleUp 0.5s ease;
 }
 
-.new_product_container img {
-    position: relative;
-    display: inline-block;
-    align-self: center;
-    width: 50px;
-    height: 50px;
+.input_container input {
+    margin: 5px 5px 5px 0px;
+    overflow: hidden;
+    animation: scaleUp 0.5s ease;
+    /* transform:scale(0); */
 }
 
-#next_button{
-    justify-self: center;
-    align-self: center;
-    height: 40px;
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.3);
+    }
 
-
+    100% {
+        transform: scale(1);
+    }
 }
+@media(max-width:750px) {
+    .compound_inputs {
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        padding: 0%;
+    }
+    .compound_inputs button {
+        width: 20px;
+        padding: 0;
+    }
+    #add_component {
+        width: 20px;
+        padding: 0%;
+        margin: 0%;
+    }
+    .input_container input {
+        
+        width: 40%; 
+        margin: 5px 5px 5px 0px;
+        overflow: hidden;
+        animation: scaleUp 0.5s ease;
+        /* transform:scale(0); */
+    }
+  }

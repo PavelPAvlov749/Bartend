@@ -15,9 +15,13 @@ export const CocktailCard = () => {
 
  
     return (
-        <section className="cocktail_card_contaoner translate_animation">
+        <article className="cocktail_card_container contaoiner translate_animation">
+            <figure>
             <h2>{currentCocktail?.strDrink}</h2>
             <img id="cocktail_photo" src={currentCocktail?.strDrinkThumb} alt="" />
+           
+            </figure>
+            <article>
             <span>Бокал : {currentCocktail?.strGlass }</span>
             <span>Категория IBA : {currentCocktail?.strIBA ? currentCocktail.strIBA : "не входит в IBA"}</span>
             <span>Категория : {currentCocktail?.strCategory}</span>
@@ -29,6 +33,8 @@ export const CocktailCard = () => {
                     <span>{el + " : " + Object.values(currentCocktail.composition)[index]}</span>
                 )
             }) : null}
-        </section>
+            </article>
+           
+        </article>
     )
 }

@@ -12,13 +12,14 @@ export const SpiritList = () => {
     let spirits = useSelector((state: Global_state_type) => state.knowledgeBase.spirits)
  
     return (
-        <section className="spirit_list_container translate_animation">
+        <section className="cocktail_list translate_animation">
             <ul className="spirit_list list">
                 {spirits?.map((el: spiritType) => {
                     return (
                         <li key={el.ID} className="cocktail_card">
                             <NavLink to={`/ingridient/id=${el.ID}`}>
                                 <img className="cocktail_preview" src={el.image} alt="" />
+                                <br />
                                 <span>{el.displayName}</span>
                             </NavLink>
                         </li>

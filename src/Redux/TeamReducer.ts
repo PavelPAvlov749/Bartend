@@ -6,7 +6,7 @@ const SET_CLAN_LIST = "barApp/clanReducer/setDlanList"
 const SET_SEARCHED_CLAN_NAME = "barApp/clanReducer/setSearchedClanList"
 const SET_NEW_TEAM_NAME = "barApp/clanReducer/setNewClanName"
 const SET_NEW_TEAM_DESCRIPTION = "barApp/clanReducer/setNewTeamDescription"
-const SET_NEW_TEAM_AVATAR = "barApp/clanReducer/setNewTeamAvatar"
+
 const SET_JIONED_CLANS = "barApp/clanReducer/setJoinedClans"
 const LEAVE_THE_TEAM = "barApp/clanReducer/leaveTheTeam"
 export type ClanType = {

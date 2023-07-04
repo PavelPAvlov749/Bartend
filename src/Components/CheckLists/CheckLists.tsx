@@ -24,18 +24,19 @@ export const EmptyCheckLists = () => {
 export const CheckListsList = (props: { checkLists: checkListType[]}) => {
     const navigate = useNavigate()
     return (
-        <div className="single_check_list">
+        <div className="single_check_list container">
             {props.checkLists.map((el: checkListType) => {
                 return (
                     <>
-                         <span onClick={() => {navigate(`/check-lists/id=${el.id}`)}}>{el.name}</span>
-                         <br />
+                    <NavLink key={el.id} to={`/check-lists/id=${el.id}`}>
+                        {el.name}
+                    </NavLink>
+                       
                     </>
                          
-                
                 )
             })}
-            <span onClick={() => {navigate("/new-check-list")}} id="add_check_list">Добавить</span>
+            <button className="confirm_button" onClick={() => {navigate("/new-check-list")}}>Добавить</button>
         </div>
     )
 }
@@ -50,7 +51,7 @@ export const CheckLists = () => {
     let checkLists = useSelector((state : Global_state_type) => state.chcekLists.checkLists)
   
     return (
-        <section className="check_lists_container page_apperas_animation">
+        <section className="check_lists_container container page_apperas_animation">
            
             <h2>Чек листы</h2>
         

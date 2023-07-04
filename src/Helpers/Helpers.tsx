@@ -23,8 +23,12 @@ export const parseComposition = (composition: {}) => {
     // Данная функция помогает распарсить обьект состава премикса в массив спан элементов
     return Object.keys(composition as {}).map((el: string, index: number) => {
         return (
-            <p>{el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] :
-                el + " : " + Object.values(composition as {})[index]}</p>
+            <>
+                {el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] :
+                el + " : " + Object.values(composition as { })[index]}
+
+                <br />
+            </>
         )
     })
 }
@@ -65,11 +69,11 @@ export const validationShema = yup.object().shape({
 })
 
 
-export const parseCocktailDbIngridients = (cocktail  : any) => {
-    let ingridientKey = Object.keys(cocktail).filter((key : string) => key.includes('strIngredient') === true)
-    return ingridientKey.map((el : string,index : number) => {
-        return {[cocktail[el]] : cocktail[`strMeasure${index + 1}`]}
-    }).filter((el : {}) => !el.hasOwnProperty('null')).reduce((result,el) => {
+export const parseCocktailDbIngridients = (cocktail: any) => {
+    let ingridientKey = Object.keys(cocktail).filter((key: string) => key.includes('strIngredient') === true)
+    return ingridientKey.map((el: string, index: number) => {
+        return { [cocktail[el]]: cocktail[`strMeasure${index + 1}`] }
+    }).filter((el: {}) => !el.hasOwnProperty('null')).reduce((result, el) => {
         return {
             ...result,
             ...el

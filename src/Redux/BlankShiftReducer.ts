@@ -22,24 +22,24 @@ type initialStateType = {
     selectedProducts: productType[],
     closedShifts: blankShiftType[],
     currentShift: blankShiftType,
-    passedShift : blankShiftType | null
+    passedShift: blankShiftType | null
 
 }
 
 const initialState: initialStateType = {
     productList: [],
     selectedProducts: [],
-    passedShift : null,
+    passedShift: null,
     closedShifts: [],
     currentShift: {
-        products : [],
-        shiftID : "",
-        done : false,
-        teamID : "",
-        teamName : "",
-        date : "",
-        employe : "",
-        count : 0
+        products: [],
+        shiftID: "",
+        done: false,
+        teamID: "",
+        teamName: "",
+        date: "",
+        employe: "",
+        count: 0
 
     },
 
@@ -50,11 +50,11 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
     switch (action.type) {
 
         case SET_PRODUCT_LIST: {
-            
+
             return {
                 ...state,
-                productList: action.payload.map((el : productType) => {
-                    return {...el,checked : false}
+                productList: action.payload.map((el: productType) => {
+                    return { ...el, checked: false }
                 })
             }
         }
@@ -100,53 +100,58 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
         }
 
         case SET_ITEM_DONE: {
-          
+
             return {
                 ...state,
-              currentShift : {
-                ...state.currentShift,
-                products : [...state.currentShift.products.map((el : productType) => {
-                if(el.id !== action.payload){
-                    return el
-                }else {
-                    return {
-                        ...el,done : true
-                    }
+                currentShift: {
+                    ...state.currentShift,
+                    products: [...state.currentShift.products.map((el: productType) => {
+                        if (el.id !== action.payload) {
+                            return el
+                        } else {
+                            return {
+                                ...el, done: true
+                            }
+                        }
+                    }) as productType[]]
                 }
-              }) as productType[]]}}}
+            }
+        }
         case SET_ITEM_UNDONE: {
             return {
                 ...state,
-                currentShift : {...state.currentShift,products : [...state.currentShift?.products.map((el:productType) => {
-                    if(el.id === action.payload) {
-                        return {
-                            ...el,done : false
+                currentShift: {
+                    ...state.currentShift, products: [...state.currentShift?.products.map((el: productType) => {
+                        if (el.id === action.payload) {
+                            return {
+                                ...el, done: false
+                            }
+                        } else {
+                            return el
                         }
-                    }else {
-                        return el
-                    }
-                }) as productType[]]}
+                    }) as productType[]]
+                }
             }
         }
 
         case SET_CURENT_SHIFT: {
             return {
                 ...state,
-                currentShift: {...action.payload}
+                currentShift: { ...action.payload }
             }
         }
         case CLOSE_CURRENT_SHIFT: {
             return {
                 ...state,
                 currentShift: {
-                    products : [],
-                    shiftID : "",
-                    done : false,
-                    teamID : "",
-                    teamName : "",
-                    date : "",
-                    employe : "",
-                    count : 0
+                    products: [],
+                    shiftID: "",
+                    done: false,
+                    teamID: "",
+                    teamName: "",
+                    date: "",
+                    employe: "",
+                    count: 0
                 }
             }
         }
@@ -156,10 +161,10 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 closedShifts: action.payload
             }
         }
-        case SET_PASSED_SHIFT : {
+        case SET_PASSED_SHIFT: {
             return {
                 ...state,
-                passedShift : action.payload
+                passedShift: action.payload
             }
         }
         default:
@@ -169,9 +174,9 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
 
 
 export const blanksActions = {
-    setPassedShift : (shift : blankShiftType) => ({
-        type : "barApp/blankShiftReducer/setPassedShift",
-        payload : shift
+    setPassedShift: (shift: blankShiftType) => ({
+        type: "barApp/blankShiftReducer/setPassedShift",
+        payload: shift
     } as const),
     selectItem: (itemID: string) => ({
         type: "barApp/blankShiftReducer/add-item",
@@ -223,57 +228,45 @@ export const blanksActions = {
 }
 
 
-export const getPremixes = (companyID : string) => {
-    return async function (dispatch : any) {
-      
-        dispatch(app_actions.setFetch(true))
-        const products = await Firestore_instance.getProductsByCompanyID(companyID)
-        console.log(products)
-        dispatch(blanksActions.setProductList(products))
-        console.log(products)
-        dispatch(app_actions.setFetch(false))
-     
-    }
-}
 
 
 export const getCurrentShiftByCompanyID = (companyID: string) => {
     return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
         let shift = await Firestore_instance.getCurrentShift(companyID)
-        if(shift) {
+        if (shift) {
             dispatch(blanksActions.setCurrentShift(shift as unknown as blankShiftType))
-        dispatch(app_actions.setFetch(false))
-        }else{
+            dispatch(app_actions.setFetch(false))
+        } else {
             dispatch(blanksActions.setCurrentShift({
-                products : [],
-                shiftID : "",
-                done : false,
-                teamID : "",
-                teamName : "",
-                date : "",
-                employe : "",
-                count : 0
+                products: [],
+                shiftID: "",
+                done: false,
+                teamID: "",
+                teamName: "",
+                date: "",
+                employe: "",
+                count: 0
             }))
         }
-        
+
     }
 }
 
 
-export const closeCurrentShiftByCompanyID = (shift : blankShiftType) => {
+export const closeCurrentShiftByCompanyID = (shift: blankShiftType) => {
     return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
         await Firestore_instance.addShiftInHistory(shift)
         await Firestore_instance.clearCurrentShift(shift.shiftID as string)
-        
+
         dispatch(blanksActions.closeCurentShift(shift.shiftID as string))
         dispatch(app_actions.setFetch(false))
     }
 }
 
-export const getShiftsHistoryByCompanyID = (companyID : string) => {
-    return async function (dispatch : any) {
+export const getShiftsHistoryByCompanyID = (companyID: string) => {
+    return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
         let shifts = await Firestore_instance.getBlankShifts(companyID)
         dispatch(blanksActions.setShiftHistory(shifts as blankShiftType[]))
@@ -283,8 +276,8 @@ export const getShiftsHistoryByCompanyID = (companyID : string) => {
 
 
 
-export const setCurrentShiftByCompanyID = (currentShift : blankShiftType) => {
-    return async function (dispatch : any) {
+export const setCurrentShiftByCompanyID = (currentShift: blankShiftType) => {
+    return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
         await Firestore_instance.setCurrentShift(currentShift)
         dispatch(blanksActions.setCurrentShift(currentShift))
@@ -292,8 +285,8 @@ export const setCurrentShiftByCompanyID = (currentShift : blankShiftType) => {
     }
 }
 
-export const getPassedShiftByID = (shiftID : string) => {
-    return async function (dispatch : any) {
+export const getPassedShiftByID = (shiftID: string) => {
+    return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
         const shift = await Firestore_instance.getPassedShiftById(shiftID)
         dispatch(blanksActions.setPassedShift(shift))

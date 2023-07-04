@@ -17,8 +17,8 @@ export const CheckListPage = () => {
         navigate("/check-lists")
     }
     return (
-        <section className="single-check-list">
-            <div className="check-list-controls">
+        <section className="single-check-list container">
+            <div className="check-list-controls controls">
                 <h2>{actualChekList?.name}</h2>
                 <img onClick={onDeleteHandler} className="icon" src={deleteIcon} alt="" />
             </div>

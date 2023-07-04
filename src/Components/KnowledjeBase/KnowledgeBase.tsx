@@ -21,10 +21,10 @@ export const KnowledgeBase = () => {
     };
 
     return (
-        <section className="knwoledge_base_container">
+        <section className="knwoledge_base_container container">
             <h2>База знаний</h2>
             <Box sx={{width: '100%',marginBottom : "5px" }}>
-                <Tabs value={value} onChange={handleChange} sx={{}} centered >
+                <Tabs value={value} onChange={handleChange} sx={{}} >
                     <Tab sx={{width : "50%",fontSize : "14px",color : isDarkTheme ? "white" : "black"}} label="Коктейли" />
                     <Tab  sx={{width : "50%",fontSize : "14px",color :  isDarkTheme ? "white" : "black"}}  label="Спирты" />
                 </Tabs>

@@ -7,10 +7,6 @@ import { blanksActions } from "./BlankShiftReducer";
 
 const SET_PREMIXES = "barApp/productReducer/setProducts"
 const SET_ACTUAL_PRODUCT_CARD = 'barApp/productReducer/setActualProductCard'
-const ADD_BLANK_TO_THE_SHIFT = "barApp/productReducer/addBlank"
-const REMOVE_BLANK_FROM_SHIFT_KIST = "barApp/productReducer/removeBlank"
-const SELECT_ALL_BLANKS = "barApp/productReducer/addALLBlank"
-const REMKVE_ALL_BLANKS = "barApp/productReducer/removeALLBlank"
 const REMOVE_PRODUCT = "barApp/ProductReducer/RemoveProduct"
 
 
@@ -18,7 +14,6 @@ type initial_state_type = {
     premixes : productType[] | [],
     newPremix : productType | null,
     actualProductCard : productType | null,
-    blankShiftList : productType[],
     newCard : {
         name : string | null,
         composition : any [],
@@ -32,7 +27,6 @@ let initial_state : initial_state_type = {
     premixes : [],
     newPremix : null,
     actualProductCard : null,
-    blankShiftList : null as unknown as productType[],
     newCard : {
         name : null,
         composition : [],
@@ -60,46 +54,8 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 actualProductCard : action.payload
             }
         }
-        case ADD_BLANK_TO_THE_SHIFT : {
-            return {
-                ...state,
-                blankShiftList : state.blankShiftList.map((el : productType) => {
-                    if(el.id === action.payload.id) {
-                        return {...el,checked : true}
-                    }else {
-                        return el
-                    }
-                })
-            }
-        }
-        case REMOVE_BLANK_FROM_SHIFT_KIST : {
-            return {
-                ...state,
-                blankShiftList : state.blankShiftList.map((el : productType) => {
-                    if(el.id === action.payload){
-                        return {...el,checked : false}
-                    }else {
-                        return el
-                    }
-                })
-            }
-        }
-        case REMKVE_ALL_BLANKS : {
-            return {
-                ...state,
-                blankShiftList : state.blankShiftList.map((el : productType) => {
-                    return {...el,checked : false}
-                })
-            }
-        }
-        case SELECT_ALL_BLANKS : {
-            return {
-                ...state,
-                blankShiftList : state.blankShiftList.map((el : productType) => {
-                    return {...el,checked : true}
-                })
-            }
-        }
+    
+
         case REMOVE_PRODUCT : {
             return {
                 ...state,
@@ -120,21 +76,6 @@ export const productActions = {
   setAcualProductCard : (productCard : productType) => ({
     type : "barApp/productReducer/setActualProductCard",
     payload : productCard
-  } as const),
-  addBlank : (blank : productType) => ({
-    type : "barApp/productReducer/addBlank",
-    payload : blank
-  } as const),
-  removeBlank : (blankID : string) => ({
-    type : "barApp/productReducer/removeBlank",
-    payload : blankID
-  } as const ),
-  selectAll : () => ({
-    type : "barApp/productReducer/addALLBlank",
-   
-  } as const ),
-  removeAll : () => ({
-    type : "barApp/productReducer/removeALLBlank"
   } as const),
   setNewID : (ID : string) => ({
     type : "barApp/productReducer/setNewID",

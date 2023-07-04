@@ -9,9 +9,9 @@ export const NewProduct = (props : {isDarkTheme : boolean} ) => {
     const navigate = useNavigate()
     console.log(location)
     return (
-        <section className="translate_animation">
+        <section className="container translate_animation">
             <FirstStep isDarkTheme={props.isDarkTheme}/>
-            <button onClick={() => {navigate("/add-step-two")}} id="next_button">Дальше</button>
+            <button className="confirm_button" onClick={() => {navigate("/add-step-two")}} id="next_button">Next</button>
         
         </section>
     )

@@ -4,7 +4,7 @@ import { Global_state_type } from "../../Redux/Store";
 import "../../Styles/BlamkShift.css";
 import { productType } from "../../Redux/Types";
 import { closeCurrentShiftByCompanyID, getCurrentShiftByCompanyID } from "../../Redux/BlankShiftReducer";
-import { NoOpenShiff } from "./NoOpenedShifts";
+import { NoOpenShiff } from "./EmtyShiftPage";
 import { IngridientList } from "./IngridientList";
 import { ProgressBar } from "./ProgressBar";
 
@@ -34,7 +34,7 @@ export const CurrentShift = () => {
 
             <IngridientList ingridients={products} />
             {percent !== 100 ? null :
-                <button id={`EndShift`} onClick={() => { dispatch(closeCurrentShiftByCompanyID(curentShift)) }}>Закончить смену</button>}
+                <button className={'confirm_button'} onClick={() => { dispatch(closeCurrentShiftByCompanyID(curentShift)) }}>Закончить смену</button>}
         </section> 
         )
     }else{

@@ -12,16 +12,17 @@ import deleteIconLight from "../../Assets/icons8-delete-90.png"
 import "../../Styles/PeoduxtCard.css"
 import { deleteProductCrad } from "../../Redux/ProductReduxer";
 import { calculateAndParseIntoComponent, parseComposition } from "../../Helpers/Helpers";
+import { useTheme } from "@emotion/react";
 
 
 
 export const ProductCard = () => {
-    const dispatch : any = useDispatch()
+    const dispatch: any = useDispatch()
     const navigate = useNavigate()
     const card: productType | null = useSelector((state: Global_state_type) => {
         return state.premixes.actualProductCard
     })
-    const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
+    const isDarkTheme = useTheme()
     const productID = useLocation().pathname.split("=")[1]
 
     const [showDescription, setShowDescription] = useState(false)
@@ -29,18 +30,26 @@ export const ProductCard = () => {
     let [value, setValue] = useState(1)
 
     const deleteProduct = () => {
-        console.log(productID)
         dispatch(deleteProductCrad(productID))
         navigate("/premixes")
     }
 
     return (
-        <section className={`${isDarkTheme ? "card_container Dark" : "card_container Light"} translate_animation`}>
-            <div className="controls">
-                <img src={isDarkTheme ? backArrow : backArrowLight}  onClick={() => {navigate("/premixes")}} alt="" />
-                <img src={isDarkTheme ? editIcon : editIconLight} alt=""/>
-                <img src={isDarkTheme ? deleteIcon : deleteIconLight} id="delete"  onClick={deleteProduct} alt="" />
-            </div>
+        <section className={`product_card container translate_animation`}>
+
+            <ul className="controls">
+                <li className="controls_item" onClick={() => { navigate("/premixes") }}>
+                    Back
+                    <img src={isDarkTheme ? backArrow : backArrowLight} alt="" />
+                </li>
+                <li className="controls_item" onClick={deleteProduct}>
+                    Delete
+                    <img src={isDarkTheme ? deleteIcon : deleteIconLight} id="delete" alt="" />
+                </li>
+            </ul>
+
+
+
             <h1>{card?.name}</h1>
             <button onClick={() => { setShowDescription(!showDescription) }}>Описание</button>
             {showDescription ? <p>{card?.description}</p> :
@@ -48,9 +57,9 @@ export const ProductCard = () => {
             }
             <br />
             <button onClick={() => setShowComposition(!showCompositon)}>Состав</button>
-            <p>{ showCompositon ?
-              parseComposition(card?.composition as {})
-             : null}</p> 
+            <p>{showCompositon ?
+                parseComposition(card?.composition as {})
+                : null}</p>
             <br />
             <input type="number" placeholder=" Сколько готовим?" onChange={(e: React.FormEvent<HTMLInputElement>) => {
 
@@ -63,10 +72,10 @@ export const ProductCard = () => {
             }} />
             <br />
             <div className="calculated_result">
-            {card ? calculateAndParseIntoComponent(card,value)
-                 : <Navigate to={"/premixes"} />}
+                {card ? calculateAndParseIntoComponent(card, value)
+                    : <Navigate to={"/premixes"} />}
             </div>
-        
+
 
 
         </section>

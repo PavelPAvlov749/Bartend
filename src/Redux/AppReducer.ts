@@ -30,7 +30,7 @@ let initial_state: initial_state_type = {
     teamID: ""
   },
   isInit: false,
-  isAuth: true,
+  isAuth: false,
   isFetch: false, 
   isDarktheme : true
 
@@ -100,22 +100,14 @@ export const initializeThunk = () => {
     const auth = getAuth()
     await onAuthStateChanged(auth, async (user) => {
    
-      dispatch(app_actions.setInit(false))
-      dispatch(app_actions.setAuth(false))
+
       let userPage = await Firestore_instance.getUserById(user?.uid as string)
-   
+      
       if (userPage) {
         dispatch(app_actions.setUserPage(userPage))
         dispatch(app_actions.setInit(true))
         dispatch(app_actions.setAuth(true))
-        // dispatch(productActions.setPremixes(Products))
-      
-      } else {
-        dispatch(app_actions.setAuth(false))
-        dispatch(app_actions.setInit(true))
       }
-
-
     })
   }
 }

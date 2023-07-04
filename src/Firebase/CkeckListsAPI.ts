@@ -1,10 +1,13 @@
 import { collection, deleteDoc, doc, getDocs, query, setDoc, where } from "firebase/firestore"
 import {Firestore }from "./FirebaseConfig"
 
+
+
+
 export const CheckListsAPI = {
     getChekLists : async (teamID : string) => {
         try {
-      
+            
             let docRef = query(collection(Firestore,"CheckLists"),where("teamID","==",teamID))
             let querySnap = await getDocs(docRef)
             let chekLists : any[] = []

@@ -14,11 +14,6 @@ body {
   padding: 0%;
   margin: 0%;
 }
-ul{
-  list-style-type: none;
-  margin: 0%;
-  padding: 0%;
-}
 
 html {
   padding: 0%;
@@ -29,29 +24,3 @@ html {
   src: url(./Fonts/UbuntuCondensed-Regular.ttf);
   font-style: normal;
 }
-.icon {
-  width: 35px;
-  display: inline-block;
-  height: 35px;
-}
-input {
-  height: 2.4rem;
-  border: none;
-  border-radius: 5px;
-  font-size: large;
-  color:white;
-  font-weight: 500;
-  background: linear-gradient(45deg, rgb(55, 55, 125), rgb(12, 119, 90));
-}
-button {
-  border: none;
-  width: calc(100% - 10px);
-  margin: 0 5px;
-  font-size: 15px;
-  background-color: rgb(42, 37, 115);
-  border: 1px solid rgb(15, 68, 141);
-  border-radius: 4px;
-  color: white;
-  
-}
-

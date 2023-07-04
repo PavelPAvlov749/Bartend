@@ -35,11 +35,15 @@ export const SecondStep = (props : {isDarkTheme : boolean}) => {
       
     }
     return (
-        <div className={props.isDarkTheme ? "second_step_container translate_animation DarkTheme" : "second_step_container translate_animation LightTeheme"}>
-            <img src={backArrow} onClick={() => {navigate(-1)}} alt="" />
+        <div className={props.isDarkTheme ? "second_step container translate_animation DarkTheme" : "second_step container translate_animation LightTeheme"}>
+            <div className="controls_item"  onClick={() => {navigate(-1)}}>
+                <span>Back</span>
+                <img className="icon" src={backArrow} />
+            </div>
+        
             <h2>Технология приготовления : </h2>
             <textarea name="Description" id="description" onChange={setDescription}></textarea>
-            <button onClick={createnewProduct}>Создать</button>
+            <button className="confirm_button" onClick={createnewProduct}>Создать</button>
 
         </div>
     )

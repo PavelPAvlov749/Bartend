@@ -7,7 +7,7 @@ import { Global_state_type } from "../Redux/Store";
 import { Premixes } from "../Components/Ingridients/Premixes";
 import { NewProduct } from "../Components/NewProduct/NewProduct";
 import { ProductCard } from "../Components/Ingridients/ProductCard";
-import { CreateNewShift } from "../Components/ShiftsPage/BlankShift";
+import { CreateNewShift } from "../Components/ShiftsPage/NewShiftConstructor";
 import { SecondStep } from "../Components/NewProduct/SecondStep";
 import loader from "../Assets/icons8-jigger-64.png";
 import { CheckLists } from "../Components/CheckLists/CheckLists";
@@ -22,7 +22,7 @@ import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
 import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
 import { ShiftPageContainer } from "../Components/ShiftsPage/ShiftsPageContainer";
-import { PassedShift } from "../Components/ShiftsPage/PassedShift";
+import { PassedShift } from "../Components/ShiftsHistory/PassedShiftItem";
 
 const HOME = "/home"
 const COCKTAIL_CARD = "/cocktail/:id"
@@ -46,7 +46,7 @@ const CHECK_LIST = "/check-lists/:id"
 const KNIWLEDGE_BASE = "knowledge-base"
 const INGRIDIENT = "ingridient/:id"
 
-export const Router  = React.memo((props : {isAuth : boolean,isFetch : boolean,isDarkTheme : boolean}) => {
+export const Router  = React.memo((props : {isDarkTheme : boolean}) => {
     const isAuth = useSelector((state : Global_state_type) => {return state.App.isAuth})
     const isFetch = useSelector((state : Global_state_type) => state.App.isFetch)
     if(isAuth){

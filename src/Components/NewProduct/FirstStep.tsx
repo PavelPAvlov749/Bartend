@@ -24,7 +24,7 @@ export const FirstStep = (props : {isDarkTheme : boolean}) => {
        <NewIngridientSingleForm/>
     ])
     return (
-        <section className={props.isDarkTheme ? "new_product_container DarkTheme" : "new_product_container LightTheme"}>
+        <section className={props.isDarkTheme ? "new_premix_first_step container DarkTheme" : "container LightTheme"}>
             <h2>Введите наименование : </h2>
             <input type="text" placeholder="Наименование" id="name" onChange={(e) => { onNameChange(e) }} />
             <section className="compound">
@@ -33,7 +33,7 @@ export const FirstStep = (props : {isDarkTheme : boolean}) => {
                     {forms}
 
                 </div>
-                <img src={add} onClick={addInput} alt="" />
+                <button onClick={addInput} >Add ingrideint</button>
             </section>
 
         </section>
