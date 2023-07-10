@@ -107,6 +107,8 @@ export const initializeThunk = () => {
         dispatch(app_actions.setUserPage(userPage))
         dispatch(app_actions.setInit(true))
         dispatch(app_actions.setAuth(true))
+      }else {
+        dispatch(app_actions.setInit(true))
       }
     })
   }

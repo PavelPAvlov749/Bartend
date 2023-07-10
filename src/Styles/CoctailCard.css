@@ -48,7 +48,9 @@
 }
 
 
-
+#cocktail_photo {
+    max-width: 500px;
+}
 @media (max-width:750px) {
     .cocktail_card_container {
         display: flex;

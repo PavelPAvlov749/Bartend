@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    grid-area: content;
     padding: 5px;
 }
 .create_the_team_container h1 {
@@ -51,6 +52,7 @@
 }
 #submit_reg{
     height: 2.5rem;
+    width: 100%;
 }
 @media (max-width : 750px) {
     .create_the_team_container{

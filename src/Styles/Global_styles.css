@@ -81,11 +81,12 @@ ul{
   margin: 0%;
   padding: 0%;
 }
-.DarkTheme a  {
+.DarkTheme a  { 
+
   text-decoration: none;
   color: white;
   cursor: pointer;
-  font-size:medium;
+  font-size:larger;
 
 }
 
@@ -93,7 +94,7 @@ ul{
   text-decoration: none;
   color: rgb(0, 0, 0);
   cursor: pointer;
-  font-size: medium;
+  font-size: larger;
 
  
 }

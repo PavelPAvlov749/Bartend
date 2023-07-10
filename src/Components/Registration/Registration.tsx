@@ -25,7 +25,7 @@ export const Registration = () => {
 
     return (
         <section className="create_the_team_container">
-            <h1>Create teams and <span>Join</span> your coworkers</h1>
+                <h1>Создать аккаунт</h1>
           
                 <Formik enableReinitialize={true}
                     initialValues={{ nickName: "", companyName: "",email: "",password : "",repeatPassword : ""}}

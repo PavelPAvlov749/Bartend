@@ -1,5 +1,37 @@
 .team_page{
+    display: flex;
+    flex-direction: column;
+    font-size: larger;
+}
+.join_team_container {
 
+}
+.join_team_container input {
+    height: 3rem;
+    margin-bottom: 20px;
+}
+.single_team {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: large;
+}
+.create_team_container {
+    display: flex;
+    flex-direction: column;
+}
+.create_team_container input {
+    width: 50%;
+}
+.create_team_container textarea {
+    width: 50%;
+}
+.team_page_container{
+    font-size: large;
+    
+}
+.team_page_container h2 {
+    text-align: center;
 }
 #leave_the_team {
     color: rgb(180, 66, 66);

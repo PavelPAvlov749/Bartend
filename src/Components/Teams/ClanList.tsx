@@ -12,7 +12,7 @@ import { app_actions } from "../../Redux/AppReducer";
 export const TeamPage = (props: { isDarkTheme: boolean }) => {
     const dispatch : any = useDispatch()
     const user = useSelector((state : Global_state_type) => state.App.user)
-    let navigate = useNavigate()
+
     useEffect(() => {
         dispatch(getClanListByUserID(user.userID as string))
     },[])
@@ -24,7 +24,7 @@ export const TeamPage = (props: { isDarkTheme: boolean }) => {
     }
 
     return (
-        <section className={`team_page container translate_animation ${props.isDarkTheme ? `DarkTheme` : `LightTheme`}`}>
+        <section className={`team_page container translate_animation `}>
             <h2>Команда : </h2>
             <br />
             <span id="team_name">{team?.teamName}</span>
@@ -57,10 +57,10 @@ export const TeamPageContainer = (props: { isDarkTheme: boolean }) => {
     }, [])
 
     return (
-        <section className={props.isDarkTheme ? "team_page_container DarkTheme" : "team_page_container LightTheme"}>
+        <section className={"team_page_container DarkTheme container"}>
             {user.teamID  ? <TeamPage isDarkTheme={props.isDarkTheme} /> :
-                <div className={props.isDarkTheme ? "empty_team container DarkTheme" : "epmty_team LightTheme"}>
-                    <span>Вы не состоите в команде</span>
+                <div className={"empty_team container "}>
+                    <h2>Вы не состоите в команде</h2>
                     <NavLink to={"/join-team"}>Присоединиться</NavLink>
                     <NavLink to={"/create-team"}>Создать команду</NavLink>
                 </div>

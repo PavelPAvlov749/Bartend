@@ -25,6 +25,15 @@
     padding: 5px 5px 5px 0px;
     border-radius: 5px;
 }
+#empty_history {
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    text-align: center;
+    justify-content: center;
+    text-align: center;
+}
 .progress_bar{
     font-size: larger;
     display: flex;
@@ -78,3 +87,5 @@
         align-self: flex-end;
     }
 }
+
+/* aerial-view-cement-factory-with-high-concrete-plant-structure-tower-cranes-industrial-production-area-night-manufacture-global-industry-concept 1 */

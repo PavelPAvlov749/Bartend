@@ -16,15 +16,15 @@ export const JoinTeam = (props : {isDarkTheme : boolean}) => {
     }
     
     return (
-        <section className={props.isDarkTheme ? "join_team container     DarkTheme translate_animation" : "join_team LightTheme translate_animation"} >
+        <section className={"join_team container"} >
             <input type="text" placeholder="Искать по имени"/>
             {teamList?.map((el : ClanType) => {
                 return (
                     <div className="single_team">
                     <span>{el.teamName}</span>
-                    <span id="join" onClick={() => {
-                        joinTeamHandler(el.teamID,el.teamName)
-                    }}>Присоединиться</span>
+                    <span id="join" onClick={() => {joinTeamHandler(el.teamID,el.teamName)}}>
+                        Присоединиться
+                    </span>
                     </div>
                 )
             })}

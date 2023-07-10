@@ -45,20 +45,20 @@ export const Premixes = () => {
             {isSearch ? 
             <div className="search_controls">
                 <input className="search" onChange={(e : React.SyntheticEvent<HTMLInputElement>) => {filterProducts(e.currentTarget.value)}}></input>
-                <button onClick={() => {setIsSearch(false)}}>Cancel</button>
+                <button onClick={() => {setIsSearch(false)}}>Отмена</button>
             </div>
          :
                 <ul className="controls">
                     <li className="menu-item" onClick={() => {Navigate(-1)}}>
-                        <span>Back</span>
+                        <span>Назад</span>
                         <img className="icon" src={isDarkTheme ? backIcom : backIconsLight} id="back"  alt="" />
                     </li>
                     <li className="menu-item" onClick={() => {Navigate("/add")}}>
-                      <span >Add new</span> 
+                      <span >Добавить</span> 
                         <img className="icon" src={isDarkTheme ? addIcon : addIconLight}  alt="" />
                     </li>
                     <li  className="menu-item"onClick={() => { setIsSearch(!isSearch) }} >
-                        <span >Search</span>
+                        <span >Поиск</span>
                         <img className="icon" src={isDarkTheme ? searchIcon : searchIconLight} alt="" />
 
                     </li>

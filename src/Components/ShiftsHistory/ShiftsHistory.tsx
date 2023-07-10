@@ -48,7 +48,7 @@ export const ShiftsHistory = () => {
         )
     } else {
         return (
-          <h2>Empty</h2>
+          <div id="empty_history">История смен пуста</div>
         )
     }
 

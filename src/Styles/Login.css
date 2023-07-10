@@ -1,17 +1,20 @@
 .login_page_container {
     width: 100%;
+    grid-area: content;
     display: flex;
-        flex-direction: column;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-        height: 90vh;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
 }
+
 .logo {
     width: 180px;
     object-fit: cover;
     height: 80px;
 }
+
 .show {
     background-color: rgb(68, 51, 160);
     height: 2.5rem;
@@ -23,28 +26,32 @@
     display: block;
 
 }
+
 #passwordShow {
     width: 30px;
     height: 30px;
     vertical-align: bottom;
 }
-.input_container{
+
+.input_container {
     align-items: center;
     text-align: center;
     justify-content: center;
     display: flex;
     flex-direction: row;
 }
+
 .LoginByEmailAndPassword input {
     height: 2.5rem;
     width: 100%;
 }
-#passwordInput{
+
+#passwordInput {
     width: 90%;
 }
 
 @media (max-width : 750px) {
-    .login_page_container{
+    .login_page_container {
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -52,46 +59,56 @@
         align-items: center;
         height: 90vh;
     }
+
     .logo {
         width: 180px;
         object-fit: cover;
         height: 80px;
     }
+
     .login_page_container h1 {
         font-size: x-large;
     }
-    .LoginByEmailAndPassword{
+
+    .LoginByEmailAndPassword {
         width: 100%;
-    
+
     }
+
     .login_page_container a {
         width: 5rem;
-        
+
     }
-    #loginButton{
+
+    #loginButton {
         width: 60%;
         height: 2.5rem;
         font-size: large;
         background-color: rgba(242, 122, 67, 0)
     }
-    #loginButton:hover{
+
+    #loginButton:hover {
         background-color: rgb(27, 29, 93);
-       
+
     }
-    .input_container{
-    
+
+    .input_container {
+
         text-align: center;
         justify-content: center;
         display: flex;
         flex-direction: row;
     }
+
     .LoginByEmailAndPassword input {
         height: 2.5rem;
         width: 100%;
     }
-    #passwordInput{
+
+    #passwordInput {
         width: 90%;
     }
+
     .show {
         background-color: rgb(68, 51, 160);
         height: 2.5rem;
@@ -101,13 +118,15 @@
         border-radius: 5px;
         margin-left: 2px;
         display: block;
-    
+
     }
+
     #passwordShow {
         width: 30px;
         height: 30px;
         vertical-align: bottom;
     }
+
     .login_page_container input {
         color: black;
     }
