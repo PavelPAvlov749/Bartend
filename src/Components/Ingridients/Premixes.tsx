@@ -45,7 +45,7 @@ export const Premixes = () => {
             {isSearch ? 
             <div className="search_controls">
                 <input className="search" onChange={(e : React.SyntheticEvent<HTMLInputElement>) => {filterProducts(e.currentTarget.value)}}></input>
-                <button onClick={() => {setIsSearch(false)}}>Отмена</button>
+                <button id="search_controls__button" onClick={() => {setIsSearch(false)}}>Отмена</button>
             </div>
          :
                 <ul className="controls">
@@ -68,7 +68,7 @@ export const Premixes = () => {
             }
 
             <section className="conteiner translate_animation">
-                <PremixesList dispatch={dispatch} Navigate={Navigate} blanks={products} />
+                <PremixesList dispatch={dispatch} Navigate={Navigate} blanks={products || []} />
 
             </section>
         </section>

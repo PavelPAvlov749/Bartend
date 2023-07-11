@@ -3,6 +3,6 @@
 }
 @media(max-width:750px) {
  .product_card input {
-  /* width: 100%; */
+  width: calc(100% - 5px);
  }
 }

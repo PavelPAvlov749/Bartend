@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Global_state_type } from "../../Redux/Store";
 import { checkListType, deleteChekListThunk } from "../../Redux/CheckListReducer";
-import deleteIcon from "../../Assets/icons8-delete-96.png"
 
 export const CheckListPage = () => {
     let id = useLocation().pathname.split("=")[1]
@@ -19,8 +18,7 @@ export const CheckListPage = () => {
     return (
         <section className="single-check-list container">
             <div className="check-list-controls controls">
-                <h2>{actualChekList?.name}</h2>
-                <img onClick={onDeleteHandler} className="icon" src={deleteIcon} alt="" />
+                <span onClick={onDeleteHandler}>{"Удалить"}</span>
             </div>
 
             <ul className="tasks">

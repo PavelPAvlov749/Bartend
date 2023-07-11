@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Global_state_type } from "../../Redux/Store";
 import { useDispatch, useSelector } from "react-redux";
 import { productType } from "../../Redux/Types";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import deleteIcon from "../../Assets/icons8-delete-96.png";
-import editIcon from "../../Assets/icons8-edit-96.png";
 import backArrow from "../../Assets/icons8-back-90.png";
 import backArrowLight from "../../Assets/icons8-reply-arrow-100.png"
-import editIconLight from "../../Assets/icons8-edit-96 (1).png"
 import deleteIconLight from "../../Assets/icons8-delete-90.png"
 import "../../Styles/PeoduxtCard.css"
 import { deleteProductCrad } from "../../Redux/ProductReduxer";

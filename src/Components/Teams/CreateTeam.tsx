@@ -27,7 +27,7 @@ export const CreateTeam = () => {
         dispatch(clanActions.setNewTeamDiescription(e.currentTarget.value))
     }
     return (
-        <section className={isDarkTheme ? "create_team_container DarkTheme translate_animation" : "create_team_container DarkTheme translate_animation"}>
+        <section className={"create_team_container translate_animation container"}>
             <input type="text" placeholder="Название" onChange={onNameChangeHandler}/>
             <h3>Описание :</h3>
             <br />

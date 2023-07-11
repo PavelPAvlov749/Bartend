@@ -33,7 +33,7 @@
 .task_list {
     margin-top: 1rem;
     line-height: 2;
-    font-size: larger;
+    font-size: large;
 }
 @media(max-width:750px) {
    #add_ckeck_list{
