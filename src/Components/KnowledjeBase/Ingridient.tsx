@@ -13,9 +13,13 @@ export const IngridientCard = () => {
     },[])
     let currentIngridient = useSelector((state : Global_state_type) => state.knowledgeBase.currentSpirit)
     return (
-        <section className=" container translate_animation">
-            <h2>{currentIngridient?.displayName}</h2>
+        <section className=" container spirit_card translate_animation">
+            <figure>
+                <figcaption><h2>{currentIngridient?.displayName}</h2></figcaption>
             <img id="cocktail_photo" src={currentIngridient?.image} alt="" />
+            </figure>
+            <article>
+
             <h4>Описание : </h4>
             <p>
                 {currentIngridient?.definition}
@@ -23,6 +27,8 @@ export const IngridientCard = () => {
         
             <span>Технология произодства : </span>
             <p>{currentIngridient?.production}</p>
+            </article>
+         
         </section>
     )
 }

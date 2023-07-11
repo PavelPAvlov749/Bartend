@@ -9,7 +9,7 @@ import { parseElementNameToString } from "../../Helpers/Helpers";
 
 export const PremixesList = (props: { blanks: productType[] ,dispatch : any,Navigate : (a : string) => any}) => {
 
-    if (props.blanks.length > 0) {
+    if (props.blanks.length > 0 && props.blanks !== undefined) {
         return (
             <>
                 {props.blanks.map((el : productType) => {
