@@ -12,13 +12,13 @@ import { checkListType, getCheckListsthunk } from "../../Redux/CheckListReducer"
 
 export const EmptyCheckLists = () => {
     return (
-        <>
+        <section className="check_lists_container__empty-check-list-container">
             <h3>
                 Чек листов нет
             </h3>
             <NavLink to={"/new-check-list"}>Добавить</NavLink>
 
-        </>
+        </section>
     )
 }
 export const CheckListsList = (props: { checkLists: checkListType[]}) => {
@@ -49,7 +49,7 @@ export const CheckLists = () => {
         dispatch(getCheckListsthunk(teamID as string))
     },[])
     let checkLists = useSelector((state : Global_state_type) => state.chcekLists.checkLists)
-  
+   
     return (
         <section className="check_lists_container container page_apperas_animation">
            

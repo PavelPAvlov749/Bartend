@@ -2,7 +2,7 @@
 // REACT AND HOOKS
 // ----------------
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +36,6 @@ export const Premixes = () => {
     const dispatch: any = useDispatch()
     const isDarkTheme = useSelector((state: Global_state_type) => state.App.isDarktheme)
     const [products,filterProducts] = useProductFilter("")
-
     let [isSearch, setIsSearch] = useState(false)
     const Navigate = useNavigate()
 
@@ -44,6 +43,7 @@ export const Premixes = () => {
         <section className={isDarkTheme ? "container translate_animation DarkTheme" : "container translate_animation LightTheme"}>
             {isSearch ? 
             <div className="search_controls">
+                
                 <input className="search" onChange={(e : React.SyntheticEvent<HTMLInputElement>) => {filterProducts(e.currentTarget.value)}}></input>
                 <button id="search_controls__button" onClick={() => {setIsSearch(false)}}>Отмена</button>
             </div>

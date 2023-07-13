@@ -15,7 +15,14 @@
     
     justify-content: center;
 }
-
+.check_lists_container__empty-check-list-container{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    justify-content: center;
+    text-align: center;
+    align-items: center;    
+}
 .new_check_list_controls {
     margin-top: 1rem;
     display: flex;

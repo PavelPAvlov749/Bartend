@@ -1,3 +1,5 @@
+import { type } from "os"
+import { ReactNode } from "react"
 
 
 export type ProfileType = {
@@ -45,3 +47,8 @@ export type userPageType = {
     team: string | null,
     teamID: string | null
   }
+
+export interface ROUTE {
+    path : string,
+    element : ReactNode
+}

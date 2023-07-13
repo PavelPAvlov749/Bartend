@@ -4,7 +4,7 @@ import { Global_state_type } from "../../Redux/Store";
 import { ClanType, getAllClans, joinTheClan } from "../../Redux/TeamReducer";
 import "../../Styles/TeamPage.css"
 
-export const JoinTeam = (props : {isDarkTheme : boolean}) => {
+export const JoinTeam = () => {
     const dispatch : any = useDispatch()
     useEffect(( ) => {
         dispatch(getAllClans())
