@@ -3,16 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
 import { ClanType, getAllClans, joinTheClan } from "../../Redux/TeamReducer";
 import "../../Styles/TeamPage.css"
+import { useNavigate } from "react-router-dom";
 
 export const JoinTeam = () => {
     const dispatch : any = useDispatch()
     useEffect(( ) => {
         dispatch(getAllClans())
     },[])
+    const navigate = useNavigate()
     const user = useSelector((state : Global_state_type) => state.App.user)
     const teamList = useSelector((state : Global_state_type) => state.clans.teamList)
     const joinTeamHandler = (teamID : string,teamName : string) => {
         dispatch(joinTheClan(user.userID as string,user.userName as string,teamID,teamName))
+        navigate("/home")
+
     }
     
     return (

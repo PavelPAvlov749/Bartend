@@ -33,6 +33,7 @@ export const Registration = () => {
                     
                 validationSchema={validationShema}
                 validateOnBlur={true}
+                
                 >
                     {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => {
                         return (
@@ -58,7 +59,7 @@ export const Registration = () => {
                                 <span className="onInputError"> {touched.repeatPassword ? errors.repeatPassword : null}</span>
 
                                 <button
-                                    //@ts-ignore 
+                                    // @ts-ignore 
                                     onClick={handleSubmit} id="submit_reg" type="submit">Создать акаунт</button>
                             
                             

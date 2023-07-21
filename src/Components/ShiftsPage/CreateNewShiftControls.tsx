@@ -41,18 +41,15 @@ export const CreateNewShiftControls = (props: { blanks: productType[], user: use
     }
     return (
         <ul className={`controls`}>
-            <li>Select All
-                <img className="icon" id={`selectAll`} src={isDarkTheme ? selectAll : checkBoxDark} alt="" onClick={() => {
-                    dispatch(blanksActions.selectAllItems())
-                }} />
+            <li onClick={() => {dispatch(blanksActions.selectAllItems())}}>
+                Select All
+                <img className="icon" id={`selectAll`} src={isDarkTheme ? selectAll : checkBoxDark} alt=""  />
             </li>
-            <li>Clear All
-                <img className="icon" id={`clear`} src={isDarkTheme ? clearAll : broomIconDark} alt="" onClick={() => {
-                    dispatch(blanksActions.deselectAll())
-                }} />
+            <li  onClick={() => {dispatch(blanksActions.deselectAll())}}>Clear All
+                <img className="icon" id={`clear`} src={isDarkTheme ? clearAll : broomIconDark} alt="" />
             </li>
-            <li>Start
-                <img className="icon" src={isDarkTheme ? startIcon : startIconDark} alt="" onClick={createShift} />
+            <li onClick={createShift}>Start
+                <img className="icon" src={isDarkTheme ? startIcon : startIconDark} alt="" />
             </li>
 
 

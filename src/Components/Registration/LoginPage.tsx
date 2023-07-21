@@ -1,7 +1,6 @@
-import React from "react";
+
 import { useState } from "react";
 import logo from "../../Assets/bartendLogo.png"
-import * as yup from "yup"
 import { Formik } from "formik";
 import "../../Styles/Login.css"
 import { NavLink } from "react-router-dom";
@@ -9,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { loginByEmailAndPassword } from "../../Redux/AppReducer";
 import showPass from "../../Assets/icons8-eye-96.png"
 import hidePass from "../../Assets/icons8-hide-password-100.png"
+import { loginValidationShema} from "../../Helpers/Helpers";
 
 
 export const LoginPage = () => {
@@ -21,17 +21,10 @@ export const LoginPage = () => {
             setHidePassword(true)
         }
     }
-    const validationShema = yup.object().shape({
-        email: yup.string().typeError("Email должен быьб строкой").min(6).max(30).required("Это обязательное поле")
-            .matches(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-                "Неверный формат email"),
-        password: yup.string().typeError("Пароль должен быть строкой").required("Это обязательное поле").min(6,"Минимум 6 символов").max(30,"Превышено допустимое колличетсво символов")
-            .matches(/^(?=.*[a-z])(?=.*[0-9])/,
-                "Неверный формат пароля")
-    })
+
     //Login by email & password
     const Submit = (values: { email: string, password: string }) => {
-        console.log(values)
+       
         dispatch(loginByEmailAndPassword(values.email,values.password))
     }
 
@@ -47,11 +40,9 @@ export const LoginPage = () => {
                     enableReinitialize={true}
                     validateOnBlur={true}
                     onSubmit={Submit}
-                    validationSchema={validationShema}>
+                    validationSchema={loginValidationShema}>
                     {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => {
                         return (
-
-
                             <section className="LoginByEmailAndPassword">
                                 <h1>Логин</h1>
                                
@@ -68,17 +59,13 @@ export const LoginPage = () => {
                                 </div>
                                 <br />
                                 <span className="spanError">{touched.password ? errors.password : null}</span>
-                                <button id="loginButton" type="submit" disabled={!touched && !dirty}
+                                <button id="loginButton" type="submit" 
                                     //@ts-ignore
-                                    onClick={handleSubmit} >Войти</button>
+                                    onClick={handleSubmit} disabled={false}>Войти</button>
                                 <br />
                                 <h3>или</h3>
                                 <NavLink to="/registration" style={{"fontSize" : "x-large","color" : "rgb(242, 122, 67)"}}>Создать аккаунт</NavLink>
-
-
-
                             </section>
-
                         )
                     }}
                 </Formik>

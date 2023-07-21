@@ -19,6 +19,7 @@ button:hover {
 .confirm_button{
   align-self: center;
   justify-content: center;
+  min-height: 2.5rem;
 }
 .confirm_button img {
   width: 30px;
@@ -110,7 +111,6 @@ h1,h2{
 }
 @media(max-width:750px){
   .container {
-    font-size: large;
     padding: 5px;
   }
   

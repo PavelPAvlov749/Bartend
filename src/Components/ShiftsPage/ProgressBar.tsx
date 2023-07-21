@@ -4,7 +4,7 @@ export const ProgressBar = (props: { absoluteFullCount: number,absolureReadyCoun
     return (
         <div className={`progress_bar `}>
             <span>{props.absolureReadyCount + "/" + props.absoluteFullCount}</span>
-            <span>{props.percent+ "%"}</span>
+            <span>{props.percent.toFixed(1)+ "%"}</span>
         </div>
     )
 }

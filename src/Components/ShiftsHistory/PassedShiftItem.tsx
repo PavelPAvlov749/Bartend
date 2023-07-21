@@ -17,19 +17,16 @@ export const PassedShift = () => {
     return (
         <section className={`container passed_shift_container translate_animation`}>
             <h3 onClick={() => {navigate(-1)}}>Назад</h3>
-            <span id="shift_date" >{"Смена от : " + PassedShift?.date}</span>
-            <span>{"Заготовщик : " + PassedShift?.employe}</span>
-            <span>{"Сделано позиций : " + PassedShift?.count}</span>
-            <span>Список позиций : </span>
-            <ul>
+            <table>
+            <tr>Смена от : <td>{PassedShift?.date}</td></tr>
+            <tr>Заготовщик :<td>{PassedShift?.employe}</td></tr>
+            <tr>Сделано позиций : </tr>
             {PassedShift?.products.map((el : productType) => {
                 return (
-                    <li id={el.id}>
-                        <span>{el.name}</span>
-                    </li>
+                    <tr>{el.name}</tr>
                 )
             })}
-            </ul>
+            </table>
           
         </section>
     )

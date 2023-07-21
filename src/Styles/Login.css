@@ -84,11 +84,11 @@
         width: 60%;
         height: 2.5rem;
         font-size: large;
-        background-color: rgba(242, 122, 67, 0)
+        background-color: rgb(31, 33, 109);
     }
 
     #loginButton:hover {
-        background-color: rgb(27, 29, 93);
+        background-color: rgb(204, 204, 204);
 
     }
 

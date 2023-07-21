@@ -33,7 +33,7 @@ export const CurrentShift = () => {
             <ProgressBar percent={percent} absoluteFullCount={products.length} absolureReadyCount={readyProducts.length} />
 
             <IngridientList ingridients={products} />
-            {percent !== 100 ? null :
+            {percent !== 100 && products.length > 0? null :
                 <button className={'confirm_button'} onClick={() => { dispatch(closeCurrentShiftByCompanyID(curentShift)) }}>Закончить смену</button>}
         </section> 
         )

@@ -19,6 +19,7 @@ import { ROUTE } from "../Redux/Types";
 export const Router = React.memo((props: { isDarkTheme: boolean }) => {
     
     const isAuth = useSelector((state: Global_state_type) => { return state.App.isAuth })
+   
     if (isAuth) {
 
         return (
@@ -26,7 +27,7 @@ export const Router = React.memo((props: { isDarkTheme: boolean }) => {
                 <Routes>
                     {PRIVATE_ROUTES.map((route : ROUTE) => {
                         return (
-                            <Route element={route.element} path={route.path}/>
+                            <Route key={route.path} element={route.element} path={route.path}/>
                         )
                     })}
                 </Routes>

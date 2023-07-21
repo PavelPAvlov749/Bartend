@@ -57,6 +57,7 @@ export const parseElementNameToString = (name: string) => {
 }
 
 
+// Creating a Validation Scheme for the Registration Login
 
 export const validationShema = yup.object().shape({
     nickName: yup.string().typeError("Username must be string").max(30).min(5).required(),
@@ -67,7 +68,14 @@ export const validationShema = yup.object().shape({
     repeatPassword: yup.string().required("This field is required").oneOf([yup.ref("password")], "Passwords dint match").typeError("Should be a string").min(6).max(30)
 
 })
+export const loginValidationShema = yup.object().shape({
+    email: yup.string().typeError("Email must be an string").min(6).max(30).required("This Field is Required")
+        .matches(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+            "Incorrect email format"),
+    password: yup.string().typeError("Password should be a string").required("This field is reqired").min(6).max(30),
+ 
 
+})
 
 export const parseCocktailDbIngridients = (cocktail: any) => {
     let ingridientKey = Object.keys(cocktail).filter((key: string) => key.includes('strIngredient') === true)

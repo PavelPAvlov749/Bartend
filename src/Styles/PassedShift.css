@@ -31,10 +31,10 @@
     .history_container {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: start;
     }
     .passed_shift_preview_item {
-        width: 40%;
+        width: 100%;
         min-width: 100px;
         height: auto;
     }
