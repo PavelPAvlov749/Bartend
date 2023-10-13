@@ -13,7 +13,7 @@ import "../Styles/Navbar.css"
 import { useDispatch } from "react-redux";
 import { logOutThunk } from "../Redux/AppReducer";
 
-export const Navbar = (props : {theme : boolean}) => {
+const Navbar = (props : {theme : boolean}) => {
     const dispatch : any = useDispatch()
     
     const logOut = () => {
@@ -54,3 +54,5 @@ export const Navbar = (props : {theme : boolean}) => {
     </section>
     )
 }
+
+export default Navbar;

@@ -16,7 +16,7 @@ import { ROUTE } from "../Redux/Types";
 // anotherwise over PRIVATE_ROUTES
 
 
-export const Router = React.memo((props: { isDarkTheme: boolean }) => {
+const Router = React.memo((props: { isDarkTheme: boolean }) => {
     
     const isAuth = useSelector((state: Global_state_type) => { return state.App.isAuth })
    
@@ -47,3 +47,5 @@ export const Router = React.memo((props: { isDarkTheme: boolean }) => {
     }
 
 })
+
+export default Router;

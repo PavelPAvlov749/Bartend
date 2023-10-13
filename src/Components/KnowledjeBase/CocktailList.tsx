@@ -7,18 +7,23 @@ import { cocltalCardType, getCocktailsByName, getCocktailsThunk } from "../../Re
 import { CoctailPreview } from "./CocktailPrewiew";
 export const CoctailList = () => {
     let dispatch: any = useDispatch()
-    let cocktailsFromState : cocltalCardType[] = useSelector((state: Global_state_type) => state.knowledgeBase.cocktails as cocltalCardType[])
-   
     useEffect(() => {
         dispatch(getCocktailsThunk())
     }, [])
-    const searchByName = (e : React.SyntheticEvent<HTMLInputElement>) => {
-        dispatch(getCocktailsByName(e.currentTarget.value))
+    let cocktailsFromState : cocltalCardType[] = useSelector((state: Global_state_type) => state.knowledgeBase.cocktails as cocltalCardType[]);
+    // let cocktailsFromState : cocltalCardType[] = [];
+
+    function searchByName(e: React.SyntheticEvent<HTMLInputElement>): void {
+
+        // dispatch(getCocktailsByName(e.currentTarget.value));
+
     }
+    // debugger
+    console.log("RENDER");
     return (
         <section className="cocktail_list translate_animation">
             <section className="filters">
-                <input type="text"  placeholder="Искать по названию" onChange={searchByName} style={{"width" : "97%","marginBottom" : "5px"}}/>
+                <input type="text"  placeholder="Искать по названию" onChange={searchByName}/>
             </section>
             <div className="list">
             {cocktailsFromState?.map((cocktail : cocltalCardType) => {

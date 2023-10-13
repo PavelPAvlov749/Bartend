@@ -6,9 +6,9 @@ import { CheckListPage } from "../Components/CheckLists/CheclListPage";
 import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCard } from "../Components/Ingridients/ProductCard";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
-import { PassedShift } from "../Components/ShiftsHistory/PassedShiftItem";
+
 import { CreateNewShift } from "../Components/ShiftsPage/NewShiftConstructor";
-import { ShiftPageContainer } from "../Components/ShiftsPage/ShiftsPageContainer";
+// import { ShiftPageContainer } from "../Components/ShiftsPage/ShiftsPageContainer";
 import { CreateTeam } from "../Components/Teams/CreateTeam";
 import { JoinTeam } from "../Components/Teams/JoinTeam";
 import { HomePage } from "../Components/mainScreen";
@@ -21,6 +21,8 @@ import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
 import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
 import { LoginPage } from "../Components/Registration/LoginPage";
 import { Registration } from "../Components/Registration/Registration";
+import { PremixesApp } from "../PremixesApp/Premixes";
+import { PassedShift } from "../PremixesApp/Components/HistoryPage/PassedShiftItem";
 
 // ---------- ROUTES STRINGS
 
@@ -32,7 +34,7 @@ const PRODUCT_CARD = "/card/:id"
 const LOG_OUT = "/logOut"
 const REGISTRATION = "/registration"
 const NO_MATCH_ROUTE = "*"
-const BLANK_SHIFT = "/blank-shift"
+const BLANK_SHIFT = "/blank-shift/*"
 const STEP_2 = "add-step-two"
 const NEW_BLANK_SHIFT = "/blank-shift/create-new"
 const CHECK_LISTS = "/check-lists"
@@ -44,9 +46,13 @@ const NEW_CHECK_LIST = "/new-check-list"
 const CHECK_LIST = "/check-lists/:id"
 const KNIWLEDGE_BASE = "knowledge-base"
 const INGRIDIENT = "ingridient/:id"
-
+const HISTORY = '/blank-shift/history'
 
 export const PRIVATE_ROUTES : ROUTE[] = [
+    {
+        path : HISTORY,
+        element : <h1>History</h1>
+    },
     {
         path : HOME,
         element : <HomePage/>
@@ -73,7 +79,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : BLANK_SHIFT,
-        element : <ShiftPageContainer/>
+        element : <PremixesApp/>
     },
     {
         path : PREMIX_LIST,
@@ -91,10 +97,10 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         path : CHECK_LISTS,
         element : <CheckLists/>
     },
-    {
-        path : NO_MATCH_ROUTE,
-        element : <Navigate to="/home" />
-    },
+    // {
+    //     path : NO_MATCH_ROUTE,
+    //     element : <Navigate to="/home" />
+    // },
     {
         path : ADD_PRODUCT,
         element : <NewProduct isDarkTheme={true}/>

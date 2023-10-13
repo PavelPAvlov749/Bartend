@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
 import { productType } from "../Redux/Types";
@@ -58,4 +58,23 @@ export const useWindowInnerWidth = () => {
 export const useTheme = () => {
     const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
     return theme
+}
+
+export const useDebounce = (callback : (...args:any) => {},delay : number,value : any)=> {
+    const timer = useRef(null);
+    const dispatch : any = useDispatch();
+    const DebounceCallback = useCallback((...args : any) => {
+        if(timer.current){
+            clearTimeout(timer.current);
+        }
+        else {
+            setTimeout(() => {
+                console.log("DISPATHED")
+               dispatch(callback(value));
+            },delay)
+        }
+    },[callback,delay]);
+
+    console.log(DebounceCallback)
+    return DebounceCallback;
 }

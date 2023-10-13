@@ -102,10 +102,12 @@ export const KnowledgeBaseActions = {
 
 export const getCocktailsThunk = () => {
     return async function (dispatch: any) {
-        let cocktails = await coctailDbAPI.getAllCoctails()
-        if (cocktails) {
-            dispatch(KnowledgeBaseActions.getCocktails(cocktails))
-        }
+        let cocktails = await coctailDbAPI.getAllCoctails().then((res) => {
+            dispatch(KnowledgeBaseActions.getCocktails(res))
+        })
+        // if (cocktails) {
+            // dispatch(KnowledgeBaseActions.getCocktails(cocktails))
+        // }
     }
 }
 

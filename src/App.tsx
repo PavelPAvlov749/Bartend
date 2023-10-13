@@ -1,6 +1,5 @@
 // ---------- IMPORT REACT & REACT HOOKS
-import React, { useEffect } from 'react';
-
+import React, {Suspense, useEffect } from 'react';
 // --------- STYLES IPMOIRTS
 import "./App.css"
 import "./Styles/Global_styles.css"
@@ -9,15 +8,22 @@ import "./Styles/Global_styles.css"
 import { useDispatch, useSelector } from 'react-redux';
 import { Global_state_type } from './Redux/Store';
 import { initializeThunk } from './Redux/AppReducer';
+// @ts-ignore
 
-// --------- IMPORT COMPOMNENTS
-import * as Navbar from './Components/Navbar';
-import { HashRouter } from 'react-router-dom';
-import { Router } from './Router/Router';
 
 // ---------- LOADER
 import loader from "./Assets/icons8-jigger-64.png";
-import ErrorBoundary from './Components/ErrorBoudary';
+
+// --------- IMPORT COMPOMNENTS
+
+import {HashRouter} from 'react-router-dom';
+// @ts-ignore
+const Navbar = React.lazy(() => import('./Components/Navbar'));
+const Router = React.lazy(() => import('./Router/Router'));
+// @ts-ignore
+
+
+
 
 
 function App() {
@@ -34,12 +40,11 @@ function App() {
     return (
       <div className={isDarkTheme ? "App DarkTheme translate_animation" : "App LightTheme translate_animation"}>
         <HashRouter>
-          <Navbar.Navbar theme={isDarkTheme}/>
-          <ErrorBoundary>
+          <Suspense fallback={<>LOADING</>}>
+          <Navbar theme={isDarkTheme}/>
           <Router isDarkTheme={isDarkTheme} ></Router>
-        
-
-          </ErrorBoundary>
+          </Suspense>
+         
         </HashRouter>
 
       </div>
