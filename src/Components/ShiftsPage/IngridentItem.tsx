@@ -1,34 +1,25 @@
 import { useState } from "react"
-import { productType } from "../../Redux/Types"
-import { useDispatch } from "react-redux"
-import { blanksActions } from "../../Redux/BlankShiftReducer"
 
 type IngridientsListItem = {
     name: string,
-    toggleItem?: (el : productType) => void,
     isDone: boolean,
     itemId: string,
+    toggle : any
 }
 
-export let IngridentsItem = (props: IngridientsListItem) => {
+export let IngridentsItem = (props: IngridientsListItem,) => {
+    const [state, setState] = useState(false);
 
     return (
         <li>
             <span>{props.name}</span>
-            <span id={`setDoneBtn`} onClick={() => {
-                // props.toggleItem()
-            }}>{props.isDone ? "В процессе" : "Готово"}</span>
+            <span onClick={() => {
+                // setState(!state);
+                props.toggle({
+                    type : "toggle",
+                    payload : props.itemId
+                })
+            }}>{!props.isDone ? "В процессе" : "Готово"}</span>
         </li>
     )
-        }
-// export const UseIngrideintsItem = (ingridients: productType[]) => {
-
-
-
-
-// }
-
-
-
-// return <IngridentsItem />
-// }
+}

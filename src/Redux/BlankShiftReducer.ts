@@ -9,8 +9,6 @@ const SELECT_ITEM = "barApp/blankShiftReducer/add-item"
 const DESELECT_ITEM = "barApp/blankShiftReducer/deselect-item"
 const SELECT_ALL_ITEMS = "barApp/blankShiftReducer/selectAll"
 const DESELECT_ALL_ITEMS = "barApp/blankShiftReducer/deselectAllItems"
-const SET_ITEM_DONE = "barApp/blankShiftReducer/set_item_done"
-const SET_ITEM_UNDONE = "barApp/blankShiftReducer/set_item_undeone"
 const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list"
 const SET_CURENT_SHIFT = "barApp/blanhShiftReducer/set_current_shift"
 const CLOSE_CURRENT_SHIFT = "barApp/blanhShiftReducer/close_current_shift"
@@ -99,40 +97,6 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
             }
         }
 
-        case SET_ITEM_DONE: {
-
-            return {
-                ...state,
-                currentShift: {
-                    ...state.currentShift,
-                    products: [...state.currentShift.products.map((el: productType) => {
-                        if (el.id !== action.payload) {
-                            return el
-                        } else {
-                            return {
-                                ...el, done: true
-                            }
-                        }
-                    }) as productType[]]
-                }
-            }
-        }
-        case SET_ITEM_UNDONE: {
-            return {
-                ...state,
-                currentShift: {
-                    ...state.currentShift, products: [...state.currentShift?.products.map((el: productType) => {
-                        if (el.id === action.payload) {
-                            return {
-                                ...el, done: false
-                            }
-                        } else {
-                            return el
-                        }
-                    }) as productType[]]
-                }
-            }
-        }
 
         case SET_CURENT_SHIFT: {
             return {
@@ -167,6 +131,8 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
                 passedShift: action.payload
             }
         }
+
+        
         default:
             return state
     }
@@ -200,14 +166,6 @@ export const blanksActions = {
         type: "barApp/blankShiftReducer/endShift",
 
     } as const),
-    setItemDone: (itemID: string) => ({
-        type: "barApp/blankShiftReducer/set_item_done",
-        payload: itemID
-    } as const),
-    setItemUndone: (itemID: string) => ({
-        type: "barApp/blankShiftReducer/set_item_undeone",
-        payload: itemID
-    } as const),
     setProductList: (products: productType[]) => ({
         type: "barApp/blankShiftReducer/set_product_list",
         payload: products
@@ -223,7 +181,7 @@ export const blanksActions = {
     setShiftHistory: (shifts: blankShiftType[]) => ({
         type: "barApp/blanhShiftReducer/set_shifts_history",
         payload: shifts
-    } as const)
+    } as const),
 
 }
 

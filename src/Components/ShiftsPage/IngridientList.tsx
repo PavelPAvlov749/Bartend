@@ -1,49 +1,26 @@
-import { useDispatch } from "react-redux";
+
 import { productType } from "../../Redux/Types";
 import "../../Styles/BlamkShift.css"
-import { blanksActions} from "../../Redux/BlankShiftReducer";
+
 import { IngridentsItem } from "./IngridentItem";
 
 
 
-export const IngridientList = (props : {ingridients : productType[]}) => {
-    const dispatch: any = useDispatch()
-    const toggleItem = (el: productType) => {
-        props.ingridients.map((product: productType) => {
-            if (product.done === true) {
-                return { ...product, done: false }
-            } else {
-                return product
-            }
-        })
-        if (el.done === true) {
-            dispatch(blanksActions.setItemUndone(el.id as string))
-        } else {
-            dispatch(blanksActions.setItemDone(el.id as string))
-        }
 
-    
-    }
+export const IngridientList = (props: { ingridients: any[],setState : any }) => {
+
+    console.log(props.ingridients)
     return (
         <section className="product_list_container ">
-                {props.ingridients.map((el) => {
-                    return (
-                        <>
-                        <IngridentsItem itemId={el.id as string} toggleItem={toggleItem} name={el.name} isDone={el.done as boolean}/>
-                        </>
-                    )
-                })}
-                {/* {props.ingridients?.map((el: productType) => {
-                        return (
-                            <div key={el.id} className={el.done ? `single_product` : `ready_product`}>
-                                <span>{el.name}</span>
-                                <span id={`setDoneBtn`} onClick={() => {
-                                    toggleItem(el)
-                                }}>{el.done ? "В процессе" : "Готово"}</span>
-                            </div>
+            {props.ingridients.map((el: any) => {
+                return (
+                    <>
+                        <IngridentsItem itemId={el.id as string} name={el.name} toggle={props.setState} isDone={el.isDone as boolean} />
 
-                        )
-                    })} */}
+                    </>
+                )
+            })}
+
         </section>
     )
 }
