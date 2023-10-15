@@ -1,5 +1,5 @@
 // STYLES IMPORTS
-import { CurrentShift } from "../../../Components/ShiftsPage/CurrentShift";
+import { CurrentShift } from "../CurrentShiftPage/CurrentShift";
 import "../HistoryPage/PassedShiftItem";
 import '../HistoryPage/ShiftsHistory';
 import { ShiftsHistory } from "../HistoryPage/ShiftsHistory";

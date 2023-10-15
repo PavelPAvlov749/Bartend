@@ -1,4 +1,3 @@
-import { useState } from "react"
 
 type IngridientsListItem = {
     name: string,
@@ -8,7 +7,6 @@ type IngridientsListItem = {
 }
 
 export let IngridentsItem = (props: IngridientsListItem,) => {
-    const [state, setState] = useState(false);
 
     return (
         <li>

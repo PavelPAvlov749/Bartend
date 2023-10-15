@@ -1,21 +1,25 @@
+// Comoponents,Hooks
 import { useEffect } from "react";
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Global_state_type } from "../../../Redux/Store";
+// Redux
 import { getPassedShiftByID } from "../../../Redux/BlankShiftReducer";
-import { productType } from "../../../Redux/Types";
+// Styles
 import "../../../Styles/PassedShift.css";
+// Types
+import { productType } from "../../../Redux/Types";
+import { Global_state_type } from "../../../Redux/Store";
 
 
 export const PassedShift = () => {
+    const dispatch: any = useDispatch();
+    const navigate = useNavigate();
+
     // Get shiftID from URL
     const shiftID = useLocation().pathname.split("=")[1];
-
-    const dispatch: any = useDispatch();
-
+    
+    // Fetch passed shift data by ID
     useEffect(() => {
-        // Fetch passed shift data by ID
         dispatch(getPassedShiftByID(shiftID));
     }, []); // Empty array of dependencies to run the effect only once
 
@@ -24,7 +28,6 @@ export const PassedShift = () => {
         (state: Global_state_type) => state.blankShift.passedShift
     );
 
-    const navigate = useNavigate();
 
     return (
         <section className="container passed_shift_container translate_animation">

@@ -1,8 +1,8 @@
 // ---------- IMPORT REACT COMPOENTS
 
 import { Navigate } from "react-router-dom";
-import { CheckLists } from "../Components/CheckLists/CheckLists";
-import { CheckListPage } from "../Components/CheckLists/CheclListPage";
+import { CheckLists } from "../ChecklistApp/Components/CheckLists";
+import { CheckListPage } from "../ChecklistApp/Components/CheclListPage";
 import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCard } from "../Components/Ingridients/ProductCard";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
@@ -16,7 +16,7 @@ import { ROUTE } from "../Redux/Types";
 import { NewProduct } from "../Components/NewProduct/NewProduct";
 import { SecondStep } from "../Components/NewProduct/SecondStep";
 import { TeamPageContainer } from "../Components/Teams/ClanList";
-import { NewCheckList } from "../Components/CheckLists/NewCheckList";
+import { NewCheckList } from "../ChecklistApp/Components/NewCheckList";
 import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
 import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
 import { LoginPage } from "../Components/Registration/LoginPage";

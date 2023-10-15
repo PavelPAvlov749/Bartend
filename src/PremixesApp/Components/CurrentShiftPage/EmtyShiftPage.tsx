@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import "../../Styles/BlamkShift.css"
+import "../../../Styles/BlamkShift.css"
 
 
 
