@@ -1,5 +1,6 @@
 
 import { Firestore_instance } from "../Firebase/PremixesAPI"
+import { getFullDateString } from "../Helpers/Helpers"
 import { app_actions } from "./AppReducer"
 import { InferActionType } from "./Store"
 import { blankShiftType, productType } from "./Types"
@@ -234,11 +235,22 @@ export const getShiftsHistoryByCompanyID = (companyID: string) => {
 
 
 
-export const setCurrentShiftByCompanyID = (currentShift: blankShiftType) => {
+export const setCurrentShiftByCompanyID = (companyName : string,companyID : string,products : productType[],employe : string) => {
+    let newShift = {
+        date: getFullDateString(),
+        employe: employe,
+        products: products.filter((el: productType) => el.checked === true).map((el: productType) => {
+            return { ...el, done: false }
+        }),
+        done: false,
+        count: products.filter((el: productType) => el.checked === true).length,
+        teamID: companyID as string,
+        teamName: companyName
+    }
     return async function (dispatch: any) {
         dispatch(app_actions.setFetch(true))
-        await Firestore_instance.setCurrentShift(currentShift)
-        dispatch(blanksActions.setCurrentShift(currentShift))
+        await Firestore_instance.setCurrentShift(newShift);
+        dispatch(blanksActions.setCurrentShift(newShift))
         dispatch(app_actions.setFetch(false))
     }
 }

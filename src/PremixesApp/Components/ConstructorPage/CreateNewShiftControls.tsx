@@ -1,4 +1,3 @@
-import { getFullDateString } from "../../../Helpers/Helpers";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../../Redux/Store";
 import { productType, userPageType } from "../../../Redux/Types";
@@ -9,9 +8,7 @@ import "../../../Styles/BlamkShift.css"
 import selectAll from "../../../Assets/icons8-checked-checkbox-100.png"
 import clearAll from "../../../Assets/icons8-clear-100.png";
 import startIcon from "../../../Assets/icons8-start-64.png"
-import broomIconDark from "../../../Assets/icons8-broom-100.png"
-import startIconDark from "../../../Assets/icons8-start-96.png"
-import checkBoxDark from "../../../Assets/icons8-checkbox-100.png"
+
 
 
 export const CreateNewShiftControls = (props: { blanks: productType[], user: userPageType }) => {
@@ -20,36 +17,30 @@ export const CreateNewShiftControls = (props: { blanks: productType[], user: use
     const dispatch: any = useDispatch()
 
     const createShift = () => {
-        if (props.user.team) {
-            let shift = {
-                date: getFullDateString(),
-                employe: props.user.userName as string,
-                products: props.blanks.filter((el: productType) => el.checked === true).map((el: productType) => {
-                    return { ...el, done: false }
-                }),
-                done: false,
-                count: props.blanks.filter((el: productType) => el.checked === true).length,
-                teamID: props.user.teamID as string,
-                teamName: props.user.team
-            }
-            dispatch(setCurrentShiftByCompanyID(shift))
-            navigate("/begin-blank-shift")
-        } else {
-            navigate("/clan-list")
-        }
+
+        dispatch(setCurrentShiftByCompanyID(
+            props.user.team as string, 
+            props.user.teamID as string, 
+            props.blanks, 
+            props.user.userName as string));
+            
+        navigate("/begin-blank-shift")
+
+        navigate("/clan-list")
+
 
     }
     return (
         <ul className={`controls`}>
-            <li onClick={() => {dispatch(blanksActions.selectAllItems())}}>
+            <li onClick={() => { dispatch(blanksActions.selectAllItems()) }}>
                 Select All
-                <img className="icon" id={`selectAll`} src={isDarkTheme ? selectAll : checkBoxDark} alt=""  />
+                <img className="icon" id={`selectAll`} src={selectAll} alt="" />
             </li>
-            <li  onClick={() => {dispatch(blanksActions.deselectAll())}}>Clear All
-                <img className="icon" id={`clear`} src={isDarkTheme ? clearAll : broomIconDark} alt="" />
+            <li onClick={() => { dispatch(blanksActions.deselectAll()) }}>Clear All
+                <img className="icon" id={`clear`} src={clearAll} alt="" />
             </li>
             <li onClick={createShift}>Start
-                <img className="icon" src={isDarkTheme ? startIcon : startIconDark} alt="" />
+                <img className="icon" src={startIcon} alt="" />
             </li>
 
 

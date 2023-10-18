@@ -7,7 +7,7 @@ import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCard } from "../Components/Ingridients/ProductCard";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
 
-import { CreateNewShift } from "../Components/ShiftsPage/NewShiftConstructor";
+// import { CreateNewShift } from "../Components/ShiftsPage/NewShiftConstructor";
 // import { ShiftPageContainer } from "../Components/ShiftsPage/ShiftsPageContainer";
 import { CreateTeam } from "../Components/Teams/CreateTeam";
 import { JoinTeam } from "../Components/Teams/JoinTeam";
@@ -23,6 +23,7 @@ import { LoginPage } from "../Components/Registration/LoginPage";
 import { Registration } from "../Components/Registration/Registration";
 import { PremixesApp } from "../PremixesApp/Premixes";
 import { PassedShift } from "../PremixesApp/Components/HistoryPage/PassedShiftItem";
+import { CreateNewShift } from "../PremixesApp/Components/ConstructorPage/NewShiftConstructor";
 
 // ---------- ROUTES STRINGS
 
