@@ -5,7 +5,6 @@ export const PremixesApp = () => {
     return (
         <section>
             <MainPage/>
-
         </section>
     )
 }

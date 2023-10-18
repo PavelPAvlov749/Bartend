@@ -13,45 +13,43 @@ import "../Styles/Navbar.css"
 import { useDispatch } from "react-redux";
 import { logOutThunk } from "../Redux/AppReducer";
 
-const Navbar = (props : {theme : boolean}) => {
-    const dispatch : any = useDispatch()
-    
+const Navbar = (props: { theme: boolean }) => {
+    const dispatch: any = useDispatch()
+
     const logOut = () => {
         dispatch(logOutThunk())
     }
     return (
         <section className={props.theme ? "navbar_container Dark" : "navbar_container Light"}>
-        <ul>
-            
-            <li>
-                <NavLink className="nav" to="home">
-                    <img src={props.theme ? home : homeDark} className="icon" alt=""/>
-                    
-                </NavLink>
-            </li>
-            <li>
-                <NavLink className="nav" to="/premixes">
-                    <img src={props.theme ? doc : docDark} className="icon" alt="" />
-                    
-           
-                </NavLink>
-            </li>
-            <li>
-                <NavLink className="nav" to="/knowledge-base">
-                    <img src={props.theme ? books : booksDark} className="icon" alt="" />
-                    
-               
-                </NavLink>
-            </li>
-            <li>
-            <NavLink onClick={logOut} className="nav" to="logOut">
-                <img src={props.theme ? logout : logoutDark} className="icon" alt="" />
-                
-            
-            </NavLink>
-        </li>
-        </ul>
-    </section>
+            <ul>
+
+                <li className="navbar-container__item">
+                    <NavLink className="nav" to="home">
+                        <img src={props.theme ? home : homeDark} className="icon" alt="" />
+
+                    </NavLink>
+                    <span>Home</span>
+                </li>
+                <li className="navbar-container__item">
+                    <NavLink className="nav" to="/premixes">
+                        <img src={props.theme ? doc : docDark} className="icon" alt="" />
+                    </NavLink>
+                    <span>Premixes</span>
+                </li>
+                <li className="navbar-container__item">
+                    <NavLink className="nav" to="/knowledge-base">
+                        <img src={props.theme ? books : booksDark} className="icon" alt="" />
+                    </NavLink>
+                    <span>Knowledge</span>
+                </li>
+                <li className="navbar-container__item">
+                    <NavLink onClick={logOut} className="nav" to="logOut">
+                        <img src={props.theme ? logout : logoutDark} className="icon" alt="" />
+                    </NavLink>
+                    <span>LogOut</span>
+                </li>
+            </ul>
+        </section>
     )
 }
 

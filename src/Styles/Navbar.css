@@ -21,6 +21,11 @@
     margin: 0%;
     padding: 0%;
 }
+.navbar-container__item {
+    display: flex;
+    flex-direction: column;
+    font-size: medium;
+}
 .navbar_container li img:hover {
     transform: scale(1.4);
     transition: transform 0.5s ease;

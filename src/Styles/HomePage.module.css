@@ -147,40 +147,44 @@
 
     .blue {
         /* background-color: rgb(94, 189, 189); */
-        background: linear-gradient(45deg, rgb(30, 30, 90), pink);
+        /* background: linear-gradient(45deg, rgb(30, 30, 90), pink); */
         /* background-image: url("../Assets/checklist.jpeg"); */
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .orangered {
         /* background-color: rgba(250, 121, 75, 0.924); */
-        background: linear-gradient(45deg, rgb(82, 42, 121), rgb(192, 49, 73));
+        /* background: linear-gradient(45deg, rgb(82, 42, 121), rgb(192, 49, 73)); */
         /* background-image: url("../Assets/recepts.jpeg"); */
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .green {
         /* background-color: rgb(73, 194, 105); */
-        background: linear-gradient(45deg, rgb(55, 55, 125), rgb(10, 214, 204));
+        /* background: linear-gradient(45deg, rgb(55, 55, 125), rgb(10, 214, 204)); */
         /* background-image: url("../Assets/rotowap.webp"); */
+        border: 1px solid rgba(255, 255, 255, 0.2);
         background-size: contain;
     }
 
     .violet {
         /* background-color: rgb(111, 76, 111); */
-        background: linear-gradient(45deg, rgb(30, 30, 90), pink);
+        /* background: linear-gradient(45deg, rgb(30, 30, 90), pink); */
         /* background-image: url("../Assets/books.jpeg"); */
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .darkBlue {
         /* background-color: rgb(88, 88, 201); */
-        background: linear-gradient(45deg, rgb(55, 55, 125), rgb(10, 214, 204));
-
+        /* background: linear-gradient(45deg, rgb(55, 55, 125), rgb(10, 214, 204)); */
+        border: 1px solid rgba(255, 255, 255, 0.2);
         /* background-image: url("../Assets/sheldue.jpeg"); */
     }
 
     .orange {
         /* background-color: rgb(246, 181, 60); */
-        background: linear-gradient(45deg, rgb(55, 125, 112), rgb(214, 10, 126));
+        /* background: linear-gradient(45deg, rgb(55, 125, 112), rgb(214, 10, 126)); */
 
-        /* background-image: url("../Assets/team.jpeg"); */
+        /* background-image: url("../Assets/team.jpeg"); */  border: 1px solid rgba(255, 255, 255, 0.2);
     }
 }

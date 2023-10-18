@@ -26,27 +26,27 @@ import { PassedShift } from "../PremixesApp/Components/HistoryPage/PassedShiftIt
 
 // ---------- ROUTES STRINGS
 
-const HOME = "/home"
-const COCKTAIL_CARD = "/cocktail/:id"
-const PREMIX_LIST = "/premixes"
-const ADD_PRODUCT = "/add"
-const PRODUCT_CARD = "/card/:id"
-const LOG_OUT = "/logOut"
-const REGISTRATION = "/registration"
-const NO_MATCH_ROUTE = "*"
-const BLANK_SHIFT = "/blank-shift/*"
-const STEP_2 = "add-step-two"
-const NEW_BLANK_SHIFT = "/blank-shift/create-new"
-const CHECK_LISTS = "/check-lists"
-const PASSED_SHIFT = "blank-shift/:id"
-const CLAN_LISTS = "/clan-list"
-const CREATE_TEAM = "/create-team"
-const JOIN_TEAM = "/join-team"
-const NEW_CHECK_LIST = "/new-check-list"
-const CHECK_LIST = "/check-lists/:id"
-const KNIWLEDGE_BASE = "knowledge-base"
-const INGRIDIENT = "ingridient/:id"
-const HISTORY = '/blank-shift/history'
+export const HOME = "/home"
+export const COCKTAIL_CARD = "/cocktail/:id"
+export const PREMIX_LIST = "/premixes"
+export const ADD_PRODUCT = "/add"
+export const PRODUCT_CARD = "/card/:id"
+export const LOG_OUT = "/logOut"
+export const REGISTRATION = "/registration"
+export const NO_MATCH_ROUTE = "*"
+export const BLANK_SHIFT = "/blank-shift/*"
+export const STEP_2 = "add-step-two"
+export const NEW_BLANK_SHIFT = "/blank-shift/create-new"
+export const CHECK_LISTS = "/check-lists"
+export const PASSED_SHIFT = "blank-shift/:id"
+export const CLAN_LISTS = "/clan-list"
+export const CREATE_TEAM = "/create-team"
+export const JOIN_TEAM = "/join-team"
+export const NEW_CHECK_LIST = "/new-check-list"
+export const CHECK_LIST = "/check-lists/:id"
+export const KNIWLEDGE_BASE = "knowledge-base"
+export const INGRIDIENT = "ingridient/:id"
+export const HISTORY = '/blank-shift/history'
 
 export const PRIVATE_ROUTES : ROUTE[] = [
     {

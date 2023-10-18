@@ -9,7 +9,7 @@ type IngridientsListItem = {
 export let IngridentsItem = (props: IngridientsListItem,) => {
 
     return (
-        <li>
+        <li key={props.itemId}>
             <span>{props.name}</span>
             <span onClick={() => {
                 // setState(!state);

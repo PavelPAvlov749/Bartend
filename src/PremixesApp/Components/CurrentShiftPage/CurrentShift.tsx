@@ -1,49 +1,41 @@
 // React, custom hooks imports
-import React, { useEffect, useReducer } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {  useReducer } from "react";
+import { useDispatch } from "react-redux";
 // Components 
 import { ProgressBar } from "./ProgressBar";
 import { IngridientList } from "./IngridientList";
-import { NoOpenShiff } from "./EmtyShiftPage";
+import { EmptyShift } from "./EmtyShiftPage";
 import { Reducer } from "./Reducer";
-import { useProducts } from "./useProducts";
 // Styles imports
 import "../../../Styles/BlamkShift.css";
 // Redux imports
-import { closeCurrentShiftByCompanyID, getCurrentShiftByCompanyID } from "../../../Redux/BlankShiftReducer";
+import { closeCurrentShiftByCompanyID} from "../../../Redux/BlankShiftReducer";
 // Type imports
-import { Global_state_type } from "../../../Redux/Store";
+import { blankShiftType, productType } from "../../../Redux/Types";
+
+type currentShiftPropType = {
+    products : productType[],
+    shift : blankShiftType
+}
 
 
-export const CurrentShift = React.memo(() => {
+export const CurrentShift = React.memo((props : currentShiftPropType) => {
     const dispatch: any = useDispatch();
     // Get current shift ibject by TeamID
-    const teamID = useSelector((state: Global_state_type) => state.App.user.teamID)
 
-    // Get current shift data if there is no opened shifts we get empty shift object as a result
-    useEffect(() => {
-        dispatch(getCurrentShiftByCompanyID(teamID as string))
-    }, []);
-    // Get data from redux
-    let curentShift = useSelector((state: Global_state_type) => state.blankShift.currentShift)
-
-    // Get products by useProductsHook 
-    let products = useProducts();
-
-    // UseReducer to ProgressBar and IngridintsItems states
-    const [state, setState] = useReducer(Reducer, products)
+    const [state, setState] = useReducer(Reducer, props.products)
 
     // End shift handler
     const endShift = function () {
-        dispatch(closeCurrentShiftByCompanyID(curentShift));
+        dispatch(closeCurrentShiftByCompanyID(props.shift));
     }
 
-    if (curentShift.shiftID?.length as number > 1) {
+    if (props.shift.shiftID?.length as number > 1) {
         return (
             <section className={`current_shift_container translate_animation`}>
 
-                <ProgressBar products={state} />
-                <IngridientList ingridients={state} setState={setState} />
+                <ProgressBar products={props.products}/>
+                <IngridientList ingridients={props.products} setState={setState} />
                 <button
                     className={'confirm_button'}
                     onClick={endShift}>Закончить смену
@@ -53,7 +45,7 @@ export const CurrentShift = React.memo(() => {
     } else {
         // Render empty shift Component
         return (
-            <NoOpenShiff />
+            <EmptyShift />
         )
     }
 
