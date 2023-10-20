@@ -18,8 +18,8 @@ import loader from "./Assets/icons8-jigger-64.png";
 
 import {HashRouter, Route, Routes} from 'react-router-dom';
 import { BLANK_SHIFT, SHIFT_MANAGER } from './Router/Routes';
-import { ShiftConstructorContainer } from './PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer';
-import { MainPage } from './PremixesApp/Components/MainPage/MainPage';
+import { ShiftConstructorContainer } from './Modules/PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer';
+import { MainPage } from './Modules/PremixesApp/Components/MainPage/MainPage';
 import { HomePage } from './Components/mainScreen';
 // @ts-ignore
 const Navbar = React.lazy(() => import('./Components/Navbar'));
