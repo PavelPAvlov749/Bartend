@@ -1,4 +1,4 @@
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { productType, userPageType } from "../../../Redux/Types";
 import { useNavigate } from "react-router-dom";
 import { setCurrentShiftByCompanyID, blanksActions } from "../../../Redux/BlankShiftReducer";
@@ -7,29 +7,29 @@ import "../../../Styles/BlamkShift.css"
 import selectAll from "../../../Assets/icons8-checked-checkbox-100.png"
 import clearAll from "../../../Assets/icons8-clear-100.png";
 import startIcon from "../../../Assets/icons8-start-64.png"
+import { useEffect, useReducer } from "react";
+import { Reducer } from "../../Reducers/Reducer";
 
 type shiftConstructorTopPControls = {
-    products : productType[],
-    user : userPageType
+    products: productType[],
+    user: userPageType
 }
 
 
-export const CreateNewShiftControls = (props : shiftConstructorTopPControls) => {
+export const CreateNewShiftControls = (props: shiftConstructorTopPControls) => {
     const navigate = useNavigate()
     const dispatch: any = useDispatch()
+
 
     const createShift = () => {
 
         dispatch(setCurrentShiftByCompanyID(
-            props.user.team as string, 
-            props.user.teamID as string, 
-            props.products, 
+            props.user.team as string,
+            props.user.teamID as string,
+            props.products,
             props.user.userName as string));
-            
-        navigate("/begin-blank-shift")
 
-        navigate("/clan-list")
-
+        navigate("/begin-blank-shift");
 
     }
     return (

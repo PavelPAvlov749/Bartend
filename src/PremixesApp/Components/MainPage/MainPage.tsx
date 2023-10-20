@@ -17,14 +17,6 @@ import { useNavbar } from "./UseNabar";
 
 // Types
 import { Global_state_type } from "../../../Redux/Store";
-import { Route, Routes } from "react-router-dom";
-import { NEW_BLANK_SHIFT } from "../../../Router/Routes";
-import { CreateNewShiftControls } from "../ConstructorPage/CreateNewShiftControls";
-import { ShiftConstructorContainer } from "../ConstructorPage/ShiftCounstructorContainer";
-
-
-
-
 
 
 // Main BlankShiftManager component
@@ -59,10 +51,6 @@ export const MainPage = () => {
             {Navbar}
             {/* Depending on the shift type, we display the corresponding component */}
             {shiftType === 0 ? <CurrentShift products={products} shift={shift} /> : <ShiftsHistory shifts={shifts} />}
-            <Routes>
-                <Route path="/shiftManager//*create-new" element={<ShiftConstructorContainer />} />
-
-            </Routes>
         </section>
     );
 }

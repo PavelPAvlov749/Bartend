@@ -9,12 +9,12 @@ import { getProductsByCompanyID } from "../../../Redux/ProductReduxer"
 
 export const useProducts = (companyID : string) => {
     const dispatch : any = useDispatch();
+    let products = useSelector((state: Global_state_type) => state.blankShift.productList)
 
     useEffect(() => {
         dispatch(getProductsByCompanyID(companyID));
-    },[]);
+    },[products.length]);
     
-    let products = useSelector((state: Global_state_type) => state.blankShift.productList)
   
     return products;
 }

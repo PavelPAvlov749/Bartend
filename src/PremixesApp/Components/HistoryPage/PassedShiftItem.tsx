@@ -38,8 +38,7 @@ export const PassedShift = () => {
                 {/* Display shift details */}
                 <tr>Смена от : <td>{PassedShift?.date}</td></tr>
                 <tr>Заготовщик :<td>{PassedShift?.employe}</td></tr>
-                <tr>Сделано позиций : </tr>
-
+                <tr>Сделано позиций : <td>{PassedShift?.products.length}</td></tr>
                 {/* Display list of products */}
                 {PassedShift?.products.map((el: productType) => {
                     return (

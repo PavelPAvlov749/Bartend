@@ -1,4 +1,4 @@
-import { productType } from "../../../Redux/Types"
+import { productType } from "../../Redux/Types"
 
 
 type ActionType = {
@@ -35,9 +35,9 @@ export const Reducer = (state: productType[], action: ActionType) => {
             ]
         }
         case 'set-products' : {
-            console.log("SET")
+            console.log(action.payload)
             return [
-                ...state,...action.payload
+                ...action.payload
             ]
         }
         default:

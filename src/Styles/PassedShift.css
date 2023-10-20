@@ -8,6 +8,11 @@
     justify-content: center;
     width: 100%;
 }
+table,tr,td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
 .passed_shift_preview_item{
     background-color: rgba(35, 82, 75, 0.781);
     display: flex;

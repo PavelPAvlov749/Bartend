@@ -2,7 +2,7 @@ import { useEffect, useReducer } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Global_state_type } from "../../../Redux/Store";
 import { getProductsByCompanyID } from "../../../Redux/ProductReduxer";
-import { Reducer } from "./Reducer";
+import { Reducer } from "../../Reducers/constructorReducer";
 import { CreateNewShiftControls } from "./CreateNewShiftControls";
 import { productType } from "../../../Redux/Types";
 import { ProductList } from "./PrdocuctList";
@@ -18,21 +18,29 @@ import { useProducts } from "./useProducts";
 
 export const ShiftConstructorContainer = () => {
     let user = useSelector((state: Global_state_type) => state.App.user);
-    // let products = useSelector((state: Global_state_type) => state.blankShift.productList);
+    let products = useSelector((state: Global_state_type) => state.blankShift.productList);
     const dispatch: any = useDispatch();
-   
-    let products = useProducts(user.teamID as string);
+    // Define a localal reducer with custom toggling state
+    let [state, dispatchProducts] = useReducer(Reducer, products);
+    // Get products and pass them into the local state
+    useEffect(() => {
+        dispatchProducts({
+            type: 'set-products',
+            payload: products
+        });
+    }, [products.length]);
+
     // console.log(products)
-    // useEffect(() => {
-        // dispatch(getProductsByCompanyID(user.teamID as string))
-    //   
-    // }, [products.length]);
+    useEffect(() => {
+        dispatch(getProductsByCompanyID(user.teamID as string))
+
+    }, []);
 
 
     return (
         <section className="shift-constructor container">
-            <CreateNewShiftControls products={products} user={user} />
-            <ProductList products={products} />
+            <CreateNewShiftControls products={state} user={user} />
+            <ProductList products={state} dispatch={dispatchProducts} />
         </section>
     )
 };

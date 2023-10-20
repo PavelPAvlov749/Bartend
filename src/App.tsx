@@ -20,6 +20,7 @@ import {HashRouter, Route, Routes} from 'react-router-dom';
 import { BLANK_SHIFT, SHIFT_MANAGER } from './Router/Routes';
 import { ShiftConstructorContainer } from './PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer';
 import { MainPage } from './PremixesApp/Components/MainPage/MainPage';
+import { HomePage } from './Components/mainScreen';
 // @ts-ignore
 const Navbar = React.lazy(() => import('./Components/Navbar'));
 const Router = React.lazy(() => import('./Router/Router'));
@@ -46,6 +47,10 @@ function App() {
           <Suspense fallback={<>LOADING</>}>
           <Navbar theme={isDarkTheme}/>
           <Router isDarkTheme={isDarkTheme} ></Router>
+          {/* <Routes>
+            <Route path='home' element={<HomePage/>}></Route>
+            <Route path='shiftManager' element={<MainPage/>}/>
+          </Routes> */}
           </Suspense>
          
         </HashRouter>

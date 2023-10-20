@@ -23,7 +23,6 @@ import { LoginPage } from "../Components/Registration/LoginPage";
 import { Registration } from "../Components/Registration/Registration";
 import { PremixesApp } from "../PremixesApp/Premixes";
 import { PassedShift } from "../PremixesApp/Components/HistoryPage/PassedShiftItem";
-import { CreateNewShift } from "../PremixesApp/Components/ConstructorPage/NewShiftConstructor";
 import { ShiftConstructorContainer } from "../PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
 import { MainPage } from "../PremixesApp/Components/MainPage/MainPage";
 
@@ -42,7 +41,7 @@ export const STEP_2 = "add-step-two"
 export const NEW_BLANK_SHIFT = "/shiftManager/create-new"  
 
 export const CHECK_LISTS = "/check-lists"
-export const PASSED_SHIFT = "blank-shift/:id"
+export const PASSED_SHIFT = "shiftManager/:id"
 export const CLAN_LISTS = "/clan-list"
 export const CREATE_TEAM = "/create-team"
 export const JOIN_TEAM = "/join-team"

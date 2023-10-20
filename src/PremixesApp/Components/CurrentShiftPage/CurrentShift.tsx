@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { ProgressBar } from "./ProgressBar";
 import { IngridientList } from "./IngridientList";
 import { EmptyShift } from "./EmtyShiftPage";
-import { Reducer } from "./Reducer";
+import { Reducer } from "../../Reducers/Reducer";
 // Styles imports
 import "../../../Styles/BlamkShift.css";
 // Redux imports
@@ -34,8 +34,8 @@ export const CurrentShift = React.memo((props : currentShiftPropType) => {
         return (
             <section className={`current_shift_container translate_animation`}>
 
-                <ProgressBar products={props.products}/>
-                <IngridientList ingridients={props.products} setState={setState} />
+                <ProgressBar products={state}/>
+                <IngridientList ingridients={state} setState={setState} />
                 <button
                     className={'confirm_button'}
                     onClick={endShift}>Закончить смену
