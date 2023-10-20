@@ -6,6 +6,7 @@ import { blanksActions, } from "../../../Redux/BlankShiftReducer";
 import "../../../Styles/BlamkShift.css"
 import { getProductsByCompanyID } from "../../../Redux/ProductReduxer";
 import { CreateNewShiftControls } from "./CreateNewShiftControls";
+import { ProdcustItem } from "./PrroductItem";
 
 
 
@@ -28,18 +29,17 @@ export const CreateNewShift = () => {
     }
 
 
-    return (
-        <section className={`new_shift container translate_animation ${isDarkTheme ? "Dark" : "Light"}`}>
-            <CreateNewShiftControls blanks={blanks} user={user}/>
-            {blanks.map((el: productType) => {
-                return (
-                    <div key={el.id} className={el.checked ? `checked_element` : `unchecked_element`} onClick={() => { toggleSelecrted(el) }}>
-                        <span key={el.id}>{el.name}</span>
-                    </div>
-                )
-            })}
-        </section>
-    )
+//     return (
+//         <section className={`new_shift container translate_animation ${isDarkTheme ? "Dark" : "Light"}`}>
+//             {/* <CreateNewShiftControls blanks={blanks} user={user}/> */}
+//             {blanks.map((el: productType) => {
+//                 return (
+//                 }
+//                 //    <ProdcustItem name={el.name} id={el.id as string} isChecked={el.checked as boolean} toggleFunction={toggleSelecrted} />
+//                 )
+//             })}
+//         </section>
+//     )
+// }
+
 }
-
-

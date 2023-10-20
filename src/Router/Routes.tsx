@@ -24,9 +24,11 @@ import { Registration } from "../Components/Registration/Registration";
 import { PremixesApp } from "../PremixesApp/Premixes";
 import { PassedShift } from "../PremixesApp/Components/HistoryPage/PassedShiftItem";
 import { CreateNewShift } from "../PremixesApp/Components/ConstructorPage/NewShiftConstructor";
+import { ShiftConstructorContainer } from "../PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
+import { MainPage } from "../PremixesApp/Components/MainPage/MainPage";
 
 // ---------- ROUTES STRINGS
-
+export const SHIFT_MANAGER = '/shiftManager/*'
 export const HOME = "/home"
 export const COCKTAIL_CARD = "/cocktail/:id"
 export const PREMIX_LIST = "/premixes"
@@ -37,7 +39,8 @@ export const REGISTRATION = "/registration"
 export const NO_MATCH_ROUTE = "*"
 export const BLANK_SHIFT = "/blank-shift/*"
 export const STEP_2 = "add-step-two"
-export const NEW_BLANK_SHIFT = "/blank-shift/create-new"
+export const NEW_BLANK_SHIFT = "/shiftManager/create-new"  
+
 export const CHECK_LISTS = "/check-lists"
 export const PASSED_SHIFT = "blank-shift/:id"
 export const CLAN_LISTS = "/clan-list"
@@ -71,6 +74,10 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         element : <CreateTeam/>
     },
     {
+        path : SHIFT_MANAGER,
+        element : <PremixesApp/>
+    },
+    {
         path : CHECK_LIST,
         element : <CheckListPage/>
     },
@@ -92,16 +99,16 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : NEW_BLANK_SHIFT,
-        element : <CreateNewShift/>
+        element : <ShiftConstructorContainer/>
     },
     {
         path : CHECK_LISTS,
         element : <CheckLists/>
     },
-    // {
-    //     path : NO_MATCH_ROUTE,
-    //     element : <Navigate to="/home" />
-    // },
+    {
+        path : NO_MATCH_ROUTE,
+        element : <Navigate to="/home" />
+    },
     {
         path : ADD_PRODUCT,
         element : <NewProduct isDarkTheme={true}/>

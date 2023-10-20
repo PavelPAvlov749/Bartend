@@ -3,17 +3,18 @@ import { productType } from "../../../Redux/Types"
 
 type ActionType = {
     type: string,
-    payload: string
+    payload: any
 }
 
 export const Reducer = (state: productType[], action: ActionType) => {
     switch (action.type) {
         case 'toggle-item': {
+            console.log(action.payload)
             return [
                 ...state.map((el: productType) => {
                     if (el.id === action.payload) {
-                        el.checked = !el.checked;
-                        return el;
+
+                        return {...el,checked : !el.checked};
                     }
                     return el;
                 })
@@ -31,6 +32,12 @@ export const Reducer = (state: productType[], action: ActionType) => {
                 ...state.map((el: productType) => {
                     return { ...el, checked: false }
                 })
+            ]
+        }
+        case 'set-products' : {
+            console.log("SET")
+            return [
+                ...state,...action.payload
             ]
         }
         default:

@@ -23,7 +23,7 @@ export const Header = () => {
                     <img className="icon" src={docIcon} alt="" />
 
                 </li>
-                <li id="blank-shift" className={styles.green} onClick={() => { navigate("/blank-shift") }}>
+                <li id="blank-shift" className={styles.green} onClick={() => { navigate("/shiftManager") }}>
 
 
                     <a>Заготовки</a>
@@ -72,7 +72,7 @@ const MainPageNavigation = () => {
                     <img className="icon" src={docIcon} alt="" />
 
                 </li>
-                <li id="blank-shift" className={styles.green} onClick={() => { navigate("/blank-shift") }}>
+                <li id="blank-shift" className={styles.green} onClick={() => { navigate("/shiftManager") }}>
 
 
                     <a>Заготовки</a>

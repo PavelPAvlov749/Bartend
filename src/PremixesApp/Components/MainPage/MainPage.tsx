@@ -17,6 +17,10 @@ import { useNavbar } from "./UseNabar";
 
 // Types
 import { Global_state_type } from "../../../Redux/Store";
+import { Route, Routes } from "react-router-dom";
+import { NEW_BLANK_SHIFT } from "../../../Router/Routes";
+import { CreateNewShiftControls } from "../ConstructorPage/CreateNewShiftControls";
+import { ShiftConstructorContainer } from "../ConstructorPage/ShiftCounstructorContainer";
 
 
 
@@ -33,7 +37,7 @@ export const MainPage = () => {
     // Get TeamID from global state to fetch current blank shift data
     let companyID = useSelector((state: Global_state_type) => state.App.user.teamID);
     // Get an array of closed shits for <ShiftHistoy> component
-    let shifts = useSelector((state : Global_state_type) => state.blankShift.closedShifts);
+    let shifts = useSelector((state: Global_state_type) => state.blankShift.closedShifts);
     // -------  
     // Get shift object fro global state to pass him into <CyrrentShift> Component
     //  
@@ -54,7 +58,11 @@ export const MainPage = () => {
         <section className={`blank_shift_container translate_animation`}>
             {Navbar}
             {/* Depending on the shift type, we display the corresponding component */}
-            {shiftType === 0 ? <CurrentShift products={products} shift={shift} /> : <ShiftsHistory shifts={shifts}/>}
+            {shiftType === 0 ? <CurrentShift products={products} shift={shift} /> : <ShiftsHistory shifts={shifts} />}
+            <Routes>
+                <Route path="/shiftManager//*create-new" element={<ShiftConstructorContainer />} />
+
+            </Routes>
         </section>
     );
 }

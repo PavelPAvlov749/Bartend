@@ -1,5 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Global_state_type } from "../../../Redux/Store";
+import { useDispatch} from "react-redux";
 import { productType, userPageType } from "../../../Redux/Types";
 import { useNavigate } from "react-router-dom";
 import { setCurrentShiftByCompanyID, blanksActions } from "../../../Redux/BlankShiftReducer";
@@ -9,10 +8,13 @@ import selectAll from "../../../Assets/icons8-checked-checkbox-100.png"
 import clearAll from "../../../Assets/icons8-clear-100.png";
 import startIcon from "../../../Assets/icons8-start-64.png"
 
+type shiftConstructorTopPControls = {
+    products : productType[],
+    user : userPageType
+}
 
 
-export const CreateNewShiftControls = (props: { blanks: productType[], user: userPageType }) => {
-    let isDarkTheme = useSelector((state: Global_state_type) => state.App.isDarktheme)
+export const CreateNewShiftControls = (props : shiftConstructorTopPControls) => {
     const navigate = useNavigate()
     const dispatch: any = useDispatch()
 
@@ -21,7 +23,7 @@ export const CreateNewShiftControls = (props: { blanks: productType[], user: use
         dispatch(setCurrentShiftByCompanyID(
             props.user.team as string, 
             props.user.teamID as string, 
-            props.blanks, 
+            props.products, 
             props.user.userName as string));
             
         navigate("/begin-blank-shift")

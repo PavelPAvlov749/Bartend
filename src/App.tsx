@@ -16,7 +16,10 @@ import loader from "./Assets/icons8-jigger-64.png";
 
 // --------- IMPORT COMPOMNENTS
 
-import {HashRouter} from 'react-router-dom';
+import {HashRouter, Route, Routes} from 'react-router-dom';
+import { BLANK_SHIFT, SHIFT_MANAGER } from './Router/Routes';
+import { ShiftConstructorContainer } from './PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer';
+import { MainPage } from './PremixesApp/Components/MainPage/MainPage';
 // @ts-ignore
 const Navbar = React.lazy(() => import('./Components/Navbar'));
 const Router = React.lazy(() => import('./Router/Router'));
