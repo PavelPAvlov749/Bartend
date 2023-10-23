@@ -1,5 +1,5 @@
 
-import { CheckListsAPI } from "../Firebase/CkeckListsAPI";
+import { CheckListsAPI } from "../services/Firebase/CkeckListsAPI";
 import { InferActionType } from "./Store";
 
 const SET_CHEK_LISTS = "barApp/CheckListReducer/setCheckLists"

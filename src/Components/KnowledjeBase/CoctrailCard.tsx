@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { cocltalCardType, getCocktailByID } from "../../Redux/KnowledgeBaseReducer";
 import { Global_state_type } from "../../Redux/Store";
-import "../../Styles/CoctailCard.css"
+import "../../Assets/Styles/CoctailCard.css"
 
 export const CocktailCard = () => {
     const dispatch : any = useDispatch()

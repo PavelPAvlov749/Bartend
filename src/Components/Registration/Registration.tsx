@@ -1,10 +1,10 @@
 import { Formik } from "formik"
-import  "../../Styles/Registration.css"
+import  "../../Assets/Styles/Registration.css"
 import { useDispatch, useSelector } from "react-redux"
 import { RegistrationActions, createNewUserByEmailAndPassword } from "../../Redux/RegistrationReducer";
 import { useState } from "react";
-import showPasswordIcon from "../../Assets/icons8-eye-96.png"
-import hidePasswordIcon from "../../Assets/icons8-hide-password-100.png"
+import showPasswordIcon from "../../Assets/Icons/icons8-eye-96.png"
+import hidePasswordIcon from "../../Assets/Icons/icons8-hide-password-100.png"
 import { validationShema } from "../../Helpers/Helpers";
 
 

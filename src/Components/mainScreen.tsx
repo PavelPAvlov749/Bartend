@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import styles from "../Styles/HomePage.module.css"
+import styles from "../Assets/Styles/HomePage.module.css"
 import { useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import docIcon from "../Assets/icons8-document-64.png"
-import teamicon from "../Assets/icons8-team-96.png"
-import chemistryIcon from "../Assets/icons8-chemistry-100(1).png"
-import sheldue from "../Assets/icons8-edit-96.png"
+import docIcon from "../Assets/Icons/icons8-document-64.png"
+import teamicon from "../Assets/Icons/icons8-team-96.png"
+import chemistryIcon from "../Assets/Icons/icons8-chemistry-100(1).png"
+import sheldue from "../Assets/Icons/icons8-edit-96.png"
 import { useWindowInnerWidth } from "../Helpers/CustomHooks";
 
 export const Header = () => {

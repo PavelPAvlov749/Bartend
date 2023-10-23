@@ -1,5 +1,5 @@
 
-import "../../Styles/NewProduct.css"
+import "../../Assets/Styles/NewProduct.css"
 import { FirstStep } from "./FirstStep";
 import { useLocation, useNavigate } from "react-router-dom";
 

@@ -1,15 +1,15 @@
 import { NavLink } from "react-router-dom";
-import home from "../Assets/icons8-homepage-96.png";
-import logout from "../Assets/icons8-logout-64.png";
-import doc from "../Assets/icons8-document-90.png"
-import books from "../Assets/icons8-books-52(1).png"
-import homeDark from "../Assets/icons8-home-page-96.png"
-import logoutDark from "../Assets/icons8-logout-64 (1).png"
-import docDark from "../Assets/icons8-document-96.png"
-import booksDark from "../Assets/icons8-books-52.png"
+import home from "../Assets/Icons/icons8-homepage-96.png";
+import logout from "../Assets/Icons/icons8-logout-64.png";
+import doc from "../Assets/Icons/icons8-document-90.png"
+import books from "../Assets/Icons/icons8-books-52(1).png"
+import homeDark from "../Assets/Icons/icons8-home-page-96.png"
+import logoutDark from "../Assets/Icons/icons8-logout-64 (1).png"
+import docDark from "../Assets/Icons/icons8-document-96.png"
+import booksDark from "../Assets/Icons/icons8-books-52.png"
 
 
-import "../Styles/Navbar.css"
+import "../Assets/Styles/Navbar.css"
 import { useDispatch } from "react-redux";
 import { logOutThunk } from "../Redux/AppReducer";
 

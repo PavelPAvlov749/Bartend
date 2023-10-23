@@ -21,6 +21,6 @@ html {
 }
 @font-face {
   font-family:"ubuntu";
-  src: url(./Fonts/UbuntuCondensed-Regular.ttf);
+  src: url(./Assets/Fonts/UbuntuCondensed-Regular.ttf);
   font-style: normal;
 }

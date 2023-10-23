@@ -1,4 +1,4 @@
-import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { InferActionType } from "./Store";
 
 

@@ -2,7 +2,7 @@
 import { productType } from "../../Redux/Types";
 import { NavLink } from "react-router-dom";
 import { productActions } from "../../Redux/ProductReduxer";
-import empty from "../../Assets/icons8-empty-90.png"
+import empty from "../../Assets/Icons/icons8-empty-90.png"
 import { parseElementNameToString } from "../../Helpers/Helpers";
 
 

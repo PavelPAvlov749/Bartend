@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";
 import { getClanListByUserID, leaveTheTeam } from "../../Redux/TeamReducer";
-import "../../Styles/TeamPage.css"
+import "../../Assets/Styles/TeamPage.css"
 import "../../App.css"
 import { NavLink, useNavigate } from "react-router-dom";
 import { app_actions } from "../../Redux/AppReducer";

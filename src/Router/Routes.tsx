@@ -7,8 +7,7 @@ import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCard } from "../Components/Ingridients/ProductCard";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
 
-// import { CreateNewShift } from "../Components/ShiftsPage/NewShiftConstructor";
-// import { ShiftPageContainer } from "../Components/ShiftsPage/ShiftsPageContainer";
+
 import { CreateTeam } from "../Components/Teams/CreateTeam";
 import { JoinTeam } from "../Components/Teams/JoinTeam";
 import { HomePage } from "../Components/mainScreen";
@@ -24,7 +23,7 @@ import { Registration } from "../Components/Registration/Registration";
 import { PremixesApp } from "../Modules/PremixesApp/Premixes";
 import { PassedShift } from "../Modules/PremixesApp/Components/HistoryPage/PassedShiftItem";
 import { ShiftConstructorContainer } from "../Modules/PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
-import { MainPage } from "../Modules/PremixesApp/Components/MainPage/MainPage";
+
 
 // ---------- ROUTES STRINGS
 export const SHIFT_MANAGER = '/shiftManager/*'

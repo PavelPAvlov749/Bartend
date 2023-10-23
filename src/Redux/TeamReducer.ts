@@ -1,5 +1,5 @@
 import { InferActionType } from "./Store";
-import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { app_actions } from "./AppReducer";
 
 const SET_CLAN_LIST = "barApp/clanReducer/setDlanList"

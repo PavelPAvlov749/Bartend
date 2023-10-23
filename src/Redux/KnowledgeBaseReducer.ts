@@ -1,10 +1,10 @@
 
 import { CollapseClassKey } from "@mui/material";
-import { coctailDbAPI } from "../Axios/CocktailDbAPI";
-import { CheckListsAPI } from "../Firebase/CkeckListsAPI";
+import { coctailDbAPI } from "../services/Axios/CocktailDbAPI";
+import { CheckListsAPI } from "../services/Firebase/CkeckListsAPI";
 import { app_actions } from "./AppReducer";
 import { InferActionType } from "./Store";
-import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 
 const GET_COCKTAILS = "barApp/KnowledgeBaseReducer/get_cocktails"
 const SET_CURRENT_COCKTAIL = "barApp/KnowledgeBaseReducer/setCurrentCocktail"

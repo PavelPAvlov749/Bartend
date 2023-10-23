@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "../Styles/ThemeSwitcher.css"
+import "../Assets/Styles/ThemeSwitcher.css"
 import { useDispatch } from "react-redux";
 import { app_actions } from "../Redux/AppReducer";
-import moonIcon from "../Assets/icons8-moon-symbol-90.png"
-import sunicon from "../Assets/icons8-sun-96.png"
+import moonIcon from "../Assets/Icons/icons8-moon-symbol-90.png"
+import sunicon from "../Assets/Icons/icons8-sun-96.png"
 
 export const ThemeSwitcher = (props : {theme : boolean}) => {
     const [isDarktheme,setTheme] = useState(true)

@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import * as yup from "yup"
 import { useDispatch } from "react-redux";
 import {newCardActions } from "../..//Redux/NewCardReducer";
-import "../../Styles/NewProduct.css"
+import "../../Assets/Styles/NewProduct.css"
 
 
 export const NewIngridientSingleForm = () => {

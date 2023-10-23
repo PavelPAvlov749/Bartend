@@ -1,8 +1,8 @@
 import React from "react";
 import { createNewIngridientCard, newCardActions } from "../../Redux/NewCardReducer";
 import { useDispatch, useSelector } from "react-redux";
-import "../../Styles/SecondStep.css"
-import backArrow from "../../Assets/icons8-back-90.png";
+import "../../Assets/Styles/SecondStep.css"
+import backArrow from "../../Assets/Icons/icons8-back-90.png";
 import { useNavigate } from "react-router-dom";
 import { Global_state_type } from "../../Redux/Store";
 import { productType } from "../../Redux/Types";

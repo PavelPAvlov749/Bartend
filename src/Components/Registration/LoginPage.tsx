@@ -1,13 +1,13 @@
 
 import { useState } from "react";
-import logo from "../../Assets/bartendLogo.png"
+import logo from "../../Assets/Icons/bartendLogo.png"
 import { Formik } from "formik";
-import "../../Styles/Login.css"
+import "../../Assets/Styles/Login.css"
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginByEmailAndPassword } from "../../Redux/AppReducer";
-import showPass from "../../Assets/icons8-eye-96.png"
-import hidePass from "../../Assets/icons8-hide-password-100.png"
+import showPass from "../../Assets/Icons/icons8-eye-96.png"
+import hidePass from "../../Assets/Icons/icons8-hide-password-100.png"
 import { loginValidationShema} from "../../Helpers/Helpers";
 
 

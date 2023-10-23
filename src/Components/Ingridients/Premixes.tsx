@@ -9,16 +9,17 @@ import { useNavigate } from "react-router-dom";
 // ----------------
 // STYLES
 // ----------------
-import "../../Styles/Premixes.css"
+import "../../Assets/Styles/Premixes.css"
 // ----------------
 // IMPORT ICONS
 // ----------------
-import searchIcon from "../../Assets/icons8-search-100.png";
-import backIcom from "../../Assets/icons8-back-90.png";
-import addIcon from "../../Assets/icons8-add-100.png";
-import backIconsLight from "../../Assets/icons8-reply-arrow-100.png"
-import addIconLight from "../../Assets/icons8-add-100 (1).png"
-import searchIconLight from "../../Assets/icons8-search-100(1).png"
+// import searchIcon from "../../Assets/icons8-search-100.png";
+import searchIcon from "../../Assets/Icons/icons8-search-100.png"
+import backIcom from "../../Assets/Icons/icons8-back-90.png";
+import addIcon from "../../Assets/Icons/icons8-add-100.png";
+import backIconsLight from "../../Assets/Icons/icons8-reply-arrow-100.png"
+import addIconLight from "../../Assets/Icons/icons8-add-100 (1).png"
+import searchIconLight from "../../Assets/Icons/icons8-search-100(1).png"
 // ----------------
 // IMPORT COMPONENTS
 // ----------------

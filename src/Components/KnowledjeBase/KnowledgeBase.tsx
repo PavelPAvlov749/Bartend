@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Box, Tab, Tabs } from "@mui/material";
-import "../../Styles/CocktailList.css"
+import "../../Assets/Styles/CocktailList.css"
 import { KnowledgeBaseContent } from "./KnowledgeBaseContent";
 import { useSelector } from "react-redux";
 import { Global_state_type } from "../../Redux/Store";

@@ -1,7 +1,7 @@
 import { InferActionType } from "./Store";
 import {  productType } from "./Types";
 import { app_actions } from "./AppReducer";
-import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { blanksActions } from "./BlankShiftReducer";
 
 

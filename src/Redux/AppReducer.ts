@@ -1,7 +1,7 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { authAPI } from "../Firebase/AuthAPI";
+import { authAPI } from "../services/Firebase/AuthAPI";
 import { InferActionType } from "./Store";
-import { Firestore_instance } from "../Firebase/PremixesAPI";
+import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { userPageType } from "./Types";
 
 

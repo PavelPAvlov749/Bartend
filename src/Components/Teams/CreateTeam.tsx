@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clanActions, createClanThunk } from "../../Redux/TeamReducer";
 import { Global_state_type } from "../../Redux/Store";
-import "../../Styles/CreateTeam.css"
+import "../../Assets/Styles/CreateTeam.css"
 import { useNavigate } from "react-router-dom";
 import {initializeThunk} from "../../Redux/AppReducer"
 
