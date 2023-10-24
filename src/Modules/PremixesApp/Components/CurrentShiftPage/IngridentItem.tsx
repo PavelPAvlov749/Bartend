@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 
 type IngridientsListItem = {
     name: string,
@@ -10,11 +10,13 @@ type IngridientsListItem = {
 export let IngridentsItem = (props: IngridientsListItem,) => {
     return (
         <li key={props.itemId}>
-            <span>{props.name}</span>
+            <a href={"#/card/id=" + props.itemId}>
+                <span>{props.name}</span>
+            </a>
             <span onClick={() => {
-                console.log("Click");
-                props.toggle(props.itemId);
-            }}>{!props.isDone ? "В процессе" : "Готово"}</span>
+                    console.log("Click");
+                    props.toggle(props.itemId);
+                }}>{!props.isDone ? "В процессе" : "Готово"}</span>
         </li>
     )
 }

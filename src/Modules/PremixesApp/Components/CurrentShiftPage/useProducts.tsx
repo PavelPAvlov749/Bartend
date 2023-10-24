@@ -21,7 +21,6 @@ export const useProducts = (companyID : string) => {
             isDone : false  
         }
     });
-    console.log(products)
     if(Array.isArray(products)) {
         return products;
     }

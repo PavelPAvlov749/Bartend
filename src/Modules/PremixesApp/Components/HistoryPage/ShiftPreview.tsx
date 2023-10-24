@@ -1,4 +1,3 @@
-import React from 'react';
 
 // Define the props type for ShiftPreview component
 type ShiftPreviewType = {

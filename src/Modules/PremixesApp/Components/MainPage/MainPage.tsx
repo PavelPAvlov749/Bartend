@@ -31,17 +31,17 @@ export const MainPage = () => {
     // Get an array of closed shits for <ShiftHistoy> component
     let shifts = useSelector((state: Global_state_type) => state.blankShift.closedShifts);
     // -------  
-    // Get shift object fro global state to pass him into <CyrrentShift> Component
+    // Get shift object fro global state to pass him into <CurrentShift> Component
     //  
     // This function need to bi fixed (Deed to add fucntion thah will clodse current shift only by ID)
     // -------
     let shift = useSelector((state: Global_state_type) => state.blankShift.currentShift);
-
-    useEffect(() => {
-        dispatch(getShiftsHistoryByCompanyID(companyID as string))
-    }, []);
     // Get an aray of premixes objects from hook
     let products = useProducts(companyID as string);
+    useEffect(() => {
+        dispatch(getShiftsHistoryByCompanyID(companyID as string))
+    }, [products.length]);
+
 
     //Get a tuple from the navbar component and the current state of the currentShift variable
     const [Navbar, shiftType] = useNavbar();

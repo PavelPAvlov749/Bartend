@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 // IMPORT ICONS AND STYLES
 import "../../../../Assets/Styles/BlamkShift.css"
-import selectAll from "../../../../Assets/Icons/icons8-checked-checkbox-100.png"
-import clearAll from "../../../../Assets/Icons/icons8-clear-100.png";
 import startIcon from "../../../../Assets/Icons/icons8-start-64.png"
 
 
@@ -21,14 +19,32 @@ type shiftConstructorTopPControls = {
     dispatchProducts : any
 }
 
+/**
+ *  Check is all items was selected 
+ * @param products ArrayProductType
+ * @returns boolean
+ */
+
+function checkSelection (products : productType[]) {
+    let result = products.filter((el : productType) => el.checked == true);
+    if (result.length > 0) {
+        return true;
+    }
+    else 
+    {
+        return false;
+    }
+};
+
 
 export const CreateNewShiftControls = (props: shiftConstructorTopPControls) => {
-    const navigate = useNavigate()
-    const dispatch: any = useDispatch()
-
-
+    const navigate = useNavigate();
+    const dispatch: any = useDispatch();
+    // Check if all items was selectrd or not
+    let isAllSelected = checkSelection(props.products);
+    // Create shift hanler ,get all data and creates new shift object and pass them into 
+    // setCurrentShift thunk
     const createShift = () => {
-
         dispatch(setCurrentShiftByCompanyID(
             props.user.team as string,
             props.user.teamID as string,
@@ -38,14 +54,15 @@ export const CreateNewShiftControls = (props: shiftConstructorTopPControls) => {
         navigate("/begin-blank-shift");
 
     }
+    // Toggler fuction (comes from props)
+    function toggleAll () {
+        props.dispatchProducts({type : 'toggle-all'});
+    }
     return (
         <ul className={`controls`}>
-            <li onClick={() => { props.dispatchProducts({type : 'select-all'})}}>
-                Select All
-                <img className="icon" id={`selectAll`} src={selectAll} alt="" />
-            </li>
-            <li onClick={() => props.dispatchProducts({type : 'deselect-all'})}>Clear All
-                <img className="icon" id={`clear`} src={clearAll} alt="" />
+            <li 
+                onClick={toggleAll}>
+                {isAllSelected ? "Clear" : "Select all"}
             </li>
             <li onClick={createShift}>Start
                 <img className="icon" src={startIcon} alt="" />

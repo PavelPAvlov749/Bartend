@@ -1,16 +1,15 @@
+// React,React hooks
 import { useEffect, useReducer } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Reducer } from "../../Reducers/constructorReducer";
-import { CreateNewShiftControls } from "./CreateNewShiftControls";
-// import { productType } from "../../../Redux/Types";
+// Components
 import { ProductList } from "./PrdocuctList";
+// Types
 import { Global_state_type } from "../../../../Redux/Store";
+// Custom Hooks
+import { Reducer } from "../../Reducers/constructorReducer";
+// Redux.Redux thunks
+import { CreateNewShiftControls } from "./CreateNewShiftControls";
 import { getProductsByCompanyID } from "../../../../Redux/ProductReduxer";
-
-
-
-
-
 
 
 
@@ -29,10 +28,8 @@ export const ShiftConstructorContainer = () => {
         });
     }, [products.length]);
 
-    // console.log(products)
     useEffect(() => {
         dispatch(getProductsByCompanyID(user.teamID as string))
-
     }, []);
 
 

@@ -1,9 +1,9 @@
 // Styles
-import { productType } from "../../../../Redux/Types";
 import "../../../../Assets/Styles/BlamkShift.css"
 // Components
 import { IngridentsItem } from "./IngridentItem";
-
+//Types
+import { productType } from "../../../../Redux/Types";
 
 
 

@@ -20,17 +20,10 @@ export const Reducer = (state: productType[], action: ActionType) => {
                 })
             ]
         }
-        case 'select-all': {
+        case 'toggle-all': {
             return [
                 ...state.map((el: productType) => {
-                    return { ...el, checked: true }
-                })
-            ]
-        }
-        case 'deselect-all': {
-            return [
-                ...state.map((el: productType) => {
-                    return { ...el, checked: false }
+                    return { ...el, checked: !el.checked }
                 })
             ]
         }

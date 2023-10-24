@@ -1,13 +1,8 @@
-import React, { Dispatch, useEffect, useReducer } from "react"
+// Coponents
 import { ProdcustItem } from "./PrroductItem"
-import { Reducer } from "../../Reducers/Reducer"
+// Types
 import { productType } from "../../../../Redux/Types"
 
-
-type ActionType = {
-    type: string,
-    payload: string
-}
 
 type prdocuctListType = {
     products: productType[],
@@ -16,8 +11,6 @@ type prdocuctListType = {
 
 
 export const ProductList = (props: prdocuctListType) => {
-
-
     return (
         <ul>
             {props.products.map((el: productType) => {

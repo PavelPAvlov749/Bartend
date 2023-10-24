@@ -3,7 +3,7 @@ import { productType } from "../../../Redux/Types";
 
 type ActionType = {
     type: string,
-    payload: string
+    payload: string | productType[]
 }
 
 export const Reducer  = (state: productType[], action: ActionType) => {
@@ -17,8 +17,11 @@ export const Reducer  = (state: productType[], action: ActionType) => {
                     return el
                 })
             ]
+            }
+            case 'set-state' : {
+                return [...action.payload as productType[]]
+            }
+            default:
+                return state
         }
-        default:
-            return state
     }
-}

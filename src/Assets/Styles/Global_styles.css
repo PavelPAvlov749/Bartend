@@ -30,7 +30,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 20px;
+  padding: 0px 5px;
 }
 .controls li {
   display: flex;
@@ -56,7 +56,6 @@ button:hover {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  font-size: larger;
   line-height: 1.5;
 }
 .icon {
