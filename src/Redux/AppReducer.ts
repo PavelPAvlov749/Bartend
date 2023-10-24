@@ -5,11 +5,11 @@ import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { userPageType } from "./Types";
 
 
-const SET_INIT = "barApp/appReducer/setInit"
-const SET_AUTH = "barApp/appReducer/setAuth"
-const SET_USER_PAGE = "barApp/AppReducer/setUserPage"
-const TOGGLE_THEME = "barApp/AppReducer/toggleTheme"
-
+const SET_INIT = "barApp/appReducer/setInit";
+const SET_AUTH = "barApp/appReducer/setAuth";
+const SET_USER_PAGE = "barApp/AppReducer/setUserPage";
+const TOGGLE_THEME = "barApp/AppReducer/toggleTheme";
+const SET_IS_FETCH = "barApp/AppReducer/setIsFetch";
 
 
 type initial_state_type = {
@@ -42,7 +42,6 @@ type Action_Type = InferActionType<typeof app_actions>;
 export const appReducer = (state = initial_state, action: Action_Type) => {
   switch (action.type) {
     case TOGGLE_THEME : {
-      console.log(!state.isDarktheme)
       return {
         ...state,
         isDarktheme : !state.isDarktheme
@@ -54,7 +53,9 @@ export const appReducer = (state = initial_state, action: Action_Type) => {
         isInit: action.payload
       }
     }
-
+    case SET_IS_FETCH : {
+      return {...state,isFetch : action.payload}
+    }
     case SET_AUTH: {
       return {
         ...state, isAuth: action.payload
@@ -82,7 +83,7 @@ export const app_actions = {
     payload: isAuth
   } as const),
   setFetch: (isFetch: boolean) => ({
-    type: 'barApp/appReducer/setFetch',
+    type: 'barApp/AppReducer/setIsFetch',
     payload: isFetch
   } as const),
   setUserPage: (userPage: userPageType) => ({
@@ -97,6 +98,7 @@ export const app_actions = {
 
 export const initializeThunk = () => {
   return async function (dispatch: any) {
+  
     const auth = getAuth()
     await onAuthStateChanged(auth, async (user) => {
    
@@ -107,10 +109,12 @@ export const initializeThunk = () => {
         dispatch(app_actions.setUserPage(userPage))
         dispatch(app_actions.setInit(true))
         dispatch(app_actions.setAuth(true))
+     
       }else {
         dispatch(app_actions.setInit(true))
+       
       }
-    })
+    });
   }
 }
 

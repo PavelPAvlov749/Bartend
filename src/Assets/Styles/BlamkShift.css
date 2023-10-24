@@ -14,6 +14,10 @@
     height: 30vh;
     
 }
+.begin-shift{
+    font-size: 30px;
+    color: rgb(111, 59, 214);
+}
 .checked_element{
     background-color: rgb(174, 139, 73);
     padding: 5px 5px 5px 0px;

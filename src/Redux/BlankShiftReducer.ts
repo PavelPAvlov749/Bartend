@@ -88,7 +88,7 @@ export const blankShiftReducer = (state = initialState, action: Action_Type) => 
             }
         }
 
-        
+
         default:
             return state
     }
@@ -132,12 +132,13 @@ export const blanksActions = {
 
 export const getCurrentShiftByCompanyID = (companyID: string) => {
     return async function (dispatch: any) {
-        dispatch(app_actions.setFetch(true))
-        let shift = await Firestore_instance.getCurrentShift(companyID)
+        dispatch(app_actions.setFetch(true));
+        let shift = await Firestore_instance.getCurrentShift(companyID);
         if (shift) {
             dispatch(blanksActions.setCurrentShift(shift as unknown as blankShiftType))
-            dispatch(app_actions.setFetch(false))
-        } else {
+        }
+
+        else {
             dispatch(blanksActions.setCurrentShift({
                 products: [],
                 shiftID: "",
@@ -147,36 +148,38 @@ export const getCurrentShiftByCompanyID = (companyID: string) => {
                 date: "",
                 employe: "",
                 count: 0
-            }))
-        }
-
+            }));
+        };
+        dispatch(app_actions.setFetch(false));
     }
 }
 
 
 export const closeCurrentShiftByCompanyID = (shift: blankShiftType) => {
     return async function (dispatch: any) {
-        dispatch(app_actions.setFetch(true))
+        // dispatch(app_actions.setFetch(true))
         await Firestore_instance.addShiftInHistory(shift)
         await Firestore_instance.clearCurrentShift(shift.shiftID as string)
 
         dispatch(blanksActions.closeCurentShift(shift.shiftID as string))
-        dispatch(app_actions.setFetch(false))
+        // dispatch(app_actions.setFetch(false))
     }
 }
 
 export const getShiftsHistoryByCompanyID = (companyID: string) => {
+
     return async function (dispatch: any) {
-        dispatch(app_actions.setFetch(true))
+        console.log("get history")
+        // dispatch(app_actions.setFetch(true));
         let shifts = await Firestore_instance.getBlankShifts(companyID)
         dispatch(blanksActions.setShiftHistory(shifts as blankShiftType[]))
-        dispatch(app_actions.setFetch(false))
+        // dispatch(app_actions.setFetch(false));
     }
 }
 
 
 
-export const setCurrentShiftByCompanyID = (companyName : string,companyID : string,products : productType[],employe : string) => {
+export const setCurrentShiftByCompanyID = (companyName: string, companyID: string, products: productType[], employe: string) => {
     let newShift = {
         date: getFullDateString(),
         employe: employe,
@@ -189,18 +192,18 @@ export const setCurrentShiftByCompanyID = (companyName : string,companyID : stri
         teamName: companyName
     }
     return async function (dispatch: any) {
-        dispatch(app_actions.setFetch(true))
+        // dispatch(app_actions.setFetch(true))
         await Firestore_instance.setCurrentShift(newShift);
         dispatch(blanksActions.setCurrentShift(newShift))
-        dispatch(app_actions.setFetch(false))
+        // dispatch(app_actions.setFetch(false))
     }
 }
 
 export const getPassedShiftByID = (shiftID: string) => {
     return async function (dispatch: any) {
-        dispatch(app_actions.setFetch(true))
+        // dispatch(app_actions.setFetch(true))
         const shift = await Firestore_instance.getPassedShiftById(shiftID)
         dispatch(blanksActions.setPassedShift(shift))
-        dispatch(app_actions.setFetch(false))
+        // dispatch(app_actions.setFetch(false))
     }
 }

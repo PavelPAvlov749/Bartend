@@ -11,6 +11,9 @@ button {
     padding: 0px 10px;
     cursor: pointer;
 }
+*{
+  color : white;
+}
 button:hover {
   background-color: rgb(222, 222, 222);
   color: rgb(28, 28, 28);
@@ -84,7 +87,7 @@ ul{
 .DarkTheme a  { 
 
   text-decoration: none;
-  color: white;
+  /* color: white; */
   cursor: pointer;
   font-size:larger;
 

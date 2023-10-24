@@ -11,6 +11,8 @@
 table,tr,td {
     border: 1px solid white;
     border-collapse: collapse;
+    font-size: 22px;
+    padding: 5px;
 }
 
 .passed_shift_preview_item{

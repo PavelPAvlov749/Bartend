@@ -8,10 +8,10 @@ import "../../../../Assets/Styles/BlamkShift.css"
 export const EmptyShift = () => {
     return (
         <section className={`empty_shift_container container`}>
-        <span>Нет открытых смен</span>
+        <span>There is no open shift</span>
         {/* Link to shifth constructor */}
-        <NavLink className={`nav_link`} to={"create-new"}>
-            Начать
+        <NavLink className={`nav_link begin-shift`} to={"create-new"}>
+            Begin
         </NavLink>
     </section>
     )

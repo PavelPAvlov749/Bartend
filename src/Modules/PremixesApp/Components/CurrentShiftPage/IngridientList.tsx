@@ -8,7 +8,6 @@ import { productType } from "../../../../Redux/Types";
 
 
 export const IngridientList = (props: { ingridients: productType[], setState: React.Dispatch<any> }) => {
-    console.log(props);
     function toogleItem (id : string ) {
         // Define an action object
         let action = {
