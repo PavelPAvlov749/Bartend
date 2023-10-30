@@ -1,3 +1,32 @@
+.product_card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.description-textarea{
+    font-size: 17px;
+    width: calc(100% - 10px);
+    height: 200px;
+}
+.editor-component {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.card-editor {
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.editot__component__delete
+{
+    margin-left: 20px;
+    background-color: rgb(89, 89, 165);
+    padding: 3px;
+    border-radius: 5px;
+}
 .product_card input{
  width: 50%;
 }

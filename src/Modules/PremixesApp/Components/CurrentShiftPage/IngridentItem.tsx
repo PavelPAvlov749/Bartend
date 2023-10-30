@@ -8,6 +8,7 @@ type IngridientsListItem = {
 }
 
 export let IngridentsItem = (props: IngridientsListItem,) => {
+    console.log(props.itemId);
     return (
         <li key={props.itemId}>
             <a href={"#/card/id=" + props.itemId}>

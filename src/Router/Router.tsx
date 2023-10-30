@@ -19,7 +19,7 @@ import { ROUTE } from "../Redux/Types";
 const Router = React.memo((props: { isDarkTheme: boolean }) => {
     
     const isAuth = useSelector((state: Global_state_type) => { return state.App.isAuth })
-   
+    console.log("Route")
     if (isAuth) {
 
         return (

@@ -78,3 +78,20 @@ export const useDebounce = (callback : (...args:any) => {},delay : number,value 
     console.log(DebounceCallback)
     return DebounceCallback;
 }
+
+
+/**
+ * 
+ * @param initialValue initial value for boolean flag
+ * @returns [actualState,TogglerFunction]
+ */
+export const UseToggle = (initialValue : boolean) : [boolean,() => void] => {
+
+    let [state,setState] = useState<boolean>(initialValue);
+    
+    function toggle () {
+        setState(!state);
+    }
+
+    return [state,toggle];
+}

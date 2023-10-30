@@ -6,11 +6,11 @@ import { InferActionType } from "./Store"
 import { blankShiftType, productType } from "./Types"
 
 
-const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list"
-const SET_CURENT_SHIFT = "barApp/blanhShiftReducer/set_current_shift"
-const CLOSE_CURRENT_SHIFT = "barApp/blanhShiftReducer/close_current_shift"
-const SET_SHIFTS_HISTORY = "barApp/blanhShiftReducer/set_shifts_history"
-const SET_PASSED_SHIFT = "barApp/blankShiftReducer/setPassedShift"
+const SET_PRODUCT_LIST = "barApp/blankShiftReducer/set_product_list";
+const SET_CURENT_SHIFT = "barApp/blanhShiftReducer/set_current_shift";
+const CLOSE_CURRENT_SHIFT = "barApp/blanhShiftReducer/close_current_shift";
+const SET_SHIFTS_HISTORY = "barApp/blanhShiftReducer/set_shifts_history";
+const SET_PASSED_SHIFT = "barApp/blankShiftReducer/setPassedShift";
 
 type initialStateType = {
     productList: productType[],

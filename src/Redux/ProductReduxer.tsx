@@ -3,12 +3,17 @@ import {  productType } from "./Types";
 import { app_actions } from "./AppReducer";
 import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { blanksActions } from "./BlankShiftReducer";
+import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
 
-const SET_PREMIXES = "barApp/productReducer/setProducts"
-const SET_ACTUAL_PRODUCT_CARD = 'barApp/productReducer/setActualProductCard'
-const REMOVE_PRODUCT = "barApp/ProductReducer/RemoveProduct"
-
+const SET_PREMIXES = "barApp/productReducer/setProducts";
+const SET_ACTUAL_PRODUCT_CARD = 'barApp/productReducer/setActualProductCard';
+const REMOVE_PRODUCT = "barApp/ProductReducer/RemoveProduct";
+const SET_PRDOCUCT_CARD = "barApp/ProductReducer/setProductCard";
+// const UPDATE_COMPOSITION = "barApp/ProductReducer/updateComposition";
+const DELETE_COMPONENT = "barApp/ProductReducer/deleteComponent";
+const ADD_COMPONENT = "barApp/ProductReducer/addComponent";
+const UPDATE_DESCRIPTION = "barApp/ProductReducer/updateDescription";
 
 type initial_state_type = {
     premixes : productType[] | [],
@@ -54,7 +59,12 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 actualProductCard : action.payload
             }
         }
-    
+        case SET_PRDOCUCT_CARD : {
+            return {
+                ...state,
+                actualProductCard : action.payload
+            }
+        }
 
         case REMOVE_PRODUCT : {
             return {
@@ -62,7 +72,12 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 premixes :  [...state.premixes.filter((el : productType) => el.id !== action.payload)]
             }
         }
-
+        // case DELETE_COMPONENT : {
+        //     return {
+        //         ...state,
+        //         actualProductCard : {...state.actualProductCard,composition : state.actualProductCard}
+        //     }
+        // }
         default:
             return state
     }
@@ -84,7 +99,11 @@ export const productActions = {
   removeProduct : (productID : string) => ({
     type : "barApp/ProductReducer/RemoveProduct",
     payload : productID
-  } as const)
+  } as const),
+  setProductCard : (card : productType | null) => ({
+    type : "barApp/ProductReducer/setProductCard",
+    payload : card
+  } as const )
 
 
 }
@@ -112,5 +131,19 @@ export const deleteProductCrad = (productID : string) => {
         dispatch(productActions.removeProduct(productID))
     
        
+    }
+}
+
+export const setProductCardThunk = (productID : string) => {
+    return async function (dispatch : any) {
+        let card : DocumentData | undefined = await Firestore_instance.getProductByID(productID);
+        if(card)
+        {
+            dispatch(productActions.setProductCard(card.data()));
+        }
+        else
+        {
+            dispatch(productActions.setProductCard(null));
+        }
     }
 }

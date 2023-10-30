@@ -34,7 +34,7 @@ export const ADD_PRODUCT = "/add"
 export const PRODUCT_CARD = "/card/:id"
 export const LOG_OUT = "/logOut"
 export const REGISTRATION = "/registration"
-export const NO_MATCH_ROUTE = "*"
+// export const NO_MATCH_ROUTE = "*"
 export const BLANK_SHIFT = "/blank-shift/*"
 export const STEP_2 = "add-step-two"
 export const NEW_BLANK_SHIFT = "/shiftManager/create-new"  
@@ -103,10 +103,10 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         path : CHECK_LISTS,
         element : <CheckLists/>
     },
-    {
-        path : NO_MATCH_ROUTE,
-        element : <Navigate to="/home" />
-    },
+    // {
+    //     path : NO_MATCH_ROUTE,
+    //     element : <Navigate to="/home" />
+    // },
     {
         path : ADD_PRODUCT,
         element : <NewProduct isDarkTheme={true}/>
@@ -138,10 +138,10 @@ export const PUBLICK_ROUTES : ROUTE [] = [
         path : LOG_OUT,
         element : <LoginPage/>
     },
-    {
-        path : NO_MATCH_ROUTE,
-        element : <Navigate to={"/logOut"}/>
-    },
+    // {
+    //     path : NO_MATCH_ROUTE,
+    //     element : <Navigate to={"/logOut"}/>
+    // },
     {
         path : REGISTRATION,
         element : <Registration/>

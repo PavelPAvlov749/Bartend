@@ -2,7 +2,7 @@
 import {
     collection, getDocs, query, where,
     doc, getDoc, setDoc,
-    updateDoc, arrayUnion, arrayRemove, deleteDoc,
+    updateDoc, arrayUnion, arrayRemove, deleteDoc, QueryDocumentSnapshot, DocumentData,
 }
     from "firebase/firestore";
 import { getDatabase, ref } from "firebase/database";
@@ -155,7 +155,7 @@ export const Firestore_instance = {
             let uid = await createUserWithEmailAndPassword(auth, email, password)
             if (uid.user) {
                 const docRef = collection(Firestore, "Users")
-                
+
                 let newUser = {
                     userName: nickName,
                     team: null,
@@ -193,6 +193,21 @@ export const Firestore_instance = {
 
             return clans
         } catch (ex) {
+
+        }
+    },
+    getProductByID: async (id: string): Promise<DocumentData | undefined> => {
+        try {
+            let docRef = doc(Firestore, "Premixes/", id);
+            let products = await getDoc(docRef);
+
+
+            return products;
+
+
+        }
+        catch (ex) {
+            console.log(ex);
 
         }
     },
