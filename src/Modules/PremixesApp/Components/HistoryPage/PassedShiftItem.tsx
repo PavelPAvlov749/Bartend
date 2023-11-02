@@ -31,9 +31,6 @@ export const PassedShift = () => {
 
     return (
         <section className="container passed_shift_container translate_animation">
-            {/* Go back link */}
-            <h3 onClick={() => { navigate(-1) }}>Назад</h3>
-
             <table>
                 {/* Display shift details */}
                 <tr>Смена от : <td>{PassedShift?.date}</td></tr>
@@ -48,6 +45,8 @@ export const PassedShift = () => {
                     );
                 })}
             </table>
+            {/* Go back link */}
+            <button onClick={() => { navigate(-1) }}>Back</button>
         </section>
     );
 };
