@@ -12,7 +12,7 @@ export type ProfileType = {
 export type productType = {
     name: string,
     description: string,
-    composition: {},
+    composition: {}[],
     id?: string,
     calculate?: (val: number) => {},
     teamID? : string,

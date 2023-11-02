@@ -1,6 +1,7 @@
 
 import * as yup from "yup"
 import { productType } from "../Redux/Types"
+import { ReactNode } from "react"
 
 
 // Helprt to create a Date string
@@ -15,38 +16,42 @@ export function getFullDateString() {
 }
 
 
-export const parseComposition = (composition: {}) => {
+export const parseComposition = (composition: {}[]) => {
     // EN
-    // This function helps to parse the premix composition object into an array of span elements
+    // This function helps to parse the premix composition array into an array of span elements
     // Used in product Card Compoennt to render composition 
-    // RU
-    // Данная функция помогает распарсить обьект состава премикса в массив спан элементов
-    return Object.keys(composition as {}).map((el: string, index: number) => {
-        return (
-            <>
-                {el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] :
-                el + " : " + Object.values(composition as { })[index]}
-
+    return (
+        <>
+        {composition.map((el : {},index : number,array : {}[])=> {
+            return (
+                <>
+                <span>{Object.keys(el)[0] + " : "}</span>
+                <span>{Object.values(el)[0] as ReactNode}</span>
                 <br />
-            </>
-        )
-    })
+                </>
+            )
+        })}
+        </>
+    )
 }
 
-export const calculateAndParseIntoComponent = (card: productType, value: number) => {
-    // EN
-    // The first argument is the composition object, the second argument is the multiplier
-    // This function calculates and parses the required number of components from the object based on the value argument. 
-    // The value of each key is multiplied by the value value
-    // RU
-    // Ппервый аргумент обьект состава,второй аргумент множитель
-    // Дананя функция расчитывает и парсит из обьекта нужное колличество компонентов на основании аргуиента вэлью. 
-    // Значение каждого ключа умножается на значение вэлью
-    return Object.keys(card?.composition as {}).map((el: string, index: number) => {
-        return (<>
-            <span>{el.includes("_") ? el.split("_")[0] + " " + el.split("_")[1] + " : " + Number(Object.values(card?.composition as {})[index]) * value :
-                el + " : " + Number(Object.values(card?.composition as {})[index]) * value}</span><br />
-        </>
+/**
+ * 
+ * @param composition Array of component onjects
+ * @param value Value Multiplier 
+ * @returns React.Ellement containig calculated values
+ */
+export const calculateAndParseIntoComponent = (composition: Array<{}>, multiplier: number) => {
+    // Go through the mass of ingredients and return the components 
+    // containing the keys of the ingredients and the quantity multiplied by the factor
+    return composition.map((el : {},index : number,array : {}[]) => {
+        return( 
+            <>
+                <span>{Object.keys(el)[0] + ' : '}</span>
+                {/*Get key value and multiply them by multiplier  */}
+                <span>{(Object.values(el)[0] as number) * multiplier}</span>
+                <br />
+            </>
         )
     })
 }

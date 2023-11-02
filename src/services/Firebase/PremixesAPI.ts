@@ -49,7 +49,24 @@ export const Firestore_instance = {
         }
 
     },
-
+    // Update product card 
+    updatePrdocurCard: async (card: productType) => {
+        try {
+            const ref = doc(Firestore, "Premixes/", card.id as string);
+            let updatedCard = {
+                name: card.name,
+                teamID: card.teamID,
+                composition: card.composition,
+                description: card.description,
+                timeStamp: JSON.stringify(new Date()),
+                id: card.id,
+            }
+            await updateDoc(ref, updatedCard);
+        }
+        catch (ex) {
+            console.log(ex)
+        }
+    },
     deleteProduct: async (productID: string) => {
         await deleteDoc(doc(Firestore, "Premixes/", productID));
 
@@ -201,7 +218,7 @@ export const Firestore_instance = {
             let docRef = doc(Firestore, "Premixes/", id);
             let products = await getDoc(docRef);
 
-
+            console.log(products.data());
             return products;
 
 

@@ -6,6 +6,7 @@ import backArrow from "../../Assets/Icons/icons8-back-90.png";
 import { useNavigate } from "react-router-dom";
 import { Global_state_type } from "../../Redux/Store";
 import { productType } from "../../Redux/Types";
+import { NewProduct } from "./NewProduct";
 
 export const SecondStep = (props : {isDarkTheme : boolean}) => {
     const dispatch : any = useDispatch()
@@ -18,11 +19,20 @@ export const SecondStep = (props : {isDarkTheme : boolean}) => {
     const teamID = useSelector((state : Global_state_type) => state.App.user.teamID)
     const navigate = useNavigate()
     const createnewProduct = () => {
+        function convertObjectToArrayOfObjects (obj : object) {
+            let resultObject = Object.keys(obj).map((el : string,index : number,array : any[]) => {
+                return {
+                    [el] : Object.values(obj)[index]
+                }
+            });
+            return resultObject;
+        }
+        console.log(convertObjectToArrayOfObjects(newProduct));
         if(teamID){
             let card : productType = {
                 name : newProduct.name,
                 description : newProduct.description,
-                composition : newProduct.composition as {},
+                composition : convertObjectToArrayOfObjects(newProduct.composition as {}),
                 teamID : teamID,
                 
             }

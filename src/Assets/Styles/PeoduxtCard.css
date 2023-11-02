@@ -20,8 +20,13 @@
     flex-direction: column;
     gap: 10px;
 }
+.editor__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .editot__component__delete
-{
+{   
     margin-left: 20px;
     background-color: rgb(89, 89, 165);
     padding: 3px;

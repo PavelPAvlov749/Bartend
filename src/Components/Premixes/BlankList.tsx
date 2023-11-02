@@ -8,7 +8,7 @@ import { parseElementNameToString } from "../../Helpers/Helpers";
 
 
 export const PremixesList = (props: { blanks: productType[] ,dispatch : any,Navigate : (a : string) => any}) => {
-    console.log(props.blanks)
+
     if (props.blanks.length > 0) {
         return (
             <>

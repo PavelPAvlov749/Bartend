@@ -3,7 +3,8 @@ import {  productType } from "./Types";
 import { app_actions } from "./AppReducer";
 import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { blanksActions } from "./BlankShiftReducer";
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import { DocumentData} from "firebase/firestore";
+
 
 
 const SET_PREMIXES = "barApp/productReducer/setProducts";
@@ -18,7 +19,7 @@ const UPDATE_DESCRIPTION = "barApp/ProductReducer/updateDescription";
 type initial_state_type = {
     premixes : productType[] | [],
     newPremix : productType | null,
-    actualProductCard : productType | null,
+    actualProductCard : productType,
     newCard : {
         name : string | null,
         composition : any [],
@@ -31,7 +32,7 @@ type initial_state_type = {
 let initial_state : initial_state_type = {
     premixes : [],
     newPremix : null,
-    actualProductCard : null,
+    actualProductCard : null as unknown as productType,
     newCard : {
         name : null,
         composition : [],
@@ -72,12 +73,26 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 premixes :  [...state.premixes.filter((el : productType) => el.id !== action.payload)]
             }
         }
-        // case DELETE_COMPONENT : {
-        //     return {
-        //         ...state,
-        //         actualProductCard : {...state.actualProductCard,composition : state.actualProductCard}
-        //     }
-        // }
+        case UPDATE_DESCRIPTION : {
+            return {
+                ...state,
+                actualProductCard : {...state.actualProductCard,description : action.payload}
+            }
+        }
+        case DELETE_COMPONENT : {
+            return {
+                ...state,
+                actualProductCard : {...state.actualProductCard,composition : state.actualProductCard.composition.filter((el) => {
+                    // Compare object keys with key passed by action.payload
+                    if (Object.keys(el)[0] != action.payload)
+                    {
+                        // Return all Objects not equals to action.payload
+                        return {el}
+                    }
+                })}
+            }
+        }
+
         default:
             return state
     }
@@ -100,10 +115,18 @@ export const productActions = {
     type : "barApp/ProductReducer/RemoveProduct",
     payload : productID
   } as const),
-  setProductCard : (card : productType | null) => ({
+  setProductCard : (card : productType) => ({
     type : "barApp/ProductReducer/setProductCard",
     payload : card
-  } as const )
+  } as const ),
+  updateDescription : (description : string) => ({
+    type : "barApp/ProductReducer/updateDescription",
+    payload : description
+  } as const),
+  deleteComponent : (key : string) => ({
+    type : "barApp/ProductReducer/deleteComponent",
+    payload : key
+  } as const)
 
 
 }
@@ -143,7 +166,7 @@ export const setProductCardThunk = (productID : string) => {
         }
         else
         {
-            dispatch(productActions.setProductCard(null));
+            dispatch(productActions.setProductCard(null as unknown as productType));
         }
     }
 }

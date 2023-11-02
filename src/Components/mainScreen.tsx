@@ -18,7 +18,7 @@ export const Header = () => {
             <ul className={styles.main_page_navigation}>
                 <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
 
-                    <a>Чек-листы</a>
+                    <a>Check - lists</a>
 
                     <img className="icon" src={docIcon} alt="" />
 
@@ -26,7 +26,7 @@ export const Header = () => {
                 <li id="blank-shift" className={styles.green} onClick={() => { navigate("/shiftManager") }}>
 
 
-                    <a>Заготовки</a>
+                    <a>Premixes</a>
                     <img className="icon" src={chemistryIcon} alt="" />
 
                 </li>
@@ -34,14 +34,14 @@ export const Header = () => {
                 <li id="sheldue" className={styles.darkBlue} onClick={() => { navigate("/check_lists") }}>
 
 
-                    <a>График</a>
+                    <a>Sheldue</a>
                     <img className="icon" src={sheldue} alt="" />
 
                 </li>
                 <li id="team" className={styles.orange} onClick={() => { navigate("/clan-list") }}>
 
 
-                    <a>Команда</a>
+                    <a>Team</a>
                     <img className="icon" src={teamicon} alt="" />
 
                 </li>
@@ -67,7 +67,7 @@ const MainPageNavigation = () => {
             <ul className={styles.main_page_navigation}>
                 <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
 
-                    <a>Чек-листы</a>
+                    <a>Check - lists</a>
 
                     <img className="icon" src={docIcon} alt="" />
 
@@ -75,7 +75,7 @@ const MainPageNavigation = () => {
                 <li id="blank-shift" className={styles.green} onClick={() => { navigate("/shiftManager") }}>
 
 
-                    <a>Заготовки</a>
+                    <a>Premixes</a>
                     <img className="icon" src={chemistryIcon} alt="" />
 
                 </li>
@@ -83,14 +83,14 @@ const MainPageNavigation = () => {
                 <li id="sheldue" className={styles.darkBlue} onClick={() => { navigate("/check_lists") }}>
 
 
-                    <a>График</a>
+                    <a>Sheldue</a>
                     <img className="icon" src={sheldue} alt="" />
 
                 </li>
                 <li id="team" className={styles.orange} onClick={() => { navigate("/clan-list") }}>
 
 
-                    <a>Команда</a>
+                    <a>Team</a>
                     <img className="icon" src={teamicon} alt="" />
 
                 </li>

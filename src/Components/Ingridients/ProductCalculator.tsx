@@ -10,7 +10,7 @@ import { productType } from "../../Redux/Types";
 export const ProdicuCalculater = (props : { product: productType | null}) => {
     // Multiplier value
     let [value, setValue] = useState(1);
-
+    console.log(props.product);
     // Input Handler
     // Function to calculate value of prdoduct composition
     function calculate(event: React.SyntheticEvent<HTMLInputElement>) {
@@ -24,10 +24,10 @@ export const ProdicuCalculater = (props : { product: productType | null}) => {
     return (
       
             <section className="product-card__calculator">
-                <input type="number" placeholder=" Сколько готовим?" onChange={calculate} />
+                <input type="number" placeholder=" How much do we need?" onChange={calculate} />
                 <br />
                 <div className="calculated_result">
-                    {calculateAndParseIntoComponent(props.product as productType, value)}
+                    {calculateAndParseIntoComponent(props.product?.composition as {}[], value)}
                 </div>
             </section>
 
