@@ -62,7 +62,6 @@ export const Registration = () => {
                                     // @ts-ignore 
                                     onClick={handleSubmit} id="submit_reg" type="submit">Создать акаунт</button>
                             
-                            
                             </div>
                         )
                     }}

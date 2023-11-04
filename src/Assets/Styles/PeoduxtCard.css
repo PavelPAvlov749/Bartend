@@ -14,6 +14,29 @@
     align-items: center;
     gap: 10px;
 }
+.editor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.editor__newcomponent-input {
+    padding: 10px 5px;
+    border-radius: 3px;
+    background-color: rgb(53, 53, 53);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.editor__tittle {
+    color: rgb(90, 170, 245);
+}
+.editor__composition {
+    display: flex;
+    padding: 10px 0;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 20px;
+}
 .card-editor {
     padding: 20px 0px;
     display: flex;

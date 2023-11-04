@@ -47,7 +47,7 @@ export const CurrentShift = React.memo((props: currentShiftPropType) => {
                 <IngridientList ingridients={state} setState={setState} />
                 <button
                     className={'confirm_button'}
-                    onClick={endShift}>Закончить смену
+                    onClick={endShift}>End shift
                 </button>
             </section>
         )

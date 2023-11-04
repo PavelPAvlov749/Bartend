@@ -11,7 +11,6 @@ const SET_PREMIXES = "barApp/productReducer/setProducts";
 const SET_ACTUAL_PRODUCT_CARD = 'barApp/productReducer/setActualProductCard';
 const REMOVE_PRODUCT = "barApp/ProductReducer/RemoveProduct";
 const SET_PRDOCUCT_CARD = "barApp/ProductReducer/setProductCard";
-// const UPDATE_COMPOSITION = "barApp/ProductReducer/updateComposition";
 const DELETE_COMPONENT = "barApp/ProductReducer/deleteComponent";
 const ADD_COMPONENT = "barApp/ProductReducer/addComponent";
 const UPDATE_DESCRIPTION = "barApp/ProductReducer/updateDescription";
@@ -92,6 +91,12 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 })}
             }
         }
+        case ADD_COMPONENT : {
+            return {
+                ...state,
+                actualProductCard : {...state.actualProductCard,composition : [...state.actualProductCard.composition,action.payload]}
+            }
+        }
 
         default:
             return state
@@ -126,8 +131,11 @@ export const productActions = {
   deleteComponent : (key : string) => ({
     type : "barApp/ProductReducer/deleteComponent",
     payload : key
+  } as const),
+  addComonent : (compoennt : {[x : string] : string}) => ({
+    type : "barApp/ProductReducer/addComponent",
+    payload : compoennt
   } as const)
-
 
 }
 

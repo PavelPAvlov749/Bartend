@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import { CheckLists } from "../Modules/ChecklistApp/Components/CheckLists";
 import { CheckListPage } from "../Modules/ChecklistApp/Components/CheclListPage";
 import { Premixes } from "../Components/Ingridients/Premixes";
-import { ProductCard } from "../Components/Ingridients/ProductCard";
+import { ProductCardContainer } from "../Components/Ingridients/ProductCardContainer";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
 
 
@@ -93,7 +93,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : PRODUCT_CARD,
-        element : <ProductCard/>
+        element : <ProductCardContainer/>
     },
     {
         path : NEW_BLANK_SHIFT,

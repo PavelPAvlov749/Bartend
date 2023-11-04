@@ -1,43 +1,32 @@
-// React,React hooks
-import { useReducer} from "react";
+// TYPES
+import { productType } from "../../Redux/Types"
 // Components
-// Styles and Assets
-import "../../Assets/Styles/PeoduxtCard.css";
-// Redux 
-// ....
-// Custom hooks
-import { useProductCard } from "./UseProductCard";
-// Helpers 
-import { ProductDescription } from "./ProductDescription";
-import { DotsMenu } from "./Menu";
-import { Reducer } from "./Reducer";
-import { ProductComposition } from "./Composition";
-import { ProdicuCalculater } from "./ProductCalculator";
-import { productType } from "../../Redux/Types";
+import { ProductComposition } from "./Composition"
+import { ProdicuCalculater } from "./ProductCalculator"
+import { ProductDescription } from "./ProductDescription"
 
+// DEFINE A PROP TYPE
+// ------------------
+type CardPropsType = {
+    isEditMode : {isEditMode : boolean},
+    setEditMode : any,
+    card : productType,
+}
+// -----------------
 
 /**
- * productCard Container Compoennt
- * @returns React.Ellement
+ * Render product card page if isEditMode equals to false in parent component
+ * @param props CardPropdType
+ * @returns React.Element
  */
 
-export const ProductCard = () => {
-    // Get data from hook
-    let card = useProductCard();
-    // General reducer for all chil compoennt
-    // Toogle card Editing mode
-    let [isEditMode,setEditMode] = useReducer(Reducer,{isEditMode : false});
-
+export const ProductCard : React.FC<CardPropsType> = (props : CardPropsType) => {
     return (
-
-        <section className={`product_card container translate_animation`}>
-            <h1>{card?.name}</h1>
-            {/* Pass Edit mode toggler into Menu component props */}
-            <DotsMenu isEditMode={isEditMode.isEditMode} setEditMode={setEditMode} card={card as productType}/>
-            {card && <ProductDescription isEditMode={isEditMode.isEditMode} setState={setEditMode} description={card?.description}/>}
-            {card && <ProductComposition card={card} isEditMode={isEditMode.isEditMode} composition={card?.composition as {}[]} />}
-            {card && <ProdicuCalculater product={card}/>}
-        </section>
-
+        <>
+            <ProductDescription isEditMode={props.isEditMode.isEditMode} setState={props.setEditMode} description={props.card?.description as string} />
+            <ProductComposition card={props.card as productType} isEditMode={props.isEditMode.isEditMode} composition={props.card?.composition as {}[]} />
+            <ProdicuCalculater product={props.card} />
+        </>
     )
+
 }

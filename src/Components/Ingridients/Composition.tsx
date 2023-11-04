@@ -1,11 +1,7 @@
 // React,ReactHooks
-import React, { ReactNode, useState } from "react"
-
+import {useState } from "react"
 // Redux,ThunkActions
 import { productType } from "../../Redux/Types";
-import { useDispatch } from "react-redux";
-import { productActions } from "../../Redux/ProductReduxer";
-
 // Helpers
 import { parseComposition } from "../../Helpers/Helpers";
 
@@ -38,12 +34,6 @@ export const ProductComposition = (props: ProductCompositionType) => {
         setIsOpen(!isOpen);
     }
 
-    // Delete component handler 
-    const dispatch: any = useDispatch();
-    function deleteHandler(event: React.SyntheticEvent<HTMLSpanElement>) {
-        dispatch(productActions.deleteComponent(event.currentTarget.id));
-    }
-
     // If isOpen === false render the Show button
     if (!isOpen) {
         return (
@@ -55,26 +45,7 @@ export const ProductComposition = (props: ProductCompositionType) => {
         return (
             <section>
                 <button onClick={toggle}>Composition</button>
-                {/* Check isEditMode flag */}
-                {!props.isEditMode ? <p className="composition">{parseComposition(props.composition)}</p> :
-                // Editor component (Move to separate component later)
-
-                    <ul className="card-editor">
-                        {props.composition.map((el: {}, index: number, array: {}[]) => {
-                            return (
-                                <li className="editor__item">
-                                    <span>{Object.keys(el)[0] + " : "}</span>
-                                    <span >{Object.values(el)[0] as ReactNode}</span>
-                                    <span id={Object.keys(el)[0]} className="editot__component__delete" onClick={deleteHandler}>Delete</span>
-                                    <br />
-                                </li>
-                            )
-                        })}
-
-                    </ul>
-
-                }
-
+                <p className="composition">{parseComposition(props.composition)}</p>
             </section>
         )
     }
