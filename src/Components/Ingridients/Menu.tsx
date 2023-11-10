@@ -7,7 +7,7 @@ import { UseToggle } from "../../Helpers/CustomHooks";
 import { useDispatch } from "react-redux";
 // Types
 import { productType } from "../../Redux/Types";
-import { Firestore_instance } from "../../services/Firebase/PremixesAPI";
+import { premixAPI } from "../../services/Firebase/PremixAPI";
 
 
 // PROPS TYPE
@@ -56,7 +56,7 @@ export const DotsMenu = (props: DotsMenuPropsType) => {
     }
     // SaveChanges handler 
     function saveChanges () {
-        Firestore_instance.updatePrdocurCard(props.card);
+        premixAPI.updatePrdocurCard(props.card);
         props.setEditMode({type : 'toggleEditMode',payload : undefined});
         toggle();
     }

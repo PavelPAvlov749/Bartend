@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../Assets/Styles/NewProduct.css"
 import {newCardActions } from "../../Redux/NewCardReducer";
-import add from "../../Assets/Icons/icons8-add-96.png"
 import { NewIngridientSingleForm } from "./NewIngridientSingleForm";
-
+import styles from "../../Assets/Styles/ProductConstructor.module.css"
 
 export const FirstStep = (props : {isDarkTheme : boolean}) => {
     const dispatch: any = useDispatch()
@@ -25,10 +24,9 @@ export const FirstStep = (props : {isDarkTheme : boolean}) => {
     ])
     return (
         <section className={props.isDarkTheme ? "new_premix_first_step container DarkTheme" : "container LightTheme"}>
-            <h2>Введите наименование : </h2>
             <input type="text" placeholder="Наименование" id="name" onChange={(e) => { onNameChange(e) }} />
             <section className="compound">
-                <h2>Состав : </h2>
+                <h2>СComposition : </h2>
                 <div className="compound_inputs">
                     {forms}
 

@@ -1,10 +1,11 @@
 
-import { CollapseClassKey } from "@mui/material";
+
 import { coctailDbAPI } from "../services/Axios/CocktailDbAPI";
-import { CheckListsAPI } from "../services/Firebase/CkeckListsAPI";
+
 import { app_actions } from "./AppReducer";
 import { InferActionType } from "./Store";
-import { Firestore_instance } from "../services/Firebase/PremixesAPI";
+
+import { KnowledgeBase } from "../services/Firebase/KnowledgeBaseAPI";
 
 const GET_COCKTAILS = "barApp/KnowledgeBaseReducer/get_cocktails"
 const SET_CURRENT_COCKTAIL = "barApp/KnowledgeBaseReducer/setCurrentCocktail"
@@ -102,12 +103,10 @@ export const KnowledgeBaseActions = {
 
 export const getCocktailsThunk = () => {
     return async function (dispatch: any) {
-        let cocktails = await coctailDbAPI.getAllCoctails().then((res) => {
+        await coctailDbAPI.getAllCoctails().then((res) => {
             dispatch(KnowledgeBaseActions.getCocktails(res))
         })
-        // if (cocktails) {
-            // dispatch(KnowledgeBaseActions.getCocktails(cocktails))
-        // }
+
     }
 }
 
@@ -132,7 +131,7 @@ export const getCocktailByID = (id : string) => {
 }
 export const getSpiritsThunk = () => {
     return async function (dispatch : any) {
-        let spirits = await Firestore_instance.getAllSpirits()
+        let spirits = await KnowledgeBase.getAllSpirits()
         dispatch(KnowledgeBaseActions.getSpitis(spirits as spiritType[]))
     }
 }
@@ -140,7 +139,7 @@ export const getSpiritsThunk = () => {
 export const getCurrentIngridient = (id : string) => {
     return async function (dispatch : any) {
         dispatch(app_actions.setFetch(true))
-        let ingridient = await Firestore_instance.getIngridientByID(id)
+        let ingridient = await KnowledgeBase.getIngridientByID(id)
         dispatch(KnowledgeBaseActions.setCurrentSpirit(ingridient))
         dispatch(app_actions.setFetch(false))
     }

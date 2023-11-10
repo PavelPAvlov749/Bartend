@@ -5,9 +5,9 @@
 }
 
 .cocktail_card {
+    border: 1px solid white;
     display: flex;
     flex-direction: column;
-    background-color: rgb(66, 126, 126);
     width: 100%;
     max-width: 200px;
     overflow: hidden;
@@ -84,8 +84,7 @@
         padding: 5px;
     }
     .cocktail_card {
-
-        background-color: rgb(73, 135, 125);
+        border: 1px solid rgb(164, 164, 164);
         border-radius: 5px;
         text-align: center;
         align-items: center;
@@ -152,7 +151,6 @@
         object-fit: contain;
     }
     .cocktail_card {
-        background-color: rgb(73, 135, 125);
         border-radius: 5px;
         text-align: center;
         align-items: center;

@@ -26,15 +26,14 @@ function App() {
   useEffect(() => {
     dispatch(initializeThunk());
   }, [])
-
   const isDarkTheme = useSelector((state: Global_state_type) => state.App.isDarktheme);
   const isInit = useSelector((state: Global_state_type) => state.App.isInit);
+  const isError = useSelector((state : Global_state_type) => state.App.isError);
 
   if (isInit) {
-
     return (
       <div className={isDarkTheme ? "App DarkTheme translate_animation" : "App LightTheme translate_animation"}>
-
+        
         <HashRouter>
           <Suspense fallback={<Preloader />}>
             <Navbar theme={isDarkTheme} />

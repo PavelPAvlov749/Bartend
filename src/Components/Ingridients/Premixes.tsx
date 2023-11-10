@@ -17,9 +17,9 @@ import "../../Assets/Styles/Premixes.css"
 import searchIcon from "../../Assets/Icons/icons8-search-100.png"
 import backIcom from "../../Assets/Icons/icons8-back-90.png";
 import addIcon from "../../Assets/Icons/icons8-add-100.png";
-import backIconsLight from "../../Assets/Icons/icons8-reply-arrow-100.png"
-import addIconLight from "../../Assets/Icons/icons8-add-100 (1).png"
-import searchIconLight from "../../Assets/Icons/icons8-search-100(1).png"
+import backIconsLight from "../../Assets/Icons/icons8-reply-arrow-100.png";
+import addIconLight from "../../Assets/Icons/icons8-add-100 (1).png";
+import searchIconLight from "../../Assets/Icons/icons8-search-100(1).png";
 // ----------------
 // IMPORT COMPONENTS
 // ----------------
@@ -34,11 +34,11 @@ import { useProductFilter, useProducts } from "../../Helpers/CustomHooks";
 
 export const Premixes = () => {
     
-    const dispatch: any = useDispatch()
-    const isDarkTheme = useSelector((state: Global_state_type) => state.App.isDarktheme)
-    const [products,filterProducts] = useProductFilter("")
-    let [isSearch, setIsSearch] = useState(false)
-    const Navigate = useNavigate()
+    const dispatch: any = useDispatch();
+    const isDarkTheme = useSelector((state: Global_state_type) => state.App.isDarktheme);
+    const [products,filterProducts] = useProductFilter("");
+    let [isSearch, setIsSearch] = useState(false);
+    const Navigate = useNavigate();
 
     return (
         <section className={isDarkTheme ? "container translate_animation DarkTheme" : "container translate_animation LightTheme"}>

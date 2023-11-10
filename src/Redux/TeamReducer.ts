@@ -1,6 +1,6 @@
 import { InferActionType } from "./Store";
-import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { app_actions } from "./AppReducer";
+import { TeamModuleAPI } from "../services/Firebase/TeamAPI";
 
 const SET_CLAN_LIST = "barApp/clanReducer/setDlanList"
 const SET_SEARCHED_CLAN_NAME = "barApp/clanReducer/setSearchedClanList"
@@ -118,8 +118,8 @@ export const clanActions = {
 
 export const createClanThunk = (team : {newTeamName : string,newTeamDescription : string,},userID : string,userName : string) => {
     return async function (dispatch : any) {
-        await Firestore_instance.createTheClan(team,userID,userName)
-        let newTeam = await Firestore_instance.getClansByUserID(userID)
+        await TeamModuleAPI.createTheClan(team,userID,userName)
+        let newTeam = await TeamModuleAPI.getClansByUserID(userID)
         if(team) {
             dispatch(clanActions.setTeam(newTeam))
             dispatch(app_actions.setFetch(false))
@@ -132,7 +132,7 @@ export const createClanThunk = (team : {newTeamName : string,newTeamDescription 
 export const getClanListByUserID = (userID : string) => {
     return async function (dispatch : any) {
         dispatch(app_actions.setFetch(true))
-        let team = await Firestore_instance.getClansByUserID(userID)
+        let team = await TeamModuleAPI.getClansByUserID(userID)
         if(team) {
             dispatch(clanActions.setTeam(team))
             dispatch(app_actions.setFetch(false))
@@ -144,7 +144,7 @@ export const getClanListByUserID = (userID : string) => {
 export const getAllClans = () => {
     return async function (dispatch : any) {
         dispatch(app_actions.setFetch(true))
-        let clans = await Firestore_instance.getClanList()
+        let clans = await TeamModuleAPI.getClanList()
         dispatch(clanActions.setClanLit(clans as ClanType[]))
         dispatch(app_actions.setFetch(false))
     }
@@ -152,7 +152,7 @@ export const getAllClans = () => {
 
 export const joinTheClan = (userID : string,userName : string,clanID : string,clanName:string) => {
     return async function (dispatch : any) {
-        await Firestore_instance.joinTheClan(userID,userName,clanID,clanName)
+        await TeamModuleAPI.joinTheClan(userID,userName,clanID,clanName)
         
     }
 }
@@ -160,7 +160,7 @@ export const joinTheClan = (userID : string,userName : string,clanID : string,cl
 export const leaveTheTeam = (teamID : string,userID : string,userName : string) => {
     return async function (dispatch : any) {
       
-        await Firestore_instance.leavetheTeam(teamID,userID,userName)
+        await TeamModuleAPI.leavetheTeam(teamID,userID,userName)
         dispatch(clanActions.leaveTheTeam())
         
     }

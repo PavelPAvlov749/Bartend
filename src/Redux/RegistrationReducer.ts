@@ -1,4 +1,4 @@
-import { Firestore_instance } from "../services/Firebase/PremixesAPI";
+import { authApi } from "../services/Firebase/AuthAPI";
 import { InferActionType } from "./Store";
 
 
@@ -95,8 +95,6 @@ export const createNewAdminUser = (user : initial_state_type) => {
 }
 export const createNewUserByEmailAndPassword = (nickName : string,email : string,password : string) => {
     return async function (dispatch : any) {
-        await Firestore_instance.createuserWithEmailAndPassword(nickName,email,password)
-
-        
+        await authApi.createUserWithEmailAndPassword(email,nickName,password);
     }
 }

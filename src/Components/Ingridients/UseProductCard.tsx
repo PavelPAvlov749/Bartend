@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom"
-import { Firestore_instance } from "../../services/Firebase/PremixesAPI";
 import { Global_state_type } from "../../Redux/Store";
 import { setProductCardThunk } from "../../Redux/ProductReduxer";
 

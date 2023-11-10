@@ -1,9 +1,9 @@
 import { InferActionType } from "./Store";
 import {  productType } from "./Types";
 import { app_actions } from "./AppReducer";
-import { Firestore_instance } from "../services/Firebase/PremixesAPI";
 import { blanksActions } from "./BlankShiftReducer";
 import { DocumentData} from "firebase/firestore";
+import { premixAPI } from "../services/Firebase/PremixAPI";
 
 
 
@@ -14,6 +14,9 @@ const SET_PRDOCUCT_CARD = "barApp/ProductReducer/setProductCard";
 const DELETE_COMPONENT = "barApp/ProductReducer/deleteComponent";
 const ADD_COMPONENT = "barApp/ProductReducer/addComponent";
 const UPDATE_DESCRIPTION = "barApp/ProductReducer/updateDescription";
+
+
+
 
 type initial_state_type = {
     premixes : productType[] | [],
@@ -144,9 +147,9 @@ export const getProductsByCompanyID = (companyID : string) => {
     return async function (dispatch : any) {
         // dispatch(app_actions.setInit(false))
         dispatch(app_actions.setFetch(true))
-        const products = await Firestore_instance.getProductsByCompanyID(companyID)
-        dispatch(productActions.setPremixes(products))
-        dispatch(blanksActions.setProductList(products))
+        const products = await premixAPI.getProductsByCompanyID(companyID)
+        dispatch(productActions.setPremixes(products as productType[]))
+        dispatch(blanksActions.setProductList(products as productType[]))
         setTimeout(() => {
             dispatch(app_actions.setFetch(false))
         },0)
@@ -157,8 +160,8 @@ export const getProductsByCompanyID = (companyID : string) => {
 
 export const deleteProductCrad = (productID : string) => {
     return async function (dispatch : any) {
-      
-        await Firestore_instance.deleteProduct(productID)
+
+        await premixAPI.deleteProduct(productID)
         dispatch(productActions.removeProduct(productID))
     
        
@@ -167,7 +170,7 @@ export const deleteProductCrad = (productID : string) => {
 
 export const setProductCardThunk = (productID : string) => {
     return async function (dispatch : any) {
-        let card : DocumentData | undefined = await Firestore_instance.getProductByID(productID);
+        let card : DocumentData | undefined = await premixAPI.getProductByID(productID);
         if(card)
         {
             dispatch(productActions.setProductCard(card.data()));

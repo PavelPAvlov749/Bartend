@@ -25,8 +25,9 @@ export const KnowledgeBase = () => {
             <h2>База знаний</h2>
             <Box sx={{width: '100%',marginBottom : "5px" }}>
                 <Tabs value={value} onChange={handleChange} sx={{}} >
-                    <Tab sx={{width : "50%",fontSize : "14px",color : isDarkTheme ? "white" : "black"}} label="Коктейли" />
-                    <Tab  sx={{width : "50%",fontSize : "14px",color :  isDarkTheme ? "white" : "black"}}  label="Спирты" />
+                    <Tab sx={{width : "33%",fontSize : "14px",color : isDarkTheme ? "white" : "black"}} label="Coktails" />
+                    <Tab  sx={{width : "33%",fontSize : "14px",color :  isDarkTheme ? "white" : "black"}}  label="Spirits" />
+                    <Tab  sx={{width : "33%",fontSize : "14px",color :  isDarkTheme ? "white" : "black"}}  label="Premixes" />
                 </Tabs>
             </Box>
             <KnowledgeBaseContent value={value}/>
