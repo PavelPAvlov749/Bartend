@@ -1,186 +1,7 @@
-import { ref, get, child, push, update, } from "firebase/database";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import FirebaseApi, { dataBase, Firebase_auth } from "./FirebaseConfig";
-import { firebase } from "./FirebaseConfig";
-import { GoogleAuthProvider } from "firebase/auth";
-import { getStorage, ref as storage_ref } from "firebase/storage";
-import { responsiveFontSizes } from "@mui/material";
-import { FirestoreError, collection, doc, getDoc, query, setDoc, where } from "firebase/firestore";
-import { FirebaseError } from '@firebase/util'
 
-//Abstarct API class 
-export class abstractAPI {
-    protected RealtimeDataBase = dataBase
-    protected DatabaseRef = ref(dataBase)
-    protected firebaseAPP = firebase
-    protected firebaseStorage = getStorage(this.firebaseAPP)
-    protected storageRefrence = storage_ref(this.firebaseStorage)
-    protected firebaseAuth = Firebase_auth
-    protected googleAuthProvider = new GoogleAuthProvider()
-    protected signInWithPopUp = signInWithPopup
-    public ref = ref
-
-    public getAuthProvider() {
-
-        return this.googleAuthProvider
-    }
-    public getAuthInstatnce() {
-        return this.firebaseAuth
-    }
-    public getApp() {
-        return this.firebaseAPP
-    }
-
-    public getDatabase() {
-        return this.RealtimeDataBase
-    }
-
-}
-
-
-
-class AuthAPI extends abstractAPI {
-    constructor() {
-        super()
-    }
-    checkAuthState = onAuthStateChanged
-
-    async signInByEmailAndPassword(email: string, password: string) {
-        try {
-
-            const userID = await (await signInWithEmailAndPassword(this.firebaseAuth, email, password)).user.uid
-            console.log(userID)
-            return userID
-        } catch (ex) {
-            console.log(ex)
-        }
-    }
-    async signOut() {
-        await signOut(this.firebaseAuth)
-
-    }
-    /**
-     * Google Sign With PopUp function
-     * If the user is authenticating for the first time, then we register 
-     * by saving his ID, username, email in the firestore `Users`
-     * @returns object user <UsrtType>
-    //  */
-    // async signInWithPopUp() {
-    //     try {
-    //         // Get user document refrence
-    //         let userRef = ref(this.RealtimeDataBase, "Users/" + this.firebaseAuth.currentUser?.uid);
-    //         // Fetch Data
-    //         let result = await get(userRef);
-    //         // Check if user with this uid already exist in Firestore Database
-    //         if (!result.val()) {
-    //             // If user does not exist we create a new user
-    //             // Define a new user Object
-    //             let newUser = {
-    //                 userName: this.firebaseAuth.currentUser?.displayName,
-    //                 userID: this.firebaseAuth.currentUser?.uid,
-    //                 team: null,
-    //                 teamID: null
-    //             };
-    //             let updates: any = {};
-    //             // Udate Firestore Data
-    //             updates["Users/" + this.firebaseAuth.currentUser?.uid] = newUser;
-    //             update(ref(this.RealtimeDataBase), updates);
-    //             // Return result
-    //             return result.val();
-    //         }
-    //         else {
-    //             // If user already exist just retirn result
-    //             return result.val();
-    //         }
-
-    //     }
-    //     catch (ex) {
-    //         console.log(ex);
-    //     }
-    //     const result = await signInWithPopup(this.firebaseAuth, this.googleAuthProvider).then((response) => {
-    //         const userRef = ref(this.RealtimeDataBase, "Users/" + this.firebaseAuth.currentUser?.uid);
-    //         const result = get(userRef,).then((response) => {
-    //             if (response.val() === null || response.val() === undefined) {
-    //                 console.log("ADDING NEW USER")
-    //                 const new_user = {
-    //                     fullName: this.firebaseAuth.currentUser?.displayName,
-    //                     posts: {},
-    //                     status: null,
-    //                     foloowers: {},
-    //                     subscribes: {},
-    //                     userID: this.firebaseAuth.currentUser?.uid,
-    //                     avatar: this.firebaseAuth.currentUser?.photoURL
-    //                 };
-    //                 const updates: any = {};
-    //                 updates["Users/" + this.firebaseAuth.currentUser?.uid] = new_user;
-    //                 update(ref(this.RealtimeDataBase), updates);
-    //                 return response
-    //             }
-    //         })
-    //         return response
-    //     })
-    //     return result
-    // }
-    async createUserWithEmailAndPassword(email: string, password: string, userName: string, avatar?: Blob | Uint16Array | ArrayBuffer, status?: string) {
-        try {
-            const newUser = (await createUserWithEmailAndPassword(this.firebaseAuth, email, password)).user
-            const newUserRef = push(child(ref(this.RealtimeDataBase), "Users/")).key
-            const RealtimeDatabaseUser = {
-                fullName: userName,
-                userID: newUser.uid,
-                avatar: null,
-                posts: {},
-                likesCount: null,
-                status: null,
-                followers: {},
-                subscibes: {},
-                chat: {},
-                savedPosts: {}
-            }
-            const updates: any = {};
-            updates[`Users/` + newUser.uid] = RealtimeDatabaseUser;
-            //Update Database with new element
-            update(ref(this.RealtimeDataBase), updates);
-            const user = get(child(this.ref(this.RealtimeDataBase), "Users/" + newUser.uid))
-            console.log(user)
-            return user
-        } catch (ex) {
-            console.log(ex)
-        }
-    }
-    async getCurrentUserID() {
-        const currentUserID = await this.firebaseAuth.currentUser?.uid
-        if (currentUserID) {
-            return currentUserID
-        }
-    }
-    // async getAccount(userID: string) {
-    //     try {
-    //         let usersRef = ref(this.RealtimeDataBase, "Users/" + userID)
-    //         // let result = await (await get(query(usersRef))).val()
-    //         if (result) {
-    //             const account = {
-    //                 fullName: result.fullName,
-    //                 avatar: result.avatar,
-    //                 userID: result.userID,
-    //                 status: result.status,
-    //                 chats: Object.hasOwn(result, "chats") ? Object.values(result.chats) : [] as Array<any>
-    //             }
-    //             return account
-    //         } else {
-    //             throw new Error()
-    //         }
-
-    //     } catch (ex) {
-    //         console.error(ex)
-    //     }
-
-    // }
-
-}
-
-// export const authAPI = new AuthAPI()
-
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import FirebaseApi from "./FirebaseConfig";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 
 
 
@@ -209,6 +30,34 @@ class authAPI extends FirebaseApi {
         }
     }
     /**
+     * Create new user document in Firestore by GoogleAuthProvider credentials
+     * 
+     * @param userID string
+     * @param userName string
+     * 
+     * @returns void
+     */
+    public async createUserFromGoogleCredentials (userID : string,userName : string) {
+        try
+        {
+            // Creatae document refrence 
+            let userPath = await collection(this.firestore, "Users/");
+            let userRef = await doc(userPath, userID);
+            // Create new user Document and Write the data into firesstore
+            await setDoc(userRef,{
+                userName : userName,
+                userID : userID,
+                teamID : null,
+                teamName : null
+            });
+        }
+        catch (ex)
+        {
+            console.log(ex);
+        }
+
+    }
+    /**
      * Sign in bt email and apssword function 
      * @param email string
      * @param password string
@@ -223,6 +72,28 @@ class authAPI extends FirebaseApi {
         }
         catch (ex) {
             console.log(ex)
+        }
+    }
+    /**
+     * Check is user document exist in Firestore
+     * Returns boolean flag
+     * @param userID string
+     * 
+     * @returns boolean 
+     */
+    public async isUserExist (userID : string) {
+        try
+        {
+            // Get document refrence 
+            let userRef = doc(this.firestore,"Users/",userID);
+            // Check if user document alreadfy exist in database
+            let userDoc = await getDoc(userRef);
+            // Return boolean
+            return userDoc.exists();
+        }   
+        catch (ex)
+        {
+            console.log(ex);
         }
     }
     /**

@@ -16,12 +16,12 @@ import { ROUTE } from "../Redux/Types";
 // anotherwise over PRIVATE_ROUTES
 
 
-const Router = React.memo((props: { isDarkTheme: boolean }) => {
-    
+const Router = React.memo(() => {
+    // Get Auth state from redux
     const isAuth = useSelector((state: Global_state_type) => { return state.App.isAuth })
-    console.log("Route")
-    if (isAuth) {
 
+    if (isAuth) {
+        // If authorized map only in PRIVATE_ROUTES
         return (
             <div className="content">
                 <Routes>
@@ -40,7 +40,7 @@ const Router = React.memo((props: { isDarkTheme: boolean }) => {
         return (
             <>
                 <Routes>
-                    {PUBLICK_ROUTES.map((route : ROUTE) => <Route path={route.path} element={route.element}/>)}
+                    {PUBLICK_ROUTES.map((route : ROUTE) => <Route key={route.path} path={route.path} element={route.element}/>)}
                 </Routes>
             </>
         )

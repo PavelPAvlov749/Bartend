@@ -1,3 +1,10 @@
+// -------------------------------------------
+// 
+//.............................................THIS FILE CONTAINS AN ARRAY MATCHING ADDRESS 
+//                                              STRINGS WITH THEIR CORRESPONDING COMPONENTS
+//                                              THESE ROUTES ARE USED BY THE FILE Router.tsx
+// -------------------------------------------
+
 // ---------- IMPORT REACT COMPOENTS
 
 import { Navigate } from "react-router-dom";
@@ -6,8 +13,6 @@ import { CheckListPage } from "../Modules/ChecklistApp/Components/CheclListPage"
 import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCardContainer } from "../Components/Ingridients/ProductCardContainer";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
-
-
 import { CreateTeam } from "../Components/Teams/CreateTeam";
 import { JoinTeam } from "../Components/Teams/JoinTeam";
 import { HomePage } from "../Components/mainScreen";
@@ -18,8 +23,8 @@ import { TeamPageContainer } from "../Components/Teams/ClanList";
 import { NewCheckList } from "../Modules/ChecklistApp/Components/NewCheckList";
 import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
 import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
-import { LoginPage } from "../Components/Registration/LoginPage";
-import { Registration } from "../Components/Registration/Registration";
+import { LoginPage } from "../Modules/Auth/LoginPage";
+import { Registration } from "../Modules/Auth/Registration";
 import { PremixesApp } from "../Modules/PremixesApp/Premixes";
 import { PassedShift } from "../Modules/PremixesApp/Components/HistoryPage/PassedShiftItem";
 import { ShiftConstructorContainer } from "../Modules/PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
@@ -34,11 +39,10 @@ export const ADD_PRODUCT = "/add"
 export const PRODUCT_CARD = "/card/:id"
 export const LOG_OUT = "/logOut"
 export const REGISTRATION = "/registration"
-// export const NO_MATCH_ROUTE = "*"
+export const NO_MATCH_ROUTE = "*"
 export const BLANK_SHIFT = "/blank-shift/*"
 export const STEP_2 = "add-step-two"
 export const NEW_BLANK_SHIFT = "/shiftManager/create-new"  
-
 export const CHECK_LISTS = "/check-lists"
 export const PASSED_SHIFT = "shiftManager/:id"
 export const CLAN_LISTS = "/clan-list"
@@ -49,6 +53,11 @@ export const CHECK_LIST = "/check-lists/:id"
 export const KNIWLEDGE_BASE = "knowledge-base"
 export const INGRIDIENT = "ingridient/:id"
 export const HISTORY = '/blank-shift/history'
+
+
+// PRIVATE ROUTES ARRAY
+// These routes are available only to authorized users
+// If an unauthorized user attempts to access, they are redirected to the login page
 
 export const PRIVATE_ROUTES : ROUTE[] = [
     {
@@ -103,10 +112,10 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         path : CHECK_LISTS,
         element : <CheckLists/>
     },
-    // {
-    //     path : NO_MATCH_ROUTE,
-    //     element : <Navigate to="/home" />
-    // },
+    {
+        path : NO_MATCH_ROUTE,
+        element : <Navigate to="/home" />
+    },
     {
         path : ADD_PRODUCT,
         element : <NewProduct isDarkTheme={true}/>
@@ -132,16 +141,18 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         element : <IngridientCard/>
     }
 ]
-
+// PUBLICK ROUTES ARRAY
+// This routes are accessible for all users includeing not authiorized users
+// 
 export const PUBLICK_ROUTES : ROUTE [] = [
     {
         path : LOG_OUT,
         element : <LoginPage/>
     },
-    // {
-    //     path : NO_MATCH_ROUTE,
-    //     element : <Navigate to={"/logOut"}/>
-    // },
+    {
+        path : NO_MATCH_ROUTE,
+        element : <Navigate to={"/logOut"}/>
+    },
     {
         path : REGISTRATION,
         element : <Registration/>

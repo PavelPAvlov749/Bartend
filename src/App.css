@@ -8,6 +8,7 @@
   grid-template-columns: 1fr 19fr;
   grid-template-rows: 1fr 15fr;
   grid-template-areas: 
+  "top top"
   "header header"
   "navbar content";
 }

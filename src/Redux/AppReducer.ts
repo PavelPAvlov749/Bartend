@@ -1,8 +1,7 @@
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 // import { authAPI } from "../services/Firebase/AuthAPI";
 import { InferActionType } from "./Store";
 import { userPageType } from "./Types";
-import { usersAPI } from "../services/Firebase/UsersAPI";
 import { authApi } from "../services/Firebase/AuthAPI";
 
 
@@ -108,32 +107,50 @@ export const app_actions = {
 
 }
 
+
+// Initialize Application ThunkAcrion
+// Check Auth state and get user data
 export const initializeThunk = () => {
   return async function (dispatch: any) {
-
-    const auth = getAuth()
+    dispatch(app_actions.setInit(false))
+    const auth = getAuth();
+    // Check Fireabse Auth State
     await onAuthStateChanged(auth, async (user) => {
+      // If user authorized get userOage from firestore
+      if (user) {
+        let isUserExist = await authApi.isUserExist(user.uid);
+        if (isUserExist) {
+          let userPage = await authApi.getUserByID(user?.uid as string);
+          dispatch(app_actions.setUserPage(userPage as userPageType));
+          // Set auth state in redux state
+          dispatch(app_actions.setInit(true));
+          dispatch(app_actions.setAuth(true));
+        }
+        else {
+          await authApi.createUserFromGoogleCredentials(user.uid, user.displayName as string)
+            .then( async (res) => {
+              let userPage = await authApi.getUserByID(user?.uid as string);
+              dispatch(app_actions.setUserPage(userPage as userPageType));
+              // Set auth state in redux state
+              dispatch(app_actions.setInit(true));
+              dispatch(app_actions.setAuth(true));
+            })
 
-
-      let userPage = await authApi.getUserByID(user?.uid as string);
-
-      if (userPage) {
-        dispatch(app_actions.setUserPage(userPage as userPageType))
-        dispatch(app_actions.setInit(true))
-        dispatch(app_actions.setAuth(true))
-
-      } else {
-        dispatch(app_actions.setInit(true))
-
+        }
+      }
+      else {
+        dispatch(app_actions.setInit(true));
       }
     });
   }
+
 }
 
 export const loginByEmailAndPassword = (email: string, password: string) => {
   return async function (dispatch: any) {
+    dispatch(app_actions.setInit(false));
     const userID = await authApi.loginWithEmailAndPassword(email, password);
-
+    dispatch(app_actions.setInit(true));
   }
 }
 

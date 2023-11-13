@@ -22,26 +22,14 @@ type initial_state_type = {
     premixes : productType[] | [],
     newPremix : productType | null,
     actualProductCard : productType,
-    newCard : {
-        name : string | null,
-        composition : any [],
-        id : string | null,
-        companyID : string | null,
-        description : string | null
-    }
+
 }
 
 let initial_state : initial_state_type = {
     premixes : [],
     newPremix : null,
     actualProductCard : null as unknown as productType,
-    newCard : {
-        name : null,
-        composition : [],
-        id : null,
-        companyID : null,
-        description : null
-    }
+
 
 }
 
@@ -73,31 +61,6 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
             return {
                 ...state,
                 premixes :  [...state.premixes.filter((el : productType) => el.id !== action.payload)]
-            }
-        }
-        case UPDATE_DESCRIPTION : {
-            return {
-                ...state,
-                actualProductCard : {...state.actualProductCard,description : action.payload}
-            }
-        }
-        case DELETE_COMPONENT : {
-            return {
-                ...state,
-                actualProductCard : {...state.actualProductCard,composition : state.actualProductCard.composition.filter((el) => {
-                    // Compare object keys with key passed by action.payload
-                    if (Object.keys(el)[0] != action.payload)
-                    {
-                        // Return all Objects not equals to action.payload
-                        return {el}
-                    }
-                })}
-            }
-        }
-        case ADD_COMPONENT : {
-            return {
-                ...state,
-                actualProductCard : {...state.actualProductCard,composition : [...state.actualProductCard.composition,action.payload]}
             }
         }
 

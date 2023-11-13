@@ -73,7 +73,7 @@
 
 @media(max-width:750px) {
     header {
-        display: none;
+        /* display: none; */
     }
 
     h2 {

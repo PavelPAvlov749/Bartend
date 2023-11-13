@@ -14,7 +14,7 @@ export const Header = () => {
     const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
 
     return (
-        <header>
+        <section className="header">
             <ul className={styles.main_page_navigation}>
                 <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
 
@@ -50,7 +50,7 @@ export const Header = () => {
             <div className={styles.swithcer}>
                 <ThemeSwitcher theme={theme} />
             </div>
-        </header>
+        </section>
 
 
     )

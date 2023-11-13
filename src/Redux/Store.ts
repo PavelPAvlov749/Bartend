@@ -6,7 +6,6 @@ import { appReducer } from "./AppReducer";
 import { productReducer } from "./ProductReduxer";
 import { newCardReducer } from "./NewCardReducer";
 import { blankShiftReducer } from "./BlankShiftReducer";
-import { newUserReducer } from "./RegistrationReducer";
 import { clanReducer } from "./TeamReducer";
 import { checkLisReducer } from "./CheckListReducer";
 import { KnowledgeBaseReducer } from "./KnowledgeBaseReducer";
@@ -19,7 +18,6 @@ let reducers = combineReducers({
     premixes : productReducer,
     newCard : newCardReducer,
     blankShift : blankShiftReducer,
-    newUser : newUserReducer,
     clans : clanReducer,
     chcekLists : checkLisReducer,
     knowledgeBase : KnowledgeBaseReducer
