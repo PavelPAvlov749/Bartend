@@ -2,6 +2,7 @@
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import FirebaseApi from "./FirebaseConfig";
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
+import { FirebaseError } from "firebase/app";
 
 
 
@@ -135,8 +136,13 @@ class authAPI extends FirebaseApi {
             console.log(userID);
             return userID;
         }
-        catch (ex) {
-            console.log(ex);
+        
+        catch (ex ) {
+            const firebaseError : FirebaseError = ex as FirebaseError;
+            return {
+                message : firebaseError.message,
+                errCode : firebaseError.code
+            };
         }
     }
     /**

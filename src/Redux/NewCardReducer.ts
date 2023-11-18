@@ -8,26 +8,30 @@ const SET_NEW_CARD_NAME = "barApp/productReducer/setNewName"
 const SET_NEW_CARD_DESCRIPTION = "barApp/productReducer/setNewDescription"
 const SET_NEW_CARD_ID = "barApp/productReducer/setNewID"
 const ADD_NEW_INGRIDEINT = "barApp/productReducer/addNewIngridient"
+const TOGGLE_VISIBILITY = "barApp/productReducer/toggleVisibility"
 
-type initialStateType = {
+interface IState  {
     name : string,
     companyID : string | null,
     description : string,
     keys : string[],
     values : string [],
     id : string | null,
-    composition : {} | null
+    composition : {} | null,
+    isVisibleForAll : boolean
 }
 
-const initialState : initialStateType = {
+const initialState : IState = {
     name : "",
     id : null,
     companyID : null,
     description : "",
     keys : [],
     values : [],
-    composition : {}
+    composition : {},
+    isVisibleForAll : false
 }
+
 type Action_Type = InferActionType<typeof newCardActions>;
 export const newCardReducer = (state = initialState,action : Action_Type) => {
     switch(action.type) {
@@ -53,6 +57,12 @@ export const newCardReducer = (state = initialState,action : Action_Type) => {
             return {
                 ...state,
                 composition : {...state.composition,...action.payload}
+            }
+        }
+        case TOGGLE_VISIBILITY : {
+            return {
+                ...state,
+                isVisibleForAll : !state.isVisibleForAll
             }
         }
         default :
@@ -82,6 +92,9 @@ export const newCardActions = {
       addNewIngridient : (ingrident : {}) => ({
         type : "barApp/productReducer/addNewIngridient",
         payload : ingrident
+      } as const),
+      toggleVisibility : () => ({
+        type : "barApp/productReducer/toggleVisibility"
       } as const)
     
 }
@@ -94,8 +107,9 @@ export const createNewIngridientCard = (card : productType) => {
             description : card.description,
             composition : card.composition,
             teamID : card.teamID,
+            isVisibleForAll : card.isVisibleForAll
         }
-        await premixAPI.addProduct(newCard)
+        await premixAPI.addProduct(newCard);
         console.log(newCard)
     }
 }

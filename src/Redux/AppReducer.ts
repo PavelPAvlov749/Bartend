@@ -1,29 +1,37 @@
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-// import { authAPI } from "../services/Firebase/AuthAPI";
 import { InferActionType } from "./Store";
 import { userPageType } from "./Types";
 import { authApi } from "../services/Firebase/AuthAPI";
 
 
-const SET_INIT = "barApp/appReducer/setInit";
-const SET_AUTH = "barApp/appReducer/setAuth";
-const SET_USER_PAGE = "barApp/AppReducer/setUserPage";
-const TOGGLE_THEME = "barApp/AppReducer/toggleTheme";
-const SET_IS_FETCH = "barApp/AppReducer/setIsFetch";
-const SET_ERROR_STATE = "barApp/AppReducer/setErrorState";
+// ACTION TYPES 
+// -----------------------
+// 
+const SET_INIT = "barApp/appReducer/setInit"; //Initialize
+const SET_AUTH = "barApp/appReducer/setAuth"; //Auth state
+const SET_USER_PAGE = "barApp/AppReducer/setUserPage"; //Authorized user page
+const TOGGLE_THEME = "barApp/AppReducer/toggleTheme"; //UI Theme
+const SET_IS_FETCH = "barApp/AppReducer/setIsFetch"; //Data fetching boolean flag
+const SET_ERROR_STATE = "barApp/AppReducer/setErrorState"; //Error boolean flag
+const SET_ERROR_MESSAGE = "barApp/AppReducer/setErrorMessage"; //Error message
+// 
+// -----------------------
 
-type initial_state_type = {
+
+
+// DEFINE AN INITIAL STATE TYPE
+
+interface IState  {
   user: userPageType,
   isAuth: boolean,
   isInit: boolean,
   isFetch: boolean,
   isDarktheme: boolean,
-  isError: boolean
-
-
+  isError: boolean,
+  errorMessage : string | null
 }
 
-let initial_state: initial_state_type = {
+let initial_state: IState = {
   user: {
     userID: null,
     userName: null,
@@ -34,10 +42,11 @@ let initial_state: initial_state_type = {
   isAuth: false,
   isFetch: false,
   isDarktheme: true,
-  isError: false
+  isError: false,
+  errorMessage : null
 }
 
-//Acrtion types
+//Get action types
 type Action_Type = InferActionType<typeof app_actions>;
 
 export const appReducer = (state = initial_state, action: Action_Type) => {
@@ -75,6 +84,12 @@ export const appReducer = (state = initial_state, action: Action_Type) => {
         isError: action.payload
       }
     }
+    case SET_ERROR_MESSAGE : {
+      return {
+        ...state,
+        errorMessage : action.payload
+      }
+    }
     default:
       return state
   }
@@ -103,6 +118,10 @@ export const app_actions = {
   setErrorState: (isError: boolean) => ({
     type: "barApp/AppReducer/setErrorState",
     payload: isError
+  } as const),
+  setErrorMessage : (errorMessage : string) => ({
+    type : "barApp/AppReducer/setErrorMessage",
+    payload : errorMessage
   } as const)
 
 }
@@ -145,20 +164,54 @@ export const initializeThunk = () => {
   }
 
 }
-
+/**
+ * 
+ * LOGIN BY EMAIL AND PASSWORD.
+ *  
+ * Passes the email and password parameters
+ * to the logoinWithEmailAndPassword function, which inside calls the 
+ * Firebase.LoginWidthEmailAndPassword function. If the login is successful, the CheckAuthState 
+ * function in the App component will receive an authorized user, otherwise 
+ * it will set an error flag about an error message in the AppReducer
+ * 
+ * @param email string
+ * @param password string
+ * @returns void
+ */
 export const loginByEmailAndPassword = (email: string, password: string) => {
   return async function (dispatch: any) {
-    dispatch(app_actions.setInit(false));
+    // Try to signIn
     const userID = await authApi.loginWithEmailAndPassword(email, password);
-    dispatch(app_actions.setInit(true));
+    // If loginWithEmailAndPassword returns Error
+    // Set error in state
+    if(typeof userID !== "string")
+    {
+      // Get error message
+      let errorMEssage = "Error : " + userID.message.split("/")[1].split(")")[0];
+      // Set boolean error flag in state
+      dispatch(app_actions.setErrorState(true));
+      // Set Error Message
+      dispatch(app_actions.setErrorMessage(errorMEssage));
+    }
+
   }
 }
 
+// LOGOUT THUNK
+/**
+ * Call signOut function from Firebase forestore library
+ * And set auth flab in store
+ * 
+ * @returns void
+ */
 export const logOutThunk = () => {
   return async function (dispatch: any) {
-    const auth = getAuth()
-    await signOut(auth)
-    dispatch(app_actions.setAuth(false))
+    // Get firebase auth instance
+    const auth = getAuth();
+    // Signing out
+    await signOut(auth);
+    // Dispatch state
+    dispatch(app_actions.setAuth(false));
   }
 }
 

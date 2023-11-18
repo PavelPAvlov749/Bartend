@@ -1,0 +1,24 @@
+.premisex-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(1fr,auto);
+    gap: 10px;
+    padding: 20px 0;
+    margin: 0%;
+}
+
+.premix-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: max-content;
+    min-height: 180px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;    
+    background-color: rgb(62, 62, 62);
+}
+.premix_card__tittle {
+    font-size: 20px;
+}

@@ -3,6 +3,7 @@ import FirebaseApi, {  Firestore } from "./FirebaseConfig";
 
 import { DocumentData, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { blankShiftType, productType } from "../../Redux/Types";
+import { FirebaseError } from "firebase/app";
 
 
 
@@ -113,6 +114,27 @@ class PremixApi extends FirebaseApi {
         }
         catch (ex) {
             console.log(ex);
+        }
+    }
+    
+    public async getAllPublicProducts () {
+        try
+        {
+            // Get products query 
+            let productsQuery = await query(collection(this.firestore, "Premixes"), where("isVisibleForAll","==",true));
+             // Array of products
+             let products: DocumentData = [];
+             const querySnap = await getDocs(productsQuery);
+             querySnap.forEach((doc) => {
+                products.push(doc.data());
+             })
+             return products;
+        }
+        catch(ex)
+        {
+            let error : FirebaseError = ex as FirebaseError;
+            console.log(error.message);
+            return error;
         }
     }
 }

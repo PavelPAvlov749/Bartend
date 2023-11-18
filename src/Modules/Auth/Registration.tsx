@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Components
-import { RegistrationFormInput } from "./RegistrationForm";
+import { RegistrationFormInput } from "./RegistrationFormInput";
 
 // API funcions,Helpers
 import { validationShema } from "../../Helpers/Helpers";
@@ -67,14 +67,24 @@ export const Registration = () => {
 
                             {/* Password input with show password button */}
                             <div className="passwordFirstInput">
-                                <RegistrationFormInput type={isPasswordHided ? "password" : "text"}
-                                    handleChange={handleChange} id="password" touched={touched.password} errors={errors.password} />
+                                <RegistrationFormInput 
+                                type={isPasswordHided ? "password" : "text"}
+                                handleChange={handleChange} 
+                                id="password" 
+                                touched={touched.password} 
+                                errors={errors.password} 
+                                />
+                                
                                 {/* Show - hide password toggler */}
                                 <img id="passwordToggle" src={isPasswordHided ? showPasswordIcon : hidePasswordIcon} onClick={togglePassword} alt="" />
                             </div>
                             <span className="onInputError"> {touched.password ? errors.password : null}</span>
-                            <RegistrationFormInput touched={touched.repeatPassword} errors={errors.repeatPassword} id="repeatPassword"
-                                type={isPasswordHided ? "password" : "text"} handleChange={handleChange} />
+                            <RegistrationFormInput
+                                touched={touched.repeatPassword}
+                                errors={errors.repeatPassword} id="repeatPassword"
+                                type={isPasswordHided ? "password" : "text"}
+                                handleChange={handleChange} 
+                            />
 
                             <button
                                 // @ts-ignore 

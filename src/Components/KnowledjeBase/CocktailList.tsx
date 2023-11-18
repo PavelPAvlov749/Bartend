@@ -15,7 +15,7 @@ export const CoctailList = () => {
 
     function searchByName(e: React.SyntheticEvent<HTMLInputElement>): void {
 
-        // dispatch(getCocktailsByName(e.currentTarget.value));
+        dispatch(getCocktailsByName(e.currentTarget.value));
 
     }
     // debugger

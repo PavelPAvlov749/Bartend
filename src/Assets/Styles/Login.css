@@ -14,7 +14,18 @@
     object-fit: cover;
     height: 80px;
 }
-
+.errorMessage {
+    margin: 20px 0px;
+    color: rgb(206, 67, 67);
+    font-size: 20px;
+}
+.spanError {
+    color: rgb(206,67,67);
+    display: inline-block;
+    height: max-content;
+    padding: 5px;
+    font-size: 17px;
+}
 .show {
     background-color: rgb(68, 51, 160);
     height: 2.5rem;
@@ -26,7 +37,17 @@
     display: block;
 
 }
-
+.login-form__tittle {
+    margin-bottom: 10px;
+}
+.login_form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 #passwordShow {
     width: 30px;
     height: 30px;
@@ -44,6 +65,7 @@
 .LoginByEmailAndPassword input {
     height: 2.5rem;
     width: 100%;
+    max-width: 250px;
 }
 
 #passwordInput {
@@ -72,6 +94,7 @@
 
     .LoginByEmailAndPassword {
         width: 100%;
+
 
     }
 

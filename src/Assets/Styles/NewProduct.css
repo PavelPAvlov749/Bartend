@@ -12,7 +12,21 @@
     overflow-y: scroll;
     margin-bottom: 1rem;
 }
-
+/* VISIBILITY INPUT */
+.visibility-input span {
+    font-size: 20px;
+}
+.visibility-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+}
+#visibility-input {
+    width: 25px;
+    height: 25px;
+}
 .compound_inputs {
     -ms-overflow-style: none;
     /* IE and Edge */

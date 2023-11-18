@@ -17,7 +17,8 @@ export type productType = {
     calculate?: (val: number) => {},
     teamID? : string,
     checked? : boolean,
-    done? : boolean
+    done? : boolean,
+    isVisibleForAll? : boolean
 }
 
 

@@ -1,20 +1,24 @@
 // Assets
-import { useState } from "react";
+import React, { useState } from "react";
 import menuIcon from "../../../Assets/Icons/menu.png"
 // Hooks
 import { useTaskList } from "./Hooks";
 // Styles
 import "../../../Assets/Styles/CheckLists.css"
+import { ChecklistDotsMenu } from "./DotsMenu";
+import { checkListType } from "../../../Redux/CheckListReducer";
 
 export const Modal =  () => {
     return (
         <section className="modal">
-            <span>Modal</span>
-            <span>Edit</span>
             <span>Delete</span>
             <button className="modal_btn">Close</button>
         </section>
     )
+}
+// Define a props type
+type ChecklistPropsType = {
+    checklist : checkListType
 }
 
 export const CheckListPage = () => {
@@ -26,10 +30,9 @@ export const CheckListPage = () => {
     }
     return (
         <section className="single-check-list container {}">
-            {isModal ? <Modal/> : null}
+           
             <div className="check-list-controls">
-                <span className="check-list__menu-back">Back ...</span>
-                <img className="check-list__menu-icon" src={menuIcon} onClick={toggleModal}></img>
+              <ChecklistDotsMenu checklist={checklist as checkListType}/>
             </div>
 
             <ul className="tasks">

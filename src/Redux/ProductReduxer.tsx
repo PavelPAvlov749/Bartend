@@ -144,3 +144,12 @@ export const setProductCardThunk = (productID : string) => {
         }
     }
 }
+
+export const getPublicPremixes = () => {
+    return async function (dispatch : any) {
+        let products = await premixAPI.getAllPublicProducts();
+        if(products) {
+            dispatch(productActions.setPremixes(products as productType[]));
+        }
+    }
+}
