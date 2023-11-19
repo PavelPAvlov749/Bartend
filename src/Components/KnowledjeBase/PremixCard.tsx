@@ -17,7 +17,7 @@ export const Premixcard : React.FC<IPremixCard> = (props) => {
     
     // Navigation handler
     function goToPremixCard () {
-        navigate("/card/id:" + props.id);
+        navigate("/card/id=" + props.id);
     }
     
     return (

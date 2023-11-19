@@ -9,7 +9,6 @@ import {initializeThunk} from "../../Redux/AppReducer"
 export const CreateTeam = () => {
     const dispatch : any = useDispatch()
     const navigate = useNavigate()
-    const isDarkTheme = useSelector((state : Global_state_type) => state.App.isDarktheme)
     const newTeam = useSelector((state : Global_state_type) => state.clans.newTeam)
     const user = useSelector((state : Global_state_type) => state.App.user)
     const onSubmit = () => {
@@ -19,7 +18,7 @@ export const CreateTeam = () => {
         dispatch(initializeThunk())
         navigate("/home")
     }
-
+    
     const onNameChangeHandler = (e : React.SyntheticEvent<HTMLInputElement>) => {
         dispatch(clanActions.setNewClanName(e.currentTarget.value))
     }
@@ -28,12 +27,11 @@ export const CreateTeam = () => {
     }
     return (
         <section className={"create_team_container translate_animation container"}>
-            <input type="text" placeholder="Название" onChange={onNameChangeHandler}/>
-            <h3>Описание :</h3>
-            <br />
+            <input type="text" placeholder="Type name" onChange={onNameChangeHandler}/>
+            <h3>Description :</h3>
             <textarea name="" id="" onChange={onDescriptionChangeHandler} ></textarea>
          
-            <button onClick={onSubmit}>Создать команду</button>
+            <button onClick={onSubmit}>Create Team</button>
         </section>
     )
 }

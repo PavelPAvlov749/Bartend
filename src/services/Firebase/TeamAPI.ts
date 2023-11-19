@@ -7,7 +7,10 @@ import {
 }
     from "firebase/firestore";
 // Import Config
-import FirebaseApi, {Firestore } from "./FirebaseConfig";
+import FirebaseApi, { Firestore } from "./FirebaseConfig";
+import { FirebaseError } from "firebase/app";
+import { ref } from "firebase/database";
+import { error } from "console";
 
 
 
@@ -109,6 +112,64 @@ class TeamAPI extends FirebaseApi {
         }
     }
     /**
+     * Join user to the team by invite code
+     * 
+     * @param inviteCode string
+     * @param userID string
+     * @param userName string
+     * @returns ClanType
+     */
+    public async joinTeamByInviteCode(inviteCode: string, userID: string, userName: string) {
+        try {
+
+            // Document query
+            let teamQuery = query(collection(this.firestore, "Clans/"), where("inviteCode", "==", inviteCode));
+            let teamSnap = await getDocs(teamQuery);
+            // get user ref
+            let userRef = doc(this.firestore, "Users/" + userID);
+            // Define a team array
+            let team: any[] = [];
+            // Check if documents exist in query
+            if (teamSnap.empty) {
+                // If not,that means invite code was incorrect
+                // Throw error
+                throw new Error("Error : Incorect invite code!");
+            }
+            else 
+            {
+                // Anotherwise push document in result array 
+                teamSnap.forEach((doc) => {
+                    team.push(doc.data())
+                });
+
+                // Team ref
+                let teamRef = doc(this.firestore, "Clans/" + team[0].teamID);
+                // Update team document
+                // Set userId and userName into team document
+                await updateDoc(teamRef, {
+                    inviteCode: null,
+                    users: arrayUnion(userName),
+                    userIDs: arrayUnion(userID)
+                });
+                // Update user document 
+                // Set teamID and teamName into user document
+                await updateDoc(userRef, {
+                    teamID: team[0].teamID,
+                    team: team[0].teamName
+                });
+                // Finaly,return team doc to set hin into redux store
+                return team[0];
+            }
+
+
+        }
+        catch (ex) {
+            let error: FirebaseError = ex as FirebaseError;
+            console.log(error.message);
+            return error.message;
+        }
+    }
+    /**
      * Create new Team and join current user to the team
      * 
      * @param team {name : string,Description : string}
@@ -164,6 +225,24 @@ class TeamAPI extends FirebaseApi {
             return clans
         } catch (ex) {
 
+        }
+    }
+    public async setInviteCode(teamID: string, inviteCode: string) {
+        try {
+            // Get document ref
+            const ref = doc(Firestore, "Clans/", teamID as string);
+            // Get team document
+            let teamDoc = (await getDoc(ref)).data();
+            console.log(inviteCode);
+            // Define updated document insatnce with new Server Timestamp
+            let updatedCard = { ...teamDoc, inviteCode: inviteCode };
+            // Write changes to Firestore
+            await updateDoc(ref, updatedCard);
+        }
+        catch (ex) {
+            let error: FirebaseError = ex as FirebaseError;
+            console.log(error.message);
+            return error;
         }
     }
 }

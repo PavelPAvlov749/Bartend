@@ -11,7 +11,7 @@ import { initializeThunk } from './Redux/AppReducer';
 // --------- IMPORT COMPOMNENTS
 import { HashRouter } from 'react-router-dom';
 import { Preloader } from './Modules/PremixesApp/Components/Preloader';
-import { TopHeader } from './Components/Header/Header';
+
 
 
 const Navbar = React.lazy(() => import('./Components/Navbar'));
@@ -41,6 +41,7 @@ function App() {
   const isInit = useSelector((state: Global_state_type) => state.App.isInit);
 
   // If App was initialized render the App
+
 
   if (isInit) {
     return (

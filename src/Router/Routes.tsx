@@ -13,13 +13,11 @@ import { CheckListPage } from "../Modules/ChecklistApp/Components/CheclListPage"
 import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCardContainer } from "../Components/Ingridients/ProductCardContainer";
 import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
-import { CreateTeam } from "../Components/Teams/CreateTeam";
-import { JoinTeam } from "../Components/Teams/JoinTeam";
+import { CreateTeam } from "../Modules/TeamApp/CreateTeam";
 import { HomePage } from "../Components/mainScreen";
 import { ROUTE } from "../Redux/Types";
 import { NewProduct } from "../Components/NewProduct/NewProduct";
 import { SecondStep } from "../Components/NewProduct/SecondStep";
-import { TeamPageContainer } from "../Components/Teams/ClanList";
 import { NewCheckList } from "../Modules/ChecklistApp/Components/NewCheckList";
 import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
 import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
@@ -28,6 +26,7 @@ import { Registration } from "../Modules/Auth/Registration";
 import { PremixesApp } from "../Modules/PremixesApp/Premixes";
 import { PassedShift } from "../Modules/PremixesApp/Components/HistoryPage/PassedShiftItem";
 import { ShiftConstructorContainer } from "../Modules/PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
+import { TeamPageContainer } from "../Modules/TeamApp/TeamPageContainer";
 
 
 // ---------- ROUTES STRINGS
@@ -71,10 +70,6 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     {
         path : COCKTAIL_CARD,
         element : <CocktailCard/>
-    },
-    {
-        path : JOIN_TEAM,
-        element : <JoinTeam/>
     },
     {
         path : CREATE_TEAM,
@@ -126,7 +121,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : CLAN_LISTS,
-        element : <TeamPageContainer isDarkTheme={true}/>
+        element : <TeamPageContainer/>
     },
     {
         path : NEW_CHECK_LIST,
