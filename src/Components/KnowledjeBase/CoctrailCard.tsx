@@ -15,19 +15,18 @@ export const CocktailCard = () => {
 
  
     return (
-        <article className="cocktail_card_container contaoiner translate_animation">
-            <figure>
-            <h2>{currentCocktail?.strDrink}</h2>
-            <img id="cocktail_photo" src={currentCocktail?.strDrinkThumb} alt="" />
+        <article className="cocktail_card_container translate_animation">
            
-            </figure>
-            <article>
-            <span>Бокал : {currentCocktail?.strGlass }</span>
-            <span>Категория IBA : {currentCocktail?.strIBA ? currentCocktail.strIBA : "не входит в IBA"}</span>
-            <span>Категория : {currentCocktail?.strCategory}</span>
-            <h3>Технология приготовления : </h3>
-            <p>{currentCocktail?.strInstructions}</p>
-            <h3>Состав : </h3>
+            <img id="cocktail_photo" src={currentCocktail?.strDrinkThumb} alt="" />
+            <h2 className="coctail-card__tittle">{currentCocktail?.strDrink}</h2>
+        
+            <article className="coctail-card__info">
+            <span className="info__glass">Glass : {currentCocktail?.strGlass }</span>
+            <span className="info__category">Category IBA : {currentCocktail?.strIBA ? currentCocktail.strIBA : "не входит в IBA"}</span>
+            <span className="info__category">Category : {currentCocktail?.strCategory}</span>
+            <h3 className="info__subtittle">Techonlogy : </h3>
+            <p className="info__technology">{currentCocktail?.strInstructions}</p>
+            <h3 className="info__composition">Composition : </h3>
             {currentCocktail ? Object.keys(currentCocktail.composition).map((el : string,index : number) => {
                 return (
                     <span>{el + " : " + Object.values(currentCocktail.composition)[index]}</span>

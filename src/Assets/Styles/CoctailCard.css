@@ -68,7 +68,31 @@
     width: 100%;
     width: calc(100% - 10px)
 }
-
+.coctail-card__tittle{
+    font-size: 25px;
+    padding: 5px;
+    color: rgb(212, 212, 212);
+}
+.coctail-card__info {
+    padding: 5px;
+    width: 97%;
+}
+.info__glass {
+    font-size: 20px;
+}
+.info__category {
+    font-size: 20px;
+}
+.info__subtittle {
+    font-size: 22px;
+    padding: 5px 0;
+    color: rgb(69, 69, 189);
+}
+.info__composition {
+    font-size: 20px;
+    color: rgb(69, 69, 189);
+    
+}
 #cocktail_photo {
     max-width: 300px;
 }
@@ -77,7 +101,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
         
 
     }
@@ -143,6 +166,7 @@
         max-width: 600px;
         height: auto;
         object-fit: contain;
+        border-radius: 0 0 30px 30px;
     }
 }
 
@@ -161,11 +185,10 @@
         display: flex;
         flex-direction: column;
         width: max-content;
-        /* width: calc(100% - 20px); */
-        /* max-width: 170px; */
         height: max-content;
         padding: 0%;
         margin: 0%;
+        
     }
     
 } 
