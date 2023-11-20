@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "../Assets/Styles/HomePage.module.css"
 import { useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+
 import docIcon from "../Assets/Icons/icons8-document-64.png"
 import teamicon from "../Assets/Icons/icons8-team-96.png"
 import chemistryIcon from "../Assets/Icons/icons8-chemistry-100(1).png"
@@ -15,6 +15,7 @@ export const Header = () => {
 
     return (
         <section className="header">
+          
             <ul className={styles.main_page_navigation}>
                 <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
 
@@ -47,9 +48,7 @@ export const Header = () => {
                 </li>
 
             </ul>
-            <div className={styles.swithcer}>
-                <ThemeSwitcher theme={theme} />
-            </div>
+
         </section>
 
 
@@ -61,9 +60,7 @@ const MainPageNavigation = () => {
     const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
     return (
         <section className="main_page_navigation">
-             <div className={styles.swithcer}>
-                <ThemeSwitcher theme={theme} />
-            </div>
+            
             <ul className={styles.main_page_navigation}>
                 <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
 
@@ -108,7 +105,6 @@ export const HomePage = () => {
     const windowWidth = useWindowInnerWidth()
     return (
         <section className={`${styles.home_page_container} ${styles.translate_animation}`}>
-            <h2>Bartend</h2>
             <div className={styles.home_page_info}>
                 <h1 id={styles.userName}>Hi,{profile.userName}!
 

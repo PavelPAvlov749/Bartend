@@ -12,15 +12,15 @@ import { CheckLists } from "../Modules/ChecklistApp/Components/CheckLists";
 import { CheckListPage } from "../Modules/ChecklistApp/Components/CheclListPage";
 import { Premixes } from "../Components/Ingridients/Premixes";
 import { ProductCardContainer } from "../Components/Ingridients/ProductCardContainer";
-import { CocktailCard } from "../Components/KnowledjeBase/CoctrailCard";
+import { CocktailCard } from "../Modules/KnowledjeBase/CoctrailCard";
 import { CreateTeam } from "../Modules/TeamApp/CreateTeam";
 import { HomePage } from "../Components/mainScreen";
 import { ROUTE } from "../Redux/Types";
 import { NewProduct } from "../Components/NewProduct/NewProduct";
 import { SecondStep } from "../Components/NewProduct/SecondStep";
 import { NewCheckList } from "../Modules/ChecklistApp/Components/NewCheckList";
-import { KnowledgeBase } from "../Components/KnowledjeBase/KnowledgeBase";
-import { IngridientCard } from "../Components/KnowledjeBase/Ingridient";
+import { KnowledgeBase } from "../Modules/KnowledjeBase/KnowledgeBase";
+import { IngridientCard } from "../Modules/KnowledjeBase/Ingridient";
 import { LoginPage } from "../Modules/Auth/LoginPage";
 import { Registration } from "../Modules/Auth/Registration";
 import { PremixesApp } from "../Modules/PremixesApp/Premixes";
@@ -38,7 +38,7 @@ export const ADD_PRODUCT = "/add"
 export const PRODUCT_CARD = "/card/:id"
 export const LOG_OUT = "/logOut"
 export const REGISTRATION = "/registration"
-export const NO_MATCH_ROUTE = "*"
+// export const NO_MATCH_ROUTE = "*"
 export const BLANK_SHIFT = "/blank-shift/*"
 export const STEP_2 = "add-step-two"
 export const NEW_BLANK_SHIFT = "/shiftManager/create-new"  
@@ -50,7 +50,7 @@ export const JOIN_TEAM = "/join-team"
 export const NEW_CHECK_LIST = "/new-check-list"
 export const CHECK_LIST = "/check-lists/:id"
 export const KNIWLEDGE_BASE = "knowledge-base"
-export const INGRIDIENT = "ingridient/:id"
+export const INGRIDIENT = "/ingridient/:id"
 export const HISTORY = '/blank-shift/history'
 
 
@@ -107,10 +107,10 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         path : CHECK_LISTS,
         element : <CheckLists/>
     },
-    {
-        path : NO_MATCH_ROUTE,
-        element : <Navigate to="/home" />
-    },
+    // {
+    //     path : NO_MATCH_ROUTE,
+    //     element : <Navigate to="/home" />
+    // },
     {
         path : ADD_PRODUCT,
         element : <NewProduct isDarkTheme={true}/>
@@ -144,10 +144,10 @@ export const PUBLICK_ROUTES : ROUTE [] = [
         path : LOG_OUT,
         element : <LoginPage/>
     },
-    {
-        path : NO_MATCH_ROUTE,
-        element : <Navigate to={"/logOut"}/>
-    },
+    // {
+    //     path : NO_MATCH_ROUTE,
+    //     element : <Navigate to={"/logOut"}/>
+    // },
     {
         path : REGISTRATION,
         element : <Registration/>
