@@ -41,15 +41,22 @@ export type userType = {
     repeatPassword : string,
     email : string
 }
-
+// User roles ENUM
+export enum UserRoles  {
+    admin = "admin",
+    member = "member",
+    guest = "guest"
+}
 export type userPageType = {
     userID: string | null,
     userName: string | null,
     team: string | null,
-    teamID: string | null
+    teamID: string | null,
+    role? : "admin" | "guest" | "member"
   }
 
 export interface ROUTE {
     path : string,
     element : ReactNode
 }
+

@@ -12,6 +12,8 @@ import { Reducer } from "./Reducer";
 import { productType } from "../../Redux/Types";
 // Custom hooks
 import { useProductCard } from "./UseProductCard";
+import { useSelector } from "react-redux";
+import { Global_state_type } from "../../Redux/Store";
 
 
 
@@ -27,6 +29,10 @@ export const ProductCardContainer = () => {
     // General reducer for all chil compoennt
     // Toogle card Editing mode
     let [isEditMode, setEditMode] = useReducer(Reducer, { isEditMode: false });
+    // get uer team ID to compare with prdocut teamID
+    let userTeamID: string | null = useSelector((state: Global_state_type) => state.App.user.teamID);
+    // Get product team ID
+    let productTeamID: string | undefined = useSelector((state: Global_state_type) => state.premixes.actualProductCard?.teamID);
     // Check if card not equals to null
     if (card) {
         return (
@@ -34,13 +40,17 @@ export const ProductCardContainer = () => {
             <section className={`product_card container translate_animation`}>
 
                 <h1>{card?.name}</h1>
+                {/* Render dots menu depending on result of comparison teamID and userTeamID */}
+                {/* If user currrent user not belong to team that create this product he cannot edit or delete prdocut card */}
                 {/* Pass Edit mode toggler into Menu component props */}
-                <DotsMenu isEditMode={isEditMode.isEditMode} setEditMode={setEditMode} card={card as productType} />
+                {userTeamID === productTeamID ? <DotsMenu isEditMode={isEditMode.isEditMode} setEditMode={setEditMode} card={card as productType} />
+                    : null}
+
                 {isEditMode.isEditMode ?
-                // Render Editor compomnent if Editing
+                    // Render Editor compomnent if Editing
                     <Editor card={card as productType} />
                     :
-                // Or render prdocut card information
+                    // Or render prdocut card information
                     <ProductCard isEditMode={isEditMode} setEditMode={setEditMode} card={card} />
                 }
 

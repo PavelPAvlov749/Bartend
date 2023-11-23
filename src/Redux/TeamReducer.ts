@@ -9,13 +9,21 @@ const SET_NEW_TEAM_DESCRIPTION = "barApp/clanReducer/setNewTeamDescription"
 
 const SET_JIONED_CLANS = "barApp/clanReducer/setJoinedClans"
 const LEAVE_THE_TEAM = "barApp/clanReducer/leaveTheTeam"
+const SET_USER_TO_DELETE = "barApp/clanReducer/setUserToDelete"
+const CLEAR_DELETING_USER = "barApp/clanReducer/clearDeletingUser";
+const DELETE_USER = "barApp/clanReducer/deleteUser";
+
+
 export type ClanType = {
     teamName : string,
     teamID : string,
     teamAvatar : string | null,
-    users  : string[],
+    users  : Array<{userName : string,userID : string}>,
     description : string | null
-    
+    adminID  :string,
+    adminName : string,
+    userIDs : string[],
+
 }
 type initial_state_type = {
     team : ClanType | null,
@@ -25,6 +33,7 @@ type initial_state_type = {
         newTeamDescription : string | null,
         
     },
+    userToDelete : {userName : string,userID : string} | null
     teamList : ClanType[]
 }
 
@@ -36,8 +45,8 @@ let initial_state : initial_state_type = {
         newTeamDescription : null,
         
     },
-    teamList : []
-    
+    teamList : [],
+    userToDelete : null
 
 }
 
@@ -83,6 +92,25 @@ export const clanReducer = (state = initial_state, action: Action_Type) => {
                 team  : null
             }
         }
+        case SET_USER_TO_DELETE : {
+            return {
+                ...state,
+                userToDelete : action.payload,
+               
+            }
+        }
+        case CLEAR_DELETING_USER : {
+            return {
+                ...state,
+                userToDelete : action.payload
+            }
+        }
+        // case DELETE_USER : {
+        //     return {
+        //         ...state,
+        //         team : {...state.team,users : state.team? }
+        //     }
+        // }
         default:
             return state
     }
@@ -112,7 +140,19 @@ export const clanActions = {
   } as const),
   leaveTheTeam : () => ({
     type : "barApp/clanReducer/leaveTheTeam"
-  } as const)
+  } as const),
+  setUserToDelete : (userName : string,userID : string) => ({
+    type : "barApp/clanReducer/setUserToDelete",
+    payload : {userName,userID}
+  } as const),
+  clearDeletingUser : () => ({
+    type : "barApp/clanReducer/clearDeletingUser",
+    payload : null
+  }as const),
+  deleteUser : (userID : string) => ({
+    type : "barApp/clanReducer/deleteUser",
+    payload : userID
+  } as const ) 
 
 }
 
@@ -163,5 +203,14 @@ export const leaveTheTeam = (teamID : string,userID : string,userName : string) 
         await TeamModuleAPI.leavetheTeam(teamID,userID,userName)
         dispatch(clanActions.leaveTheTeam())
         
+    }
+}
+
+// Delete user from team thunk 
+
+export const deleteUSerTunk = (userID : string,userName : string,teamID : string) => {
+    return async function (dispatch : any) {
+        await TeamModuleAPI.deleteUserFromTeam(userID,teamID,userName);
+        dispatch(clanActions.clearDeletingUser());
     }
 }

@@ -1,13 +1,7 @@
 import axios from "axios";
 import { parseCocktailDbIngridients } from "../../Helpers/Helpers";
-import { access } from "fs";
 
 
-const axiosInstance = axios.create({
-    timeout: 1000,
-    responseType: "json",
-    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-})
 
 export const coctailDbAPI = {
     getAllCoctails: async () => {

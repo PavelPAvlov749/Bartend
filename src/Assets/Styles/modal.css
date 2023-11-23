@@ -1,0 +1,96 @@
+.modal-container {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.505);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    animation : appearOpacity 0.5s forwards;
+}
+@keyframes appearOpacity {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.modal {
+    /* background-color: rgb(56, 56, 56); */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #411649, #43819e);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 0s ease infinite;
+    -moz-animation: AnimationName 0s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    transform: scale(0);
+    animation: appear 0.4s forwards;
+    animation-delay: 0.3s;
+}
+@keyframes appear {
+    0% {transform: scale(0)}
+    70% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 27% 0%
+    }
+
+    50% {
+        background-position: 74% 100%
+    }
+
+    100% {
+        background-position: 27% 0%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 27% 0%
+    }
+
+    50% {
+        background-position: 74% 100%
+    }
+
+    100% {
+        background-position: 27% 0%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 27% 0%
+    }
+
+    50% {
+        background-position: 74% 100%
+    }
+
+    100% {
+        background-position: 27% 0%
+    }
+}
+.alert-selection {
+    margin: 50px 0 0 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    font-size: 30px;
+}
+
+.alert-selection span:first-child {
+    color: rgb(236, 95, 95);
+}

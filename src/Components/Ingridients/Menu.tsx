@@ -4,10 +4,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 // Redux,Reducers
 import { deleteProductCrad } from "../../Redux/ProductReduxer";
 import { UseToggle } from "../../Helpers/CustomHooks";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // Types
 import { productType } from "../../Redux/Types";
 import { premixAPI } from "../../services/Firebase/PremixAPI";
+import { Global_state_type } from "../../Redux/Store";
 
 
 // PROPS TYPE
@@ -36,7 +37,7 @@ export const DotsMenu = (props: DotsMenuPropsType) => {
     // Render three dots menu icon
     let [isOpen, toggle] = UseToggle(false);
 
-    // Ge id of prdocut card
+    // Get id of prdocut card
     const productID = useLocation().pathname.split("=")[1]
 
     // Navigate function

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom"
 import "../../../Assets/Styles/TeamPage.css"
 
-import { JoinTeamForm } from "./JinTeamForm"
+import { JoinTeamForm } from "./JoinTeamForm"
 
 
 export const EmptyTeam = () => {

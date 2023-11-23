@@ -1,29 +1,48 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Global_state_type } from "../../Redux/Store";
-import { ClanType, getClanListByUserID, leaveTheTeam } from "../../Redux/TeamReducer";
+// React,React Hooks
+import { useState } from "react";
+import { useDispatch, useSelector} from "react-redux";
+
+// Styles and Assets
 import "../../Assets/Styles/TeamPage.css"
 import "../../App.css"
-import { NavLink, useNavigate } from "react-router-dom";
+// Redux,Thunks
+import { ClanType, deleteUSerTunk, leaveTheTeam } from "../../Redux/TeamReducer";
 import { app_actions } from "../../Redux/AppReducer";
-import { string } from "yup";
-import generateInviteCode from "../../Helpers/InviteCodeGenerator";
-import { TeamModuleAPI } from "../../services/Firebase/TeamAPI";
+// Components
 import { Desctiption } from "./Components/Description";
-import { userPageType, userType } from "../../Redux/Types";
+import { UserList } from "./Components/UserList";
+import { UIButton } from "../../Components/Button";
+import { ModalWindow } from "./Components/DeleteConfirmation";
+// Types
+import { userPageType} from "../../Redux/Types";
+import { Global_state_type } from "../../Redux/Store";
+// Services
+import { TeamModuleAPI } from "../../services/Firebase/TeamAPI";
+// Helpers
+import generateInviteCode from "../../Helpers/InviteCodeGenerator";
+import { UseToggle } from "../../Helpers/CustomHooks";
 
-interface ITeam {
+
+
+
+
+
+// Define a type
+type ITeam = {
     user : userPageType
     team : ClanType
 }
-
+/**
+ * Team Page top level container
+ * 
+ * @param props 
+ * @returns React.Ellement
+ */
 export const TeamPage : React.FC<ITeam> = (props) => {
+    
     const dispatch: any = useDispatch()
-
-    const LeaveTheTeamHandler = (team: string, userID: string, userName: string) => {
-        dispatch(leaveTheTeam(team, userID, userName))
-        dispatch(app_actions.setUserPage({ ...props.user, team: null, teamID: null }))
-    }
+    // Modal window state 
+    let [state,setIsUserDelete] = UseToggle(false);
     // Invitecode state
     let [inviteCode, setInviteCode] = useState("");
     // Invite generator handler 
@@ -32,51 +51,31 @@ export const TeamPage : React.FC<ITeam> = (props) => {
         setInviteCode(code);
         TeamModuleAPI.setInviteCode(props.team.teamID as string, code)
     }
-    const users = props.team?.users.map((el, index) => <li key={index}>{el}</li>);
-
+    // LEave team handler function 
+    function leaveTeam () {
+        dispatch(leaveTheTeam(props.team.teamID, props.user.userID as string, props.user.userName as string))
+        dispatch(app_actions.setUserPage({ ...props.user, team: null, teamID: null }))
+    }
+    const deletingUSer = useSelector((state  :Global_state_type) => state.clans.userToDelete);
+    // Delete user 
+    function deleteUSerDfromTeam () {
+        
+        dispatch(deleteUSerTunk(deletingUSer?.userID as string,deletingUSer?.userName as string,props.team.teamID));
+        debugger;
+    }
     return (
         <section className={`team_page container  translate_animation `}>
-
-
-
-
+            {state && <ModalWindow setState={setIsUserDelete} confirmCallback={deleteUSerDfromTeam}/>}
             <Desctiption description={props.team?.description as string} name={props.team?.teamName as string} />
-            <section className="team_users">
-                {/* <h3>Участники : </h3> */}
-                <ul>
-                    {users}
-                </ul>
-            </section>
-            <button id="leave_the_team" onClick={() => {
-                LeaveTheTeamHandler(props.team.teamID as string, props.user.userID as string, props.user.userName as string)
-            }}>Покинуть Команду</button>
-
-            <button onClick={generateInviteCodeHandler}>Generate Invite Code</button>
+            <UserList team={props.team} users={props.team?.users} toggler={setIsUserDelete}/>
+            <UIButton text="Leave the team" callback={leaveTeam}/>
+            <UIButton text="Generate Invite Code" callback={generateInviteCodeHandler}/>
+            {/* Render invite code depending on invateCode value */}
             {inviteCode.length > 0 && <span className="inviteCode">{inviteCode}</span>}
 
         </section>
     )
 }
 
-// export const TeamPageContainer = (props: { isDarkTheme: boolean }) => {
-//     const dispatch: any = useDispatch()
-//     const user = useSelector((state: Global_state_type) => state.App.user)
-//     const pic = useSelector((state: Global_state_type) => state.clans.team?.teamAvatar)
-//     useEffect(() => {
-//         dispatch(getClanListByUserID(user.userID as string))
-//     }, [])
 
-//     return (
-//         <section className={"team_page_container container"}>
-//             {user.teamID ? <TeamPage  /> :
-//                 <div className={"empty_team container "}>
-//                     <h2>Вы не состоите в команде</h2>
-//                     <NavLink to={"/join-team"}>Присоединиться</NavLink>
-//                     <NavLink to={"/create-team"}>Создать команду</NavLink>
-//                 </div>
 
-//             }
-//             <img src={pic as string} alt="" />
-//         </section>
-//     )
-// }

@@ -88,7 +88,16 @@
 #team_name {
     font-size: 30px;
 }
-
+/* User list */
+.user-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 22px;
+}
+.delete-user {
+    color: rgb(233, 80, 80);
+}
 .empty_team{
     display: flex;
     flex-direction: column;

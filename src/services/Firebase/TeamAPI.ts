@@ -1,16 +1,17 @@
-// Import Parent Class
+
 // Firebase functions
 import {
     collection, getDocs, query, where,
     doc, getDoc, setDoc,
-    updateDoc, arrayUnion, arrayRemove, deleteDoc, QueryDocumentSnapshot, DocumentData,
+    updateDoc, arrayUnion, arrayRemove, deleteDoc
 }
     from "firebase/firestore";
-// Import Config
+// Import Config and parent class
 import FirebaseApi, { Firestore } from "./FirebaseConfig";
+
+// Types
 import { FirebaseError } from "firebase/app";
-import { ref } from "firebase/database";
-import { error } from "console";
+import { UserRoles } from "../../Redux/Types";
 
 
 
@@ -44,7 +45,7 @@ class TeamAPI extends FirebaseApi {
                     userIDs: arrayRemove(userID)
                 })
             }
-
+            // Udate user fireabase document
             await updateDoc(userRef, {
                 team: null,
                 teamID: null
@@ -135,8 +136,7 @@ class TeamAPI extends FirebaseApi {
                 // Throw error
                 throw new Error("Error : Incorect invite code!");
             }
-            else 
-            {
+            else {
                 // Anotherwise push document in result array 
                 teamSnap.forEach((doc) => {
                     team.push(doc.data())
@@ -148,7 +148,7 @@ class TeamAPI extends FirebaseApi {
                 // Set userId and userName into team document
                 await updateDoc(teamRef, {
                     inviteCode: null,
-                    users: arrayUnion(userName),
+                    users: arrayUnion({userName : userName,userID : userID}),
                     userIDs: arrayUnion(userID)
                 });
                 // Update user document 
@@ -184,20 +184,28 @@ class TeamAPI extends FirebaseApi {
             const docRef = collection(Firestore, "Clans");
             // Get document by ref
             const userRef = doc(Firestore, "Users/", userID);
+
             // Get new document ID
             const docID = await doc(docRef);
             // Update user entry passing into them new teasm data
+            // And set this useer as admin
             await updateDoc(userRef, {
                 team: team.newTeamName,
-                teamID: docID.id
+                teamID: docID.id,
+                role: UserRoles.admin
             })
             // CDefine a new teasm object
             let newTeam = {
                 teamName: team.newTeamName,
                 userIDs: [userID],
-                users: [userName],
+                users: [{
+                    userName : userName,
+                    userID : userID
+                }],
                 teamID: docID.id,
-                description: team.newTeamDescription
+                description: team.newTeamDescription,
+                adminID: userID,
+                adminName : userName
             }
             // Write new Team object intio database
             await setDoc(docID, newTeam)
@@ -227,6 +235,13 @@ class TeamAPI extends FirebaseApi {
 
         }
     }
+    /**
+     * Set the value of the nite code for individuals to join the group
+     * 
+     * @param teamID string
+     * @param inviteCode string
+     * @returns void
+     */
     public async setInviteCode(teamID: string, inviteCode: string) {
         try {
             // Get document ref
@@ -244,6 +259,42 @@ class TeamAPI extends FirebaseApi {
             console.log(error.message);
             return error;
         }
+    }
+
+    /**
+     * Delete member og team
+     * @param userID string
+     * @param teamID string
+     * @param userName string
+     * 
+     * @returns void
+     */
+
+    public async deleteUserFromTeam (userID : string,teamID : string,userName : string) {
+        try
+        {
+            // User docRef
+            let userRef = doc(this.firestore,"Users/" + userID);
+            // teamRef
+            let teamRef = doc (this.firestore,"Clans/" + teamID);
+
+            // Remove user data from team frirebase entry
+            await updateDoc(teamRef,{
+                users : arrayRemove({userName : userName,userID : userID}),
+                userIDs : arrayRemove(userID)
+            });
+            // Remove team data from user document
+            await updateDoc(userRef,{
+                teamID : null,
+                team : null
+            })
+        }
+        catch(ex)
+        {
+            let error : FirebaseError = ex as FirebaseError;
+            console.log(error.message);
+            return error;
+         }
     }
 }
 
