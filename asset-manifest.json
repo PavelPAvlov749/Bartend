@@ -1,27 +1,27 @@
 {
   "files": {
     "main.css": "/Bartend/static/css/main.92df8cde.css",
-    "main.js": "/Bartend/static/js/main.c8535c06.js",
+    "main.js": "/Bartend/static/js/main.57c4fc25.js",
     "static/css/233.5dfd358d.chunk.css": "/Bartend/static/css/233.5dfd358d.chunk.css",
     "static/js/233.5a7130f8.chunk.js": "/Bartend/static/js/233.5a7130f8.chunk.js",
-    "static/css/741.ed288e78.chunk.css": "/Bartend/static/css/741.ed288e78.chunk.css",
-    "static/js/741.f4489b7b.chunk.js": "/Bartend/static/js/741.f4489b7b.chunk.js",
+    "static/css/741.929b6388.chunk.css": "/Bartend/static/css/741.929b6388.chunk.css",
+    "static/js/741.7f6ff6ce.chunk.js": "/Bartend/static/js/741.7f6ff6ce.chunk.js",
     "static/js/787.0aa5852f.chunk.js": "/Bartend/static/js/787.0aa5852f.chunk.js",
     "static/js/945.f5ab6b44.chunk.js": "/Bartend/static/js/945.f5ab6b44.chunk.js",
     "static/media/UbuntuCondensed-Regular.ttf": "/Bartend/static/media/UbuntuCondensed-Regular.3c68c6859c01c9c625b6.ttf",
     "static/media/bartendLogo.png": "/Bartend/static/media/bartendLogo.9ecf7888bfe0c17ec157.png",
     "index.html": "/Bartend/index.html",
     "main.92df8cde.css.map": "/Bartend/static/css/main.92df8cde.css.map",
-    "main.c8535c06.js.map": "/Bartend/static/js/main.c8535c06.js.map",
+    "main.57c4fc25.js.map": "/Bartend/static/js/main.57c4fc25.js.map",
     "233.5dfd358d.chunk.css.map": "/Bartend/static/css/233.5dfd358d.chunk.css.map",
     "233.5a7130f8.chunk.js.map": "/Bartend/static/js/233.5a7130f8.chunk.js.map",
-    "741.ed288e78.chunk.css.map": "/Bartend/static/css/741.ed288e78.chunk.css.map",
-    "741.f4489b7b.chunk.js.map": "/Bartend/static/js/741.f4489b7b.chunk.js.map",
+    "741.929b6388.chunk.css.map": "/Bartend/static/css/741.929b6388.chunk.css.map",
+    "741.7f6ff6ce.chunk.js.map": "/Bartend/static/js/741.7f6ff6ce.chunk.js.map",
     "787.0aa5852f.chunk.js.map": "/Bartend/static/js/787.0aa5852f.chunk.js.map",
     "945.f5ab6b44.chunk.js.map": "/Bartend/static/js/945.f5ab6b44.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.92df8cde.css",
-    "static/js/main.c8535c06.js"
+    "static/js/main.57c4fc25.js"
   ]
 }
