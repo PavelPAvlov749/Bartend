@@ -3,7 +3,7 @@
 import {
     collection, getDocs, query, where,
     doc, getDoc, setDoc,
-    updateDoc, arrayUnion, arrayRemove, deleteDoc
+    updateDoc, arrayUnion, arrayRemove, deleteDoc, DocumentData, QuerySnapshot
 }
     from "firebase/firestore";
 // Import Config and parent class
@@ -155,7 +155,8 @@ class TeamAPI extends FirebaseApi {
                 // Set teamID and teamName into user document
                 await updateDoc(userRef, {
                     teamID: team[0].teamID,
-                    team: team[0].teamName
+                    team: team[0].teamName,
+                    role : UserRoles.member
                 });
                 // Finaly,return team doc to set hin into redux store
                 return team[0];
@@ -296,6 +297,38 @@ class TeamAPI extends FirebaseApi {
             return error;
          }
     }
+    public async getTeamNameByUserID (userID : string) {
+        try
+        {
+            // Get team collections query where userIDs array contains userID passed into arguments
+            const teamRef = query(collection(this.firestore,"Clans"),where("userIDs","array-contains",userID));
+            // Get all collections 
+            const teamDocs = (await getDocs(teamRef));
+            
+            // Define a result array 
+            let teams : any = [];
+            // Check if collecion are not empty
+            if(!teamDocs.empty)
+            {
+                teamDocs.forEach((el ) => teams.push(el.data()));
+                return {
+                    teamID : teams[0].teamID,
+                    team : teams[0].teamName
+                }
+            }
+            else
+            {
+                throw new FirebaseError("0","Data not found");
+            }
+        }
+        catch (ex)
+        {
+            const error : FirebaseError = ex as FirebaseError;
+            console.log(error.message);
+            return ex;
+        }
+    }
+
 }
 
 

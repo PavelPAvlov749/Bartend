@@ -2,6 +2,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { InferActionType } from "./Store";
 import { userPageType } from "./Types";
 import { authApi } from "../services/Firebase/AuthAPI";
+import { TeamModuleAPI } from "../services/Firebase/TeamAPI";
 
 
 // ACTION TYPES 
@@ -140,7 +141,9 @@ export const initializeThunk = () => {
         let isUserExist = await authApi.isUserExist(user.uid);
         if (isUserExist) {
           let userPage = await authApi.getUserByID(user?.uid as string);
-          dispatch(app_actions.setUserPage(userPage as userPageType));
+          let team : any = await TeamModuleAPI.getTeamNameByUserID(user.uid);
+
+          dispatch(app_actions.setUserPage({...userPage,...team}));
           // Set auth state in redux state
           dispatch(app_actions.setInit(true));
           dispatch(app_actions.setAuth(true));
