@@ -67,15 +67,16 @@ export const LoginPage = () => {
                                 <br />
                                 {/* GOGGLE AUTH  */}
                                 <button onClick={GogleSignIn} className="google-auth">Sign in with Google</button>
-                                <h3>или</h3>
-                                <NavLink to="/registration" style={{ "fontSize": "x-large", "color": "rgb(242, 122, 67)" }}>Create account</NavLink>
-                                <br />
 
+                                <br />
+                            
                             </section>
                         )
                     }}
                 </Formik>
-                {error && <span className="errorMessage">{error}</span>}
+                <h3>OR</h3>
+                                <NavLink to="/registration"><span className={"create-account-link"}>Register</span></NavLink>
+                                {error && <span className="errorMessage">{error}</span>}
             </div>
         </section>
     )
