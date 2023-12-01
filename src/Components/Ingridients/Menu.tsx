@@ -4,13 +4,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 // Redux,Reducers
 import { deleteProductCrad } from "../../Redux/ProductReduxer";
 import { UseToggle } from "../../Helpers/CustomHooks";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 // Types
 import { productType } from "../../Redux/Types";
 import { premixAPI } from "../../services/Firebase/PremixAPI";
-import { Global_state_type } from "../../Redux/Store";
 
-
+// Styles
+import styles from "../../Assets/Styles/DotsMenu.module.css"
 // PROPS TYPE
 // --------------
 type DotsMenuPropsType = {
@@ -63,10 +63,10 @@ export const DotsMenu = (props: DotsMenuPropsType) => {
     }
     if (!isOpen) {
         return (
-            <section className="dots-menu" onClick={toggle}>
-                <li className="dots-menu__dot"></li>
-                <li className="dots-menu__dot"></li>
-                <li className="dots-menu__dot"></li>
+            <section className={styles.dotsMenu} onClick={toggle}>
+                <li className={styles.dotsMenu__dot}></li>
+                <li className={styles.dotsMenu__dot}></li>
+                <li className={styles.dotsMenu__dot}></li>
 
             </section>
         )
@@ -74,12 +74,11 @@ export const DotsMenu = (props: DotsMenuPropsType) => {
     }
     else {
         return (
-            <section className="menu-options">
+            <section className={styles.menuOptions}>
                 {props.isEditMode && <span className="save-changes" onClick={saveChanges}>{"Save changes"}</span>}
                 <span onClick={setEditMode}>{props.isEditMode ? "Cancel Editing" : "Edit"}</span>
                 <span onClick={deleteProduct}>Delete</span>
                 <span onClick={toggle}>Close</span>
-
             </section>
         )
     }

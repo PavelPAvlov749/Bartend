@@ -9,6 +9,7 @@ import "../../../../Assets/Styles/PassedShift.css";
 // Types
 import { productType } from "../../../../Redux/Types";
 import { Global_state_type } from "../../../../Redux/Store";
+import { UIButton } from "../../../../Components/Button";
 
 
 export const PassedShift = () => {
@@ -46,7 +47,7 @@ export const PassedShift = () => {
                 })}
             </table>
             {/* Go back link */}
-            <button onClick={() => { navigate(-1) }}>Back</button>
+            <UIButton callback={() => navigate(-1)} text="Back"/>
         </section>
     );
 };

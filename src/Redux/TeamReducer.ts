@@ -190,12 +190,7 @@ export const getAllClans = () => {
     }
 }
 
-export const joinTheClan = (userID : string,userName : string,clanID : string,clanName:string) => {
-    return async function (dispatch : any) {
-        await TeamModuleAPI.joinTheClan(userID,userName,clanID,clanName)
-        
-    }
-}
+
 
 export const leaveTheTeam = (teamID : string,userID : string,userName : string) => {
     return async function (dispatch : any) {
@@ -212,5 +207,27 @@ export const deleteUSerTunk = (userID : string,userName : string,teamID : string
     return async function (dispatch : any) {
         await TeamModuleAPI.deleteUserFromTeam(userID,teamID,userName);
         dispatch(clanActions.clearDeletingUser());
+    }
+}
+
+/**
+ * Join team by generated unvite code async thunk
+ * 
+ * @param inviteCode string
+ * @param userID string
+ * @param userName string
+ * @returns asyncFunction 
+ */
+export const joinTeamByInviteCode = (inviteCode : string,userID : string,userName : string) => {
+    return async function (dispatch : any) {
+        let result = await TeamModuleAPI.joinTeamByInviteCode(inviteCode,userID,userName);
+        if (typeof result === "string") {
+            console.log(result);
+            dispatch(app_actions.setErrorMessage(result));
+            dispatch(app_actions.setErrorState(true));
+        }
+        else {
+            dispatch(clanActions.setTeam(result));
+        }
     }
 }

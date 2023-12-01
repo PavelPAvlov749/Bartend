@@ -78,41 +78,6 @@ class TeamAPI extends FirebaseApi {
         }
     }
     /**
-     * Join the function :
-     * Updates the user's document in the database by adding a record about 
-     * the team he is joining and also updates the team record by adding the
-     * user to the array of users passed in the current group 
-     * 
-     * @param userID string
-     * @param userName string
-     * @param clanID string
-     * @param clanName string
-     * 
-     * @returns void
-     */
-    public async joinTheClan(userID: string, userName: string, clanID: string, clanName: string) {
-        try {
-            // Get document ref
-            const clansRef = doc(Firestore, "Clans/", clanID);
-            // Update Firestore document by pushing user ID into team users Array
-            await updateDoc(clansRef, {
-                users: arrayUnion(userName),
-                userIDs: arrayUnion(userID)
-            })
-            // 
-            const userRef = doc(Firestore, "Users/", userID)
-            // Push team data into user document
-            await updateDoc(userRef, {
-                team: clanName,
-                teamID: clanID
-            })
-
-        }
-        catch (ex) {
-            console.log(ex)
-        }
-    }
-    /**
      * Join user to the team by invite code
      * 
      * @param inviteCode string

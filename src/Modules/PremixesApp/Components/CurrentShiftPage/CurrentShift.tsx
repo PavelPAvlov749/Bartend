@@ -14,6 +14,7 @@ import { blankShiftType, productType } from "../../../../Redux/Types";
 // Redux imports
 import { closeCurrentShiftByCompanyID } from "../../../../Redux/BlankShiftReducer";
 import { Reducer } from "../../Reducers/Reducer";
+import { UIButton } from "../../../../Components/Button";
 
 type currentShiftPropType = {
     products: productType[],
@@ -45,10 +46,7 @@ export const CurrentShift = React.memo((props: currentShiftPropType) => {
             <section className={`current_shift_container translate_animation`}>
                 <ProgressBar products={state} />
                 <IngridientList ingridients={state} setState={setState} />
-                <button
-                    className={'confirm_button'}
-                    onClick={endShift}>End shift
-                </button>
+                <UIButton className="confirm_button" text="End shift" callback={endShift}/>
             </section>
         )
     } else {

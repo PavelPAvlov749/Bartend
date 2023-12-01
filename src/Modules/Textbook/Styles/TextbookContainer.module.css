@@ -1,0 +1,44 @@
+.textbookContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3px;
+
+}
+.textbookContainer__tittle {
+    padding: 5px 0;
+    font-size: 20px;
+}
+.tittles {
+    padding: 5px;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 5px;
+    grid-auto-rows: 1fr;
+}
+
+.tittleItem {
+    height: 120px;
+    border: 1px solid rgb(232, 232, 232);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.article {
+
+    padding: 3px;
+    font-size: 19px;
+}
+.article p {
+
+    overflow-wrap: normal;
+}
+.articleImg {
+    width: 100vw;
+    object-fit: cover;
+}

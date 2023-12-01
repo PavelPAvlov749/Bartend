@@ -39,6 +39,7 @@ export const useProductFilter = (initial : string) : [productType[],(e : string)
     const updateFilter = (value : string) => {
         setFilter(value)
     }
+    
     return [products,updateFilter]
     
 }

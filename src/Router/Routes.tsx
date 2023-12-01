@@ -27,6 +27,10 @@ import { PremixesApp } from "../Modules/PremixesApp/Premixes";
 import { PassedShift } from "../Modules/PremixesApp/Components/HistoryPage/PassedShiftItem";
 import { ShiftConstructorContainer } from "../Modules/PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
 import { TeamPageContainer } from "../Modules/TeamApp/TeamPageContainer";
+import { RecepiesAppContainer } from "../Modules/RecepiesApp/RecepiesAppContainer";
+import { TextbookContainer } from "../Modules/Textbook/TextbookContainer";
+import TextboolArticle from "../Modules/Textbook/TextbookArticle";
+import { Distilation } from "../Modules/Textbook/Pages/Distilation";
 
 
 // ---------- ROUTES STRINGS
@@ -38,7 +42,7 @@ export const ADD_PRODUCT = "/add"
 export const PRODUCT_CARD = "/card/:id"
 export const LOG_OUT = "/logOut"
 export const REGISTRATION = "/registration"
-// export const NO_MATCH_ROUTE = "*"
+export const NO_MATCH_ROUTE = "*"
 export const BLANK_SHIFT = "/blank-shift/*"
 export const STEP_2 = "add-step-two"
 export const NEW_BLANK_SHIFT = "/shiftManager/create-new"  
@@ -52,7 +56,8 @@ export const CHECK_LIST = "/check-lists/:id"
 export const KNIWLEDGE_BASE = "knowledge-base"
 export const INGRIDIENT = "/ingridient/:id"
 export const HISTORY = '/blank-shift/history'
-
+export const TEXTBOOK = '/textbook'
+export const ARTICLE = 'article/:name=distilation'
 
 // PRIVATE ROUTES ARRAY
 // These routes are available only to authorized users
@@ -93,7 +98,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : PREMIX_LIST,
-        element : <Premixes/>
+        element : <RecepiesAppContainer/>
     },
     {
         path : PRODUCT_CARD,
@@ -107,10 +112,14 @@ export const PRIVATE_ROUTES : ROUTE[] = [
         path : CHECK_LISTS,
         element : <CheckLists/>
     },
-    // {
-    //     path : NO_MATCH_ROUTE,
-    //     element : <Navigate to="/home" />
-    // },
+    {
+        path : NO_MATCH_ROUTE,
+        element : <Navigate to="/home" />
+    },
+    {
+        path : TEXTBOOK,
+        element : <TextbookContainer/>
+    },
     {
         path : ADD_PRODUCT,
         element : <NewProduct isDarkTheme={true}/>
@@ -134,6 +143,10 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     {
         path : INGRIDIENT,
         element : <IngridientCard/>
+    },
+    {
+        path : ARTICLE,
+        element : <Distilation/>
     }
 ]
 // PUBLICK ROUTES ARRAY

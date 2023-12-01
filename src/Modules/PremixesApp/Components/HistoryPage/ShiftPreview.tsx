@@ -19,7 +19,6 @@ export const ShiftPreview = (props: ShiftPreviewType) => {
             <span>Date: {props.date}</span>
             <span>Employee: {props.employee}</span>
             <span>Number of Positions: {props.count}</span>
-            <span id={`showMore`} onClick={() => props.onClickHandler(props.shiftID as string)} >Show More</span>
         </li>
     );
 };

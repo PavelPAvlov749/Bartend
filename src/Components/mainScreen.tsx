@@ -6,58 +6,16 @@ import { Global_state_type } from "../Redux/Store";
 import docIcon from "../Assets/Icons/icons8-document-64.png"
 import teamicon from "../Assets/Icons/icons8-team-96.png"
 import chemistryIcon from "../Assets/Icons/icons8-chemistry-100(1).png"
-import sheldue from "../Assets/Icons/icons8-edit-96.png"
-import { useWindowInnerWidth } from "../Helpers/CustomHooks";
 
-export const Header = () => {
-    const navigate = useNavigate()
-    const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
-
-    return (
-        <section className="header">
-          
-            <ul className={styles.main_page_navigation}>
-                <li id="ckecklist" className={styles.blue} onClick={() => { navigate("/check-lists") }}>
-
-                    <a>Check - lists</a>
-
-                    <img className="icon" src={docIcon} alt="" />
-
-                </li>
-                <li id="blank-shift" className={styles.green} onClick={() => { navigate("/shiftManager") }}>
+import documentIcon from "../Assets/Icons/icons8-document-90.png";
 
 
-                    <a>Premixes</a>
-                    <img className="icon" src={chemistryIcon} alt="" />
-
-                </li>
-
-                <li id="sheldue" className={styles.darkBlue} onClick={() => { navigate("/check_lists") }}>
 
 
-                    <a>Sheldue</a>
-                    <img className="icon" src={sheldue} alt="" />
-
-                </li>
-                <li id="team" className={styles.orange} onClick={() => { navigate("/clan-list") }}>
-
-
-                    <a>Team</a>
-                    <img className="icon" src={teamicon} alt="" />
-
-                </li>
-
-            </ul>
-
-        </section>
-
-
-    )
-}
 
 const MainPageNavigation = () => {
     const navigate = useNavigate()
-    const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
+
     return (
         <section className="main_page_navigation">
             
@@ -72,16 +30,16 @@ const MainPageNavigation = () => {
                 <li id="blank-shift" className={styles.green} onClick={() => { navigate("/shiftManager") }}>
 
 
-                    <a>Premixes</a>
+                    <a>Prep Shift</a>
                     <img className="icon" src={chemistryIcon} alt="" />
 
                 </li>
 
-                <li id="sheldue" className={styles.darkBlue} onClick={() => { navigate("/check_lists") }}>
+                <li id="sheldue" className={styles.darkBlue} onClick={() => { navigate("/premixes") }}>
 
 
-                    <a>Sheldue</a>
-                    <img className="icon" src={sheldue} alt="" />
+                    <a>Recepie Cards</a>
+                    <img className="icon" src={documentIcon} alt="" />
 
                 </li>
                 <li id="team" className={styles.orange} onClick={() => { navigate("/clan-list") }}>
@@ -102,7 +60,6 @@ export const HomePage = () => {
         return state.App.user
     })
 
-    const windowWidth = useWindowInnerWidth()
     return (
         <section className={`${styles.home_page_container} ${styles.translate_animation}`}>
             <div className={styles.home_page_info}>
@@ -111,9 +68,6 @@ export const HomePage = () => {
                 </h1>
                 <span>{profile.team ? profile.team : null}</span>
                 <br />
-
-
-
             </div>
             <MainPageNavigation /> 
 

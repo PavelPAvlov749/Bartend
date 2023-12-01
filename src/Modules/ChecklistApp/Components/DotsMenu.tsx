@@ -1,9 +1,8 @@
-import { Dispatch, useState } from "react"
+import { useState } from "react"
 import { checkListType, deleteChekListThunk } from "../../../Redux/CheckListReducer";
-import { CheckListsAPI } from "../../../services/Firebase/CkeckListsAPI";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
+import styles from '../../../Assets/Styles/DotsMenu.module.css'
 
 
 // DEFINE A PROPS TYPE
@@ -31,10 +30,10 @@ export const ChecklistDotsMenu: React.FC<ChecklistDotsMenu> = (props) => {
     if (!isOpen) {
         // Render menu icon 
         return (
-            <section className="dots-menu" onClick={toggle}>
-                <li className="dots-menu__dot"></li>
-                <li className="dots-menu__dot"></li>
-                <li className="dots-menu__dot"></li>
+            <section className={styles.dotsMenu} onClick={toggle}>
+                <li className={styles.dotsMenu__dot}></li>
+                <li className={styles.dotsMenu__dot}></li>
+                <li className={styles.dotsMenu__dot}></li>
 
             </section>
         )
@@ -43,7 +42,7 @@ export const ChecklistDotsMenu: React.FC<ChecklistDotsMenu> = (props) => {
     else {
         // Opened menu
         return (
-            <section className="menu-options">
+            <section className={styles.menuOptions}>
               
                 <span onClick={deleteCheklist}>Delete</span>
                 <span onClick={toggle}>Close</span>

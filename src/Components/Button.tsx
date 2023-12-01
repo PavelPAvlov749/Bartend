@@ -5,7 +5,9 @@ type ButtonPropsType = {
     text : string,
     id? : string,
     className? : string,
-    callback : (event : React.SyntheticEvent) => void 
+    callback? : (event : React.SyntheticEvent) => void,
+    type? : "button" | "submit"
+    
 }
 
 /**
@@ -17,10 +19,11 @@ type ButtonPropsType = {
  * 
  * @returns React.Ellement 
  */
-export const UIButton : React.FC<ButtonPropsType> = (props) => {
+export const UIButton : React.FC<ButtonPropsType> = (props : ButtonPropsType,params?) => {
     return (
         <button
             id={props.id}
+            type={props.type}
             className={props.className}
             onClick={props.callback}
         >

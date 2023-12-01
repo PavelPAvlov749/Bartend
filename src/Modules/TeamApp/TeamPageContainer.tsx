@@ -9,7 +9,7 @@ import { useTeamPage } from "./Hooks/useTeam";
 import { Global_state_type } from "../../Redux/Store";
 import { ClanType } from "../../Redux/TeamReducer";
 // Components
-import { TeamPage } from "./ClanList";
+import { TeamPage } from "./TeamPage";
 import { EmptyTeam } from "./Components/EmptyTeam";
 
 

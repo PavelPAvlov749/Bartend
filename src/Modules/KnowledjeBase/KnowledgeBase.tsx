@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Tab, Tabs } from "@mui/material";
 import "../../Assets/Styles/CocktailList.css"
 import { KnowledgeBaseContent } from "./KnowledgeBaseContent";
+import { SelectionTabs } from "../../Components/SelectionTabs";
 
 
 
@@ -21,13 +21,7 @@ export const KnowledgeBase = () => {
     return (
         <section className="knwoledge_base_container container">
             <h2>Knowledge base</h2>
-            <Box sx={{width: '100%',marginBottom : "5px" }}>
-                <Tabs value={value} onChange={handleChange} sx={{}} >
-                    <Tab sx={{width : "33%",fontSize : "14px",color : "white"}} label="Coktails" />
-                    <Tab  sx={{width : "33%",fontSize : "14px",color :"white"}}  label="Spirits" />
-                    <Tab  sx={{width : "33%",fontSize : "14px",color :"white"}}  label="Premixes" />
-                </Tabs>
-            </Box>
+            <SelectionTabs labels={['Coctails','Premixes']} handleChange={handleChange} value={value} setValue={setValue}/>
             <KnowledgeBaseContent value={value}/>
         </section>
     )
