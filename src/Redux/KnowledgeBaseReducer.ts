@@ -1,6 +1,6 @@
 
 
-import { coctailDbAPI } from "../services/Axios/CocktailDbAPI";
+import { coctailDbAPI } from "../services/CocktailDB/CocktailDbAPI";
 
 import { app_actions } from "./AppReducer";
 import { InferActionType } from "./Store";

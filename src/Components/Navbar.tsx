@@ -4,12 +4,9 @@ import { NavLink } from "react-router-dom";
 // Assets
 import home from "../Assets/Icons/icons8-homepage-96.png";
 import logout from "../Assets/Icons/icons8-logout-64.png";
-import doc from "../Assets/Icons/icons8-document-90.png"
 import books from "../Assets/Icons/icons8-books-52(1).png"
-import homeDark from "../Assets/Icons/icons8-home-page-96.png"
-import logoutDark from "../Assets/Icons/icons8-logout-64 (1).png"
-import docDark from "../Assets/Icons/icons8-document-96.png"
-import booksDark from "../Assets/Icons/icons8-books-52.png"
+
+
 import search from "../Assets/Icons/icons8-search-100.png"
 // Styles
 import "../Assets/Styles/Navbar.css"
@@ -37,7 +34,7 @@ const Navbar = (props: { theme: boolean }) => {
             <ul>
                 <li key={"home"} className="navbar-container__item">
                     <NavLink className="nav" to="home">
-                        <img src={props.theme ? home : homeDark} className="icon" alt="" />
+                        <img src={home} className="icon" alt="" />
 
                     </NavLink>
                     <span>Home</span>
@@ -50,13 +47,13 @@ const Navbar = (props: { theme: boolean }) => {
                 </li>
                 <li key="knowledge_base" className="navbar-container__item">
                     <NavLink className="nav" to="/textbook">
-                        <img src={props.theme ? books : booksDark} className="icon" alt="" />
+                        <img src={books} className="icon" alt="" />
                     </NavLink>
                     <span>Textbook</span>
                 </li>
                 <li key="logOut" className="navbar-container__item">
                     <NavLink onClick={logOut} className="nav" to="logOut">
-                        <img src={props.theme ? logout : logoutDark} className="icon" alt="" />
+                        <img src={logout} className="icon" alt="" />
                     </NavLink>
                     <span>LogOut</span>
                 </li>

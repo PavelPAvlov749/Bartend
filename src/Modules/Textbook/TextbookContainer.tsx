@@ -8,6 +8,11 @@ export const TextbookContainer: React.FC = () => {
         <section className={styles.textbookContainer}>
             <h1 className={styles.textbookContainer__tittle}>Textbook</h1>
             <ul className={styles.tittles}>
+                <li>
+                    <NavLink to={"/article/name=tools"}>
+                        Tools
+                    </NavLink>
+                </li>
                 <li className={styles.tittleItem}>
                     <NavLink to={"/article/name=distilation"}>
                         Distilation

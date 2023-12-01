@@ -10,7 +10,19 @@
     font-size: 22px;
     padding: 3px;
 }
-
+/* No resdults */
+.recepiesContainerEmpty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nothinFoundIcon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 20px;
+}
 .addButton {
     align-self: flex-end;
 
@@ -61,7 +73,7 @@
 }
 .menuOptions {
     animation: appear .5s ease;
-  background-color: rgba(0,0,0,.972);
+  background-color: rgba(54, 54, 54, 0.972);
   border-radius: 5px;
   display: none;
   display: flex;

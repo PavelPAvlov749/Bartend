@@ -10,14 +10,13 @@
 import { Navigate } from "react-router-dom";
 import { CheckLists } from "../Modules/ChecklistApp/Components/CheckLists";
 import { CheckListPage } from "../Modules/ChecklistApp/Components/CheclListPage";
-import { Premixes } from "../Components/Ingridients/Premixes";
-import { ProductCardContainer } from "../Components/Ingridients/ProductCardContainer";
+import { ProductCardContainer } from "../Modules/RecepiesApp/Components/ProductCardContainer";
 import { CocktailCard } from "../Modules/KnowledjeBase/CoctrailCard";
 import { CreateTeam } from "../Modules/TeamApp/CreateTeam";
 import { HomePage } from "../Components/mainScreen";
 import { ROUTE } from "../Redux/Types";
-import { NewProduct } from "../Components/NewProduct/NewProduct";
-import { SecondStep } from "../Components/NewProduct/SecondStep";
+import { NewProduct } from "../Modules/RecepiesApp/NewProduct/NewProduct";
+import { SecondStep } from "../Modules/RecepiesApp/NewProduct/SecondStep";
 import { NewCheckList } from "../Modules/ChecklistApp/Components/NewCheckList";
 import { KnowledgeBase } from "../Modules/KnowledjeBase/KnowledgeBase";
 import { IngridientCard } from "../Modules/KnowledjeBase/Ingridient";
@@ -29,7 +28,6 @@ import { ShiftConstructorContainer } from "../Modules/PremixesApp/Components/Con
 import { TeamPageContainer } from "../Modules/TeamApp/TeamPageContainer";
 import { RecepiesAppContainer } from "../Modules/RecepiesApp/RecepiesAppContainer";
 import { TextbookContainer } from "../Modules/Textbook/TextbookContainer";
-import TextboolArticle from "../Modules/Textbook/TextbookArticle";
 import { Distilation } from "../Modules/Textbook/Pages/Distilation";
 
 
