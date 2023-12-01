@@ -5,6 +5,8 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.541);
+    height: 3rem;
 }
 .navbar_container ul {
     display: flex;
@@ -34,10 +36,14 @@
 @media(max-width:750px) {
     .navbar_container {
         padding: 10px 0px 5px 0px;
-        height: 3.2rem;
+        
         width: 100%;
         display: flex;
         flex-direction: row;
+        background-color: rgba(255, 255, 255, 0.089);
+        height: 3.7rem;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
     }
     .navbar_container ul {
         border: none;
