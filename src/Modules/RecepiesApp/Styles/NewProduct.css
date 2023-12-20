@@ -1,0 +1,152 @@
+.recepie_constructor {
+    
+}
+.new_premix_first_step #name {
+    width: 50%;
+}
+.compound {
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+.add-ingridient {
+    width: 250px;
+    height: 3rem;
+    font-size: 20px;
+}
+.first_step_tittle {
+    text-align: center;
+    font-size: 22px;
+    margin: 0%;
+    padding: 2px;
+    border-bottom: 1px solid rgb(57, 57, 57);
+}
+.top-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+.visibility-input {
+    align-self: center;
+}
+.compound_inputs {
+    
+    border-radius: 5px;
+    width: max-content;
+    padding: 10px;
+    position: relative;
+    height: 35vh;
+    overflow-y: scroll;
+    margin-bottom: 1rem;
+}
+.new_premix_first_step {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+/* VISIBILITY INPUT */
+.visibility-input span {
+    font-size: 20px;
+}
+.visibility-input {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+}
+#visibility-input {
+    width: 25px;
+    height: 25px;
+}
+#add_component {
+    padding: 0 20px;
+    width: max-content;
+}
+.compound_inputs {
+    padding: 0;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+.input_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.compound_inputs::-webkit-scrollbar {
+    display: none;
+}
+
+.input_container button {
+    animation: scaleUp 0.5s ease;
+}
+
+.input_container input {
+    margin: 5px 5px 5px 0px;
+    overflow: hidden;
+    animation: scaleUp 0.5s ease;
+    /* transform:scale(0); */
+}
+.confirm_button {
+    padding: 0 30px;
+    font-size: 20px;
+}
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@media(max-width:750px) {
+    .new_premix_first_step {
+        padding: 0;
+    }
+    .top-section {
+        padding: 5px;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+    .visibility-input {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .new_premix_first_step #name {
+        width: 100%;
+    }
+    
+    .compound_inputs {
+        width: 100%;
+        border: none;
+        max-height: 230px;
+        box-shadow: none;
+        padding: 0%;
+    }
+    .compound_inputs button {
+        width: 20px;
+        padding: 0;
+    }
+    .add-ingridient {
+        width: 100%;
+    }
+    #add_component {
+        width: 15%;
+        padding: 0%;
+        margin: 0%;
+    }
+    .input_container input {
+        
+        width: 40%; 
+        margin: 5px 5px 5px 0px;
+        overflow: hidden;
+        animation: scaleUp 0.5s ease;
+        /* transform:scale(0); */
+    }
+  }
