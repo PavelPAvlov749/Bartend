@@ -1,39 +1,57 @@
 .cocktail_card img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
+    width: auto;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .cocktail_card {
-    border: 1px solid white;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 200px;
-    overflow: hidden;
-    height: max-content;
-    margin: 5px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     border-radius: 5px;
-    padding: 5px 5px 10px 5px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    background-color: rgb(35, 35, 35);
+    border-radius: 10px;
+    height: 300px;
+    width: calc(20% - 20px);
+    text-align: center;
+    font-size: 20px;
+
+    
+}
+.coctail-card__content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    background-color: rgb(34, 34, 34);
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
 }
 .spirit_card{
     display: flex;
     flex-direction: row;
     height: 80vh;
-    /* justify-content: center;
-    align-items: center; */
 
 }
+.left_section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.save_drink {
+    width:100%;
+}
+#cocktail_photo {
+    width: 100%;
+    max-width: 600px;
+    object-fit: cover;
+    height: 500px;
+    border-radius: 20px;
+}
 .spirit_card article {
-    /* display: flex; */
-    /* height: 70vh;
-
-    flex-direction: column; */
     overflow-y: scroll;
 }
 .cocktail_card:hover {
@@ -48,6 +66,7 @@
     align-items: center;
     overflow-y: scroll;
     
+    padding: 10px;
 }
 
 .cocktail_card_container figure {
@@ -61,7 +80,8 @@
 .cocktail_card_container article {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    height: 500px;
 }
 
 .description-textarea {
@@ -69,9 +89,21 @@
     width: calc(100% - 10px)
 }
 .coctail-card__tittle{
-    font-size: 25px;
-    padding: 5px;
-    color: rgb(212, 212, 212);
+    font-size: 26px;
+    padding: 0;
+    margin: 0 0 30px 0;
+    color: rgb(186, 95, 67);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.composition__item {
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.composition__item img {
+    width: 50px;
+    height: 50px;
 }
 .coctail-card__info {
     padding: 5px;
@@ -79,30 +111,61 @@
 }
 .info__glass {
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid rgb(58, 58, 58);
+    padding-bottom: 8px;
+}
+.info__glass img {
+    width: 50px;
+    height: 50px;
+}
+.info__technology {
+    margin:0 0 0 10px;
+    padding: 0;
+    font-size: 20px;
 }
 .info__category {
     font-size: 20px;
+    margin-left: 10px;
 }
 .info__subtittle {
+    border-bottom: 1px solid rgb(58, 58, 58);
+    padding-bottom: 8px;
     font-size: 22px;
     padding: 5px 0;
+    margin: 0 0 0 10px;
     color: rgb(69, 69, 189);
 }
 .info__composition {
+    border-bottom: 1px solid rgb(58, 58, 58);
+    padding-bottom: 8px;
+    margin:0 0 0 10px;
+
     font-size: 20px;
     color: rgb(69, 69, 189);
     
 }
-#cocktail_photo {
-    max-width: 300px;
+
+
+@media (max-width:1250px) {
+    .cocktail_card  {
+        width: calc(33% - 20px);
+    }
 }
 @media (max-width:750px) {
     .cocktail_card_container {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        
-
+        justify-content: flex-start;
+        padding: 0;
+    }
+    .coctail-card__content {
+        background:none;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
     }
     .cocktail_card_container article {
         padding: 5px;
@@ -121,6 +184,12 @@
         padding: 0%;
         margin: 0%;
     }
+    .coctail-card__tittle {
+        margin: 0;
+    }
+    .coctail-card__info {
+        gap: 10px;
+    }
     .spirit_card{
         flex-direction: column;
         overflow-y: scroll;
@@ -138,8 +207,6 @@
         height: 100%;
         flex-direction: column;
         margin: 0%;
-        /* justify-content: flex-start; */
-        /* align-items: flex-start; */
         width : 100%
     }
     .cocktail_card_container figure {
@@ -166,7 +233,7 @@
         max-width: 600px;
         height: auto;
         object-fit: contain;
-        border-radius: 0 0 30px 30px;
+        border-radius: 0px;
     }
 }
 

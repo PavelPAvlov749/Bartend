@@ -2,8 +2,19 @@
     display: flex;
     flex-direction: column;
     padding: 0 3px;
-
+    padding: 0%;
+    margin: 0%;
+    animation: transl 0.4s ease-in-out;
 }
+@keyframes transl {
+    0%{
+      transform: translateX(100%);
+    }
+    100%{
+      transform: translateX(0%);
+    }
+  }
+  
 .textbookContainer__tittle {
     padding: 5px 0;
     font-size: 20px;

@@ -10,8 +10,7 @@ import hidePass from "../../Assets/Icons/icons8-hide-password-100.png"
 import { loginValidationShema } from "../../Helpers/Helpers";
 import { Global_state_type } from "../../Redux/Store";
 
-
-export const LoginPage = () => {
+const LoginPage = () => {
     const dispatch: any = useDispatch()
     const [hidePassword, setHidePassword] = useState(true);
     let error = useSelector((state: Global_state_type) => state.App.errorMessage);
@@ -81,3 +80,5 @@ export const LoginPage = () => {
         </section>
     )
 }   
+
+export default LoginPage;

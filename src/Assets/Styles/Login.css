@@ -14,18 +14,21 @@
     object-fit: cover;
     height: 80px;
 }
+
 .errorMessage {
     margin: 20px 0px;
     color: rgb(206, 67, 67);
     font-size: 20px;
 }
+
 .spanError {
-    color: rgb(206,67,67);
+    color: rgb(206, 67, 67);
     display: inline-block;
     height: max-content;
     padding: 5px;
     font-size: 17px;
 }
+
 .show {
     background-color: rgb(68, 51, 160);
     height: 2.5rem;
@@ -37,17 +40,24 @@
     display: block;
 
 }
+
 .login-form__tittle {
     margin: 10px 0 20px 0;
 }
+
 .login_form {
-    height: 100%;
+    padding: 50px 10px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
+    width: 400px;
+    border: 1px solid rgb(45, 45, 45);
+    box-shadow: 15px 15px 30px 1px rgb(27, 71, 62);
 }
+
 #passwordShow {
     width: 30px;
     height: 30px;
@@ -59,17 +69,27 @@
     text-align: center;
     justify-content: center;
     display: flex;
+    width: 100%;
     flex-direction: row;
+}
+
+.create-account-link {
+    font-size: 25px;
 }
 
 .LoginByEmailAndPassword input {
     height: 2.5rem;
-    width: 100%;
-    max-width: 250px;
+    width: 350px;
+    box-sizing: border-box;
+    /* max-width: 250px; */
 }
 
 #passwordInput {
     width: 90%;
+}
+
+#loginButton {
+    width: 100%;
 }
 
 @media (max-width : 750px) {
@@ -81,7 +101,12 @@
         align-items: center;
         height: 90vh;
     }
-
+    .login_form {
+        width: 100%;
+        border: none;
+        padding: 10px;
+        box-sizing: border-box;
+    }
     .logo {
         width: 180px;
         object-fit: cover;
@@ -99,11 +124,13 @@
         align-items: center;
         gap: 3px;
     }
+
     .create-account-link {
         color: rgb(104, 187, 195);
         font-size: 22px;
         width: 150px;
     }
+
     .login_page_container a {
         width: 5rem;
 
@@ -132,6 +159,7 @@
     .LoginByEmailAndPassword input {
         height: 2.5rem;
         width: 100%;
+        /* max-width: 250px; */
     }
 
     #passwordInput {

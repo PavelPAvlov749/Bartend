@@ -39,7 +39,7 @@ export const ProductCardContainer = () => {
 
             <section className={`product_card container translate_animation`}>
 
-                <h1>{card?.name}</h1>
+                <h1 className="card__tittle">{card?.name}</h1>
                 {/* Render dots menu depending on result of comparison teamID and userTeamID */}
                 {/* If user currrent user not belong to team that create this product he cannot edit or delete prdocut card */}
                 {/* Pass Edit mode toggler into Menu component props */}

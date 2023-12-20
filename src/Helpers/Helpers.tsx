@@ -77,6 +77,7 @@ export const validationShema = yup.object().shape({
     oneOf([yup.ref("password")], "Passwords dint match").typeError("Should be a string").min(6).max(30)
 
 })
+
 export const loginValidationShema = yup.object().shape({
     email: yup.string().typeError("Email must be an string").min(6).max(30).required("This Field is Required")
         .matches(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
@@ -86,8 +87,11 @@ export const loginValidationShema = yup.object().shape({
 
 })
 
+// Parse data from cocktailDB
 export const parseCocktailDbIngridients = (cocktail: any) => {
+    // Get all ingridients
     let ingridientKey = Object.keys(cocktail).filter((key: string) => key.includes('strIngredient') === true)
+    
     return ingridientKey.map((el: string, index: number) => {
         return { [cocktail[el]]: cocktail[`strMeasure${index + 1}`] }
     }).filter((el: {}) => !el.hasOwnProperty('null')).reduce((result, el) => {

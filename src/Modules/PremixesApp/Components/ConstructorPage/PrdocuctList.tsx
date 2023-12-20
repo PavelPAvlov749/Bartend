@@ -12,7 +12,7 @@ type prdocuctListType = {
 
 export const ProductList = (props: prdocuctListType) => {
     return (
-        <ul>
+        <ul className="product_list">
             {props.products.map((el: productType) => {
                  return (
                     <ProdcustItem name={el.name} isChecked={el.checked as boolean} toggleFunction={props.dispatch} id={el.id as string} />

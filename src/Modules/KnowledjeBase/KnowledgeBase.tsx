@@ -9,7 +9,7 @@ import { SelectionTabs } from "../../Components/SelectionTabs";
 
 
 
-export const KnowledgeBase = () => {
+const KnowledgeBase = () => {
 
   
     const [value, setValue] = React.useState(0);
@@ -26,3 +26,5 @@ export const KnowledgeBase = () => {
         </section>
     )
 }
+
+export default KnowledgeBase;

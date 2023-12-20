@@ -1,29 +1,29 @@
 // React,Components,ReactHooks
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ItemList } from "./ChekListItem"
 // CustomHooks
 import { useChecklistList } from "./Hooks";
 // Styles and Assets
-import "../../../Assets/Styles/CheckLists.css"
+import styles from "../Styles/CheckLists.module.css";
 import notFound from "../../../Assets/Icons/nothing.png";
 
-export const CheckLists = () => {
+const CheckLists = () => {
 
     let checklists = useChecklistList();
 
     return (
-        <section className="check_lists_container container page_apperas_animation">
-            <div className="ckeck-lists-content">
+        <section className={styles.check_lists_container}>
+            <div className={styles.ckeck_lists_content}>
                 {checklists.length > 0 ?
                     <ItemList checkLists={checklists} />
                     :
-                    <section className="check_lists_container__empty-check-list-container">
-                         <img className="bigIcon" src={notFound} alt="" />
+                    <section className={styles.check_lists_container__empty_check_list_container}>
+                        <img className={styles.bigIcon} src={notFound} alt="" />
                         <h3>
-                           
+
                             There is no cheklists found
                         </h3>
-                        <NavLink to={"/new-check-list"}className={"check_lists__create-btn"}>Create</NavLink>
+                        <NavLink to={"/new-check-list"} className={styles.check_lists__create_btn}>Create</NavLink>
                     </section>
                 }
             </div>
@@ -31,3 +31,5 @@ export const CheckLists = () => {
         </section>
     )
 }
+
+export default CheckLists

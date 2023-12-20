@@ -1,0 +1,19 @@
+.second_step {
+    width: 100%;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background: linear-gradient(45deg, rgb(55, 55, 125), rgb(12, 119, 90));
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+.second_step textarea {
+    border: none;
+}
+.second-step__tittle {
+    margin: 0;
+}
+.controls_item {
+    font-size: 22px;
+}

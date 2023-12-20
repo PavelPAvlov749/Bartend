@@ -28,7 +28,7 @@
     border-radius: 10px;
     background: linear-gradient(90deg, #411649, #43819e);
     background-size: 400% 400%;
-
+    padding: 10px;
     -webkit-animation: AnimationName 0s ease infinite;
     -moz-animation: AnimationName 0s ease infinite;
     animation: AnimationName 3s ease infinite;

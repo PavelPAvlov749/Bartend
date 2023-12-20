@@ -4,31 +4,33 @@
 //                                              STRINGS WITH THEIR CORRESPONDING COMPONENTS
 //                                              THESE ROUTES ARE USED BY THE FILE Router.tsx
 // -------------------------------------------
-
+// React imports
+import React from "react";
 // ---------- IMPORT REACT COMPOENTS
 
 import { Navigate } from "react-router-dom";
-import { CheckLists } from "../Modules/ChecklistApp/Components/CheckLists";
 import { CheckListPage } from "../Modules/ChecklistApp/Components/CheclListPage";
 import { ProductCardContainer } from "../Modules/RecepiesApp/Components/ProductCardContainer";
-import { CocktailCard } from "../Modules/KnowledjeBase/CoctrailCard";
 import { CreateTeam } from "../Modules/TeamApp/CreateTeam";
-import { HomePage } from "../Components/mainScreen";
+import { HomePage } from "../Components/MainPage/mainScreen";
 import { ROUTE } from "../Redux/Types";
 import { NewProduct } from "../Modules/RecepiesApp/NewProduct/NewProduct";
 import { SecondStep } from "../Modules/RecepiesApp/NewProduct/SecondStep";
 import { NewCheckList } from "../Modules/ChecklistApp/Components/NewCheckList";
-import { KnowledgeBase } from "../Modules/KnowledjeBase/KnowledgeBase";
 import { IngridientCard } from "../Modules/KnowledjeBase/Ingridient";
-import { LoginPage } from "../Modules/Auth/LoginPage";
 import { Registration } from "../Modules/Auth/Registration";
-import { PremixesApp } from "../Modules/PremixesApp/Premixes";
 import { PassedShift } from "../Modules/PremixesApp/Components/HistoryPage/PassedShiftItem";
 import { ShiftConstructorContainer } from "../Modules/PremixesApp/Components/ConstructorPage/ShiftCounstructorContainer";
-import { TeamPageContainer } from "../Modules/TeamApp/TeamPageContainer";
-import { RecepiesAppContainer } from "../Modules/RecepiesApp/RecepiesAppContainer";
 import { TextbookContainer } from "../Modules/Textbook/TextbookContainer";
 import { Distilation } from "../Modules/Textbook/Pages/Distilation";
+import CocktailCard from "../Modules/KnowledjeBase/CoctrailCard";
+
+const LoginPage = React.lazy(() => import("../Modules/Auth/LoginPage"));
+const PremixesApp = React.lazy(() => import("../Modules/PremixesApp/Premixes"));
+const RecepiesApp = React.lazy(() => import("../Modules/RecepiesApp/RecepiesAppContainer"));
+const ChecklistApp = React.lazy(() => import("../Modules/ChecklistApp/Components/CheckLists"));
+const TeamApp = React.lazy(() => import('../Modules/TeamApp/TeamPageContainer'));
+const SearchApp = React.lazy(() => import("../Modules/KnowledjeBase/KnowledgeBase"));
 
 
 // ---------- ROUTES STRINGS
@@ -96,7 +98,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : PREMIX_LIST,
-        element : <RecepiesAppContainer/>
+        element : <RecepiesApp/>
     },
     {
         path : PRODUCT_CARD,
@@ -108,7 +110,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : CHECK_LISTS,
-        element : <CheckLists/>
+        element : <ChecklistApp/>
     },
     {
         path : NO_MATCH_ROUTE,
@@ -124,11 +126,11 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : STEP_2,
-        element : <SecondStep isDarkTheme={true}/>
+        element : <SecondStep/>
     },
     {
         path : CLAN_LISTS,
-        element : <TeamPageContainer/>
+        element : <TeamApp/>
     },
     {
         path : NEW_CHECK_LIST,
@@ -136,7 +138,7 @@ export const PRIVATE_ROUTES : ROUTE[] = [
     },
     {
         path : KNIWLEDGE_BASE,
-        element : <KnowledgeBase/>
+        element : <SearchApp/>
     },
     {
         path : INGRIDIENT,
@@ -155,10 +157,10 @@ export const PUBLICK_ROUTES : ROUTE [] = [
         path : LOG_OUT,
         element : <LoginPage/>
     },
-    // {
-    //     path : NO_MATCH_ROUTE,
-    //     element : <Navigate to={"/logOut"}/>
-    // },
+    {
+        path : NO_MATCH_ROUTE,
+        element : <Navigate to={"/logOut"}/>
+    },
     {
         path : REGISTRATION,
         element : <Registration/>

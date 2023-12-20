@@ -1,7 +1,6 @@
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import FirebaseApi from "./FirebaseConfig";
 import { FirebaseError } from "firebase/app";
-import { getDownloadURL, ref } from "firebase/storage";
 
 class TextbookAPI extends FirebaseApi {
     public async getArticleByName (name : string) {
@@ -12,7 +11,6 @@ class TextbookAPI extends FirebaseApi {
             // Get docuent
             let articleDoc = await getDocs(docRef);
             console.log(articleDoc.docs[0].data().document);
-            let storageRef = ref(this.firebaseStorage,articleDoc.docs[0].data().document)
             let document = articleDoc.docs[0].data().document;
             // Storage refrence
             

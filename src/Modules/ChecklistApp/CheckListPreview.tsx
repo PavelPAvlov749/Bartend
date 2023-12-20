@@ -1,7 +1,8 @@
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import { NavLink } from "react-router-dom";
 
-
+// STYLES
+import styles from "./Styles/CheckLists.module.css";
 
 
 
@@ -29,7 +30,7 @@ export const CheckListPreview = (props: { name: string, tasks: string[], id: str
     }
     renderTasksPreview(props.tasks);
     return (
-        <li key={props.id} className="cheklist-preview__item">
+        <li key={props.id} className={styles.cheklist_preview__item}>
             <NavLink key={props.id} to={`/check-lists/id=${props.id}`}>
                 <h3>{props.name}</h3>
                 {jsxTasks.map((el: ReactJSXElement) => {

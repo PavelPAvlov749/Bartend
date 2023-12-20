@@ -59,7 +59,7 @@ export const CreateNewShiftControls = (props: shiftConstructorTopPControls) => {
         props.dispatchProducts({type : 'toggle-all'});
     }
     return (
-        <ul className={`controls`}>
+        <ul className='controls'>
             <li 
                 onClick={toggleAll}>
                 {isAllSelected ? "Clear" : "Select all"}

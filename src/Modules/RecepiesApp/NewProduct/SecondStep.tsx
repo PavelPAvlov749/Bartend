@@ -2,13 +2,11 @@ import React from "react";
 import { createNewIngridientCard, newCardActions } from "../../../Redux/NewCardReducer";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../Assets/Styles/SecondStep.css"
-import backArrow from "../../../Assets/Icons/icons8-back-90.png";
 import { useNavigate } from "react-router-dom";
 import { Global_state_type } from "../../../Redux/Store";
 import { productType } from "../../../Redux/Types";
-import { NewProduct } from "./NewProduct";
 
-export const SecondStep = (props: { isDarkTheme: boolean }) => {
+export const SecondStep = () => {
     const dispatch: any = useDispatch()
 
     // SET DESCRITION
@@ -46,15 +44,10 @@ export const SecondStep = (props: { isDarkTheme: boolean }) => {
 
     }
     return (
-        <div className={props.isDarkTheme ? "second_step container translate_animation DarkTheme" : "second_step container translate_animation LightTeheme"}>
-            <div className="controls_item" onClick={() => { navigate(-1) }}>
-                <span>Back</span>
-                <img className="icon" src={backArrow} />
-            </div>
-
-            <h2>Технология приготовления : </h2>
+        <div className={"second_step"}>
+            <h2 className="second-step__tittle">Desription : </h2>
             <textarea name="Description" id="description" onChange={setDescription}></textarea>
-            <button className="confirm_button" onClick={createnewProduct}>Создать</button>
+  
 
         </div>
     )

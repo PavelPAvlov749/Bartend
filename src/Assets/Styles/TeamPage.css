@@ -59,6 +59,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding: 10px;
 }
 .create_team_container input {
     width: 100%;
@@ -114,13 +115,14 @@
 }
 .invite-form__input {
     padding-left: 5px;
+    width: 100%;
 }
 .invite-team-form {
     width: 90%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+    align-items: center;
 }
 .create-team {
     font-size: 23px;
@@ -128,4 +130,10 @@
     border: 1px solid white;
     border-radius: 5px;
     padding: 5px 10px;
+}
+
+@media (max-width:750px) {
+    .team_page_container {
+        padding: 0;
+    }
 }

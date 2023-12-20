@@ -20,7 +20,7 @@ import { EmptyTeam } from "./Components/EmptyTeam";
  * 
  * @returns React.Ellement
  */
-export const TeamPageContainer: React.FC = () => {
+const TeamPageContainer: React.FC = () => {
     // Get team page fron hook
     let team = useTeamPage();
     // Get user data
@@ -36,3 +36,5 @@ export const TeamPageContainer: React.FC = () => {
     }
 
 } 
+
+export default TeamPageContainer

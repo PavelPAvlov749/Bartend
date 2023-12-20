@@ -27,9 +27,9 @@ export const CoctailList = () => {
             <div className="list">
             {cocktailsFromState?.map((cocktail : cocltalCardType) => {
                 return (
-                    <div key={cocktail.idDrink}>
+                
                           <ProductPreview type="cocktail"name={cocktail.strDrink} id={cocktail.idDrink} img={cocktail.strDrinkThumb}/>
-                    </div>
+                    
                  
                 )
             })}

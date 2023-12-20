@@ -14,7 +14,7 @@ export const useProductCard = () => {
     
     useEffect(() => {
         dispatch(setProductCardThunk(location));
-    },[]);
+    },[location]);
     if(products)
     {
         return products;

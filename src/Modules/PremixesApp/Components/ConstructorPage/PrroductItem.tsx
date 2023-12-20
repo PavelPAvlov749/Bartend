@@ -18,7 +18,7 @@ export const ProdcustItem = (props: ProdcustItemItemType) => {
     return (
         <li key={props.id}
             // Is element checked flag
-            className={props.isChecked ? `checked_element` : `unchecked_element`}
+            className={props.isChecked ? `checked_element list__item` : `unchecked_element list__item`}
             onClick={() => { toggle(props.id) }} id={props.id}>
 
             <span>{props.name}</span>

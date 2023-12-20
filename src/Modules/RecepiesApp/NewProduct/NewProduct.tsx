@@ -1,17 +1,20 @@
 
-import "../../../Assets/Styles/NewProduct.css"
+// Styles
+import "../Styles/NewProduct.css";
+// Cpmponents
 import { FirstStep } from "./FirstStep";
-import { useLocation, useNavigate } from "react-router-dom";
+// Hooks
+import { useLocation, } from "react-router-dom";
 
 export const NewProduct = (props : {isDarkTheme : boolean} ) => {
 
     const location = useLocation().pathname.split("/")[1]
-    const navigate = useNavigate()
+
     console.log(location)
     return (
-        <section className="container translate_animation">
+        <section className="recepie_constructor translate_animation">
             <FirstStep isDarkTheme={props.isDarkTheme}/>
-            <button className="confirm_button" onClick={() => {navigate("/add-step-two")}} id="next_button">Next</button>
+          
         
         </section>
     )

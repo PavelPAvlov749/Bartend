@@ -20,17 +20,8 @@ import { useProductFilter } from "../../Helpers/CustomHooks";
  * 
  * @returns React.Ellement
  */
+const RecepiesAppContainer: React.FC = () => {
 
-export const RecepiesAppContainer: React.FC = () => {
-    // State defining a recepies section
-    // 0 Non alcoholic 1 alc premixes
-    const [section, setSection] = useState(0);
-    // Array of section labels
-    let sections: string[] = ['Non-alcoholic', 'alcoholic'];
-    // On change handler
-    function onChange(event: React.SyntheticEvent, newValue: number) {
-        setSection(newValue);
-    }
     // Get products 
     const [products, filterProducts] = useProductFilter('');
     // Grt navigate
@@ -61,3 +52,5 @@ export const RecepiesAppContainer: React.FC = () => {
     }
   
 }
+
+export default RecepiesAppContainer;

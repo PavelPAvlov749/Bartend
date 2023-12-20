@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { CheckListsAPI } from "../../../services/Firebase/CkeckListsAPI";
 // Styles and Assesets
 import add from "../../../Assets/Icons/icons8-done-150.png"
-import "../../../Assets/Styles/CheckLists.css"
+import styles from "../Styles/CheckLists.module.css"
 // Types
 import { Global_state_type } from "../../../Redux/Store";
 // Route
@@ -51,22 +51,22 @@ export const NewCheckList = () => {
 
     }
     return (
-        <section className="new_check_list_container container translate_animation">
+        <section className={styles.new_check_list_container}>
             <h1>
                 {/* Finish editing */}
-                <button onClick={createCheckList} id="add_ckeck_list">Done</button>
+                <button onClick={createCheckList} id={styles.add_ckeck_list}>Done</button>
             </h1>
             {/* Cheklist Name Input */}
             {nameInput}
-            <ul className="task_list">
+            <ul className={styles.task_list}>
                 {/* Render the added tasks array */}
                 {tasks.map((task: string) => <li key={task}>{task}</li>)}
             </ul>
             {/* New task Input */}
-            <div className="new_check_list_controls">
+            <div className={styles.new_check_list_controls}>
                 {taskInput}
-                <button className="confirm_button" onClick={onAddClickHandler}>
-                    <img src={add} alt="" />
+                <button className={styles.confirm_button} onClick={onAddClickHandler}>
+                    <img className={styles.icon} src={add} alt="" />
                 </button>
                 <br />
                 {/* Error message (Renders if input conyain errors) */}

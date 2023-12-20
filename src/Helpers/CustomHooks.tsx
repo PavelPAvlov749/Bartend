@@ -29,7 +29,7 @@ export const useProductFilter = (initial : string) : [productType[],(e : string)
     const teamID = useSelector((state: Global_state_type) => { return state.App.user.teamID })
     useEffect(() => {
         dispatch(getProductsByCompanyID(teamID as string))
-    }, [])
+    }, []);
     let products = useSelector((state: Global_state_type) => {
         if(filter.length === 0) {
             return state.premixes.premixes
@@ -56,10 +56,6 @@ export const useWindowInnerWidth = () => {
     return windowWidth
 }
 
-export const useTheme = () => {
-    const theme = useSelector((state: Global_state_type) => state.App.isDarktheme)
-    return theme
-}
 
 export const useDebounce = (callback : (...args:any) => {},delay : number,value : any)=> {
     const timer = useRef(null);

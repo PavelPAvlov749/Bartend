@@ -2,13 +2,13 @@ button {
     border: none;
     width: max-content;
     height: 2.5rem;
-    font-size: 15px;
-    min-width: 150px;
+    font-size: 20px;
     background-color: rgb(42, 37, 115);
     border: none;
+    width: max-content;
     border-radius: 5px;
     color: white;
-    padding: 0px 10px;
+    padding: 10px 20px;
     cursor: pointer;
 }
 *{
@@ -58,7 +58,7 @@ button:hover {
 .container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding:0;
   line-height: 1.5;
 }
 .icon {
@@ -89,7 +89,7 @@ ul{
   text-decoration: none;
   /* color: white; */
   cursor: pointer;
-  font-size:larger;
+
 
 }
 
@@ -107,10 +107,6 @@ a:hover{
   color: rgb(56, 56, 183);
 }
 
-h1,h2{
-  padding: 0;
-  margin: 10px;
-}
 @media(max-width:750px){
   .container {
     padding: 5px;

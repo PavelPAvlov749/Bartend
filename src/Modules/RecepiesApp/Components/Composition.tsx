@@ -4,7 +4,8 @@ import {useState } from "react"
 import { productType } from "../../../Redux/Types";
 // Helpers
 import { parseComposition } from "../../../Helpers/Helpers";
-
+// Styles
+import "../Styles/RecepieCard.css"
 
 // DECLARE PROPS TYPE
 
@@ -37,14 +38,14 @@ export const ProductComposition = (props: ProductCompositionType) => {
     // If isOpen === false render the Show button
     if (!isOpen) {
         return (
-            <button onClick={toggle}>Composition</button>
+            <button className="composition_btn" onClick={toggle}>Composition</button>
         )
     }
 
     else {
         return (
             <section>
-                <button onClick={toggle}>Composition</button>
+                <button className="composition_btn" onClick={toggle}>Composition</button>
                 <p className="composition">{parseComposition(props.composition)}</p>
             </section>
         )

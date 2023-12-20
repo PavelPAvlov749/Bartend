@@ -5,8 +5,6 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";imp
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 
 
-import { getStorage, ref as storage_ref } from "firebase/storage";
-
 //                                                ::::::::::::::::::::::CONFIG THE FIREBASE::::::::::::::::::::::::::
 
 //Here is the config file of Firebase SDK to allow the functions use Firebase_instance object
@@ -60,8 +58,6 @@ class FirebaseApi {
     // Firebase App instance
     protected firebaseAPP = firebase;
     // File storage
-    protected firebaseStorage = getStorage(this.firebaseAPP);
-    protected storageRefrence = storage_ref(this.firebaseStorage);
     // Firebase auth instances
     protected firebaseAuth = Firebase_auth;
     protected googleAuthProvider = new GoogleAuthProvider();

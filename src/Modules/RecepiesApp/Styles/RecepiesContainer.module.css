@@ -1,11 +1,16 @@
 .recepiesContainer {
-    padding: 0 5px 0 02px;
+    padding: 0px 10px;
     display: flex;
     flex-direction: column;
     height: 100%;
 
 }
-
+.recepiesContainer button {
+    width: 250px;
+}
+.recepiesContainerHeader {
+    height: 3rem;
+}
 .recepiesContainer__tittle {
     font-size: 22px;
     padding: 3px;
@@ -38,16 +43,20 @@
 
 .listItem {
     font-size: 23px;
+    cursor: pointer;
 }
 
 /* Menu */
 .recepiesContainerHeader {
     height: max-content;
     padding:10px;
+    height: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid rgb(45, 45, 45);
+    margin-bottom: 10px;
 }
 
 .dotsMenu {
@@ -55,7 +64,7 @@
     padding: 10px;
     position: absolute;
     right: 0;
-    top: 2px;
+    top: 5px;
     width: 20px;
     align-items: center;
     display: flex;

@@ -11,7 +11,6 @@ import { TeamModuleAPI } from "../services/Firebase/TeamAPI";
 const SET_INIT = "barApp/appReducer/setInit"; //Initialize
 const SET_AUTH = "barApp/appReducer/setAuth"; //Auth state
 const SET_USER_PAGE = "barApp/AppReducer/setUserPage"; //Authorized user page
-const TOGGLE_THEME = "barApp/AppReducer/toggleTheme"; //UI Theme
 const SET_IS_FETCH = "barApp/AppReducer/setIsFetch"; //Data fetching boolean flag
 const SET_ERROR_STATE = "barApp/AppReducer/setErrorState"; //Error boolean flag
 const SET_ERROR_MESSAGE = "barApp/AppReducer/setErrorMessage"; //Error message
@@ -27,7 +26,6 @@ interface IState  {
   isAuth: boolean,
   isInit: boolean,
   isFetch: boolean,
-  isDarktheme: boolean,
   isError: boolean,
   errorMessage : string | null
 }
@@ -42,7 +40,7 @@ let initial_state: IState = {
   isInit: false,
   isAuth: false,
   isFetch: false,
-  isDarktheme: true,
+
   isError: false,
   errorMessage : null
 }
@@ -52,12 +50,7 @@ type Action_Type = InferActionType<typeof app_actions>;
 
 export const appReducer = (state = initial_state, action: Action_Type) => {
   switch (action.type) {
-    case TOGGLE_THEME: {
-      return {
-        ...state,
-        isDarktheme: !state.isDarktheme
-      }
-    }
+
     case SET_INIT: {
       return {
         ...state,

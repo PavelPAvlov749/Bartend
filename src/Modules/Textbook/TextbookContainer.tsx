@@ -5,10 +5,10 @@ import styles from './Styles/TextbookContainer.module.css';
 export const TextbookContainer: React.FC = () => {
 
     return (
-        <section className={styles.textbookContainer}>
+        <section className={[styles.textbookContainer,styles.translate_animation].join('')}>
             <h1 className={styles.textbookContainer__tittle}>Textbook</h1>
             <ul className={styles.tittles}>
-                <li>
+                <li className={styles.tittleItem}>
                     <NavLink to={"/article/name=tools"}>
                         Tools
                     </NavLink>

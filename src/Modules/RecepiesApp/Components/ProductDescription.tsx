@@ -42,7 +42,7 @@ export const ProductDescription = (props: propsType) : React.ReactElement => {
         // Render Description or textarea to Edit descritpion
         return (
             <section >
-                <button onClick={toggle}>Dscription</button>
+                <button className="composition_btn" onClick={toggle}>Dscription</button>
                 {!props.isEditMode ? <p className="composition">{props.description}</p> :
                     <textarea
                         onChange={onChangeHandler}
@@ -53,7 +53,7 @@ export const ProductDescription = (props: propsType) : React.ReactElement => {
     }
     else {
         return (
-            <button onClick={toggle}>Description</button>
+            <button className="composition_btn" onClick={toggle}>Description</button>
         )
     }
 

@@ -1,48 +1,40 @@
 // Assets
-import React, { useState } from "react";
-import menuIcon from "../../../Assets/Icons/menu.png"
+
 // Hooks
 import { useTaskList } from "./Hooks";
 // Styles
-import "../../../Assets/Styles/CheckLists.css"
+import styles from  "../Styles/CheckLists.module.css"
 import { ChecklistDotsMenu } from "./DotsMenu";
 import { checkListType } from "../../../Redux/CheckListReducer";
 
-export const Modal =  () => {
-    return (
-        <section className="modal">
-            <span>Delete</span>
-            <button className="modal_btn">Close</button>
-        </section>
-    )
-}
-// Define a props type
-type ChecklistPropsType = {
-    checklist : checkListType
-}
 
+/**
+ * Checklist taskList in checkList page
+ * 
+ * @returns React.Ellement
+ */
 export const CheckListPage = () => {
     // Get checklist object amd delete hadler from hook
-    let [checklist, deleteHandler] = useTaskList();
-    let [isModal,setModal] = useState<boolean>(false);
-    function toggleModal () {
-        setModal(!isModal);
-    }
+    let [checklist] = useTaskList();
+
+
     return (
-        <section className="single-check-list container {}">
+        <section className={styles.single_check_list}>
            
-            <div className="check-list-controls">
+            <div className={styles.check_list_controls}>
+                {/* Dots menu calls Modal Window when clicked */}
+                <h1>Tasks</h1>
               <ChecklistDotsMenu checklist={checklist as checkListType}/>
             </div>
 
-            <ul className="tasks">
+            <ul className={styles.tasks}>
+                {/* Map on tasks array and render every task*/}
                 {checklist?.tasks.map((el: string, index: number) => {
                     return (
-                        <li className="tasks-item">
-                            <div>
-                            <input className="tasks-item__checkbox" type="checkbox" />
-
-                            </div>
+                        <li key={el} className={styles.tasks_item}>
+               
+                            <input className={styles.tasks_item__checkbox} type="checkbox" />
+                    
                             <span>{index + 1 + "." + el}</span>
                             <br />
                         </li>

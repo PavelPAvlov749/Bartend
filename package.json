@@ -4,16 +4,7 @@
   "private": true,
   "homepage": "https://pavelpavlov749.github.io/Bartend/",
   "dependencies": {
-    "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.13.3",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.30",
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
     "axios": "^1.4.0",
     "firebase": "^9.22.0",
     "firebase-hooks": "^0.0.1",
@@ -56,5 +47,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.11.0",
+    "@mui/material": "^5.14.19",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.30",
+    "@types/react": "^18.2.40",
+    "@types/react-dom": "^18.2.4"
   }
 }

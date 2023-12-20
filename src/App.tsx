@@ -11,10 +11,8 @@ import { initializeThunk } from './Redux/AppReducer';
 // --------- IMPORT COMPOMNENTS
 import { HashRouter } from 'react-router-dom';
 import { Preloader } from './Modules/PremixesApp/Components/Preloader';
+import Navbar from './Components/Navbar/Navbar';
 
-
-
-const Navbar = React.lazy(() => import('./Components/Navbar'));
 const Router = React.lazy(() => import('./Router/Router'));
 
 
@@ -35,8 +33,7 @@ function App() {
   useEffect(() => {
     dispatch(initializeThunk());
   }, []);
-  // Get theme state
-  const isDarkTheme = useSelector((state: Global_state_type) => state.App.isDarktheme);
+
   // Initialization boolean Flag
   const isInit = useSelector((state: Global_state_type) => state.App.isInit);
 
@@ -45,11 +42,11 @@ function App() {
 
   if (isInit) {
     return (
-      <div className={isDarkTheme ? "App DarkTheme translate_animation" : "App LightTheme translate_animation"}>
+      <div className={"App DarkTheme translate_animation"}>
         <HashRouter>
           <Suspense fallback={<Preloader />}>
           
-            <Navbar theme={isDarkTheme} />
+            <Navbar/>
             <Router></Router>
           </Suspense>
         </HashRouter>
