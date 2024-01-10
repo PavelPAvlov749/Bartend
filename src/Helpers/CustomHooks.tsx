@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Global_state_type } from "../Redux/Store";
 import { productType } from "../Redux/Types";
-import { set } from "firebase/database";
 import { getProductsByCompanyID } from "../Redux/ProductReduxer";
 
 
@@ -91,4 +90,9 @@ export const UseToggle = (initialValue : boolean) : [boolean,() => void] => {
     }
 
     return [state,toggle];
+}
+
+export const useNewCardIngridients = () => {
+    const products = useSelector((state : Global_state_type) => state.newCard.composition);
+    return Object.keys(products as {});
 }

@@ -80,6 +80,7 @@ class KnowledgeBaseAPI extends FirebaseApi {
         }
     }
 
+
 };
 
 export const KnowledgeBase = new KnowledgeBaseAPI();

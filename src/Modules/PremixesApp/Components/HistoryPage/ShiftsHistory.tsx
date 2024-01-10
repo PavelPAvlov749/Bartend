@@ -34,7 +34,7 @@ export const ShiftsHistory = (props : { shifts : blankShiftType[]}) => {
         )
     } else {
         return (
-            <div id="empty_history">There is no shift hgistory</div>
+            <div id="empty_history">There is no shift history</div>
         )
     }
 

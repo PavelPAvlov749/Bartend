@@ -13,6 +13,10 @@
     height: 3rem;
     font-size: 20px;
 }
+/* ERRROS INPUT */
+.error-input {
+    border: 1px solid red;
+}
 .first_step_tittle {
     text-align: center;
     font-size: 22px;

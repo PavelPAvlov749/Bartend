@@ -61,6 +61,10 @@ export const parseElementNameToString = (name: string) => {
     return name.includes("_") ? name.split("_")[0] + " " + name.split("_")[1] : name
 }
 
+// New Prdocuct catd validation Scema
+export const newCardValidationScema = yup.object().shape({
+    name : yup.string().typeError("This field must be string type").min(2).max(30).required("This field is reqired")
+})
 
 // Creating a Validation Scheme for the Registration Login
 
@@ -77,6 +81,17 @@ export const validationShema = yup.object().shape({
     oneOf([yup.ref("password")], "Passwords dint match").typeError("Should be a string").min(6).max(30)
 
 })
+
+// New ingridient sibgle form validATION Scema
+// Used in NewinfrodientSingleForm component
+// Contains two fields :
+// Key - Name of ingrideent
+// Value - value of ingridient
+export const addIngridientValidationScema = yup.object().shape({
+    key : yup.string().typeError("Key must be string").max(30).min(2).required("This field is Reqired"),
+    value : yup.number().typeError("Value must a number").required("This field is required")
+})
+
 
 export const loginValidationShema = yup.object().shape({
     email: yup.string().typeError("Email must be an string").min(6).max(30).required("This Field is Required")

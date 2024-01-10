@@ -27,7 +27,7 @@ export const TopSection: React.FC = () => {
             });
             return resultObject;
         }
-        console.log(convertObjectToArrayOfObjects(newProduct));
+        
         if (teamID) {
             let card: productType = {
                 name: newProduct.name,
@@ -45,13 +45,17 @@ export const TopSection: React.FC = () => {
 
 
     }
+    function validate () {
+        return newProduct.name.length > 2 ? true : false
+    }
+
     return (
         <div className="top-section">
-            <input type="text" placeholder="Name" id="name" onChange={(e) => { onNameChange(e) }} />
+            <input type="text" placeholder="Name"  id="name" onChange={(e) => { onNameChange(e) }} />
             <div className="visibility-input">
                 <span>Visible for all : </span>
-                <input id="visibility-input" onChange={toggleVisibility} type="checkbox" />
-                <button className="confirm_button" onClick={createnewProduct}>Create</button>
+                <input  id="visibility-input" onChange={toggleVisibility} type="checkbox" />
+                <button className="confirm_button" disabled={!validate()} onClick={createnewProduct}>Create</button>
             </div>
         </div>
     )

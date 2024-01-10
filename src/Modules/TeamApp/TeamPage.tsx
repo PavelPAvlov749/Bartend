@@ -42,7 +42,7 @@ export const TeamPage : React.FC<ITeam> = (props) => {
     
     const dispatch: any = useDispatch()
     // Modal window state 
-    let [state,setIsUserDelete] = UseToggle(false);
+    let [isUserDelete,setIsUserDelete] = UseToggle(false);
     // Invitecode state
     let [inviteCode, setInviteCode] = useState("");
     // Invite generator handler 
@@ -61,11 +61,12 @@ export const TeamPage : React.FC<ITeam> = (props) => {
     function deleteUSerDfromTeam () {
         
         dispatch(deleteUSerTunk(deletingUSer?.userID as string,deletingUSer?.userName as string,props.team.teamID));
-        debugger;
+        setIsUserDelete();
+        // debugger;
     }
     return (
         <section className={`team_page container  translate_animation `}>
-            {state && <ModalWindow setState={setIsUserDelete} confirmCallback={deleteUSerDfromTeam}/>}
+            {isUserDelete && <ModalWindow setState={setIsUserDelete} confirmCallback={deleteUSerDfromTeam}/>}
             <Desctiption description={props.team?.description as string} name={props.team?.teamName as string} />
             <UserList team={props.team} users={props.team?.users} toggler={setIsUserDelete}/>
             <UIButton text="Leave the team" callback={leaveTeam}/>

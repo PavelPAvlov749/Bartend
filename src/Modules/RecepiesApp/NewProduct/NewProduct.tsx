@@ -1,5 +1,6 @@
 
 // Styles
+import { NewCardComponent } from "../Components/newCardComponent";
 import "../Styles/NewProduct.css";
 // Cpmponents
 import { FirstStep } from "./FirstStep";
@@ -14,7 +15,7 @@ export const NewProduct = (props : {isDarkTheme : boolean} ) => {
     return (
         <section className="recepie_constructor translate_animation">
             <FirstStep isDarkTheme={props.isDarkTheme}/>
-          
+          {/* <NewCardComponent/> */}
         
         </section>
     )

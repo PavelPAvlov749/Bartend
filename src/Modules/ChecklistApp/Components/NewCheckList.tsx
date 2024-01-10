@@ -27,7 +27,7 @@ export const NewCheckList = () => {
     // On Error State if input value is not valid
 
     // Define a RegExp to validate inputs
-    let [onError, errorMessage, validate] = useValidator(/^[a-zA-Z0-9]+$/);
+    let [onError, errorMessage, validate] = useValidator(/^[a-zA-Z0-9а-яА-Я]+$/);
 
     // Push new task into "tasks" array
     const onAddClickHandler = () => {

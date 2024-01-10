@@ -9,13 +9,14 @@ const SET_NEW_CARD_DESCRIPTION = "barApp/productReducer/setNewDescription"
 const SET_NEW_CARD_ID = "barApp/productReducer/setNewID"
 const ADD_NEW_INGRIDEINT = "barApp/productReducer/addNewIngridient"
 const TOGGLE_VISIBILITY = "barApp/productReducer/toggleVisibility"
-
+const ADD_KEY = "barApp/productReducer/addKey";
+const ADD_VALUE = "barApp/productReducer/addValue";
 interface IState  {
     name : string,
     companyID : string | null,
     description : string,
     keys : string[],
-    values : string [],
+    values : number [],
     id : string | null,
     composition : {} | null,
     isVisibleForAll : boolean
@@ -26,8 +27,8 @@ const initialState : IState = {
     id : null,
     companyID : null,
     description : "",
-    keys : [],
-    values : [],
+    keys : [""],
+    values : [0],
     composition : {},
     isVisibleForAll : false
 }
@@ -57,6 +58,18 @@ export const newCardReducer = (state = initialState,action : Action_Type) => {
             return {
                 ...state,
                 composition : {...state.composition,...action.payload}
+            }
+        }
+        case ADD_KEY : {
+            return {
+                ...state,
+                keys : state.keys.concat(action.payload)
+            }
+        }
+        case ADD_VALUE : {
+            return {
+                ...state,
+                values : state.values.concat(action.payload)
             }
         }
         case TOGGLE_VISIBILITY : {
@@ -95,6 +108,14 @@ export const newCardActions = {
       } as const),
       toggleVisibility : () => ({
         type : "barApp/productReducer/toggleVisibility"
+      } as const),
+      addKey : (key : string) => ({
+            type : "barApp/productReducer/addKey",
+            payload : key
+      } as const),
+      addValues : (value : number) => ({
+            type : "barApp/productReducer/addValue",
+            payload : value
       } as const)
     
 }

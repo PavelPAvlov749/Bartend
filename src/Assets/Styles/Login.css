@@ -55,8 +55,10 @@
     gap: 10px;
     width: 400px;
     border: 1px solid rgb(45, 45, 45);
-    box-shadow: 15px 15px 30px 1px rgb(27, 71, 62);
+    box-shadow: 0px 0px 30px 1px rgb(27, 71, 62);
+
 }
+
 
 #passwordShow {
     width: 30px;
@@ -106,6 +108,7 @@
         border: none;
         padding: 10px;
         box-sizing: border-box;
+        box-shadow: none;
     }
     .logo {
         width: 180px;
