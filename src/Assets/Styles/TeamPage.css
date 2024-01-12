@@ -98,6 +98,8 @@
 }
 .delete-user {
     color: rgb(233, 80, 80);
+    cursor: pointer;
+    
 }
 .empty_team{
     display: flex;

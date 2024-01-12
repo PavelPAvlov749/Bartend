@@ -6,13 +6,12 @@ import { Global_state_type } from "../../../Redux/Store"
 import { useState } from "react"
 import { Dispatch } from "redux"
 import { app_actions } from "../../../Redux/AppReducer"
-import { clanActions, joinTeamByInviteCode } from "../../../Redux/TeamReducer"
+import { clanActions, getClanListByUserID, joinTeamByInviteCode } from "../../../Redux/TeamReducer"
 import { UIButton } from "../../../Components/Button"
 
 
 
 export const JoinTeamForm = () => {
-
     // Get dispatch
     const dispatch: any = useDispatch();
     // Get App state
@@ -23,6 +22,7 @@ export const JoinTeamForm = () => {
     async function onSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
         dispatch(joinTeamByInviteCode(code,user.userID as string,user.userName as string));
+        
        
     }
     // On Chanhe handler

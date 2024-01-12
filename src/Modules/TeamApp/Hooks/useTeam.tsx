@@ -5,17 +5,18 @@ import { getClanListByUserID } from "../../../Redux/TeamReducer";
 
 export const useTeamPage = () => {
     // Get dispatch
-    const dispatch : any = useDispatch();
+    const dispatch: any = useDispatch();
     // Get user from state
-    const userID  = useSelector((state : Global_state_type) => state.App.user.userID);
+    const userID = useSelector((state: Global_state_type) => state.App.user.userID);
+    // get Team from state 
+    let team = useSelector((state: Global_state_type) => state.clans.team);
     // Fetch team list
     useEffect(() => {
         dispatch(getClanListByUserID(userID as string));
-    },[]);
-    // get Team from state 
-    let team = useSelector((state : Global_state_type) => state.clans.team);
-    
-    
+    }, [team]);
+
+
+
     return team;
 
 }

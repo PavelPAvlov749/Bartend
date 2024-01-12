@@ -13,12 +13,15 @@ const SET_USER_TO_DELETE = "barApp/clanReducer/setUserToDelete"
 const CLEAR_DELETING_USER = "barApp/clanReducer/clearDeletingUser";
 const DELETE_USER = "barApp/clanReducer/deleteUser";
 
-
+type UserType = {
+    userName : string,
+    userID : string
+}
 export type ClanType = {
     teamName : string,
     teamID : string,
     teamAvatar : string | null,
-    users  : Array<{userName : string,userID : string}>,
+    users  : Array<UserType>,
     description : string | null
     adminID  :string,
     adminName : string,
@@ -26,7 +29,7 @@ export type ClanType = {
 
 }
 type initial_state_type = {
-    team : ClanType | null,
+    team : ClanType,
     searchedTeamName : string,
     newTeam : {
         newTeamName : string | null,
@@ -89,7 +92,7 @@ export const clanReducer = (state = initial_state, action: Action_Type) => {
         case LEAVE_THE_TEAM : {
             return {
                 ...state,
-                team  : null
+                team  : null as unknown as ClanType
             }
         }
         case SET_USER_TO_DELETE : {
@@ -105,12 +108,12 @@ export const clanReducer = (state = initial_state, action: Action_Type) => {
                 userToDelete : action.payload
             }
         }
-        // case DELETE_USER : {
-        //     return {
-        //         ...state,
-        //         team : {...state.team,users : state.team? }
-        //     }
-        // }
+        case DELETE_USER : {
+            return {
+                ...state,
+                team : {...state.team,users : state.team?.users.filter((user : UserType) => user.userID !== action.payload)}
+            }
+        }
         default:
             return state
     }

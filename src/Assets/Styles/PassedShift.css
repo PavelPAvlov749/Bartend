@@ -37,8 +37,11 @@ table,tr,td {
     cursor: pointer;
     box-sizing: border-box;
 }
+.passed_shift_preview_item span {
+    font-size: 22px;
+}
 .passed_shift_preview_item:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     transition: transform 0.5s ease;
 }
 
@@ -47,10 +50,9 @@ table,tr,td {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        justify-content: center;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 0;
         gap: 0;
     }

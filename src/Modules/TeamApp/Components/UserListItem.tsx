@@ -26,11 +26,11 @@ export const UserListItem: React.FC<userListItemType> = (props) => {
         dispatch(clanActions.setUserToDelete(props.user.userName,props.user.userID));
         props.toggler();
     }
-    if (props.currentUser.role == "admin") {
+    if (props.currentUser.role === "admin") {
         return (
             <li key={props.user.userID} className="user-item">{props.user.userName}
                 <span className="delete-user" onClick={excluedeUser}>
-                    {props.currentUser.userName == props.user.userName && props.currentUser.userName == props.user.userName ? null : "exclude user"}
+                    {props.currentUser.userName === props.user.userName && props.currentUser.userName === props.user.userName ? null : "exclude user"}
                 </span>
             </li>
         )

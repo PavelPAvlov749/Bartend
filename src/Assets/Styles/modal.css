@@ -36,6 +36,9 @@
     animation: appear 0.4s forwards;
     animation-delay: 0.3s;
 }
+.modal span {
+    cursor: pointer;
+}
 @keyframes appear {
     0% {transform: scale(0)}
     70% {transform: scale(1.2);}
