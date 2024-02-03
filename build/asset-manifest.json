@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Bartend/static/css/main.6dfe9254.css",
-    "main.js": "/Bartend/static/js/main.25e44f58.js",
-    "static/css/262.7d5878c1.chunk.css": "/Bartend/static/css/262.7d5878c1.chunk.css",
-    "static/js/262.c3c64ff0.chunk.js": "/Bartend/static/js/262.c3c64ff0.chunk.js",
+    "main.js": "/Bartend/static/js/main.d294e85b.js",
+    "static/css/262.a3e2197a.chunk.css": "/Bartend/static/css/262.a3e2197a.chunk.css",
+    "static/js/262.e127de04.chunk.js": "/Bartend/static/js/262.e127de04.chunk.js",
     "static/js/787.0aa5852f.chunk.js": "/Bartend/static/js/787.0aa5852f.chunk.js",
     "static/css/789.ef56797d.chunk.css": "/Bartend/static/css/789.ef56797d.chunk.css",
     "static/js/789.ec0c9025.chunk.js": "/Bartend/static/js/789.ec0c9025.chunk.js",
     "static/js/70.e90451b3.chunk.js": "/Bartend/static/js/70.e90451b3.chunk.js",
     "static/js/602.c42c3089.chunk.js": "/Bartend/static/js/602.c42c3089.chunk.js",
     "static/js/161.815b9a00.chunk.js": "/Bartend/static/js/161.815b9a00.chunk.js",
-    "static/css/821.7a739217.chunk.css": "/Bartend/static/css/821.7a739217.chunk.css",
-    "static/js/821.2ce97a32.chunk.js": "/Bartend/static/js/821.2ce97a32.chunk.js",
+    "static/css/821.b02aea37.chunk.css": "/Bartend/static/css/821.b02aea37.chunk.css",
+    "static/js/821.6149a555.chunk.js": "/Bartend/static/js/821.6149a555.chunk.js",
     "static/css/770.d4d01774.chunk.css": "/Bartend/static/css/770.d4d01774.chunk.css",
     "static/js/770.29b4017d.chunk.js": "/Bartend/static/js/770.29b4017d.chunk.js",
     "static/js/284.caecbd77.chunk.js": "/Bartend/static/js/284.caecbd77.chunk.js",
@@ -20,17 +20,17 @@
     "static/media/bartendLogo.png": "/Bartend/static/media/bartendLogo.9ecf7888bfe0c17ec157.png",
     "index.html": "/Bartend/index.html",
     "main.6dfe9254.css.map": "/Bartend/static/css/main.6dfe9254.css.map",
-    "main.25e44f58.js.map": "/Bartend/static/js/main.25e44f58.js.map",
-    "262.7d5878c1.chunk.css.map": "/Bartend/static/css/262.7d5878c1.chunk.css.map",
-    "262.c3c64ff0.chunk.js.map": "/Bartend/static/js/262.c3c64ff0.chunk.js.map",
+    "main.d294e85b.js.map": "/Bartend/static/js/main.d294e85b.js.map",
+    "262.a3e2197a.chunk.css.map": "/Bartend/static/css/262.a3e2197a.chunk.css.map",
+    "262.e127de04.chunk.js.map": "/Bartend/static/js/262.e127de04.chunk.js.map",
     "787.0aa5852f.chunk.js.map": "/Bartend/static/js/787.0aa5852f.chunk.js.map",
     "789.ef56797d.chunk.css.map": "/Bartend/static/css/789.ef56797d.chunk.css.map",
     "789.ec0c9025.chunk.js.map": "/Bartend/static/js/789.ec0c9025.chunk.js.map",
     "70.e90451b3.chunk.js.map": "/Bartend/static/js/70.e90451b3.chunk.js.map",
     "602.c42c3089.chunk.js.map": "/Bartend/static/js/602.c42c3089.chunk.js.map",
     "161.815b9a00.chunk.js.map": "/Bartend/static/js/161.815b9a00.chunk.js.map",
-    "821.7a739217.chunk.css.map": "/Bartend/static/css/821.7a739217.chunk.css.map",
-    "821.2ce97a32.chunk.js.map": "/Bartend/static/js/821.2ce97a32.chunk.js.map",
+    "821.b02aea37.chunk.css.map": "/Bartend/static/css/821.b02aea37.chunk.css.map",
+    "821.6149a555.chunk.js.map": "/Bartend/static/js/821.6149a555.chunk.js.map",
     "770.d4d01774.chunk.css.map": "/Bartend/static/css/770.d4d01774.chunk.css.map",
     "770.29b4017d.chunk.js.map": "/Bartend/static/js/770.29b4017d.chunk.js.map",
     "284.caecbd77.chunk.js.map": "/Bartend/static/js/284.caecbd77.chunk.js.map",
@@ -38,6 +38,6 @@
   },
   "entrypoints": [
     "static/css/main.6dfe9254.css",
-    "static/js/main.25e44f58.js"
+    "static/js/main.d294e85b.js"
   ]
 }

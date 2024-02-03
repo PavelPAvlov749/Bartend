@@ -25,6 +25,8 @@ export const TopSection: React.FC = () => {
                     [el]: Object.values(obj)[index]
                 }
             });
+            // CLEAR NEW CARD REDUX STATE
+            dispatch(newCardActions.clear());
             return resultObject;
         }
         

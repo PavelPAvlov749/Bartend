@@ -11,6 +11,8 @@ const ADD_NEW_INGRIDEINT = "barApp/productReducer/addNewIngridient"
 const TOGGLE_VISIBILITY = "barApp/productReducer/toggleVisibility"
 const ADD_KEY = "barApp/productReducer/addKey";
 const ADD_VALUE = "barApp/productReducer/addValue";
+const CLEAR_NEW_CARD = "barApp/productReducer/clear";
+
 interface IState  {
     name : string,
     companyID : string | null,
@@ -72,6 +74,12 @@ export const newCardReducer = (state = initialState,action : Action_Type) => {
                 values : state.values.concat(action.payload)
             }
         }
+        case CLEAR_NEW_CARD : { 
+            return {
+                ...state,
+                keys  : [""],values : [0],composition : null
+            }
+        }
         case TOGGLE_VISIBILITY : {
             return {
                 ...state,
@@ -116,6 +124,9 @@ export const newCardActions = {
       addValues : (value : number) => ({
             type : "barApp/productReducer/addValue",
             payload : value
+      } as const),
+      clear : () => ({
+        type : "barApp/productReducer/clear"
       } as const)
     
 }

@@ -6,6 +6,7 @@ import { DocumentData} from "firebase/firestore";
 import { premixAPI } from "../services/Firebase/PremixAPI";
 
 
+// ACTIONS 
 
 const SET_PREMIXES = "barApp/productReducer/setProducts";
 const SET_ACTUAL_PRODUCT_CARD = 'barApp/productReducer/setActualProductCard';
@@ -15,8 +16,8 @@ const DELETE_COMPONENT = "barApp/ProductReducer/deleteComponent";
 const ADD_COMPONENT = "barApp/ProductReducer/addComponent";
 const UPDATE_DESCRIPTION = "barApp/ProductReducer/updateDescription";
 
-
-
+// Types and initial state
+// -------------------------------------------------------
 
 type initial_state_type = {
     premixes : productType[] | [],
@@ -36,8 +37,11 @@ let initial_state : initial_state_type = {
 //Acrtion types
 type Action_Type = InferActionType<typeof productActions>;
 
+
+// ----------------------------------------------------------
 export const productReducer = (state = initial_state, action: Action_Type) => {
     switch (action.type) {
+        // Fetch all premixes
         case SET_PREMIXES : {
             return {
                 ...state,
@@ -56,19 +60,47 @@ export const productReducer = (state = initial_state, action: Action_Type) => {
                 actualProductCard : action.payload
             }
         }
-
+        // Delete specified premix from store
         case REMOVE_PRODUCT : {
             return {
                 ...state,
                 premixes :  [...state.premixes.filter((el : productType) => el.id !== action.payload)]
             }
         }
-
+        case DELETE_COMPONENT : {
+            return {
+                ...state,
+                // Copy actual state into new state
+                actualProductCard : {...state.actualProductCard,
+                    // Filter composition array by string key of each array ellement
+                    composition : state.actualProductCard.composition.filter(
+                        (el) => Object.keys(el)[0] !== action.payload)
+                    }
+            }
+        }
+        case ADD_COMPONENT : {
+            return {
+                ...state,
+                actualProductCard : {...state.actualProductCard,
+                    // Copy all actual values and add value from action payload
+                    // WARINING! Array.push methid will return an typescript error
+                    // As a result reducer will return rtype 'never'
+                    composition : [...state.actualProductCard.composition,action.payload]}
+            }
+        }
+        case UPDATE_DESCRIPTION : {
+            return {
+                ...state,
+                actualProductCard : {...state.actualProductCard,description : action.payload}
+            }
+        }
         default:
             return state
     }
 }
 
+
+// Action creator object
 export const productActions = {
   setPremixes : (premixes : productType[]) => ({
     type : "barApp/productReducer/setProducts",
@@ -105,10 +137,12 @@ export const productActions = {
 
 }
 
+//Thunks (async actions)
+// Contains firebase database interaction by the PremixAPI class
 
 export const getProductsByCompanyID = (companyID : string) => {
     return async function (dispatch : any) {
-        // dispatch(app_actions.setInit(false))
+       
         dispatch(app_actions.setFetch(true))
         const products = await premixAPI.getProductsByCompanyID(companyID)
         dispatch(productActions.setPremixes(products as productType[]))
@@ -117,7 +151,7 @@ export const getProductsByCompanyID = (companyID : string) => {
             dispatch(app_actions.setFetch(false))
         },0)
         dispatch(app_actions.setFetch(false))
-        // dispatch(app_actions.setInit(true))
+        
     }
 }
 

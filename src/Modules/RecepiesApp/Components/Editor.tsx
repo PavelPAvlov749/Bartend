@@ -6,8 +6,7 @@ import { productActions } from "../../../Redux/ProductReduxer";
 // Types
 import { ReactNode, useState } from "react";
 import { productType } from "../../../Redux/Types"
-// Custom hooks
-import { useInput } from "../../ChecklistApp/Components/Hooks.";
+
 
 
 // DECLARE PROP TYPE
@@ -36,8 +35,7 @@ export const Editor: React.FC<EditorPropType> = (props: EditorPropType) => {
     function deleteHandler(event: React.SyntheticEvent<HTMLSpanElement>) {
         dispatch(productActions.deleteComponent(event.currentTarget.id));
     };
-    // Compoennts to be added state from useInput custom Hook
-    let [input, setInput] = useInput("Name", "Type name");
+
     // New ingridient state
     let [key, setKey] = useState("");
     let [value, setValue] = useState("");
