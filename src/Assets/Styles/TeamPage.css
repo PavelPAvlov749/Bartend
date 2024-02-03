@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     font-size: larger;
-    gap: 20px
+    gap: 20px;
+    padding: 5px;
 }
 .team_page_container{
     font-size: large;
@@ -38,8 +39,8 @@
     display: flex;
     flex-direction: column;
 }
-.team_users ul {
-    padding: 10px;
+.eam_users__tittle {
+    margin: 5px 0;
 }
 .join_team_container input {
     height: 3rem;

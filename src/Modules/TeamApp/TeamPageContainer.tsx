@@ -11,6 +11,7 @@ import { ClanType } from "../../Redux/TeamReducer";
 // Components
 import { TeamPage } from "./TeamPage";
 import { EmptyTeam } from "./Components/EmptyTeam";
+import ErrorBoundary from "../../Components/ErrorBoundary";
 
 
 
@@ -24,10 +25,17 @@ const TeamPageContainer: React.FC = () => {
     // Get team page fron hook
     let team = useTeamPage();
     // Get user data
+    // @ts-ignore
     let user = useSelector((state: Global_state_type) => state.App.user);
     // If user Belongs to some kind of team Render Team information page
     if (user.teamID) {
-        return <TeamPage user={user} team={team as ClanType} />
+        return (
+            <ErrorBoundary>
+                <TeamPage user={user} team={team as ClanType} />
+                
+            </ErrorBoundary>
+        )
+
     }
     // If user does not beloong to any team Render EmptyTeam Page
 
@@ -35,6 +43,6 @@ const TeamPageContainer: React.FC = () => {
         return <EmptyTeam />
     }
 
-} 
+}
 
 export default TeamPageContainer

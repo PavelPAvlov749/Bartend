@@ -22,7 +22,7 @@ class ErrorBoundary extends Component<Props, State>
         console.error("Uncaught error:", error, errorInfo);
     }
     render() {
-        const error = this.state;
+        const error = this.state.hasError;
 
         if (error) {
             return (

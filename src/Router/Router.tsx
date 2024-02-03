@@ -11,6 +11,7 @@ import { Global_state_type } from "../Redux/Store";
 import { PRIVATE_ROUTES, PUBLICK_ROUTES } from "./Routes";
 import { ROUTE } from "../Redux/Types";
 import { Preloader } from "../Modules/PremixesApp/Components/Preloader";
+import ErrorBoundary from "../Components/ErrorBoundary";
 
 // The router component iterates over the routes array and returns a route component
 //  with the corresponding react component. if user is not authorized iterates over PUBLKICK_ROUTES array
@@ -26,15 +27,17 @@ const Router = React.memo(() => {
         return (
             <div className="content">
                 <Suspense fallback={<Preloader />}>
-                    <Routes>
-                        {PRIVATE_ROUTES.map((route: ROUTE) => {
-                            return (
+                    <ErrorBoundary>
+                        <Routes>
+                            {PRIVATE_ROUTES.map((route: ROUTE) => {
+                                return (
 
-                                <Route key={route.path} element={route.element} path={route.path} />
+                                    <Route key={route.path} element={route.element} path={route.path} />
 
-                            )
-                        })}
-                    </Routes>
+                                )
+                            })}
+                        </Routes>
+                    </ErrorBoundary>
                 </Suspense>
             </div>
         )

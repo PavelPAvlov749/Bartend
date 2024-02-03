@@ -40,8 +40,8 @@ export const UserList: React.FC<UserListPropType> = (props) => {
 
     return (
         <section className="team_users">
-
-            <ul className="user-list">
+            <h3 className="team_users__tittle">Members : </h3>
+            <ul className="team_users__user-list">
                 {props.users?.map((el:{userName: string,userID : string} , indx: number) => {
                     return (
                         <UserListItem key={el.userID} {...{ ...userItemProps, user: el,toggler : props.toggler}} />

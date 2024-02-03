@@ -7,6 +7,7 @@ import { ProductPreview } from "./ProductPreview";
 
 export const CoctailList = () => {
     let dispatch: any = useDispatch()
+
     useEffect(() => {
         dispatch(getCocktailsThunk())
     }, [])
@@ -17,7 +18,7 @@ export const CoctailList = () => {
         dispatch(getCocktailsByName(e.currentTarget.value));
 
     }
-
+    console.log("render")
 
     return (
         <section className="cocktail_list translate_animation">
@@ -28,8 +29,7 @@ export const CoctailList = () => {
             {cocktailsFromState?.map((cocktail : cocltalCardType) => {
                 return (
                 
-                          <ProductPreview type="cocktail"name={cocktail.strDrink} id={cocktail.idDrink} img={cocktail.strDrinkThumb}/>
-                    
+                      <ProductPreview key={cocktail.idDrink} type="cocktail"name={cocktail.strDrink} id={cocktail.idDrink} img={cocktail.strDrinkThumb}/>
                  
                 )
             })}

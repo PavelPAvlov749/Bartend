@@ -19,7 +19,7 @@ export const PremixesList : React.FC = () => {
         <section className="list">
             {state.map((el : productType) => {
                 return (
-                    <ProductPreview type="premix" name={el.name} id={el.id as string} img={null}/>
+                    <ProductPreview key={el.id} type="premix" name={el.name} id={el.id as string} img={null}/>
                 )
             })}
         </section>
